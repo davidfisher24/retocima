@@ -1,5 +1,13 @@
 <?php
 
+ /**
+   * Cimeros Table seeder
+   * @author David Fisher
+   * Seeds from file '/database/raw/cimeros.csv'
+   * Input csv should have no header row
+   * First column of the csv is the auto_increment ID of the cimero 
+*/
+
 use Illuminate\Database\Seeder;
 use App\Cimero;
 
@@ -7,14 +15,16 @@ class CimerosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * Calls seedCimero() for every row found
      *
      * @return void
      */
+
     public function run()
     {
 
     	DB::table('cimeros')->truncate();
-		$file = fopen(base_path('/documentation/cimeros.csv'),"r");
+		$file = fopen(base_path('/database/raw/cimeros.csv'),"r");
 
 		while(! feof($file))
 		{
@@ -23,6 +33,16 @@ class CimerosTableSeeder extends Seeder
 
 		fclose($file);
     }
+
+    /**
+     * Insert one cimero into the database
+     *
+     * @param array $csvArray
+     * First parameter id is ignored and auto incremented by laravel
+     * contrasena is hashed before insert
+     *
+     * @return void
+     */
 
     public function seedCimero($csvArray){
     	$cimero = new Cimero();

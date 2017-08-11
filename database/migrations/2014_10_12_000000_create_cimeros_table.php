@@ -1,5 +1,10 @@
 <?php
 
+ /**
+   * MMigration to create cimeros table
+   * @author David Fisher
+*/
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
