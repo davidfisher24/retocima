@@ -26,4 +26,28 @@ class Cimero extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relationship - User has various logros
+     *
+     * @collection logros
+     */
+    public function logros()
+    {
+        return $this->hasMany('App\Logro', 'id_cimero');
+    }
+
+
+	 /**
+	 * Returns all cimeros ranked by numero of logros
+	 *
+	 * @collection cimeros ranked by logros
+	 */
+    public static function rank()
+    {
+    	return Self::all()->map(function ($cimero) {
+		    $cimero['logrosCount'] = $cimero->logros()->count();
+		    return $cimero;
+		})->sortByDesc('logrosCount');
+    }
 }
