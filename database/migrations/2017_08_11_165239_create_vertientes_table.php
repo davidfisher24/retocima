@@ -21,8 +21,8 @@ class CreateVertientesTable extends Migration
     {
         Schema::create('vertientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_cima');
-            $table->string('codigo_cima');
+            $table->integer('cima_id'); // Changed name
+            $table->string('cima_codigo'); // Changed name
             $table->integer('index');
             $table->string('vertiente');
             $table->integer('altitud')->nullable();

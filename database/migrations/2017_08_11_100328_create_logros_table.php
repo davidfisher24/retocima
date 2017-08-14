@@ -20,9 +20,12 @@ class CreateLogrosTable extends Migration
     {
         Schema::create('logros', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_cimero');
-            $table->integer('id_cima');
-            $table->string('codigo_cima');
+            $table->integer('cimero_id'); // Changed name
+            $table->integer('cima_id'); // Changed name
+            $table->string('cima_codigo'); // Changed name
+            $table->integer('provincia_id'); // NEW
+            $table->integer('communidad_id'); // NEW
+            $table->integer('iberia_id'); // NEW
             $table->timestamps();
         });
     }
