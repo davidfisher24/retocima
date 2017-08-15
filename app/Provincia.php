@@ -17,6 +17,19 @@ class Provincia extends Model
     }
 
     /**
+     * Relationship - Each provincia has many Cimas
+     *
+     * @collection cimas
+     */
+    public function totalCimasInProvince()
+    {
+    	// DO I need this or is it better in the database?
+        return $this->cimas->filter(function($value,$key){
+        	return $value->estado === 1;
+        })->count();
+    }
+
+    /**
      * Relationship - Each provincia has many logros
      *
      * @collection logros
@@ -43,6 +56,8 @@ class Provincia extends Model
      */
     public function iberia()
     {
-        return $this->hasOne('App\Iberia','id','iberia_id');
+        return $this->hasOne('App\Iberia','id','iberiah\\o0_id');
     }
+
+    
 }

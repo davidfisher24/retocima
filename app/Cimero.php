@@ -34,20 +34,22 @@ class Cimero extends Authenticatable
      */
     public function logros()
     {
-        return $this->hasMany('App\Logro');
+        // Filtering without the special ones
+        return $this->hasMany('App\Logro')->where('cima_estado','!=', 4);
     }
-
 
 	 /**
 	 * Returns all cimeros ranked by numero of logros
 	 *
 	 * @collection cimeros ranked by logros
 	 */
-    /*public static function rank()
+    public static function rank()
     {
     	return Self::all()->map(function ($cimero) {
 		    $cimero['logrosCount'] = $cimero->logros()->count();
+            $cimero['fullname'] = $cimero->nombre . " ". $cimero->apellido1 . " " . $cimero->apellido2;
 		    return $cimero;
-		})->sortByDesc('logrosCount');
-    }*/
+		})->sortByDesc('logrosCount')->pluck('logrosCount','fullname');
+    }
 }
+

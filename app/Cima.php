@@ -63,11 +63,11 @@ class Cima extends Model
 	 *
 	 * @collection cimas ranked by ascensions
 	 */
-    /*public static function orderByAscensions()
+    public static function orderByAscensions()
     {
     	return Self::all()->map(function ($cima) {
 		    $cima['ascensionesCount'] = $cima->logros()->count();
 		    return $cima;
-		})->sortByDesc('ascensionesCount');
-    }*/
+		})->sortByDesc('ascensionesCount')->pluck('ascensionesCount','nombre');
+    }
 }
