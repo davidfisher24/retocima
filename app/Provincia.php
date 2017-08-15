@@ -7,23 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Provincia extends Model
 {
     /**
-     * Relationship - Each provincia belongs to a many cimas
+     * Relationship - Each provincia has many Cimas
      *
      * @collection cimas
      */
     public function cimas()
     {
-        return $this->belongsTo('App\Cima');
+        return $this->hasMany('App\Cima');
     }
 
     /**
-     * Relationship - Each provincia belongs to a many logros
+     * Relationship - Each provincia has many logros
      *
      * @collection logros
      */
     public function logros()
     {
-        return $this->belongsTo('App\Logro');
+        return $this->hasMany('App\Logro');
     }
 
     /**
@@ -33,7 +33,7 @@ class Provincia extends Model
      */
     public function communidad()
     {
-        return $this->hasOne('App\Communidad');
+        return $this->hasOne('App\Communidad','id','communidad_id');
     }
 
     /**
@@ -43,6 +43,6 @@ class Provincia extends Model
      */
     public function iberia()
     {
-        return $this->hasOne('App\Iberia');
+        return $this->hasOne('App\Iberia','id','iberia_id');
     }
 }

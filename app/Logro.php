@@ -33,7 +33,7 @@ class Logro extends Model
      */
     public function provincia()
     {
-        return $this->hasOne('App\Provincia');
+        return $this->hasOne('App\Provincia','id','provincia_id');
     }
 
     /**
@@ -43,7 +43,7 @@ class Logro extends Model
      */
     public function communidad()
     {
-        return $this->hasOne('App\Communidad');
+        return $this->hasOne('App\Communidad','id','communidad_id');
     }
 
      /**
@@ -53,6 +53,6 @@ class Logro extends Model
      */
     public function iberia()
     {
-        return $this->hasOne('App\Iberia');
+        return $this->hasOne('App\Iberia','id','iberia_id');
     }
 }
