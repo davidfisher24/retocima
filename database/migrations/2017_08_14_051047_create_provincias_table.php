@@ -16,6 +16,8 @@ class CreateProvinciasTable extends Migration
         Schema::create('provincias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->integer('communidad_id')->default(0);
+            $table->integer('iberia_id')->default(0);
             $table->timestamps();
         });
     }

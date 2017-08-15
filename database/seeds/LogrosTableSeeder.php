@@ -72,12 +72,17 @@ class LogrosTableSeeder extends Seeder
 		for ($a = 1; $a < count($csvArray); $a++) {
 			if ($csvArray[$a]) {
 				$logro = new Logro();
-				$codigoCima = $this->cimaCodeHeaders[$a];
-				$idCima = Cima::where('codigo',$codigoCima)->whereIn('estado',[1,3,4])->first()->id;
 
-            	$logro->id_cimero = $id_cimero;
-            	$logro->id_cima = $idCima;
-            	$logro->codigo_cima = $codigoCima;
+				$codigoCima = $this->cimaCodeHeaders[$a];
+				$cima = Cima::where('codigo',$codigoCima)->whereIn('estado',[1,3,4])->first();
+
+            	$logro->cimero_id = $id_cimero;
+            	$logro->cima_id = $cima->id;
+            	$logro->cima_codigo = $cima->codigo;
+                $logro->cima_estado = $cima->estado;
+                $logro->provincia_id = $cima->provincia_id;
+                $logro->communidad_id = $cima->communidad_id; 
+                $logro->iberia_id = $cima->iberia_id;
 
             	$logro->save();
 			}

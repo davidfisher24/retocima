@@ -13,6 +13,6 @@ class Vertiente extends Model
      */
     public function cima()
     {
-        return $this->belongsTo('App\Cima','id_cima','id');
+        return $this->belongsTo('App\Cima');
     }
 }

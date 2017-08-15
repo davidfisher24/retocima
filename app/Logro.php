@@ -13,7 +13,7 @@ class Logro extends Model
      */
     public function cimero()
     {
-        return $this->belongsTo('App\Cimero','id_cimero','id');
+        return $this->belongsTo('App\Cimero');
     }
 
     /**
@@ -23,6 +23,36 @@ class Logro extends Model
      */
     public function cima()
     {
-        return $this->belongsTo('App\Cima','id_cima','id');
+        return $this->belongsTo('App\Cima');
+    }
+
+    /**
+     * Relationship - One logro has one provincia
+     *
+     * @object provincia
+     */
+    public function provincia()
+    {
+        return $this->hasOne('App\Provincia');
+    }
+
+    /**
+     * Relationship - One logro has one communidad
+     *
+     * @object provincia
+     */
+    public function communidad()
+    {
+        return $this->hasOne('App\Communidad');
+    }
+
+     /**
+     * Relationship - One logro has one iberia
+     *
+     * @object provincia
+     */
+    public function iberia()
+    {
+        return $this->hasOne('App\Iberia');
     }
 }

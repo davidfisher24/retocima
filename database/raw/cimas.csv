@@ -1,687 +1,685 @@
-AM,AM01,1,Santillana,,Almería,Andalucia,España,Parda,,0
-AM,AM02,1,Padilla-Escúllar,Granada,Almería,Andalucia,España,Parda,,0
-AM,AM03,1,Collado García,,Almería,Andalucia,España,Parda,,0
-AM,AM04,1,Enix (P. Eólico),,Almería,Andalucia,España,Parda,,0
-AM,AM05,1,Pico Colativí,,Almería,Andalucia,España,Parda,,0
-AM,AM06,1,Reul Alto,,Almería,Andalucia,España,Parda,,0
-AM,AM07,1,La Parra (antes Los Pérez),,Almería,Andalucia,España,Parda,,0
-AM,AM08,1,Calar Alto,,Almería,Andalucia,España,Parda,,0
-AM,AM09,1,Velefique - Tetica de Bacares,,Almería,Andalucia,España,Parda,,0
-AM,AM10,1,Cerro de la Mezquita (antes Sª de la Cabrera),,Almería,Andalucia,España,Parda,,0
-AM,AM11,1,Puerto de la Virgen,,Almería,Andalucia,España,Parda,,0
-CD,CD01,1,Las Palomas,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD02,1,Sierra de la Plata (antes La Silla del Papa),,Cádiz,Andalucia,España,Oeste,,0
-CD,CD03,1,Gáliz,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD04,1,Subida a Gibraltar,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD06,1,Pedro Ruiz,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD08,1,El Boyar,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD09,1,Mojón de la Víbora / Peñón del Berrueco,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD10,1,Pico Montero (EVA-11),,Cádiz,Andalucia,España,Oeste,,0
-CD,CO01,1,Santuario de Araceli,,Córdoba,Andalucia,España,Parda,,0
-CD,CO02,1,Artafi,,Córdoba,Andalucia,España,Parda,,0
-CD,CO03,1,Virgen de la Sierra,,Córdoba,Andalucia,España,Parda,,0
-CD,CO05,1,San Jerónimo- Mirador de las Niñas,,Córdoba,Andalucia,España,Parda,,0
-CD,CO06,1,Cueva de los murciélagos,,Córdoba,Andalucia,España,Parda,,0
-CD,CO07,1,El Caballón,,Córdoba,Andalucia,España,Parda,,0
-CD,CO08,1,El Jaramillo,,Córdoba,Andalucia,España,Parda,,0
-GR,GR01,1,Los Guájares,,Granada,Andalucia,España,Parda,,0
-GR,GR02,1,La Losa,,Granada,Andalucia,España,Parda,,0
-GR,GR03,1,La Alfaguara,,Granada,Andalucia,España,Parda,,0
-GR,GR04,1,El Purche,,Granada,Andalucia,España,Parda,,0
-GR,GR05,1,Cumbres Verdes,,Granada,Andalucia,España,Parda,,0
-GR,GR06,1,Parapanda,,Granada,Andalucia,España,Parda,,0
-GR,GR07,1,Cáñar,,Granada,Andalucia,España,Parda,,0
-GR,GR08,1,Collado de los Poyos del Pescado (antes Mirador de la Cabra Montés),,Granada,Andalucia,España,Parda,,0
-GR,GR09,1,Capileira,,Granada,Andalucia,España,Parda,,0
-GR,GR10,1,La Ragua,,Granada,Andalucia,España,Parda,,0
-GR,GR11,1,Padilla-Escúllar,Almería,Granada,Andalucia,España,Parda,,0
-GR,GR12,1,Peña Escrita,,Granada,Andalucia,España,Parda,,0
-GR,GR13,1,Las Albuñuelas,,Granada,Andalucia,España,Parda,,0
-GR,GR14,1,Trevelez,,Granada,Andalucia,España,Parda,,0
-GR,GR15,1,Venta del Chaleco,,Granada,Andalucia,España,Parda,,0
-GR,GR16,1,Jabalcón,,Granada,Andalucia,España,Parda,,0
-GR,GR17,1,Haza de Lino,,Granada,Andalucia,España,Parda,,0
-GR,GR18,1,Sierra Nevada - Pico Veleta     ,,Granada,Andalucia,España,Parda,,1
-GR,GR19,1,Portichuelo de Cástaras,,Granada,Andalucia,España,Parda,,0
-GR,GR20,1,Collado Canseco,,Granada,Andalucia,España,Parda,,0
-GR,GR21,1,Collado Alguacil,,Granada,Andalucia,España,Parda,,0
-HL,HL01,1,San Cristóbal,,Huelva,Andalucia,España,Oeste,,0
-HL,HL03,1,Aracena,,Huelva,Andalucia,España,Oeste,,0
-HL,HL04,1,La Corte - Puerto Lucía,,Huelva,Andalucia,España,Oeste,,0
-HL,HL05,1,Las Contiendas,,Huelva,Andalucia,España,Oeste,,0
-HL,HL06,1,Sierra del Viento,,Huelva,Andalucia,España,Oeste,,0
-HL,HL07,1,Alájar,,Huelva,Andalucia,España,Oeste,,0
-JA,JA01,1,Las Palomas,,Jaén,Andalucia,España,Parda,,0
-JA,JA02,1,Collado de la Traviesa (Pocico),,Jaén,Andalucia,España,Parda,,0
-JA,JA03,1,El Yelmo,,Jaén,Andalucia,España,Parda,,0
-JA,JA04,1,La Martina (Collados de Frailes),,Jaén,Andalucia,España,Parda,,0
-JA,JA05,1,Puerto de Tíscar,,Jaén,Andalucia,España,Parda,,0
-JA,JA06,1,Castillo de Santa Catalina,,Jaén,Andalucia,España,Parda,,0
-JA,JA07,1,Collado Agua de los Perros,,Jaén,Andalucia,España,Parda,,0
-JA,JA08,1,Las Coberteras,,Jaén,Andalucia,España,Parda,,0
-JA,JA09,1,Albánchez,,Jaén,Andalucia,España,Parda,,0
-JA,JA10,1,Iznatoraf,,Jaén,Andalucia,España,Parda,,0
-JA,JA11,1,La Pandera,,Jaén,Andalucia,España,Parda,,0
-JA,JA12,1,Ahillos (Puerto de Villarbajo),,Jaén,Andalucia,España,Parda,,0
-JA,JA13,1,Allanada del Santo,,Jaén,Andalucia,España,Parda,,0
-JA,JA14,1,Despiernacaballos,,Jaén,Andalucia,España,Parda,,0
-JA,JA15,1,Puerto de Pontones,,Jaén,Andalucia,España,Parda,,0
-JA,JA16,1,Alto de Marchena,,Jaén,Andalucia,España,Parda,,0
-ML,ML01,1,Ojén - Refugio Juanar,,Málaga,Andalucia,España,Oeste,,0
-ML,ML02,1,Ermita de las Tres Cruces,,Málaga,Andalucia,España,Oeste,,0
-ML,ML03,1,Encinas Borrachas,,Málaga,Andalucia,España,Oeste,,0
-ML,ML04,1,Puerto del Sol,,Málaga,Andalucia,España,Oeste,,0
-ML,ML05,1,El Viento,,Málaga,Andalucia,España,Oeste,,0
-ML,ML06,1,Puerto de los Pinos- Llano de las Cruces,,Málaga,Andalucia,España,Oeste,,0
-ML,ML08,1,El Espino (antenas),,Málaga,Andalucia,España,Oeste,,0
-ML,ML09,1,Torcal de Antequera,,Málaga,Andalucia,España,Oeste,,0
-ML,ML10,1,El León,,Málaga,Andalucia,España,Oeste,,0
-ML,ML11,1,Las Mesas de Villaverde,,Málaga,Andalucia,España,Oeste,,0
-ML,ML12,1,Loma de las Cuadrillas,,Málaga,Andalucia,España,Oeste,,0
-ML,ML13,1,El Madroño,,Málaga,Andalucia,España,Oeste,,0
-ML,ML14,1,Boquete de Zafarraya,,Málaga,Andalucia,España,Oeste,,0
-ML,ML15,1,Cerro del Moro,,Málaga,Andalucia,España,Oeste,,0
-ML,ML16,1,La Mina (El Chiquín),,Málaga,Andalucia,España,Oeste,,0
-ML,ML17,1,Peñas Blancas - Los Reales,,Málaga,Andalucia,España,Oeste,,0
-ML,ML18,1,Santopitar,,Málaga,Andalucia,España,Oeste,,0
-SV,SV01,1,El Robledo - Cerro Negrillo,,Sevilla,Andalucia,España,Oeste,,0
-SV,SV02,1,Los Melonares,,Sevilla,Andalucia,España,Oeste,,0
-SV,SV04,1,Peñón de Algámitas,,Sevilla,Andalucia,España,Oeste,,0
-SV,SV05,1,Cerro Becerrero,,Sevilla,Andalucia,España,Oeste,,0
-AN,AN01,1,Arcalís-Port del Rat,,Andorra,Andorra,Andorra,Med,,0
-AN,AN02,1,Coll de la Gallina,,Andorra,Andorra,Andorra,Med,,0
-AN,AN03,1,Arinsal,,Andorra,Andorra,Andorra,Med,,0
-AN,AN04,1,La Comella,,Andorra,Andorra,Andorra,Med,,0
-AN,AN05,1,'Cortals d''Encamp',,Andorra,Andorra,Andorra,Med,,0
-AN,AN06,1,'Llac d''Engolasters',,Andorra,Andorra,Andorra,Med,,0
-AN,AN07,1,La Rabassa,,Andorra,Andorra,Andorra,Med,,0
-AN,AN08,1,'Coll d''Ordino',,Andorra,Andorra,Andorra,Med,,0
-AN,AN09,1,'Port d''Envalira',,Andorra,Andorra,Andorra,Med,,0
-AN,AN10,1,Os de Civis,,Andorra,Andorra,Andorra,Med,,0
-AN,AN11,1,Port de Cabús,,Andorra,Andorra,Andorra,Med,,1
-AN,AN12,1,Collada Beixalís,,Andorra,Andorra,Andorra,Med,,0
-HU,HU01,1,Tella,,Huesca,Aragon,España,Parda,,0
-HU,HU02,1,Presa de Llauset,,Huesca,Aragon,España,Parda,,0
-HU,HU03,1,Serrablo,,Huesca,Aragon,España,Parda,,0
-HU,HU04,1,Fanlo,,Huesca,Aragon,España,Parda,,0
-HU,HU05,1,Refugio de Lizara,,Huesca,Aragon,España,Parda,,0
-HU,HU07,1,San Juan de la Peña,,Huesca,Aragon,España,Parda,,0
-HU,HU08,1,Refugio de Gabardito,,Huesca,Aragon,España,Parda,,0
-HU,HU09,1,Serveto,,Huesca,Aragon,España,Parda,,0
-HU,HU10,1,Pico del Aguila,,Huesca,Aragon,España,Parda,,0
-HU,HU11,1,La Besurta (La Renclusa),,Huesca,Aragon,España,Parda,,0
-HU,HU12,1,Cotefablo,,Huesca,Aragon,España,Parda,,0
-HU,HU13,1,Cerler - El Ampriú,,Huesca,Aragon,España,Parda,,0
-HU,HU14,1,Portalet,,Huesca,Aragon,España,Parda,,0
-HU,HU15,1,Somport,,Huesca,Aragon,España,Parda,,0
-HU,HU16,1,Baños de Panticosa,,Huesca,Aragon,España,Parda,,0
-HU,HU17,1,Bestué,,Huesca,Aragon,España,Parda,,0
-TE,TE01,1,Peñarroya – Estación de Valdelinares,,Teruel,Aragon,España,Parda,,0
-TE,TE02,1,Villa Rosario - La Mata,,Teruel,Aragon,España,Parda,,0
-TE,TE03,1,Javalambre    ,,Teruel,Aragon,España,Parda,,1
-TE,TE04,1,Nuestra Señora de Tremedal,,Teruel,Aragon,España,Parda,,0
-TE,TE06,1,Los Degollaos (Collado Frío),,Teruel,Aragon,España,Parda,,0
-TE,TE07,1,Fuente de Rubielos,,Teruel,Aragon,España,Parda,,0
-TE,TE08,1,Majalinos,,Teruel,Aragon,España,Parda,,0
-TE,TE09,1,Cuarto Pelado,,Teruel,Aragon,España,Parda,,0
-TE,TE10,1,Muela de San Juan,Valencia,Teruel,Aragon,España,Parda,,0
-TE,TE11,1,San Just,,Teruel,Aragon,España,Parda,,0
-TE,TE12,1,El Portillo,Cuenca,Teruel,Aragon,España,Parda,,0
-TE,TE13,1,Cabigordo,,Teruel,Aragon,España,Parda,,0
-TE,TE14,1,San Cristóbal,,Teruel,Aragon,España,Parda,,0
-TE,TE15,1,Tarrascón de Peñacerrada (Puerto de Fortanete),,Teruel,Aragon,España,Parda,,0
-ZA,ZA01,1,Used,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA02,1,Beratón,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA03,1,Codos- Valdemadera,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA04,1,Viver de la Sierra,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA05,1,Moncayo,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA06,1,Puerto de Sos,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA07,1,Cubel,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA09,1,Balconchán,,Zaragoza,Aragon,España,Parda,,0
-ZA,ZA10,1,Santurario Virgen de Herrera,,Zaragoza,Aragon,España,Parda,,0
-AS,AS01,1,Ventana,,Asturias,Asturias,España,Verde,,0
-AS,AS02,1,Amieva,,Asturias,Asturias,España,Verde,,0
-AS,AS03,1,Connio,,Asturias,Asturias,España,Verde,,0
-AS,AS04,1,Casielles,,Asturias,Asturias,España,Verde,,0
-AS,AS05,1,Jitu de Escarandi (Collado Barreda),,Asturias,Asturias,España,Verde,,0
-AS,AS06,1,San Lorenzo,,Asturias,Asturias,España,Verde,,0
-AS,AS07,1,Lagos de Covadonga,,Asturias,Asturias,España,Verde,,0
-AS,AS08,1,Pajares-Cuitu Negro,,Asturias,Asturias,España,Verde,,0
-AS,AS09,1,Pozo de las Mujeres Muertas/Valvaler,,Asturias,Asturias,España,Verde,,0
-AS,AS10,1,Tarna / Las Señales,,Asturias,Asturias,España,Verde,,0
-AS,AS11,1,La Cobertoria / Gamoniteiro,,Asturias,Asturias,España,Verde,,0
-AS,AS12,1,'Valle de Lago/L''Outeiro',,Asturias,Asturias,España,Verde,,0
-AS,AS13,1,Somiedo,,Asturias,Asturias,España,Verde,,0
-AS,AS14,1,Santuario del Acebo,,Asturias,Asturias,España,Verde,,0
-AS,AS15,1,Cruz de Linares,,Asturias,Asturias,España,Verde,,0
-AS,AS16,1,Pelliceira,,Asturias,Asturias,España,Verde,,0
-AS,AS17,1,Angliru,,Asturias,Asturias,España,Verde,,1
-AS,AS18,1,Collada Llómena,,Asturias,Asturias,España,Verde,,0
-AS,AS19,1,San Isidro,,Asturias,Asturias,España,Verde,,0
-AS,AS20,1,Collada de Arnicio,,Asturias,Asturias,España,Verde,,0
-AS,AS21,1,Peñas del Viento,,Asturias,Asturias,España,Verde,,0
-AS,AS22,1,Maravio,,Asturias,Asturias,España,Verde,,0
-AS,AS23,1,La Cubilla,,Asturias,Asturias,España,Verde,,0
-AS,AS24,1,El Fito,,Asturias,Asturias,España,Verde,,0
-AS,AS25,1,Bustellán,,Asturias,Asturias,España,Verde,,0
-AS,AS26,1,Leitariegos,,Asturias,Asturias,España,Verde,,0
-AS,AS29,1,La Marta,,Asturias,Asturias,España,Verde,,0
-AS,AS30,1,La Farrapona,,Asturias,Asturias,España,Verde,,0
-AS,AS31,1,Banduxu,,Asturias,Asturias,España,Verde,,0
-AS,AS32,1,La Bobia,,Asturias,Asturias,España,Verde,,0
-AS,AS33,1,Siero,,Asturias,Asturias,España,Verde,,0
-AS,AS34,1,Ermita del Alba,,Asturias,Asturias,España,Verde,,0
-AS,AS35,1,Cotobello,,Asturias,Asturias,España,Verde,,0
-AS,AS36,1,Valdeferreiros,,Asturias,Asturias,España,Verde,,0
-AS,AS37,1,Collada Trespandiu,,Asturias,Asturias,España,Verde,,0
-AS,AS38,1,Collado Taranes,,Asturias,Asturias,España,Verde,,0
-AS,AS39,1,Alto Venta de la Corredoria,,Asturias,Asturias,España,Verde,,0
-IB,IB01,1,Monte Toro,,Islas Baleares,Islas Baleares,España,Med,Menorca,0
-IB,IB02,1,Santuari de Cura (Puig de Randa),,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB04,1,Valldemossa,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB05,1,Puig de Tomir- Femenía,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB06,1,Sa Fita des Ram (Sobremunt),,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB07,1,'Mirador d''es Colomer- Sa Talaia d''Albercutx',,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB08,1,Puig Major,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB09,1,Coll de Cals Reis - Sa Calobra,,Islas Baleares,Islas Baleares,España,Med,Mallorca,1
-IB,IB10,1,Santuari Sant Salvador,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB12,1,Coll de Sóller,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB13,1,'Coll d''Honor',,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB14,1,Galilea,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-LP,LP01,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP02,1,Lanzarote,,Las Palmas,Islas Canarias,España,Oeste,Lanzarote,0
-LP,LP03,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP04,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP05,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP06,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP07,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP08,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-LP,LP09,1,Fuerteventura,,Las Palmas,Islas Canarias,España,Oeste,Fuerteventura,0
-LP,LP10,1,Gran Canaria,,Las Palmas,Islas Canarias,España,Oeste,Gran Canaria,0
-SC,SC01,1,El Pilar,,Santa Cruz,Islas Canarias,España,Oeste,La Palma,0
-SC,SC02,1,Ermita de San José (La Montañeta),,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC03,1,El Bailadero,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC04,1,Teide,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC05,1,Roque de los Muchachos    ,,Santa Cruz,Islas Canarias,España,Oeste,La Palma,1
-SC,SC06,1,Pico del Inglés,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC07,1,Puerto de Erjos,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC08,1,La Fileba,,Santa Cruz,Islas Canarias,España,Oeste,El Hierro,0
-SC,SC09,1,Garajonay,,Santa Cruz,Islas Canarias,España,Oeste,La Gomera,0
-SC,SC10,1,La Cumbrecita,,Santa Cruz,Islas Canarias,España,Oeste,La Palma,0
-SC,SC11,1,Cruz de Gilda- Masca,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC12,1,Teno Alto,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC13,1,Chanajiga,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC14,1,Taucho,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC15,1,Tijoco Alto,,Santa Cruz,Islas Canarias,España,Oeste,Tenerife,0
-SC,SC16,1,Alto de Apartacaminos,,Santa Cruz,Islas Canarias,España,Oeste,La Gomera,0
-CA,CA01,1,Peña Cabarga,,Cantabria,Cantabria,España,Verde,,0
-CA,CA02,1,Piedrasluengas,,Cantabria,Cantabria,España,Verde,,0
-CA,CA03,1,San Glorio-Collada de Llesba,,Cantabria,Cantabria,España,Verde,,0
-CA,CA04,1,Palombera,,Cantabria,Cantabria,España,Verde,,0
-CA,CA05,1,Estacas de Trueba,,Cantabria,Cantabria,España,Verde,,0
-CA,CA06,1,Alisas,,Cantabria,Cantabria,España,Verde,,0
-CA,CA07,1,Los Tornos,,Cantabria,Cantabria,España,Verde,,0
-CA,CA08,1,Asón- La Sía,Burgos,Cantabria,Cantabria,España,Verde,,0
-CA,CA09,1,La Estranguada,,Cantabria,Cantabria,España,Verde,,0
-CA,CA10,1,La Braguía,,Cantabria,Cantabria,España,Verde,,0
-CA,CA11,1,Portillo de Lunada,,Cantabria,Cantabria,España,Verde,,0
-CA,CA12,1,El Caracol,,Cantabria,Cantabria,España,Verde,,0
-CA,CA13,1,La Hoja - Salto de la Cabra    ,,Cantabria,Cantabria,España,Verde,,1
-CA,CA14,1,El Escudo,,Cantabria,Cantabria,España,Verde,,0
-CA,CA15,1,Alto Campoo-Fuente del Chivo,,Cantabria,Cantabria,España,Verde,,0
-CA,CA16,1,Collado de Hoz,,Cantabria,Cantabria,España,Verde,,0
-CA,CA17,1,El Soplao,,Cantabria,Cantabria,España,Verde,,0
-CA,CA18,1,Collao Espina–Los Machucos,,Cantabria,Cantabria,España,Verde,,0
-CA,CA19,1,Collada de Brenes,,Cantabria,Cantabria,España,Verde,,0
-AB,AB01,1,Las Quebradas,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB02,1,El Barrancazo,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB03,1,El Bellotar,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB04,1,La Borriqueta,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB05,1,El Lastonar – Los Picones,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB06,1,Loma de la Albarda,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB07,1,Monte Ardal    ,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB08,1,Las Crucetillas,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB09,1,El Arenal,,Albacete,Castilla la mancha,España,Parda,,0
-AB,AB10,1,Los Chorreones,,Albacete,Castilla la mancha,España,Parda,,0
-CR,CR01,1,Collado Pisa,,Ciudad Real,Castilla la mancha,España,Parda,,0
-CR,CR02,1,El Calero,,Ciudad Real,Castilla la mancha,España,Parda,,0
-CR,CR03,1,Navajo (Repetidor TV),,Ciudad Real,Castilla la mancha,España,Parda,,0
-CR,CR04,1,El Rocino,,Ciudad Real,Castilla la mancha,España,Parda,,0
-CR,CR05,1,Los Rehoyos,,Ciudad Real,Castilla la mancha,España,Parda,,0
-CR,CR06,1,Madrona,,Ciudad Real,Castilla la mancha,España,Parda,,0
-CR,CR07,1,Los Santos,,Ciudad Real,Castilla la mancha,España,Parda,,0
-CU,CU01,1,Ciudad Encantada,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU02,1,Cabeza de Hoyo,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU03,1,Collado de las Vigas,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU04,1,Cerro del Socorro,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU05,1,Cerro de San Cristobal,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU06,1,La Vega/Serracín,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU07,1,Las Majadas,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU08,1,El Cubillo/El Portillo,Teruel,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU09,1,El Pozuelo,,Cuenca,Castilla la mancha,España,Parda,,0
-CU,CU10,1,Belvalle,,Cuenca,Castilla la mancha,España,Parda,,0
-GU,GU01,1,La Quesera,Segovia,Guadalajara,Castilla la mancha,España,Parda,,1
-GU,GU03,1,Alto Rey,,Guadalajara,Castilla la mancha,España,Parda,,0
-GU,GU04,1,Peñalba    ,,Guadalajara,Castilla la mancha,España,Parda,,0
-GU,GU05,1,Valfermoso,,Guadalajara,Castilla la mancha,España,Parda,,0
-GU,GU06,1,Taravilla,,Guadalajara,Castilla la mancha,España,Parda,,0
-GU,GU08,1,Campanario de Galve,,Guadalajara,Castilla la mancha,España,Parda,,0
-GU,GU09,1,Almeriques,,Guadalajara,Castilla la mancha,España,Parda,,0
-TO,TO01,1,Risco de las Paradas,,Toledo,Castilla la mancha,España,Parda,,0
-TO,TO02,1,El Piélago,,Toledo,Castilla la mancha,España,Parda,,0
-TO,TO03,1,El Robledillo (Baños de la Guarra),,Toledo,Castilla la mancha,España,Parda,,0
-AV,AV01,1,Chía,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV02,1,Peña Negra,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV03,1,Navalmoral,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV04,1,Serranillos,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV05,1,El Tremedal,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV06,1,Plataforma de Gredos,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV07,1,Nogal del Barranco,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV08,1,Las Erillas,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV09,1,El Pico,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV10,1,Mijares,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV11,1,La Centenera    ,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV12,1,Pedro Bernardo,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV13,1,Ermita de San Pedro - La Mesa    ,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV14,1,La Erilla,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV15,1,Arrebatacapas,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV16,1,El Mediano    ,,Avila,Castilla y leon,España,Oeste,,0
-AV,AV17,1,Refugio de Mingo Fernando,,Avila,Castilla y leon,España,Oeste,,0
-BU,BU02,1,Peña Angulo,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU03,1,Lagunas de Neila,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU04,1,La Mazorra,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU05,1,La Eme,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU06,1,Altotero,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU07,1,Portillo del Busto,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU08,1,Picón del Fraile (Lunada),Cantabria,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU09,1,Picón Blanco,,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU10,1,La Sía,Cantabria,Burgos,Castilla y leon,España,Oeste,,0
-BU,BU11,1,Trigaza,,Burgos,Castilla y leon,España,Oeste,,0
-LE,LE01,1,Alto del Peñón,Zamora,León,Castilla y leon,España,Oeste,,0
-LE,LE02,1,Foncebadón-Cruz de Ferro,,León,Castilla y leon,España,Oeste,,0
-LE,LE03,1,Las Gobernadas,,León,Castilla y leon,España,Oeste,,0
-LE,LE04,1,Sotillo de Cabrera,,León,Castilla y leon,España,Oeste,,0
-LE,LE05,1,Ancares,Lugo,León,Castilla y leon,España,Oeste,,0
-LE,LE06,1,Valporquero,,León,Castilla y leon,España,Oeste,,0
-LE,LE07,1,Piedrafita (El Sierro),,León,Castilla y leon,España,Oeste,,0
-LE,LE08,1,Virgen del Valle,,León,Castilla y leon,España,Oeste,,0
-LE,LE09,1,O Cebreiro (repetidor),,León,Castilla y leon,España,Oeste,,0
-LE,LE10,1,Panderruedas,,León,Castilla y leon,España,Oeste,,0
-LE,LE11,1,Peñalba de Santiago,,León,Castilla y leon,España,Oeste,,0
-LE,LE12,1,Fonte da Cova-Collada Trevinca,Ourense,León,Castilla y leon,España,Oeste,,0
-LE,LE13,1,El Morredero–Llano de las Ovejas    ,,León,Castilla y leon,España,Oeste,,1
-LE,LE15,1,Pandetrave,,León,Castilla y leon,España,Oeste,,0
-LE,LE16,1,Calello-Corral de los Lobos (antes Las Minas),,León,Castilla y leon,España,Oeste,,0
-LE,LE17,1,Mirador de Orellán,,León,Castilla y leon,España,Oeste,,0
-PA,PA01,1,Golobar,,Palencia,Castilla y leon,España,Oeste,,0
-PA,PA02,1,Santuario del Brezo,,Palencia,Castilla y leon,España,Oeste,,0
-PA,PA03,1,La Varga,,Palencia,Castilla y leon,España,Oeste,,0
-SA,SA01,1,El Cerro,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA02,1,Saucelle,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA03,1,El Travieso,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA04,1,Aldeadávila,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA05,1,Lagunilla,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA06,1,Peña de Francia    ,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA07,1,El Portillo de las Batuecas,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA08,1,La Covatilla,,Salamanca,Castilla y leon,España,Oeste,,0
-SA,SA09,1,Mogarraz,,Salamanca,Castilla y leon,España,Oeste,,0
-SE,SE01,1,Navacerrada,,Segovia,Castilla y leon,España,Oeste,,0
-SE,SE03,1,Navafría,Madrid,Segovia,Castilla y leon,España,Oeste,,0
-SE,SE04,1,La Quesera,Guadalajara,Segovia,Castilla y leon,España,Oeste,,0
-SE,SE05,1,Fuente de la Reina    ,,Segovia,Castilla y leon,España,Oeste,,0
-SE,SE06,1,Navapelegrín,,Segovia,Castilla y leon,España,Oeste,,0
-SO,SO01,1,Montenegro (Viniegras),La rioja,Soria,Castilla y leon,España,Oeste,,0
-SO,SO02,1,El Cargadero,,Soria,Castilla y leon,España,Oeste,,0
-SO,SO03,1,Castroviejo,,Soria,Castilla y leon,España,Oeste,,0
-SO,SO04,1,L. Negra de Urbión    ,,Soria,Castilla y leon,España,Oeste,,0
-SO,SO06,1,Cabeza Alta,,Soria,Castilla y leon,España,Oeste,,0
-SO,SO07,1,Alto Cruz,,Soria,Castilla y leon,España,Oeste,,0
-SO,SO08,1,Piqueras,La rioja,Soria,Castilla y leon,España,Oeste,,0
-SO,SO09,1,Santa Inés,,Soria,Castilla y leon,España,Oeste,,0
-VD,VD02,1,Renedo,,Valladolid,Castilla y leon,España,Oeste,,0
-VD,VD03,1,Alto de San Martín,,Valladolid,Castilla y leon,España,Oeste,,0
-ZM,ZM01,1,Alto de Fermoselle,,Zamora,Castilla y leon,España,Oeste,,0
-ZM,ZM02,1,Ladiairo-Marabón,,Zamora,Castilla y leon,España,Oeste,,0
-ZM,ZM03,1,Laguna de los Peces,,Zamora,Castilla y leon,España,Oeste,,0
-ZM,ZM04,1,Peña Mira,,Zamora,Castilla y leon,España,Oeste,,0
-ZM,ZM05,1,Alto del Peñón,León,Zamora,Castilla y leon,España,Oeste,,0
-ZM,ZM06,1,P. E. Padornelo,,Zamora,Castilla y leon,España,Oeste,,0
-ZM,ZM07,1,P. E. Hedroso-Aciberos,,Zamora,Castilla y leon,España,Oeste,,0
-BA,BA01,1,Rasos de Peguera,,Barcelona,Cataluña,España,Med,,0
-BA,BA02,1,Santa Fe,,Barcelona,Cataluña,España,Med,,0
-BA,BA03,1,Bracons,Girona,Barcelona,Cataluña,España,Med,,0
-BA,BA04,1,'Turó de l''Home    ',,Barcelona,Cataluña,España,Med,,1
-BA,BA05,1,Santuari de Falgars,,Barcelona,Cataluña,España,Med,,0
-BA,BA06,1,Bellmunt,,Barcelona,Cataluña,España,Med,,0
-BA,BA07,1,Coll de la Bena,,Barcelona,Cataluña,España,Med,,0
-BA,BA08,1,Coll de Pal,,Barcelona,Cataluña,España,Med,,0
-BA,BA09,1,'Coll d''Estenalles',,Barcelona,Cataluña,España,Med,,0
-BA,BA10,1,El Farell,,Barcelona,Cataluña,España,Med,,0
-BA,BA11,1,Rat Penat,,Barcelona,Cataluña,España,Med,,0
-BA,BA12,1,Montserrat,,Barcelona,Cataluña,España,Med,,0
-BA,BA13,1,La Creueta,,Barcelona,Cataluña,España,Med,,0
-BA,BA14,1,Fumanya- Peguera,,Barcelona,Cataluña,España,Med,,0
-BA,BA15,1,Collformic,,Barcelona,Cataluña,España,Med,,0
-BA,BA16,1,Coll de Pradell    ,,Barcelona,Cataluña,España,Med,,0
-BA,BA17,1,Sant Isidre,,Barcelona,Cataluña,España,Med,,0
-BA,BA18,1,Capolat-Malpàs,,Barcelona,Cataluña,España,Med,,0
-BA,BA19,1,P.E. de Tagamanent,,Barcelona,Cataluña,España,Med,,0
-GI,GI01,1,Els Angels,,Girona,Cataluña,España,Med,,0
-GI,GI02,1,Revell- Els Cortals,,Girona,Cataluña,España,Med,,0
-GI,GI03,1,Rocacorba,,Girona,Cataluña,España,Med,,0
-GI,GI04,1,Masella- Coma Oriola,,Girona,Cataluña,España,Med,,0
-GI,GI05,1,Bracons,Barcelona,Girona,Cataluña,España,Med,,0
-GI,GI06,1,Coubet-Canes,,Girona,Cataluña,España,Med,,0
-GI,GI07,1,Les Barraques,,Girona,Cataluña,España,Med,,0
-GI,GI08,1,Capsacosta,,Girona,Cataluña,España,Med,,0
-GI,GI09,1,La Collada de Toses,,Girona,Cataluña,España,Med,,0
-GI,GI10,1,Collfred,,Girona,Cataluña,España,Med,,0
-GI,GI11,1,Vallter 2000,,Girona,Cataluña,España,Med,,0
-GI,GI12,1,Condreu - El Far,,Girona,Cataluña,España,Med,,0
-GI,GI13,1,Mare de Déu del Mont,,Girona,Cataluña,España,Med,,0
-GI,GI14,1,Sant Pere de Rodes,,Girona,Cataluña,España,Med,,0
-GI,GI15,1,Sant Grau,,Girona,Cataluña,España,Med,,0
-GI,GI16,1,Coll de Jou,,Girona,Cataluña,España,Med,,0
-LL,LL01,1,Port del Compte-Estivella,,Lleida,Cataluña,España,Med,,0
-LL,LL02,1,Boí - Taüll,,Lleida,Cataluña,España,Med,,0
-LL,LL03,1,Cap de Rec,,Lleida,Cataluña,España,Med,,0
-LL,LL04,1,Pleta del Prat,,Lleida,Cataluña,España,Med,,0
-LL,LL05,1,Llac de Sant Maurici,,Lleida,Cataluña,España,Med,,0
-LL,LL06,1,Creu de Perves,,Lleida,Cataluña,España,Med,,0
-LL,LL07,1,Coll de Josa,,Lleida,Cataluña,España,Med,,0
-LL,LL08,1,Bonaigua,,Lleida,Cataluña,España,Med,,0
-LL,LL09,1,Pla de Beret,,Lleida,Cataluña,España,Med,,0
-LL,LL10,1,Port Ainé,,Lleida,Cataluña,España,Med,,0
-LL,LL11,1,Portillón,,Lleida,Cataluña,España,Med,,0
-LL,LL14,1,Boixols,,Lleida,Cataluña,España,Med,,0
-LL,LL15,1,Port de Cantó,,Lleida,Cataluña,España,Med,,0
-LL,LL16,1,Embalse de Sallente,,Lleida,Cataluña,España,Med,,0
-LL,LL17,1,Lavansa,,Lleida,Cataluña,España,Med,,0
-LL,LL18,1,Artiga de Lin,,Lleida,Cataluña,España,Med,,0
-LL,LL19,1,Montnou,,Lleida,Cataluña,España,Med,,0
-LL,LL20,1,'Coll d''Ares',,Lleida,Cataluña,España,Med,,0
-LL,LL21,1,Saut deth Pish,,Lleida,Cataluña,España,Med,,0
-LL,LL22,1,'Bassa d''Oles',,Lleida,Cataluña,España,Med,,0
-LL,LL23,1,'Mirador d''Arres',,Lleida,Cataluña,España,Med,,0
-LL,LL24,1,Aigüestortes,,Lleida,Cataluña,España,Med,,0
-TA,TA01,1,Alforja – Los Castillejos,,Tarragona,Cataluña,España,Med,,0
-TA,TA02,1,Castillo de Escornalbou,,Tarragona,Cataluña,España,Med,,0
-TA,TA03,1,'Prades (Coll de l''Arena)',,Tarragona,Cataluña,España,Med,,0
-TA,TA04,1,Montagut,,Tarragona,Cataluña,España,Med,,0
-TA,TA05,1,Mont Caro,,Tarragona,Cataluña,España,Med,,0
-TA,TA06,1,Rojals,,Tarragona,Cataluña,España,Med,,0
-TA,TA07,1,Coll de la Teixeta,,Tarragona,Cataluña,España,Med,,0
-TA,TA08,1,Ventoses,,Tarragona,Cataluña,España,Med,,0
-TA,TA09,1,Cardó,,Tarragona,Cataluña,España,Med,,0
-TA,TA10,1,Llaberia,,Tarragona,Cataluña,España,Med,,0
-TA,TA11,1,La Mussara - Llebres,,Tarragona,Cataluña,España,Med,,0
-CE,CE01,1,García Aldave,,Ceuta,Ceuta,España,Oeste,,0
-AL,AL01,1,Altube,,Álava,Euskadi,España,Verde,,0
-AL,AL02,1,Iturrieta,,Álava,Euskadi,España,Verde,,0
-AL,AL03,1,Pagolar,,Álava,Euskadi,España,Verde,,0
-AL,AL04,1,Opakua,,Álava,Euskadi,España,Verde,,0
-AL,AL05,1,Herrera,,Álava,Euskadi,España,Verde,,0
-AL,AL06,1,Bernedo (La Aldea),,Álava,Euskadi,España,Verde,,0
-AL,AL07,1,La Barrerilla,,Álava,Euskadi,España,Verde,,0
-AL,AL08,1,Orduña,,Álava,Euskadi,España,Verde,,0
-AL,AL09,1,Osma (Repetidor TV),,Álava,Euskadi,España,Verde,,0
-AL,AL10,1,Santa Teodosia,,Álava,Euskadi,España,Verde,,0
-AL,AL11,1,Krutzeta,,Álava,Euskadi,España,Verde,,0
-AL,AL12,1,Santuario del Oro,,Álava,Euskadi,España,Verde,,0
-BI,BI01,1,Ubal,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI02,1,Larreder-Pagomakurre,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI03,1,Bikotzgane,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI04,1,Argalario,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI05,1,Sollube (antenas),,Bizkaia,Euskadi,España,Verde,,0
-BI,BI06,1,Dima,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI07,1,Urkiola (Santuario)   ,,Bizkaia,Euskadi,España,Verde,,1
-BI,BI08,1,El Vivero,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI09,1,Serantes,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI10,1,Alen,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI11,1,Peñas Negras- La Asturiana,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI12,1,Paresi,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI13,1,Monte Oiz,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI14,1,Muniketa,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI15,1,Barazar,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI16,1,Arimegorta    ,,Bizkaia,Euskadi,España,Verde,,0
-BI,BI17,1,Peña Ranero    ,,Bizkaia,Euskadi,España,Verde,,0
-GP,GP01,1,Arantzazu,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP02,1,Otzaurte- Aratz,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP03,1,Usurbe,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP04,1,Erlaitz (Castillo del Inglés),,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP05,1,Urraki,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP06,1,Elosua (Gorla),,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP07,1,Karakate,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP08,1,Arrate-Usartza,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP09,1,Azurki,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP10,1,Bianditz,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP11,1,Jaizkibel,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP12,1,Samiño,,Gipuzoka,Euskadi,España,Verde,,0
-GP,GP13,1,Santa Agueda,,Gipuzoka,Euskadi,España,Verde,,0
-BD,BD01,1,Castillo de Feria,,Badajoz,Extremadura,España,Oeste,,0
-BD,BD02,1,Tentudía,,Badajoz,Extremadura,España,Oeste,,0
-CC,CC01,1,Cabezabellosa,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC02,1,Piornal,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC03,1,Tornavacas,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC04,1,Montánchez (antenas),,Cáceres,Extremadura,España,Oeste,,0
-CC,CC05,1,Esperabán,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC06,1,Radar de Cancho Blanco,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC07,1,Perales,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC08,1,El Robledo (Casares),,Cáceres,Extremadura,España,Oeste,,0
-CC,CC09,1,Pico Villuercas    ,,Cáceres,Extremadura,España,Oeste,,1
-CC,CC10,1,Honduras,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC11,1,Collado del Hospital,,Cáceres,Extremadura,España,Oeste,,0
-CC,CC12,1,La Garganta (Collado de las Angosturas),,Cáceres,Extremadura,España,Oeste,,0
-AC,AC01,1,San Lois,,A Coruña,Galicia,España,Verde,,0
-AC,AC02,1,Iroite    ,,A Coruña,Galicia,España,Verde,,0
-AC,AC03,1,Garita da Herbeira,,A Coruña,Galicia,España,Verde,,0
-AC,AC04,1,Tremuzo,,A Coruña,Galicia,España,Verde,,0
-AC,AC05,1,Enxa,,A Coruña,Galicia,España,Verde,,0
-AC,AC06,1,Encrucixada do Treito,,A Coruña,Galicia,España,Verde,,0
-AC,AC07,1,As Paxareiras,,A Coruña,Galicia,España,Verde,,0
-AC,AC08,1,A Curota- Os Forcados,,A Coruña,Galicia,España,Verde,,0
-AC,AC09,1,Fragas do Eume,,A Coruña,Galicia,España,Verde,,0
-LU,LU01,1,O Boi,,Lugo,Galicia,España,Verde,,0
-LU,LU02,1,Pena do Xastre,,Lugo,Galicia,España,Verde,,0
-LU,LU04,1,A Pintinidoira,,Lugo,Galicia,España,Verde,,0
-LU,LU05,1,Pedras Apañadas,,Lugo,Galicia,España,Verde,,0
-LU,LU06,1,A Pedra (Pedrafita),,Lugo,Galicia,España,Verde,,0
-LU,LU07,1,O Portelo-Penas do Comeal,,Lugo,Galicia,España,Verde,,0
-LU,LU08,1,O Poio,,Lugo,Galicia,España,Verde,,0
-LU,LU09,1,O Couto,,Lugo,Galicia,España,Verde,,0
-LU,LU10,1,Campa das Laviadas-Murias do Camín,,Lugo,Galicia,España,Verde,,0
-LU,LU11,1,Alto da Golada (A Seara),,Lugo,Galicia,España,Verde,,0
-LU,LU12,1,Ancares,León,Lugo,Galicia,España,Verde,,1
-LU,LU13,1,Serra Morela,,Lugo,Galicia,España,Verde,,0
-LU,LU14,1,Vilasol,,Lugo,Galicia,España,Verde,,0
-LU,LU15,1,A Moa,,Lugo,Galicia,España,Verde,,0
-LU,LU16,1,A Barranca,,Lugo,Galicia,España,Verde,,0
-LU,LU17,1,Cruz de Meira,,Lugo,Galicia,España,Verde,,0
-LU,LU18,1,Sete Carballos - A Fiosa,,Lugo,Galicia,España,Verde,,0
-LU,LU19,1,O Cadramón,,Lugo,Galicia,España,Verde,,0
-LU,LU20,1,Alto de Onsolar (Pena da Cadela),,Lugo,Galicia,España,Verde,,0
-LU,LU21,1,Cruz de Barreiros,,Lugo,Galicia,España,Verde,,0
-LU,LU22,1,Hospital (Lagoseca),,Lugo,Galicia,España,Verde,,0
-OU,OU01,1,Pico de Mairos,,Ourense,Galicia,España,Verde,,0
-OU,OU03,1,Home - Portela do Leonte,,Ourense,Galicia,España,Verde,,0
-OU,OU04,1,Alto de Toro,,Ourense,Galicia,España,Verde,,0
-OU,OU05,1,Fonte da Cova-Collada Trevinca,León,Ourense,Galicia,España,Verde,,0
-OU,OU06,1,Cabeza de Manzaneda,,Ourense,Galicia,España,Verde,,0
-OU,OU07,1,Alto de Foxo (Repetidor TV),,Ourense,Galicia,España,Verde,,0
-OU,OU08,1,Albergueria,,Ourense,Galicia,España,Verde,,0
-OU,OU09,1,Alto do Covelo (antenas),,Ourense,Galicia,España,Verde,,0
-OU,OU10,1,Alto do Cepedelo,,Ourense,Galicia,España,Verde,,0
-OU,OU11,1,A Portela - A Moeda,,Ourense,Galicia,España,Verde,,0
-OU,OU12,1,O Cerengo,,Ourense,Galicia,España,Verde,,0
-OU,OU13,1,A Pedralta,,Ourense,Galicia,España,Verde,,0
-OU,OU14,1,Alto de Azureira,,Ourense,Galicia,España,Verde,,0
-PO,PO01,1,Monte da Fracha,,Pontevedra,Galicia,España,Verde,,0
-PO,PO02,1,Borraxeiros - A Picona,,Pontevedra,Galicia,España,Verde,,0
-PO,PO04,1,Coto Redondo,,Pontevedra,Galicia,España,Verde,,0
-PO,PO05,1,Monte da Groba    ,,Pontevedra,Galicia,España,Verde,,0
-PO,PO06,1,Alto do Seixo,,Pontevedra,Galicia,España,Verde,,0
-PO,PO07,1,Xiabre,,Pontevedra,Galicia,España,Verde,,0
-PO,PO08,1,Monte Faro- Domaio,,Pontevedra,Galicia,España,Verde,,0
-PO,PO09,1,Alto do Cepudo,,Pontevedra,Galicia,España,Verde,,0
-PO,PO10,1,Moncelos,,Pontevedra,Galicia,España,Verde,,0
-PO,PO11,1,Monte Aloia,,Pontevedra,Galicia,España,Verde,,0
-PO,PO12,1,San Fins,,Pontevedra,Galicia,España,Verde,,0
-PO,PO13,1,A Paradanta,,Pontevedra,Galicia,España,Verde,,0
-PO,PO14,1,San Nomedio,,Pontevedra,Galicia,España,Verde,,0
-LR,LR01,1,Peñahincada,,La Rioja,La Rioja,España,Verde,,0
-LR,LR02,1,Cruz de la Demanda    ,,La Rioja,La Rioja,España,Verde,,1
-LR,LR03,1,Montenegro (Viniegras),Soria,La Rioja,La Rioja,España,Verde,,0
-LR,LR04,1,Monasterio de Valvanera,,La Rioja,La Rioja,España,Verde,,0
-LR,LR05,1,Santa Marina,,La Rioja,La Rioja,España,Verde,,0
-LR,LR07,1,Valdezcaray,,La Rioja,La Rioja,España,Verde,,0
-LR,LR08,1,Clavijo (Ermita de Santiago),,La Rioja,La Rioja,España,Verde,,0
-LR,LR09,1,Moncalvillo,,La Rioja,La Rioja,España,Verde,,0
-LR,LR10,1,Bonicaparra,,La Rioja,La Rioja,España,Verde,,0
-LR,LR11,1,La Rasa,,La Rioja,La Rioja,España,Verde,,0
-LR,LR12,1,Rivas de Tereso,,La Rioja,La Rioja,España,Verde,,0
-LR,LR13,1,Piqueras,Soria,La Rioja,La Rioja,España,Verde,,0
-LR,LR14,1,Sancho Leza,,La Rioja,La Rioja,España,Verde,,0
-MA,MA01,1,Cruz Verde - La Paradilla - Robledondo,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA02,1,El Atazar (Alto Cancho Cabeza),,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA03,1,Canencia,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA04,1,Morcuera,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA05,1,Bola del Mundo (Navacerrada)    ,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,1
-MA,MA06,1,Navafría,Segovia,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA07,1,Cotos,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA08,1,Abantos    ,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA09,1,El León,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MA,MA10,1,La Puebla,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-MU,MU02,1,Puerto Frío,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU03,1,Castillo de San Julián,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU04,1,Talayón,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU05,1,Cresta del Gallo,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU06,1,Garita de Salinas,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU07,1,Benizar - Las Lorigas    ,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU09,1,Los Álamos    ,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU10,1,Morrón de Sierra Espuña (EVA-13),,Región de Murcia,Región de Murcia,España,Med,,1
-MU,MU11,1,Cabo Tiñoso (Castillitos),,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU12,1,La Barquilla (La Alberquilla),,Región de Murcia,Región de Murcia,España,Med,,0
-NA,NA01,1,Larrau,,Navarra,Navarra,España,Verde,,0
-NA,NA02,1,Otxondo-Gorramendi,,Navarra,Navarra,España,Verde,,0
-NA,NA03,1,San Miguel de Aralar- Altxueta,,Navarra,Navarra,España,Verde,,0
-NA,NA04,1,Agiña,,Navarra,Navarra,España,Verde,,0
-NA,NA05,1,Piedra de San Martin    ,,Navarra,Navarra,España,Verde,,1
-NA,NA06,1,Paso Tapla,,Navarra,Navarra,España,Verde,,0
-NA,NA07,1,Lizárraga,,Navarra,Navarra,España,Verde,,0
-NA,NA08,1,Etxauri,,Navarra,Navarra,España,Verde,,0
-NA,NA09,1,Bagordi-Arrateketa,,Navarra,Navarra,España,Verde,,0
-NA,NA10,1,Belate,,Navarra,Navarra,España,Verde,,0
-NA,NA11,1,Urbasa,,Navarra,Navarra,España,Verde,,0
-NA,NA12,1,Arangoiti,,Navarra,Navarra,España,Verde,,0
-NA,NA13,1,Artesiaga,,Navarra,Navarra,España,Verde,,0
-NA,NA14,1,Ibañeta-Ortzainzurieta,,Navarra,Navarra,España,Verde,,0
-NA,NA15,1,Ardibide,,Navarra,Navarra,España,Verde,,0
-PR,PR01,1,Marao (Alto Espinho),,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR02,1,Alto Foia,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR03,1,Pico de Arieiro,,Portugal,Portugal,Portugal,Oeste,Madeira,0
-PR,PR04,1,Penhas Douradas,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR05,1,Paul da Serra,,Portugal,Portugal,Portugal,Oeste,Madeira,0
-PR,PR06,1,Montejunto,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR07,1,Torre    ,,Portugal,Portugal,Portugal,Oeste,,1
-PR,PR09,1,Alto do Trevim,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR10,1,Nª Sª da Graça (Monte Farinha),,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR11,1,Barragem Alvao,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR12,1,Monte do Viso (Capela),,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR13,1,Eira do Serrado,,Portugal,Portugal,Portugal,Oeste,Madeira,0
-PR,PR14,1,Barrosa,,Portugal,Portugal,Portugal,Oeste,Azores,0
-PR,PR15,1,Caldeira,,Portugal,Portugal,Portugal,Oeste,Azores,0
-PR,PR16,1,Pico das Eguas,,Portugal,Portugal,Portugal,Oeste,Azores,0
-PR,PR17,1,Achada do Teixeira,,Portugal,Portugal,Portugal,Oeste,Madeira,0
-PR,PR18,1,Caramulinho,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR19,1,Santo Antonio,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR20,1,Portelinha,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR21,1,Poiares,,Portugal,Portugal,Portugal,Oeste,,0
-PR,PR22,1,Sao Mamede,,Portugal,Portugal,Portugal,Oeste,,0
-AT,AT01,1,Rates-Tossal dels Diners,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT02,1,La Carrasqueta,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT03,1,Font del Partegat,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT04,1,Confrides (Puerto de Ares),,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT05,1,Alto de Ebo,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT06,1,Serra Gelada,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT07,1,Miserat-Pico Chillibre,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT08,1,Guixop,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT09,1,Font Roja,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT10,1,Bernia,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT11,1,Xorret de Catí    ,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT12,1,Tudons,,Alicante,Comunidad Valenciana,España,Med,,0
-AT,AT13,1,La Garga,,Alicante,Comunidad Valenciana,España,Med,,0
-CS,CS01,1,Fredes,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS02,1,Bel,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS03,1,Desierto de Las Palmas- Monte Bartolo,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS04,1,El Vidré-Vistabella,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS05,1,Bandereta,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS06,1,Sarratella,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS07,1,Torre Miró,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS08,1,Mas de la Costa,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS09,1,Xodos,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS10,1,'Eslida-Puntal de l''Aljub',,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS11,1,Remolcador,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS12,1,Puertomingalvo,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS14,1,Almedijar,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS15,1,Santa Águeda,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS16,1,Ermita de Santa Lucía,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS17,1,Mas del Moro (Cola de Caballo),,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS18,1,Montemayor,,Castellón,Comunidad Valenciana,España,Med,,0
-CS,CS19,1,La Salada,,Castellón,Comunidad Valenciana,España,Med,,0
-VA,VA01,1,Montdúver    ,,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA02,1,Alt del Pí,,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA03,1,Portixol- El Campello,,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA04,1,'Coll de la Safor (L''Orxa)',,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA05,1,Pico del Remedio,,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA06,1,Muela de Cortes,,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA07,1,La Bellida,,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA08,1,Collado Calderón,Teruel,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA09,1,Pico del Águila (Chirivilla),,Valencia,Comunidad Valenciana,España,Med,,0
-VA,VA10,1,Alto del Garbí      ,,Valencia,Comunidad Valenciana,España,Med,,1
-CD,CD05,3,Castillo Medina Sidonia,,Cádiz,Andalucia,España,Oeste,,0
-CD,CD07,3,Gibalbín,,Cádiz,Andalucia,España,Oeste,,0
-CO ,CO04,3,San Bernardo,,Córdoba,Andalucia,España,Parda,,0
-HL,HL02,3,Cumbres Mayores,,Huelva,Andalucia,España,Oeste,,0
-ML,ML07,3,El Gaucín Negro,,Málaga,Andalucia,España,Oeste,,0
-ML,ML19,3,Alto de los Perdigones,,Málaga,Andalucia,España,Oeste,,0
-SV,SV03,3,Media Fanega,,Sevilla,Andalucia,España,Oeste,,0
-HU,HU06,3,Monrepós,,Huesca,Aragon,España,Parda,,0
-TE,TE05,3,Castillo de Peracense,,Teruel,Aragon,España,Parda,,0
-ZA,ZA08,3,Alto de Tosos,,Zaragoza,Aragon,España,Parda,,0
-AS,AS27,3,Tenebredo,,Asturias,Asturias,España,Verde,,0
-AS,AS28,3,Rañadoiro,,Asturias,Asturias,España,Verde,,0
-IB,IB03,3,Puig de Galatzó,,Islas Baleares,Islas Baleares,España,Med,Mallorca,0
-IB,IB11,3,Sa Talaia de Sant Josep,,Islas Baleares,Islas Baleares,España,Med,Ibiza,0
-CR,CR08,3,Ermita Vírgen del Castillo,,Ciudad Real,Castilla la mancha,España,Parda,,0
-GU,GU02,3,Terzaga,,Guadalajara,Castilla la mancha,España,Parda,,0
-GU,GU07,3,Pastrana,,Guadalajara,Castilla la mancha,España,Parda,,0
-BU,BU01,3,Escóbados,,Burgos,Castilla y leon,España,Oeste,,0
-LE,LE14,3,El Redondal,,León,Castilla y leon,España,Oeste,,0
-SV,SV02,3,La Pinilla,,Segovia,Castilla y leon,España,Oeste,,0
-SO,SO05,3,Oncala,,Soria,Castilla y leon,España,Oeste,,0
-VD,VD01,3,La Parrilla,,Valladolid,Castilla y leon,España,Oeste,,0
-LL,LL12,3,Comiols,,Lleida,Cataluña,España,Med,,0
-LL,LL13,3,Túnel de Vielha,,Lleida,Cataluña,España,Med,,0
-TA,TA12,3,Coll de Fatxes,,Tarragona,Cataluña,España,Med,,0
-LU,LU03,3,A Gañidoira,,Lugo,Galicia,España,Verde,,0
-OU,OU02,3,Porto das Estivadas,,Ourense,Galicia,España,Verde,,0
-PO,PO03,3,Fontefría,,Pontevedra,Galicia,España,Verde,,0
-LR,LR06,3,Pazuengos,,La Rioja,La Rioja,España,Verde,,0
-MU,MU01,3,Casas de la Marina - La Perdiz,,Región de Murcia,Región de Murcia,España,Med,,0
-MU,MU08,3,Alto de Ricote,,Región de Murcia,Región de Murcia,España,Med,,0
-PR,PR08,3,Encumeada,,Portugal,Portugal,Portugal,Oeste,,0
-CS,CS13,3,Benafigós - El Vidre,,Castellón,Comunidad Valenciana,España,Med,,0
-GR,GR20,2,Puerto Camacho - Sierra de Lújar,,Granada,Andalucia,España,Parda,,0
-TE,TE10,2,Muela de San Juan,,Teruel,Aragon,España,Parda,,0
-CA,CA17,2,Las Nieves,,Cantabria,Cantabria,España,Verde,,0
-AB,AB05,2,Las Crucetas,,Albacete,Castilla la mancha,España,Parda,,0
-VA,VA06,2,Puerto del Negrete (El Remedio),,Valencia,Comunidad Valenciana,España,Med,,0
-MU,MU06,2,Carrascoy,,Región de Murcia,Región de Murcia,España,Med,,0
-MA,MA02,2,La Jarosa ,,Comunidad de Madrid,Comunidad de Madrid,España,Parda,,0
-ZM,ZM02,2,San Juan de la Cuesta (repetidor),,Zamora,Castilla y leon,España,Oeste,,0
-BU,BU10,2,Castríos,,Burgos,Castilla y leon,España,Oeste,,0
-LE,LE06,2,Campo las Danzas,,León,Castilla y leon,España,Oeste,,0
-CR,CR01,2,Castilnegro,,Ciudad Real,Castilla la mancha,España,Parda,,0
-AS,ASRG,4,Pico Aguión,,Asturias,Asturias,España,Verde,,0
-SE,SE02,3,La Pinilla,,Castilla y leon,España,Oeste,,0
-
+AM,AM01,1,Santillana,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM02,1,Padilla-EscÃºllar,Granada,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM03,1,Collado GarcÃ­a,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM04,1,Enix (P. EÃ³lico),,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM05,1,Pico ColativÃ­,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM06,1,Reul Alto,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM07,1,La Parra (antes Los PÃ©rez),,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM08,1,Calar Alto,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM09,1,Velefique - Tetica de Bacares,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM10,1,Cerro de la Mezquita (antes SÂª de la Cabrera),,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+AM,AM11,1,Puerto de la Virgen,,1,AlmerÃ­a,1,Andalucia,EspaÃ±a,1,Parda,,0
+CD,CD01,1,Las Palomas,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD02,1,Sierra de la Plata (antes La Silla del Papa),,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD03,1,GÃ¡liz,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD04,1,Subida a Gibraltar,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD06,1,Pedro Ruiz,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD08,1,El Boyar,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD09,1,MojÃ³n de la VÃ­bora / PeÃ±Ã³n del Berrueco,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD10,1,Pico Montero (EVA-11),,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO01,1,Santuario de Araceli,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO02,1,Artafi,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO03,1,Virgen de la Sierra,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO05,1,San JerÃ³nimo- Mirador de las NiÃ±as,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO06,1,Cueva de los murciÃ©lagos,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO07,1,El CaballÃ³n,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CO08,1,El Jaramillo,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+GR,GR01,1,Los GuÃ¡jares,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR02,1,La Losa,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR03,1,La Alfaguara,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR04,1,El Purche,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR05,1,Cumbres Verdes,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR06,1,Parapanda,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR07,1,CÃ¡Ã±ar,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR08,1,Collado de los Poyos del Pescado (antes Mirador de la Cabra MontÃ©s),,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR09,1,Capileira,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR10,1,La Ragua,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR11,1,Padilla-EscÃºllar,AlmerÃ­a,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR12,1,PeÃ±a Escrita,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR13,1,Las AlbuÃ±uelas,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR14,1,Trevelez,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR15,1,Venta del Chaleco,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR16,1,JabalcÃ³n,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR17,1,Haza de Lino,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR18,1,Sierra Nevada - Pico Veleta     ,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,1
+GR,GR19,1,Portichuelo de CÃ¡staras,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR20,1,Collado Canseco,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+GR,GR21,1,Collado Alguacil,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+HL,HL01,1,San CristÃ³bal,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HL,HL03,1,Aracena,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HL,HL04,1,La Corte - Puerto LucÃ­a,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HL,HL05,1,Las Contiendas,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HL,HL06,1,Sierra del Viento,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HL,HL07,1,AlÃ¡jar,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+JA,JA01,1,Las Palomas,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA02,1,Collado de la Traviesa (Pocico),,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA03,1,El Yelmo,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA04,1,La Martina (Collados de Frailes),,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA05,1,Puerto de TÃ­scar,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA06,1,Castillo de Santa Catalina,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA07,1,Collado Agua de los Perros,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA08,1,Las Coberteras,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA09,1,AlbÃ¡nchez,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA10,1,Iznatoraf,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA11,1,La Pandera,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA12,1,Ahillos (Puerto de Villarbajo),,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA13,1,Allanada del Santo,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA14,1,Despiernacaballos,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA15,1,Puerto de Pontones,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+JA,JA16,1,Alto de Marchena,,6,JaÃ©n,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML01,1,OjÃ©n - Refugio Juanar,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML02,1,Ermita de las Tres Cruces,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML03,1,Encinas Borrachas,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML04,1,Puerto del Sol,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML05,1,El Viento,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML06,1,Puerto de los Pinos- Llano de las Cruces,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML08,1,El Espino (antenas),,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML09,1,Torcal de Antequera,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML10,1,El LeÃ³n,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML11,1,Las Mesas de Villaverde,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML12,1,Loma de las Cuadrillas,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML13,1,El MadroÃ±o,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML14,1,Boquete de Zafarraya,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML15,1,Cerro del Moro,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML16,1,La Mina (El ChiquÃ­n),,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML17,1,PeÃ±as Blancas - Los Reales,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML18,1,Santopitar,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+SV,SV01,1,El Robledo - Cerro Negrillo,,8,Sevilla,1,Andalucia,EspaÃ±a,2,Oeste,,0
+SV,SV02,1,Los Melonares,,8,Sevilla,1,Andalucia,EspaÃ±a,2,Oeste,,0
+SV,SV04,1,PeÃ±Ã³n de AlgÃ¡mitas,,8,Sevilla,1,Andalucia,EspaÃ±a,2,Oeste,,0
+SV,SV05,1,Cerro Becerrero,,8,Sevilla,1,Andalucia,EspaÃ±a,2,Oeste,,0
+AN,AN01,1,ArcalÃ­s-Port del Rat,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN02,1,Coll de la Gallina,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN03,1,Arinsal,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN04,1,La Comella,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN05,1,Cortals d'Encamp,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN06,1,Llac d'Engolasters,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN07,1,La Rabassa,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN08,1,Coll d'Ordino,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN09,1,Port d'Envalira,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN10,1,Os de Civis,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+AN,AN11,1,Port de CabÃºs,,9,Andorra,2,Andorra,Andorra,3,Med,,1
+AN,AN12,1,Collada BeixalÃ­s,,9,Andorra,2,Andorra,Andorra,3,Med,,0
+HU,HU01,1,Tella,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU02,1,Presa de Llauset,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU03,1,Serrablo,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU04,1,Fanlo,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU05,1,Refugio de Lizara,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU07,1,San Juan de la PeÃ±a,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU08,1,Refugio de Gabardito,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU09,1,Serveto,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU10,1,Pico del Aguila,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU11,1,La Besurta (La Renclusa),,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU12,1,Cotefablo,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU13,1,Cerler - El AmpriÃº,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU14,1,Portalet,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU15,1,Somport,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU16,1,BaÃ±os de Panticosa,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+HU,HU17,1,BestuÃ©,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE01,1,PeÃ±arroya â€“ EstaciÃ³n de Valdelinares,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE02,1,Villa Rosario - La Mata,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE03,1,Javalambre    ,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,1
+TE,TE04,1,Nuestra SeÃ±ora de Tremedal,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE06,1,Los Degollaos (Collado FrÃ­o),,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE07,1,Fuente de Rubielos,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE08,1,Majalinos,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE09,1,Cuarto Pelado,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE10,1,Muela de San Juan,Valencia,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE11,1,San Just,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE12,1,El Portillo,Cuenca,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE13,1,Cabigordo,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE14,1,San CristÃ³bal,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE15,1,TarrascÃ³n de PeÃ±acerrada (Puerto de Fortanete),,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA01,1,Used,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA02,1,BeratÃ³n,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA03,1,Codos- Valdemadera,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA04,1,Viver de la Sierra,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA05,1,Moncayo,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA06,1,Puerto de Sos,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA07,1,Cubel,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA09,1,BalconchÃ¡n,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA10,1,Santurario Virgen de Herrera,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+AS,AS01,1,Ventana,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS02,1,Amieva,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS03,1,Connio,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS04,1,Casielles,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS05,1,Jitu de Escarandi (Collado Barreda),,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS06,1,San Lorenzo,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS07,1,Lagos de Covadonga,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS08,1,Pajares-Cuitu Negro,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS09,1,Pozo de las Mujeres Muertas/Valvaler,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS10,1,Tarna / Las SeÃ±ales,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS11,1,La Cobertoria / Gamoniteiro,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS12,1,Valle de Lago/L'Outeiro,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS13,1,Somiedo,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS14,1,Santuario del Acebo,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS15,1,Cruz de Linares,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS16,1,Pelliceira,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS17,1,Angliru,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,1
+AS,AS18,1,Collada LlÃ³mena,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS19,1,San Isidro,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS20,1,Collada de Arnicio,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS21,1,PeÃ±as del Viento,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS22,1,Maravio,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS23,1,La Cubilla,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS24,1,El Fito,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS25,1,BustellÃ¡n,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS26,1,Leitariegos,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS29,1,La Marta,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS30,1,La Farrapona,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS31,1,Banduxu,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS32,1,La Bobia,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS33,1,Siero,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS34,1,Ermita del Alba,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS35,1,Cotobello,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS36,1,Valdeferreiros,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS37,1,Collada Trespandiu,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS38,1,Collado Taranes,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS39,1,Alto Venta de la Corredoria,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+IB,IB01,1,Monte Toro,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Menorca,0
+IB,IB02,1,Santuari de Cura (Puig de Randa),,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB04,1,Valldemossa,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB05,1,Puig de Tomir- FemenÃ­a,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB06,1,Sa Fita des Ram (Sobremunt),,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB07,1,Mirador d'es Colomer- Sa Talaia d'Albercutx,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB08,1,Puig Major,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB09,1,Coll de Cals Reis - Sa Calobra,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,1
+IB,IB10,1,Santuari Sant Salvador,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB12,1,Coll de SÃ³ller,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB13,1,Coll d'Honor,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB14,1,Galilea,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+LP,LP01,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP02,1,Lanzarote,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Lanzarote,0
+LP,LP03,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP04,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP05,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP06,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP07,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP08,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+LP,LP09,1,Fuerteventura,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Fuerteventura,0
+LP,LP10,1,Gran Canaria,,15,Las Palmas,6,Islas Canarias,EspaÃ±a,2,Oeste,Gran Canaria,0
+SC,SC01,1,El Pilar,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,La Palma,0
+SC,SC02,1,Ermita de San JosÃ© (La MontaÃ±eta),,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC03,1,El Bailadero,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC04,1,Teide,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC05,1,Roque de los Muchachos    ,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,La Palma,1
+SC,SC06,1,Pico del InglÃ©s,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC07,1,Puerto de Erjos,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC08,1,La Fileba,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,El Hierro,0
+SC,SC09,1,Garajonay,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,La Gomera,0
+SC,SC10,1,La Cumbrecita,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,La Palma,0
+SC,SC11,1,Cruz de Gilda- Masca,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC12,1,Teno Alto,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC13,1,Chanajiga,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC14,1,Taucho,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC15,1,Tijoco Alto,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,Tenerife,0
+SC,SC16,1,Alto de Apartacaminos,,16,Santa Cruz,6,Islas Canarias,EspaÃ±a,2,Oeste,La Gomera,0
+CA,CA01,1,PeÃ±a Cabarga,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA02,1,Piedrasluengas,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA03,1,San Glorio-Collada de Llesba,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA04,1,Palombera,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA05,1,Estacas de Trueba,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA06,1,Alisas,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA07,1,Los Tornos,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA08,1,AsÃ³n- La SÃ­a,Burgos,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA09,1,La Estranguada,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA10,1,La BraguÃ­a,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA11,1,Portillo de Lunada,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA12,1,El Caracol,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA13,1,La Hoja - Salto de la Cabra    ,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,1
+CA,CA14,1,El Escudo,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA15,1,Alto Campoo-Fuente del Chivo,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA16,1,Collado de Hoz,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA17,1,El Soplao,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA18,1,Collao Espinaâ€“Los Machucos,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+CA,CA19,1,Collada de Brenes,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+AB,AB01,1,Las Quebradas,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB02,1,El Barrancazo,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB03,1,El Bellotar,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB04,1,La Borriqueta,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB05,1,El Lastonar â€“ Los Picones,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB06,1,Loma de la Albarda,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB07,1,Monte Ardal    ,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB08,1,Las Crucetillas,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB09,1,El Arenal,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AB,AB10,1,Los Chorreones,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR01,1,Collado Pisa,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR02,1,El Calero,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR03,1,Navajo (Repetidor TV),,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR04,1,El Rocino,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR05,1,Los Rehoyos,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR06,1,Madrona,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CR,CR07,1,Los Santos,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU01,1,Ciudad Encantada,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU02,1,Cabeza de Hoyo,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU03,1,Collado de las Vigas,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU04,1,Cerro del Socorro,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU05,1,Cerro de San Cristobal,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU06,1,La Vega/SerracÃ­n,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU07,1,Las Majadas,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU08,1,El Cubillo/El Portillo,Teruel,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU09,1,El Pozuelo,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+CU,CU10,1,Belvalle,,20,Cuenca,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU01,1,La Quesera,Segovia,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,1
+GU,GU03,1,Alto Rey,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU04,1,PeÃ±alba    ,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU05,1,Valfermoso,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU06,1,Taravilla,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU08,1,Campanario de Galve,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU09,1,Almeriques,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+TO,TO01,1,Risco de las Paradas,,22,Toledo,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+TO,TO02,1,El PiÃ©lago,,22,Toledo,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+TO,TO03,1,El Robledillo (BaÃ±os de la Guarra),,22,Toledo,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AV,AV01,1,ChÃ­a,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV02,1,PeÃ±a Negra,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV03,1,Navalmoral,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV04,1,Serranillos,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV05,1,El Tremedal,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV06,1,Plataforma de Gredos,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV07,1,Nogal del Barranco,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV08,1,Las Erillas,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV09,1,El Pico,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV10,1,Mijares,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV11,1,La Centenera    ,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV12,1,Pedro Bernardo,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV13,1,Ermita de San Pedro - La Mesa    ,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV14,1,La Erilla,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV15,1,Arrebatacapas,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV16,1,El Mediano    ,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+AV,AV17,1,Refugio de Mingo Fernando,,23,Avila,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU02,1,PeÃ±a Angulo,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU03,1,Lagunas de Neila,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU04,1,La Mazorra,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU05,1,La Eme,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU06,1,Altotero,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU07,1,Portillo del Busto,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU08,1,PicÃ³n del Fraile (Lunada),Cantabria,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU09,1,PicÃ³n Blanco,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU10,1,La SÃ­a,Cantabria,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU11,1,Trigaza,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE01,1,Alto del PeÃ±Ã³n,Zamora,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE02,1,FoncebadÃ³n-Cruz de Ferro,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE03,1,Las Gobernadas,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE04,1,Sotillo de Cabrera,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE05,1,Ancares,Lugo,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE06,1,Valporquero,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE07,1,Piedrafita (El Sierro),,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE08,1,Virgen del Valle,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE09,1,O Cebreiro (repetidor),,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE10,1,Panderruedas,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE11,1,PeÃ±alba de Santiago,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE12,1,Fonte da Cova-Collada Trevinca,Ourense,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE13,1,El Morrederoâ€“Llano de las Ovejas    ,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,1
+LE,LE15,1,Pandetrave,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE16,1,Calello-Corral de los Lobos (antes Las Minas),,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE17,1,Mirador de OrellÃ¡n,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+PA,PA01,1,Golobar,,26,Palencia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+PA,PA02,1,Santuario del Brezo,,26,Palencia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+PA,PA03,1,La Varga,,26,Palencia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA01,1,El Cerro,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA02,1,Saucelle,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA03,1,El Travieso,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA04,1,AldeadÃ¡vila,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA05,1,Lagunilla,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA06,1,PeÃ±a de Francia    ,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA07,1,El Portillo de las Batuecas,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA08,1,La Covatilla,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SA,SA09,1,Mogarraz,,27,Salamanca,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SE,SE01,1,Navacerrada,,28,Segovia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SE,SE03,1,NavafrÃ­a,Madrid,28,Segovia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SE,SE04,1,La Quesera,Guadalajara,28,Segovia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SE,SE05,1,Fuente de la Reina    ,,28,Segovia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SE,SE06,1,NavapelegrÃ­n,,28,Segovia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO01,1,Montenegro (Viniegras),La rioja,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO02,1,El Cargadero,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO03,1,Castroviejo,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO04,1,L. Negra de UrbiÃ³n    ,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO06,1,Cabeza Alta,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO07,1,Alto Cruz,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO08,1,Piqueras,La rioja,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO09,1,Santa InÃ©s,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+VD,VD02,1,Renedo,,30,Valladolid,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+VD,VD03,1,Alto de San MartÃ­n,,30,Valladolid,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM01,1,Alto de Fermoselle,,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM02,1,Ladiairo-MarabÃ³n,,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM03,1,Laguna de los Peces,,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM04,1,PeÃ±a Mira,,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM05,1,Alto del PeÃ±Ã³n,LeÃ³n,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM06,1,P. E. Padornelo,,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+ZM,ZM07,1,P. E. Hedroso-Aciberos,,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BA,BA01,1,Rasos de Peguera,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA02,1,Santa Fe,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA03,1,Bracons,Girona,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA04,1,TurÃ³ de l'Home    ,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,1
+BA,BA05,1,Santuari de Falgars,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA06,1,Bellmunt,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA07,1,Coll de la Bena,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA08,1,Coll de Pal,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA09,1,Coll d'Estenalles,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA10,1,El Farell,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA11,1,Rat Penat,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA12,1,Montserrat,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA13,1,La Creueta,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA14,1,Fumanya- Peguera,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA15,1,Collformic,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA16,1,Coll de Pradell    ,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA17,1,Sant Isidre,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA18,1,Capolat-MalpÃ s,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+BA,BA19,1,P.E. de Tagamanent,,32,Barcelona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI01,1,Els Angels,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI02,1,Revell- Els Cortals,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI03,1,Rocacorba,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI04,1,Masella- Coma Oriola,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI05,1,Bracons,Barcelona,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI06,1,Coubet-Canes,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI07,1,Les Barraques,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI08,1,Capsacosta,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI09,1,La Collada de Toses,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI10,1,Collfred,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI11,1,Vallter 2000,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI12,1,Condreu - El Far,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI13,1,Mare de DÃ©u del Mont,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI14,1,Sant Pere de Rodes,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI15,1,Sant Grau,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+GI,GI16,1,Coll de Jou,,33,Girona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL01,1,Port del Compte-Estivella,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL02,1,BoÃ­ - TaÃ¼ll,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL03,1,Cap de Rec,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL04,1,Pleta del Prat,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL05,1,Llac de Sant Maurici,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL06,1,Creu de Perves,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL07,1,Coll de Josa,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL08,1,Bonaigua,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL09,1,Pla de Beret,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL10,1,Port AinÃ©,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL11,1,PortillÃ³n,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL14,1,Boixols,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL15,1,Port de CantÃ³,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL16,1,Embalse de Sallente,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL17,1,Lavansa,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL18,1,Artiga de Lin,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL19,1,Montnou,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL20,1,Coll d'Ares,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL21,1,Saut deth Pish,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL22,1,Bassa d'Oles,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL23,1,Mirador d'Arres,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL24,1,AigÃ¼estortes,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA01,1,Alforja â€“ Los Castillejos,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA02,1,Castillo de Escornalbou,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA03,1,Prades (Coll de l'Arena),,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA04,1,Montagut,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA05,1,Mont Caro,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA06,1,Rojals,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA07,1,Coll de la Teixeta,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA08,1,Ventoses,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA09,1,CardÃ³,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA10,1,Llaberia,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA11,1,La Mussara - Llebres,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+CE,CE01,1,GarcÃ­a Aldave,,36,Ceuta,11,Ceuta,EspaÃ±a,2,Oeste,,0
+AL,AL01,1,Altube,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL02,1,Iturrieta,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL03,1,Pagolar,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL04,1,Opakua,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL05,1,Herrera,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL06,1,Bernedo (La Aldea),,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL07,1,La Barrerilla,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL08,1,OrduÃ±a,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL09,1,Osma (Repetidor TV),,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL10,1,Santa Teodosia,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL11,1,Krutzeta,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+AL,AL12,1,Santuario del Oro,,37,Ãlava,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI01,1,Ubal,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI02,1,Larreder-Pagomakurre,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI03,1,Bikotzgane,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI04,1,Argalario,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI05,1,Sollube (antenas),,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI06,1,Dima,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI07,1,Urkiola (Santuario)   ,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,1
+BI,BI08,1,El Vivero,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI09,1,Serantes,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI10,1,Alen,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI11,1,PeÃ±as Negras- La Asturiana,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI12,1,Paresi,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI13,1,Monte Oiz,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI14,1,Muniketa,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI15,1,Barazar,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI16,1,Arimegorta    ,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+BI,BI17,1,PeÃ±a Ranero    ,,38,Bizkaia,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP01,1,Arantzazu,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP02,1,Otzaurte- Aratz,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP03,1,Usurbe,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP04,1,Erlaitz (Castillo del InglÃ©s),,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP05,1,Urraki,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP06,1,Elosua (Gorla),,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP07,1,Karakate,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP08,1,Arrate-Usartza,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP09,1,Azurki,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP10,1,Bianditz,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP11,1,Jaizkibel,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP12,1,SamiÃ±o,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+GP,GP13,1,Santa Agueda,,39,Gipuzoka,12,Euskadi,EspaÃ±a,4,Verde,,0
+BD,BD01,1,Castillo de Feria,,40,Badajoz,13,Extremadura,EspaÃ±a,2,Oeste,,0
+BD,BD02,1,TentudÃ­a,,40,Badajoz,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC01,1,Cabezabellosa,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC02,1,Piornal,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC03,1,Tornavacas,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC04,1,MontÃ¡nchez (antenas),,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC05,1,EsperabÃ¡n,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC06,1,Radar de Cancho Blanco,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC07,1,Perales,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC08,1,El Robledo (Casares),,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC09,1,Pico Villuercas    ,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,1
+CC,CC10,1,Honduras,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC11,1,Collado del Hospital,,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+CC,CC12,1,La Garganta (Collado de las Angosturas),,41,CÃ¡ceres,13,Extremadura,EspaÃ±a,2,Oeste,,0
+AC,AC01,1,San Lois,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC02,1,Iroite    ,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC03,1,Garita da Herbeira,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC04,1,Tremuzo,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC05,1,Enxa,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC06,1,Encrucixada do Treito,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC07,1,As Paxareiras,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC08,1,A Curota- Os Forcados,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+AC,AC09,1,Fragas do Eume,,42,A CoruÃ±a,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU01,1,O Boi,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU02,1,Pena do Xastre,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU04,1,A Pintinidoira,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU05,1,Pedras ApaÃ±adas,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU06,1,A Pedra (Pedrafita),,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU07,1,O Portelo-Penas do Comeal,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU08,1,O Poio,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU09,1,O Couto,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU10,1,Campa das Laviadas-Murias do CamÃ­n,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU11,1,Alto da Golada (A Seara),,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU12,1,Ancares,LeÃ³n,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,1
+LU,LU13,1,Serra Morela,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU14,1,Vilasol,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU15,1,A Moa,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU16,1,A Barranca,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU17,1,Cruz de Meira,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU18,1,Sete Carballos - A Fiosa,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU19,1,O CadramÃ³n,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU20,1,Alto de Onsolar (Pena da Cadela),,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU21,1,Cruz de Barreiros,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+LU,LU22,1,Hospital (Lagoseca),,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU01,1,Pico de Mairos,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU03,1,Home - Portela do Leonte,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU04,1,Alto de Toro,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU05,1,Fonte da Cova-Collada Trevinca,LeÃ³n,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU06,1,Cabeza de Manzaneda,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU07,1,Alto de Foxo (Repetidor TV),,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU08,1,Albergueria,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU09,1,Alto do Covelo (antenas),,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU10,1,Alto do Cepedelo,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU11,1,A Portela - A Moeda,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU12,1,O Cerengo,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU13,1,A Pedralta,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU14,1,Alto de Azureira,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO01,1,Monte da Fracha,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO02,1,Borraxeiros - A Picona,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO04,1,Coto Redondo,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO05,1,Monte da Groba    ,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO06,1,Alto do Seixo,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO07,1,Xiabre,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO08,1,Monte Faro- Domaio,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO09,1,Alto do Cepudo,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO10,1,Moncelos,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO11,1,Monte Aloia,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO12,1,San Fins,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO13,1,A Paradanta,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO14,1,San Nomedio,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+LR,LR01,1,PeÃ±ahincada,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR02,1,Cruz de la Demanda    ,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,1
+LR,LR03,1,Montenegro (Viniegras),Soria,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR04,1,Monasterio de Valvanera,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR05,1,Santa Marina,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR07,1,Valdezcaray,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR08,1,Clavijo (Ermita de Santiago),,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR09,1,Moncalvillo,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR10,1,Bonicaparra,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR11,1,La Rasa,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR12,1,Rivas de Tereso,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR13,1,Piqueras,Soria,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+LR,LR14,1,Sancho Leza,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+MA,MA01,1,Cruz Verde - La Paradilla - Robledondo,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA02,1,El Atazar (Alto Cancho Cabeza),,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA03,1,Canencia,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA04,1,Morcuera,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA05,1,Bola del Mundo (Navacerrada)    ,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,1
+MA,MA06,1,NavafrÃ­a,Segovia,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA07,1,Cotos,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA08,1,Abantos    ,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA09,1,El LeÃ³n,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MA,MA10,1,La Puebla,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+MU,MU02,1,Puerto FrÃ­o,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU03,1,Castillo de San JuliÃ¡n,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU04,1,TalayÃ³n,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU05,1,Cresta del Gallo,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU06,1,Garita de Salinas,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU07,1,Benizar - Las Lorigas    ,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU09,1,Los Ãlamos    ,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU10,1,MorrÃ³n de Sierra EspuÃ±a (EVA-13),,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,1
+MU,MU11,1,Cabo TiÃ±oso (Castillitos),,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU12,1,La Barquilla (La Alberquilla),,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+NA,NA01,1,Larrau,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA02,1,Otxondo-Gorramendi,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA03,1,San Miguel de Aralar- Altxueta,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA04,1,AgiÃ±a,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA05,1,Piedra de San Martin    ,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,1
+NA,NA06,1,Paso Tapla,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA07,1,LizÃ¡rraga,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA08,1,Etxauri,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA09,1,Bagordi-Arrateketa,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA10,1,Belate,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA11,1,Urbasa,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA12,1,Arangoiti,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA13,1,Artesiaga,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA14,1,IbaÃ±eta-Ortzainzurieta,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+NA,NA15,1,Ardibide,,49,Navarra,18,Navarra,EspaÃ±a,4,Verde,,0
+PR,PR01,1,Marao (Alto Espinho),,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR02,1,Alto Foia,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR03,1,Pico de Arieiro,,50,Portugal,19,Portugal,Portugal,2,Oeste,Madeira,0
+PR,PR04,1,Penhas Douradas,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR05,1,Paul da Serra,,50,Portugal,19,Portugal,Portugal,2,Oeste,Madeira,0
+PR,PR06,1,Montejunto,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR07,1,Torre    ,,50,Portugal,19,Portugal,Portugal,2,Oeste,,1
+PR,PR09,1,Alto do Trevim,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR10,1,NÂª SÂª da GraÃ§a (Monte Farinha),,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR11,1,Barragem Alvao,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR12,1,Monte do Viso (Capela),,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR13,1,Eira do Serrado,,50,Portugal,19,Portugal,Portugal,2,Oeste,Madeira,0
+PR,PR14,1,Barrosa,,50,Portugal,19,Portugal,Portugal,2,Oeste,Azores,0
+PR,PR15,1,Caldeira,,50,Portugal,19,Portugal,Portugal,2,Oeste,Azores,0
+PR,PR16,1,Pico das Eguas,,50,Portugal,19,Portugal,Portugal,2,Oeste,Azores,0
+PR,PR17,1,Achada do Teixeira,,50,Portugal,19,Portugal,Portugal,2,Oeste,Madeira,0
+PR,PR18,1,Caramulinho,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR19,1,Santo Antonio,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR20,1,Portelinha,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR21,1,Poiares,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+PR,PR22,1,Sao Mamede,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+AT,AT01,1,Rates-Tossal dels Diners,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT02,1,La Carrasqueta,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT03,1,Font del Partegat,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT04,1,Confrides (Puerto de Ares),,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT05,1,Alto de Ebo,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT06,1,Serra Gelada,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT07,1,Miserat-Pico Chillibre,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT08,1,Guixop,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT09,1,Font Roja,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT10,1,Bernia,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT11,1,Xorret de CatÃ­    ,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT12,1,Tudons,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+AT,AT13,1,La Garga,,51,Alicante,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS01,1,Fredes,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS02,1,Bel,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS03,1,Desierto de Las Palmas- Monte Bartolo,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS04,1,El VidrÃ©-Vistabella,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS05,1,Bandereta,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS06,1,Sarratella,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS07,1,Torre MirÃ³,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS08,1,Mas de la Costa,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS09,1,Xodos,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS10,1,Eslida-Puntal de l'Aljub,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS11,1,Remolcador,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS12,1,Puertomingalvo,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS14,1,Almedijar,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS15,1,Santa Ãgueda,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS16,1,Ermita de Santa LucÃ­a,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS17,1,Mas del Moro (Cola de Caballo),,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS18,1,Montemayor,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+CS,CS19,1,La Salada,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA01,1,MontdÃºver    ,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA02,1,Alt del PÃ­,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA03,1,Portixol- El Campello,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA04,1,Coll de la Safor (L'Orxa),,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA05,1,Pico del Remedio,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA06,1,Muela de Cortes,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA07,1,La Bellida,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA08,1,Collado CalderÃ³n,Teruel,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA09,1,Pico del Ãguila (Chirivilla),,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+VA,VA10,1,Alto del GarbÃ­      ,,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,1
+CD,CD05,3,Castillo Medina Sidonia,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CD,CD07,3,GibalbÃ­n,,2,CÃ¡diz,1,Andalucia,EspaÃ±a,2,Oeste,,0
+CO ,CO04,3,San Bernardo,,3,CÃ³rdoba,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HL,HL02,3,Cumbres Mayores,,5,Huelva,1,Andalucia,EspaÃ±a,2,Oeste,,0
+ML,ML07,3,El GaucÃ­n Negro,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+ML,ML19,3,Alto de los Perdigones,,7,MÃ¡laga,1,Andalucia,EspaÃ±a,1,Parda,,0
+SV,SV03,3,Media Fanega,,8,Sevilla,1,Andalucia,EspaÃ±a,2,Oeste,,0
+HU,HU06,3,MonrepÃ³s,,10,Huesca,3,Aragon,EspaÃ±a,1,Parda,,0
+TE,TE05,3,Castillo de Peracense,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+ZA,ZA08,3,Alto de Tosos,,12,Zaragoza,3,Aragon,EspaÃ±a,1,Parda,,0
+AS,AS27,3,Tenebredo,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+AS,AS28,3,RaÃ±adoiro,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0
+IB,IB03,3,Puig de GalatzÃ³,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Mallorca,0
+IB,IB11,3,Sa Talaia de Sant Josep,,14,Islas Baleares,5,Islas Baleares,EspaÃ±a,3,Med,Ibiza,0
+CR,CR08,3,Ermita VÃ­rgen del Castillo,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU02,3,Terzaga,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+GU,GU07,3,Pastrana,,21,Guadalajara,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+BU,BU01,3,EscÃ³bados,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE14,3,El Redondal,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+SO,SO05,3,Oncala,,29,Soria,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+VD,VD01,3,La Parrilla,,30,Valladolid,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LL,LL12,3,Comiols,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LL,LL13,3,TÃºnel de Vielha,,34,Lleida,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+TA,TA12,3,Coll de Fatxes,,35,Tarragona,10,CataluÃ±a,EspaÃ±a,3,Med,,0
+LU,LU03,3,A GaÃ±idoira,,43,Lugo,14,Galicia,EspaÃ±a,4,Verde,,0
+OU,OU02,3,Porto das Estivadas,,44,Ourense,14,Galicia,EspaÃ±a,4,Verde,,0
+PO,PO03,3,FontefrÃ­a,,45,Pontevedra,14,Galicia,EspaÃ±a,4,Verde,,0
+LR,LR06,3,Pazuengos,,46,La Rioja,15,La Rioja,EspaÃ±a,4,Verde,,0
+MU,MU01,3,Casas de la Marina - La Perdiz,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MU,MU08,3,Alto de Ricote,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+PR,PR08,3,Encumeada,,50,Portugal,19,Portugal,Portugal,2,Oeste,,0
+CS,CS13,3,BenafigÃ³s - El Vidre,,52,CastellÃ³n,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+SE,SE02,3,La Pinilla,,28,Segovia,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+GR,GR20,2,Puerto Camacho - Sierra de LÃºjar,,4,Granada,1,Andalucia,EspaÃ±a,1,Parda,,0
+TE,TE10,2,Muela de San Juan,,11,Teruel,3,Aragon,EspaÃ±a,1,Parda,,0
+CA,CA17,2,Las Nieves,,17,Cantabria,7,Cantabria,EspaÃ±a,4,Verde,,0
+AB,AB05,2,Las Crucetas,,18,Albacete,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+VA,VA06,2,Puerto del Negrete (El Remedio),,53,Valencia,20,Comunidad Valenciana,EspaÃ±a,3,Med,,0
+MU,MU06,2,Carrascoy,,48,RegiÃ³n de Murcia,17,RegiÃ³n de Murcia,EspaÃ±a,3,Med,,0
+MA,MA02,2,La Jarosa ,,47,Comunidad de Madrid,16,Comunidad de Madrid,EspaÃ±a,1,Parda,,0
+ZM,ZM02,2,San Juan de la Cuesta (repetidor),,31,Zamora,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+BU,BU10,2,CastrÃ­os,,24,Burgos,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+LE,LE06,2,Campo las Danzas,,25,LeÃ³n,9,Castilla y leon,EspaÃ±a,2,Oeste,,0
+CR,CR01,2,Castilnegro,,19,Ciudad Real,8,Castilla la mancha,EspaÃ±a,1,Parda,,0
+AS,ASRG,4,Pico AguiÃ³n    ,,13,Asturias,4,Asturias,EspaÃ±a,4,Verde,,0

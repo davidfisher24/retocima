@@ -27,16 +27,16 @@ class VertientesTableSeeder extends Seeder
 
     public function run()
     {
-        DB::table('vertientes')->truncate();
-		$file = fopen(base_path('/database/raw/vertientes.csv'),"r");
+      DB::table('vertientes')->truncate();
+  		$file = fopen(base_path('/database/raw/vertientes.csv'),"r");
 
-		while(! feof($file))
-		{
-			$this->seedVertiente(fgetcsv($file));
-			
-		}
+  		while(! feof($file))
+  		{
+  			$this->seedVertiente(fgetcsv($file));
+  			
+  		}
 
-		fclose($file);
+  		fclose($file);
     }
 
     /**
@@ -57,34 +57,28 @@ class VertientesTableSeeder extends Seeder
   			$this->vertienteIndex = $this->vertienteIndex + 1;
   		}
 
-		$idCima = Cima::where('codigo',$csvArray[0])->whereIn('estado',[1,3,4])->first()->id;
+  		$idCima = Cima::where('codigo',$csvArray[0])->whereIn('estado',[1,4])->first()->id;
 
-		$altitud = ($csvArray[2]) ? $csvArray[2] : null;
-		$desnivel = ($csvArray[3]) ? $csvArray[3] : null;
-		$longitud = ($csvArray[4]) ? $csvArray[4] : null;
-		$porcentage_medio = ($csvArray[5]) ? $csvArray[5] : null;
-		$porcentage_maximo = ($csvArray[6]) ? $csvArray[6] : null;
-		$apm = ($csvArray[7]) ? $csvArray[7] : null;
+  		$altitud = ($csvArray[2]) ? $csvArray[2] : null;
+  		$desnivel = ($csvArray[3]) ? $csvArray[3] : null;
+  		$longitud = ($csvArray[4]) ? $csvArray[4] : null;
+  		$porcentage_medio = ($csvArray[5]) ? $csvArray[5] : null;
+  		$porcentage_maximo = ($csvArray[6]) ? $csvArray[6] : null;
+  		$apm = ($csvArray[7]) ? $csvArray[7] : null;
 
-		$vertiente = new Vertiente();
+  		$vertiente = new Vertiente();
 
-    	$vertiente->id_cima = $idCima;
-    	$vertiente->codigo_cima = $csvArray[0];
-    	$vertiente->index = $this->vertienteIndex;
-    	$vertiente->vertiente = $csvArray[1];
-    	/*$vertiente->altitud = $csvArray[2];
-    	$vertiente->desnivel = $csvArray[3];
-    	$vertiente->longitud = $csvArray[4];
-    	$vertiente->porcentage_medio = $csvArray[5];
-    	$vertiente->porcentage_maximo = $csvArray[6];
-    	$vertiente->apm = $csvArray[7];*/
-    	$vertiente->altitud = $altitud;
-    	$vertiente->desnivel = $desnivel;
-    	$vertiente->longitud = $longitud;
-    	$vertiente->porcentage_medio = $porcentage_medio;
-    	$vertiente->porcentage_maximo = $porcentage_maximo;
-    	$vertiente->apm = $apm;
+      	$vertiente->cima_id = $idCima;
+      	$vertiente->cima_codigo = $csvArray[0];
+      	$vertiente->index = $this->vertienteIndex;
+      	$vertiente->vertiente = $csvArray[1];
+      	$vertiente->altitud = $altitud;
+      	$vertiente->desnivel = $desnivel;
+      	$vertiente->longitud = $longitud;
+      	$vertiente->porcentage_medio = $porcentage_medio;
+      	$vertiente->porcentage_maximo = $porcentage_maximo;
+      	$vertiente->apm = $apm;
 
-		$vertiente->save();	
+  		$vertiente->save();	
     }
 }

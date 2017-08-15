@@ -25,13 +25,13 @@ class CreateCimasTable extends Migration
             $table->integer('estado')->default(1);
             $table->string('nombre');
             $table->string('provincia_frontera')->nullable();
+            $table->integer('provincia_id'); 
             $table->string('provincia');
-            $table->integer('provincia_id'); // NEW
+            $table->integer('communidad_id'); 
             $table->string('communidad');
-            $table->integer('communidad_id'); // NEW
             $table->string('pais');
+            $table->integer('iberia_id'); 
             $table->string('iberia');
-            $table->integer('iberia_id'); // NEW
             $table->string('isla')->nullable();
             $table->boolean('pata_negra')->default(0);
             $table->timestamps();

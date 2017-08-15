@@ -13,7 +13,7 @@ class Cima extends Model
      */
     public function vertientes()
     {
-        return $this->hasMany('App\Vertiente', 'id_cima');
+        return $this->hasMany('App\Vertiente');
     }
 
     /**
@@ -23,19 +23,51 @@ class Cima extends Model
      */
     public function logros()
     {
-        return $this->hasMany('App\Logro', 'id_cima');
+        return $this->hasMany('App\Logro');
     }
+
+    /**
+     * Relationship - One cima has one provincia
+     *
+     * @object provincia
+     */
+    public function provincia()
+    {
+        return $this->hasOne('App\Provincia');
+    }
+
+    /**
+     * Relationship - One cima has one communidad
+     *
+     * @object provincia
+     */
+    public function communidad()
+    {
+        return $this->hasOne('App\Communidad');
+    }
+
+     /**
+     * Relationship - One cima has one iberia
+     *
+     * @object provincia
+     */
+    public function iberia()
+    {
+        return $this->hasOne('App\Iberia');
+    }
+
+
 
     /**
 	 * Returns all cimas ranked by number of ascesions (logros)
 	 *
 	 * @collection cimas ranked by ascensions
 	 */
-    public static function orderByAscensions()
+    /*public static function orderByAscensions()
     {
     	return Self::all()->map(function ($cima) {
 		    $cima['ascensionesCount'] = $cima->logros()->count();
 		    return $cima;
 		})->sortByDesc('ascensionesCount');
-    }
+    }*/
 }

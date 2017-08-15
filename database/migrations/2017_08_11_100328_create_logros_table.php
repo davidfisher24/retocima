@@ -23,6 +23,7 @@ class CreateLogrosTable extends Migration
             $table->integer('cimero_id'); // Changed name
             $table->integer('cima_id'); // Changed name
             $table->string('cima_codigo'); // Changed name
+            $table->integer('cima_estado'); // NEW
             $table->integer('provincia_id'); // NEW
             $table->integer('communidad_id'); // NEW
             $table->integer('iberia_id'); // NEW

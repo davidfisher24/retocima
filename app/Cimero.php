@@ -34,7 +34,7 @@ class Cimero extends Authenticatable
      */
     public function logros()
     {
-        return $this->hasMany('App\Logro', 'id_cimero');
+        return $this->hasMany('App\Logro');
     }
 
 
@@ -43,11 +43,11 @@ class Cimero extends Authenticatable
 	 *
 	 * @collection cimeros ranked by logros
 	 */
-    public static function rank()
+    /*public static function rank()
     {
     	return Self::all()->map(function ($cimero) {
 		    $cimero['logrosCount'] = $cimero->logros()->count();
 		    return $cimero;
 		})->sortByDesc('logrosCount');
-    }
+    }*/
 }

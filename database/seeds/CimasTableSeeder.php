@@ -45,15 +45,19 @@ class CimasTableSeeder extends Seeder
     	$cima->codigo_provincia = $csvArray[0];
     	$cima->codigo = $csvArray[1];
     	$cima->estado = $csvArray[2];
-    	$cima->nombre = utf8_encode($csvArray[3]);
-    	$cima->provincia_frontera = utf8_encode($csvArray[4]);
-    	$cima->provincia = utf8_encode($csvArray[5]);
-    	$cima->communidad = utf8_encode($csvArray[6]);
-    	$cima->pais = utf8_encode($csvArray[7]);
-    	$cima->iberia = $csvArray[8];
-    	$cima->isla = utf8_encode($csvArray[9]);
-    	$cima->pata_negra = $csvArray[10];
+    	$cima->nombre = $csvArray[3];
+    	$cima->provincia_frontera = $csvArray[4];
+        $cima->provincia_id = $csvArray[5];
+    	$cima->provincia = $csvArray[6];
+        $cima->communidad_id = $csvArray[7];
+    	$cima->communidad = $csvArray[8];
+    	$cima->pais = $csvArray[9];
+        $cima->iberia_id = $csvArray[10];
+    	$cima->iberia = $csvArray[11];
+    	$cima->isla = $csvArray[12];
+    	$cima->pata_negra = $csvArray[13];
 
 		$cima->save();
     }
 }
+
