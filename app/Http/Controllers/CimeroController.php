@@ -31,7 +31,7 @@ class CimeroController extends Controller
     	
     	$cimero = Cimero::find(Auth::id());
     	
-        return view('dashboard', compact('cimero'));
+        return view('userarea.dashboard', compact('cimero'));
     }
 
     /**
@@ -45,7 +45,7 @@ class CimeroController extends Controller
     	
     	$cimero = Cimero::find(Auth::id());
     	
-        return view('cimeroCuenta', compact('cimero'));
+        return view('userarea.cimeroCuenta', compact('cimero'));
     }
 
     /**
@@ -59,6 +59,6 @@ class CimeroController extends Controller
     	$service = new CimeroLogroService(Auth::id());
     	$logros = $service->getCimeroWithDetailedLogros();
     	
-    	return view('cimeroLogros', compact('logros'));
+    	return view('userarea.cimeroLogros', compact('logros'));
     }
 }

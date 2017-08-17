@@ -41,22 +41,7 @@ class Cimero extends Authenticatable
         return $this->hasMany('App\Logro')->where('cima_estado','!=', 4);
     }
 
-    // FUNCTIONS TO MOVE TO SERVICE LAYER
-
-	 /**
-	 * Returns all cimeros ranked by numero of logros
-	 *
-	 * @collection cimeros ranked by logros
-	 */
-    public static function rank()
-    {
-    	return Self::all()->map(function ($cimero) {
-		    $cimero['logrosCount'] = $cimero->logros()->count();
-            $cimero['fullname'] = $cimero->nombre . " ". $cimero->apellido1 . " " . $cimero->apellido2;
-		    return $cimero;
-		})->sortByDesc('logrosCount')->pluck('logrosCount','fullname');
-    }
-
+  
 }
 
 

@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/listado', 'CimasController@listCimas')->name('cimas');
+
+Route::get('/ranking', 'CimeroStatisticsController@baseRanking')->name('ranking');
+
 Route::get('/dashboard', 'CimeroController@dashboard')->name('dashboard');
 Route::get('/cimerocuenta', 'CimeroController@cimeroCuenta')->name('cimeroCuenta');
 Route::get('/cimerologros', 'CimeroController@cimeroLogros')->name('cimeroLogros');

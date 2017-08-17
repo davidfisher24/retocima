@@ -58,15 +58,5 @@ class Provincia extends Model
     {
         return $this->hasOne('App\Iberia','id','iberia_id');
     }
-
-    // FUNCTIONS TO MOVE TO SERVICE LAYER
-    public static function orderByAscensions()
-    {
-        return Self::all()->map(function ($province) {
-            $province['ascensionesCount'] = $province->logros()->count();
-            return $province;
-        })->sortByDesc('ascensionesCount')->pluck('ascensionesCount','nombre');
-    }
-
     
 }

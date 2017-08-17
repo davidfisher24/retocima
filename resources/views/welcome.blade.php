@@ -79,16 +79,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Reto Cima
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                    <a href="{{ url('/reglamiento') }}">Reglamiento</a>
+                    <a href="{{ url('/listado') }}">Listado</a>
+                    <a href="{{ url('/ranking') }}">Ranking</a>
+                    <a href="{{ url('/responsables') }}">Responsables</a>
+                    <a href="{{ url('/estadistica') }}">Estadistica</a>
             </div>
         </div>
     </body>
