@@ -55,7 +55,7 @@ class CimerosTableSeeder extends Seeder
     	$cimero->poblacion = $csvArray[6];
     	$cimero->provincia = $csvArray[7];
     	$cimero->codigopostal = $csvArray[8];
-    	$cimero->correoelectronico = $csvArray[9];
+    	$cimero->email = $csvArray[9];
     	$cimero->web = $csvArray[10];
     	$cimero->puertofavorito = $csvArray[11];
     	$cimero->puertomasduro = $csvArray[12];
@@ -64,8 +64,8 @@ class CimerosTableSeeder extends Seeder
     	$cimero->desarrollo = $csvArray[15];
     	$cimero->grupo = $csvArray[16];
     	$cimero->frase = $csvArray[17];
-    	$cimero->usuario = $csvArray[18];;
-    	$cimero->contrasena = Hash::make($csvArray[19]);
+    	$cimero->username = $csvArray[18];;
+    	$cimero->password = Hash::make($csvArray[19]);
     	$cimero->nickmiarroba = $csvArray[20];
     	$cimero->fechaalta = $csvArray[21];
 

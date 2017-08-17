@@ -28,7 +28,7 @@ class CreateCimerosTable extends Migration
             $table->string('poblacion')->nullable();
             $table->string('provincia')->nullable();
             $table->string('codigopostal')->nullable();
-            $table->string('correoelectronico')->nullable();
+            $table->string('email');
             $table->string('web')->nullable();
             $table->string('puertofavorito')->nullable();
             $table->string('puertomasduro')->nullable();
@@ -37,8 +37,8 @@ class CreateCimerosTable extends Migration
             $table->string('desarrollo')->nullable();
             $table->string('grupo')->nullable();
             $table->longText('frase')->nullable();
-            $table->string('usuario');
-            $table->string('contrasena');
+            $table->string('username');
+            $table->string('password');
             $table->string('nickmiarroba')->nullable();
             $table->string('fechaalta')->nullable();
             $table->rememberToken();

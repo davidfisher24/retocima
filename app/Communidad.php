@@ -36,5 +36,14 @@ class Communidad extends Model
         return $this->hasMany('App\Provincia');
     }
 
+    // FUNCTIONS TO MOVE TO SERVICE LAYER
+    public static function orderByAscensions()
+    {
+        return Self::all()->map(function ($communidad) {
+            $communidad['ascensionesCount'] = $communidad->logros()->count();
+            return $communidad;
+        })->sortByDesc('ascensionesCount')->pluck('ascensionesCount','nombre');
+    }
+
 
 }

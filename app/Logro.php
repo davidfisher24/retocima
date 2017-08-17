@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Logro extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'cimero_id', 'cima_id', 'cima_codigo', 'cima_estado', 'provincia_id', 'communidad_id', 'iberia_id'
+    ];
+
     /**
      * Relationship - Each logro belongs to a single cimero
      *

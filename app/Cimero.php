@@ -8,14 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Cimero extends Authenticatable
 {
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombre', 'apellido1', 'apellido2', 'fechanacimiento', 'direccion', 'poblacion', 'provincia', 'codigopostal', 'email',
+        'web', 'puertofavorito', 'puertomasduro', 'puertomasfacil', 'bicicleta', 'desarrollo', 'grupo', 'frase', 'username', 'password',
+        'nickmiarroba', 'fechaalta'
     ];
 
     /**
@@ -27,6 +29,7 @@ class Cimero extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     /**
      * Relationship - User has various logros
      *
@@ -37,6 +40,8 @@ class Cimero extends Authenticatable
         // Filtering without the special ones
         return $this->hasMany('App\Logro')->where('cima_estado','!=', 4);
     }
+
+    // FUNCTIONS TO MOVE TO SERVICE LAYER
 
 	 /**
 	 * Returns all cimeros ranked by numero of logros
@@ -51,5 +56,7 @@ class Cimero extends Authenticatable
 		    return $cimero;
 		})->sortByDesc('logrosCount')->pluck('logrosCount','fullname');
     }
+
 }
+
 

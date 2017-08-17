@@ -17,7 +17,7 @@ class Cima extends Model
     }
 
     /**
-     * Relationship - One cima has various logros by the cimeros
+     * Relationship - One cima has various logros 
      *
      * @collection logros
      */
@@ -57,11 +57,11 @@ class Cima extends Model
     }
 
 
+    // FUNCTIONS TO MOVE TO SERVICE LAYER
 
     /**
 	 * Returns all cimas ranked by number of ascesions (logros)
 	 *
-	 * @collection cimas ranked by ascensions
 	 */
     public static function orderByAscensions()
     {
@@ -70,4 +70,5 @@ class Cima extends Model
 		    return $cima;
 		})->sortByDesc('ascensionesCount')->pluck('ascensionesCount','nombre');
     }
+
 }
