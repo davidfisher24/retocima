@@ -26,9 +26,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
-    /** 这个是声明账户登录的name值 */
+    /**
+     * Username input field 
+     *
+     * @var string
+    */
+
     public function username()
     {
         return 'login';
@@ -46,9 +51,12 @@ class LoginController extends Controller
     }
 
     /**
-     *  add function credentials and username
-     *  添加这两个修改之后的方法，为了兼容email和mobile 两个字段作为账号登录
+     *  Check user login by email or username
+     *
+     * @var string input password
+     *  
      */
+
     protected function credentials(Request $request)
     {
         $field = filter_var($request->input($this->username()), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';

@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'CimeroController@dashboard')->name('dashboard');
+Route::get('/cimerocuenta', 'CimeroController@cimeroCuenta')->name('cimeroCuenta');
+Route::get('/cimerologros', 'CimeroController@cimeroLogros')->name('cimeroLogros');
