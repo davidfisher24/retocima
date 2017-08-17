@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Services\CimeroLogroService;
 use App\Cimero;
+use App\Cima;
 
 class CimeroController extends Controller
 {
@@ -49,7 +50,7 @@ class CimeroController extends Controller
     }
 
     /**
-     * Show the cimeros logros in the dashboard.
+     * Show the cimero logros page.
      *
      * @return Blade View
      */
@@ -60,5 +61,19 @@ class CimeroController extends Controller
     	$logros = $service->getCimeroWithDetailedLogros(Auth::id());
     	
     	return view('userarea.cimeroLogros', compact('logros'));
+    }
+
+    /**
+     * Show the anadir cima page
+     *
+     * @return Blade View
+     */
+
+    public function anadirLogros()
+    {
+        //$service = new CimeroLogroService();
+        //$logros = $service->getCimeroWithDetailedLogros(Auth::id());
+        $cimas = Cima::all();
+        return view('userarea.anadirLogros', compact('cimas'));
     }
 }
