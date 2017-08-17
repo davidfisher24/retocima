@@ -56,8 +56,8 @@ class CimeroController extends Controller
 
     public function cimeroLogros()
     {
-    	$service = new CimeroLogroService(Auth::id());
-    	$logros = $service->getCimeroWithDetailedLogros();
+    	$service = new CimeroLogroService();
+    	$logros = $service->getCimeroWithDetailedLogros(Auth::id());
     	
     	return view('userarea.cimeroLogros', compact('logros'));
     }

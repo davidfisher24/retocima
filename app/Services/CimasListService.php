@@ -2,24 +2,12 @@
 
 namespace App\Services;
 
-use DB;
-
 use App\Cima;
 use App\Logro;
 use App\Communidad;
 
-class CimasListService 
+class CimasListService extends BaseService
 {
-
-	/**
-	 * Create a new service instance.
-	 *
-	 * @return void
-	 */
-    public function __construct()
-    {
-    	
-    }
 
 	public function getCommunidadsWithNumberOfCimas(){
         return Cima::groupBy('communidad_id')->select('communidad_id',DB::raw('count(*) as total'))->get()->map(function($item, $index){
