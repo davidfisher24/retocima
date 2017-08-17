@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                     @foreach ($cimeros as $cimero)
-                        <p>{{ $cimero->nombre }} {{ $cimero->apellido1 }} {{ $cimero->apellido2 }} -- {{$cimero->logros_count}}</p>
+                        <p>{{ $cimero->nombre }} -- {{$cimero->logros_count}}</p>
                     @endforeach
                 </div>
                 

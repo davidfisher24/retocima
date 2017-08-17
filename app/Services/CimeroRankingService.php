@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use DB;
+
 use App\Cimero;
 use App\Logro;
 
@@ -25,6 +27,11 @@ class CimeroRankingService
      */
 
 	public function getRankingOfAllCimeros(){
-        return Cimero::withCount('logros')->get()->sortByDesc('logros_count');
+        return Logro::select('cimero_id',DB::raw('count(*) as logros_count'))->groupBy('cimero_id')->get()->sortByDesc('logros_count')->map(function($item){
+            $cimero = $item->cimero()->first();
+            $item->nombre = $cimero->nombre . " " . $cimero->apellido1 . " " . $cimero->apellido2;
+            return $item;
+        });
+
 	}
 }
