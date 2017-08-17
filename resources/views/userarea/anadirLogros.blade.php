@@ -16,7 +16,12 @@
 
                 <div class="panel-body">
                     @foreach ($cimas as $cima)
-                        <p>{{ $cima->provincia }} -- {{ $cima->nombre }}</p>
+
+                        @if(in_array($cima->id, $userLogros))
+                            <p><strong> {{ $cima->provincia }} -- {{ $cima->nombre }} (: Ya lo tienes :) </strong></p>
+                        @else
+                            <p>{{ $cima->provincia }} -- {{ $cima->nombre }}</p>
+                        @endif
                     @endforeach
                     
                 </div>
