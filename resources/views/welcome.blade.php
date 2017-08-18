@@ -84,7 +84,7 @@
 
                 <div class="links">
                     <a href="{{ url('/reglamiento') }}">Reglamiento</a>
-                    <a href="{{ url('/listado') }}">Listado</a>
+                    <a href="{{ url('/listadocommunidads') }}">Listado</a>
                     <a href="{{ url('/ranking') }}">Ranking</a>
                     <a href="{{ url('/responsables') }}">Responsables</a>
                     <a href="{{ url('/estadistica') }}">Estadistica</a>

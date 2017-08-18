@@ -8,9 +8,8 @@
                 <div class="panel-heading">Listado</div>
 
                 <div class="panel-body">
-                    @foreach ($cimaList as $cima)
-                        <p>{{ $cima->communidad }}   {{$cima->total}}</p>
-        
+                    @foreach ($provList as $list)
+                        <p><a href="{{URL::to('/')}}/listadocimas/{{$list->provincia_id}}">{{ $list->provincia->nombre }}</a>   {{$list->total}}</p>
                     @endforeach
                 </div>
                 

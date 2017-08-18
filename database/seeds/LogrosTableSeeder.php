@@ -89,3 +89,4 @@ class LogrosTableSeeder extends Seeder
 		}    	
     }
 }
+
