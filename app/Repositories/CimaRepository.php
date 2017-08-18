@@ -40,7 +40,7 @@ class CimaRepository
      */
 
 	public function getCimaById($id){
-		return Cima::with('vertientes','provincia','communidad','iberia')->find(1);
+		return Cima::with('vertientes','provincia','communidad','iberia')->find($id);
 	}
 
 	/**

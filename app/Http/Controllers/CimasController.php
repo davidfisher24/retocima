@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\CimaRepository;
 
 use App\Provincia;
+use App\Communidad;
 
 class CimasController extends Controller
 {
@@ -30,15 +31,27 @@ class CimasController extends Controller
      * @return Blade View
      */
 
-    public function listCimasByProvincia($communidadId, $currentProv = null)
+    public function listCimasByProvincia($communidadId, $provinciaId = null)
     {
 
         $repo = new CimaRepository();
+
+        $commList = Communidad::orderBy('nombre')->get();
         $provList = $repo->getprovinciaListWithCimasCount($communidadId);
 
-        if (!$currentProv) $currentProv = Provincia::where('communidad_id',$communidadId)->orderBy('nombre')->first()->id;
-        $cimaList = $repo->getCimasInProvincia($currentProv);
+        if (!$provinciaId) $provinciaId = Provincia::where('communidad_id',$communidadId)->orderBy('nombre')->first()->id;
+        $cimaList = $repo->getCimasInProvincia($provinciaId);
+
+        $currentCommunidad = (integer) $communidadId;
+        $currentProvincia = (integer) $provinciaId;
         
-        return view('publicarea.listadoprovincias',compact('provList','cimaList','currentProv'));
+        return view('publicarea.listadoprovincias',compact('commList','provList','cimaList','currentCommunidad','currentProvincia'));
+    }
+
+    public function showCimaDetails($cimaId)
+    {
+        $repo = new CimaRepository();
+        $cima = $repo->getCimaById($cimaId);
+        return view('publicarea.detallescima',compact('cima'));
     }
 }

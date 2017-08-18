@@ -8,25 +8,34 @@
                 <div class="panel-heading">Listado</div>
 
                 <div class="panel-body">
-                    <div class="col-md-4 col-sm-8">
-                    @foreach ($provList as $list)
-                        <p>
-                            @if (!empty($currentProv))
-                                <a href="{{URL::to('/')}}/listadoprovincias/{{$list->provincia_id}}">
-                                    {{ $list->provincia->nombre }}
-                                </a>   
-                                {{$list->total}}
+                    <div class="col-md-3 col-sm-3">
+                        @foreach ($commList as $communidad)
+                            @if ($communidad->id === $currentCommunidad)
+                                <p><strong>{{ $communidad->nombre }}</strong></p>
                             @else
-                                <a href="{{URL::to('/')}}/listadoprovincias/{{$list->provincia_id}}">
-                                    {{ $list->provincia->nombre }}
-                                </a>  
+                                <p><a href="{{URL::to('/')}}/listadoprovincias/{{$communidad->id}}">{{ $communidad->nombre }}</a></p>
                             @endif
-                        </p>
+                        @endforeach
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                    @foreach ($provList as $list)
+                        @if ($list->provincia_id === $currentProvincia)
+                            <p><strong>{{ $list->provincia->nombre }} ({{$list->total}})</strong></p>
+                        @else
+                            <p>
+                                <a href="{{URL::to('/')}}/listadoprovincias/{{$currentCommunidad}}/{{$list->provincia_id}}">
+                                    {{ $list->provincia->nombre }} ({{$list->total}})
+                                </a>   
+                            </p>
+                        @endif
                     @endforeach
                     </div>
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-md-6 col-sm-6">
                     @foreach ($cimaList as $cima)
-                        <p>{{$cima->nombre}}</p>
+                        <p>
+                            <a href="{{URL::to('/')}}/detallescima/{{$cima->id}}">
+                                {{$cima->nombre}}</a>
+                        </p>
                     @endforeach
                     </div>
                 </div>
