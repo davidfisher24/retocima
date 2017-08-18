@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/listadocommunidads', 'CimasController@listCimasByCommunidad')->name('communidads');
 Route::get('/listadoprovincias/{id}', 'CimasController@listCimasByProvincia')->name('provincias');
+Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasController@listCimasByProvincia')->name('provincias');
 
 Route::get('/ranking', 'CimeroStatisticsController@baseRanking')->name('ranking');
 

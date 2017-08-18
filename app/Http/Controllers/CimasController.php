@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-//use App\Services\CimasListService;
 use App\Repositories\CimaRepository;
+
+use App\Provincia;
 
 class CimasController extends Controller
 {
@@ -29,10 +30,15 @@ class CimasController extends Controller
      * @return Blade View
      */
 
-    public function listCimasByProvincia($communidadId)
+    public function listCimasByProvincia($communidadId, $currentProv = null)
     {
+
         $repo = new CimaRepository();
         $provList = $repo->getprovinciaListWithCimasCount($communidadId);
-        return view('publicarea.listadoprovincias',compact('provList'));
+
+        if (!$currentProv) $currentProv = Provincia::where('communidad_id',$communidadId)->orderBy('nombre')->first()->id;
+        $cimaList = $repo->getCimasInProvincia($currentProv);
+        
+        return view('publicarea.listadoprovincias',compact('provList','cimaList','currentProv'));
     }
 }

@@ -8,9 +8,27 @@
                 <div class="panel-heading">Listado</div>
 
                 <div class="panel-body">
+                    <div class="col-md-4 col-sm-8">
                     @foreach ($provList as $list)
-                        <p><a href="{{URL::to('/')}}/listadocimas/{{$list->provincia_id}}">{{ $list->provincia->nombre }}</a>   {{$list->total}}</p>
+                        <p>
+                            @if (!empty($currentProv))
+                                <a href="{{URL::to('/')}}/listadoprovincias/{{$list->provincia_id}}">
+                                    {{ $list->provincia->nombre }}
+                                </a>   
+                                {{$list->total}}
+                            @else
+                                <a href="{{URL::to('/')}}/listadoprovincias/{{$list->provincia_id}}">
+                                    {{ $list->provincia->nombre }}
+                                </a>  
+                            @endif
+                        </p>
                     @endforeach
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                    @foreach ($cimaList as $cima)
+                        <p>{{$cima->nombre}}</p>
+                    @endforeach
+                    </div>
                 </div>
                 
             </div>
