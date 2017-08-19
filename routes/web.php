@@ -17,16 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/listadocommunidads', 'CimasController@listCimasByCommunidad')->name('communidads');
-Route::get('/listadoprovincias/{id}', 'CimasController@listCimasByProvincia')->name('provincias');
-Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasController@listCimasByProvincia')->name('provincias');
-Route::get('/detallescima/{id}', 'CimasController@showCimaDetails')->name('cima');
 
-Route::get('/ranking', 'CimeroStatisticsController@baseRanking')->name('ranking');
-Route::get('/cimeropublicdetails/{id}', 'CimeroStatisticsController@cimeroPublicDetails')->name('cimero');
+/* cimasListado */
+Route::get('/listadocommunidads', 'CimasListadoController@listCimasByCommunidad')->name('communidads');
+Route::get('/listadoprovincias/{id}', 'CimasListadoController@listCimasByProvincia')->name('provincias');
+Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasListadoController@listCimasByProvincia')->name('provincias');
+Route::get('/detallescima/{id}', 'CimasListadoController@showCimaDetails')->name('cima');
 
+/* cimeroRanking */
+Route::get('/ranking', 'CimeroRankingController@baseRanking')->name('ranking');
+Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDetails')->name('cimero');
 
-Route::get('/dashboard', 'CimeroController@dashboard')->name('dashboard');
-Route::get('/cimerocuenta', 'CimeroController@cimeroCuenta')->name('cimeroCuenta');
-Route::get('/cimerologros', 'CimeroController@cimeroLogros')->name('cimeroLogros');
-Route::get('/anadirlogros', 'CimeroController@AnadirLogros')->name('anadirLogros');
+/* cimeroCuenta */
+Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
+Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');
+Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros');
+Route::get('/anadirlogros', 'CimeroCuentaController@AnadirLogros')->name('anadirLogros');

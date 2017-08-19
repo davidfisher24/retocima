@@ -5,33 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\CimeroRankingService;
-
-use App\Repositories\LogroRepository;
+use App\Services\CimeroLogroService;
 
 use App\Cimero;
-use App\Communidad;
 
 
-class CimeroStatisticsController extends Controller
+class CimeroRankingController extends Controller
 {
 
     /**
-    * Loads $cimeroRankingService and $logroRepository Classes
+    * Loads $cimeroRankingService and $cimeroLogroService Classes
     * 
     * @param service $cimeroRankingService
-    * @param repository $logroRepository
+    * @param service $cimeroLogroService
     *
-    * @return Cimero statistics Controller
+    * @return void
     */
 
-    public function __construct(CimeroRankingService $cimeroRankingService, LogroRepository $logroRepository)
+    public function __construct(CimeroRankingService $cimeroRankingService, CimeroLogroService $cimeroLogroService)
     {
         $this->cimeroRankingService = $cimeroRankingService;
-        $this->logroRepository = $logroRepository;
+        $this->cimeroLogroService = $cimeroLogroService;
     }
 
     /**
-     * Show a ranking of all cimero.
+     * Show a ranking of all cimeros.
      *
      * @return Blade View
      */
@@ -46,6 +44,7 @@ class CimeroStatisticsController extends Controller
     /**
      * Show a detailed public view of cimero logros
      *
+     * @param intger $cimeroId
      * @return Blade View
      */
 
@@ -53,8 +52,7 @@ class CimeroStatisticsController extends Controller
     {
 
         $cimero = Cimero::find($id);
-        $logros = $this->logroRepository->getLogrosByCimeroId($id);
-
+        $logros = $this->cimeroLogroService->getCimeroLogrosGroupedByCommunidad($id);
 
         return view('publicarea.cimeropublicdetails',compact('cimero','logros'));
 

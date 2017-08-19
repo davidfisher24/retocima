@@ -9,7 +9,7 @@ use App\Repositories\CimaRepository;
 use App\Provincia;
 use App\Communidad;
 
-class CimasController extends Controller
+class CimasListadoController extends Controller
 {
 
     /**

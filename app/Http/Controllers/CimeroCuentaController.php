@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Services\CimeroLogroService;
+
 use App\Cimero;
 use App\Cima;
 
-class CimeroController extends Controller
+class CimeroCuentaController extends Controller
 {
     /**
      * Create a new controller instance.
