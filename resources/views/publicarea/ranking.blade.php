@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                     @foreach ($cimeros as $cimero)
-                        <p>{{ $cimero->nombre }} -- {{$cimero->logros_count}}</p>
+                        <p><a href="{{URL::to('/')}}/cimeropublicdetails/{{$cimero->cimero_id}}">{{ $cimero->nombre }}</a> -- {{$cimero->logros_count}}</p>
                     @endforeach
                 </div>
                 

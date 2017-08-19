@@ -6,14 +6,31 @@ use App\Cimero;
 use App\Cima;
 use App\Logro;
 
-class CimeroLogroService extends BaseService
+class CimeroLogroService 
 {
+
+	/**
+     * Returns all logro_ids for a cimero
+     *
+     * @param integer $cimeroId
+     * @return array cimero logro ids
+     *
+     */
 
 	public function getCimeroLogrosCimaIds($id)
 	{
 		return Cimero::find($id)->logros()->get()->pluck('cima_id')->toArray();
 
 	}
+
+	/**
+     * Returns all logros with details for a cimero
+     *
+     * @param integer $cimeroId
+     *
+     * @return collection cimero logros with cima details
+     *
+     */
 
 	public function getCimeroWithDetailedLogros($id)
 	{

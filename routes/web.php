@@ -23,6 +23,8 @@ Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasController@listCimasBy
 Route::get('/detallescima/{id}', 'CimasController@showCimaDetails')->name('cima');
 
 Route::get('/ranking', 'CimeroStatisticsController@baseRanking')->name('ranking');
+Route::get('/cimeropublicdetails/{id}', 'CimeroStatisticsController@cimeroPublicDetails')->name('cimero');
+
 
 Route::get('/dashboard', 'CimeroController@dashboard')->name('dashboard');
 Route::get('/cimerocuenta', 'CimeroController@cimeroCuenta')->name('cimeroCuenta');
