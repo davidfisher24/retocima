@@ -10,6 +10,20 @@ use App\Provincia;
 
 class CimaRepository 
 {
+
+     protected $model;
+
+     /**
+    * Set class to injected model
+    * 
+    * @param Model $cima
+    * @return void
+    */
+
+     public function __construct(Cima $model) {
+       $this->model = $model;
+     }
+
 	/**
      * List of communidads with count of cimas in each
      *
@@ -18,7 +32,7 @@ class CimaRepository
 
 
 	public function getCommunidadListWithCimasCount(){
-        return Cima::groupBy('communidad_id')->select('communidad_id',DB::raw('count(*) as total'))->with('communidad')->get()->sortBy('communidad');
+        return $this->model->groupBy('communidad_id')->select('communidad_id',DB::raw('count(*) as total'))->with('communidad')->get()->sortBy('communidad');
 	}
 
 	/**
@@ -29,7 +43,7 @@ class CimaRepository
      */
 
 	public function getProvinciaListWithCimasCount($communidadId){
-        return Cima::where('communidad_id',$communidadId)->with('provincia')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
+        return $this->model->where('communidad_id',$communidadId)->with('provincia')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
 	}
 
 	/**
@@ -40,7 +54,7 @@ class CimaRepository
      */
 
 	public function getCimaById($id){
-		return Cima::with('vertientes','provincia','communidad','iberia')->find($id);
+		return $this->model->with('vertientes','provincia','communidad','iberia')->find($id);
 	}
 
 	/**
@@ -51,7 +65,7 @@ class CimaRepository
      */
 
 	public function getCimasInProvincia($provinciaId){
-		return Cima::where('provincia_id',$provinciaId)->get();
+		return $this->model->where('provincia_id',$provinciaId)->get();
 	}
 
 	/**
@@ -63,7 +77,7 @@ class CimaRepository
 
 
 	public function getCimasInCommunidad($communidadId){
-		return Cima::where('communidad_id',$communidadId)->get();
+		return $this->model->where('communidad_id',$communidadId)->get();
 	}
 
 
