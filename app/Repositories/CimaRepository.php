@@ -59,6 +59,17 @@ class CimaRepository
 	}
 
     /**
+     * Get all the pata negra cimas
+     *
+     * @return Eloquent collection
+     */
+
+
+    public function getPataNegraCimas(){
+        return $this->model->where('pata_negra',true)->get();
+    }
+
+    /**
      * List of communidads with count of cimas in each
      *
      * @return Eloquent collection

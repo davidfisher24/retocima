@@ -22,10 +22,63 @@ class LogroRepository
 	}
 
 	/**
-     * Get all logros by a cimero id
+     * Prepare a model to save
      *
      * @param Integer $cimeroId
+     * @param eloquent model $cima
+     *
      * @return Eloquent collection
+     */
+
+    public function saveNewLogro($cimeroId,$cima) 
+    {
+        $logro = new $this->model;
+
+        $logro->cimero_id = $cimeroId;
+        $logro->cima_id = $cima->id;
+        $logro->cima_codigo = $cima->codigo;
+        $logro->cima_estado = $cima->estado;
+        $logro->provincia_id = $cima->provincia_id;
+        $logro->communidad_id = $cima->communidad_id;
+        $logro->iberia_id = $cima->iberia_id;
+
+        $logro->save();
+    }
+
+    /**
+     * Remove a logro from the database
+     *
+     * @param Integer $logroId
+     *
+     * @return void
+     */
+
+
+    public function removeSingleLogro($logroId)
+    {
+        $this->model->destroy($logroId);
+    }
+
+    /**
+     * Removes all a cimeros logros from the database
+     *
+     * @param Integer $cimeroId
+     *
+     * @return void
+     */
+
+
+    public function removeAllLogrosForACimero($cimeroId)
+    {
+        $this->model->where('cimero_id', $cimeroId)->delete();
+    }
+
+    /**
+     * Returns all the logros for a single cimero
+     *
+     * @param Integer $cimeroId
+     *
+     * @return eloquent collection
      */
 
 
