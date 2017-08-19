@@ -14,11 +14,15 @@ class CimeroController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param service $cimeroLogroService
+     *
+     * @return cimero controller
      */
-    public function __construct()
+
+    public function __construct(CimeroLogroService $cimeroLogroService)
     {
         $this->middleware('auth');
+        $this->cimeroLogroService = $cimeroLogroService;
     }
 
     /**
@@ -57,8 +61,7 @@ class CimeroController extends Controller
 
     public function cimeroLogros()
     {
-    	$service = new CimeroLogroService();
-    	$logros = $service->getCimeroWithDetailedLogros(Auth::id());
+    	$logros = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
     	
     	return view('userarea.cimeroLogros', compact('logros'));
     }
@@ -71,8 +74,7 @@ class CimeroController extends Controller
 
     public function anadirLogros()
     {
-        $service = new CimeroLogroService();
-        $userLogros = $service->getCimeroLogrosCimaIds(Auth::id());
+        $userLogros = $this->cimeroLogroService->getCimeroLogrosCimaIds(Auth::id());
         $cimas = Cima::all();
         return view('userarea.anadirLogros', compact('cimas'), compact('userLogros'));
     }

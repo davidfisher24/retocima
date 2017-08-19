@@ -14,6 +14,22 @@ use App\Communidad;
 
 class CimeroStatisticsController extends Controller
 {
+
+    /**
+    * Loads $cimeroRankingService and $logroRepository Classes
+    * 
+    * @param service $cimeroRankingService
+    * @param repository $logroRepository
+    *
+    * @return Cimero statistics Controller
+    */
+
+    public function __construct(CimeroRankingService $cimeroRankingService, LogroRepository $logroRepository)
+    {
+        $this->cimeroRankingService = $cimeroRankingService;
+        $this->logroRepository = $logroRepository;
+    }
+
     /**
      * Show a ranking of all cimero.
      *
@@ -22,8 +38,8 @@ class CimeroStatisticsController extends Controller
 
     public function baseRanking()
     {
-    	$service = new CimeroRankingService();
-    	$cimeros = $service->getRankingOfAllCimeros();
+
+    	$cimeros = $this->cimeroRankingService->getRankingOfAllCimeros();
         return view('publicarea.ranking',compact('cimeros'));
     }
 
@@ -35,10 +51,9 @@ class CimeroStatisticsController extends Controller
 
     public function cimeroPublicDetails($id)
     {
-        $repo = new LogroRepository();
 
         $cimero = Cimero::find($id);
-        $logros = $repo->getLogrosByCimeroId($id);
+        $logros = $this->logroRepository->getLogrosByCimeroId($id);
 
 
         return view('publicarea.cimeropublicdetails',compact('cimero','logros'));

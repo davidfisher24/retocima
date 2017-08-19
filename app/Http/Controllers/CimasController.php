@@ -11,6 +11,19 @@ use App\Communidad;
 
 class CimasController extends Controller
 {
+
+    /**
+    * Loads $cimaRespository Class
+    * 
+    * @param cimaRepository $cimaRepository
+    * @return Cimas Controller
+    */
+
+    public function __construct(CimaRepository $cimaRepository)
+    {
+        $this->cimaRepository = $cimaRepository;
+    }
+
     /**
      * Show the list of communidads with number of cimas.
      *
@@ -20,8 +33,7 @@ class CimasController extends Controller
     public function listCimasByCommunidad()
     {
     	
-    	$repo = new CimaRepository();
-    	$commList = $repo->getCommunidadListWithCimasCount();
+    	$commList = $this->cimaRepository->getCommunidadListWithCimasCount();
         return view('publicarea.listadocommunidads',compact('commList'));
     }
 
@@ -34,13 +46,12 @@ class CimasController extends Controller
     public function listCimasByProvincia($communidadId, $provinciaId = null)
     {
 
-        $repo = new CimaRepository();
 
         $commList = Communidad::orderBy('nombre')->get();
-        $provList = $repo->getprovinciaListWithCimasCount($communidadId);
+        $provList = $this->cimaRepository->getprovinciaListWithCimasCount($communidadId);
 
         if (!$provinciaId) $provinciaId = Provincia::where('communidad_id',$communidadId)->orderBy('nombre')->first()->id;
-        $cimaList = $repo->getCimasInProvincia($provinciaId);
+        $cimaList = $this->cimaRepository->getCimasInProvincia($provinciaId);
 
         $currentCommunidad = (integer) $communidadId;
         $currentProvincia = (integer) $provinciaId;
@@ -48,10 +59,16 @@ class CimasController extends Controller
         return view('publicarea.listadoprovincias',compact('commList','provList','cimaList','currentCommunidad','currentProvincia'));
     }
 
+    /**
+     * Show a detaails of one cima with vertientess
+     *
+     * @return Blade View
+     */
+
+
     public function showCimaDetails($cimaId)
     {
-        $repo = new CimaRepository();
-        $cima = $repo->getCimaById($cimaId);
+        $cima = $this->cimaRepository->getCimaById($cimaId);
         return view('publicarea.detallescima',compact('cima'));
     }
 }
