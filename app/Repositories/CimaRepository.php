@@ -25,28 +25,6 @@ class CimaRepository
      }
 
 	/**
-     * List of communidads with count of cimas in each
-     *
-     * @return Eloquent collection
-     */
-
-
-	public function getCommunidadListWithCimasCount(){
-        return $this->model->groupBy('communidad_id')->select('communidad_id',DB::raw('count(*) as total'))->with('communidad')->get()->sortBy('communidad');
-	}
-
-	/**
-     * List of provincias with count of cimas in each
-     *
-     * @param integer $communidadId
-     * @return Eloquent collection
-     */
-
-	public function getProvinciaListWithCimasCount($communidadId){
-        return $this->model->where('communidad_id',$communidadId)->with('provincia')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
-	}
-
-	/**
      * A single cima by id
      *
      * @param integer $id
@@ -79,6 +57,29 @@ class CimaRepository
 	public function getCimasInCommunidad($communidadId){
 		return $this->model->where('communidad_id',$communidadId)->get();
 	}
+
+    /**
+     * List of communidads with count of cimas in each
+     *
+     * @return Eloquent collection
+     */
+
+
+    public function getCommunidadListWithCimasCount(){
+        return $this->model->groupBy('communidad_id')->select('communidad_id',DB::raw('count(*) as total'))->with('communidad')->get()->sortBy('communidad');
+    }
+
+    /**
+     * List of provincias with count of cimas in each
+     *
+     * @param integer $communidadId
+     * @return Eloquent collection
+     */
+
+    public function getProvinciaListWithCimasCount($communidadId){
+        return $this->model->where('communidad_id',$communidadId)->with('provincia')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
+    }
+
 
 
 }

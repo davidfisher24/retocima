@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use DB;
+
 use App\Cimero;
 use App\Cima;
 use App\Logro;
@@ -59,6 +61,25 @@ class CimeroLogroService
 	}
 
     /**
+     * Returns all cimeros ranked by numero of logros
+     *
+     * @param array $filter a key to filter on (foreign_key, id)
+     *
+     * @return collection cimeros ranked by logros
+     */
+
+    public function getRankingOfAllCimeros($filter = null){
+
+        return $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item){
+            $cimero = $item->cimero()->first();
+            $item->nombre = $cimero->getFullName();
+            $item->id = $cimero->id;
+            return $item;
+        });
+
+    }
+
+    /**
      * Returns all a cimeros logro in nested array of communidads
      *
      * @param integer $cimeroId
@@ -72,4 +93,23 @@ class CimeroLogroService
             return $item->groupBy('communidad_id','provincia_id')->keyBy($item->first()->first()->communidad->nombre);
         });
     }
+
+    /**
+     * Returns all cimeros ranked by number of provinces started
+     *
+      @return collection cimeros ranked by number of provinces with one logro
+     *
+     */
+
+    public function getCimerosWithProvinciasWithAtLeastOneLogro()
+    {
+        return $this->logroRepository->getLogrosGroupedByTwoForeignKeys('cimero_id','provincia_id')->groupBy('cimero_id')->transform(function($item){
+            $item->count = $item->count();
+            $cimero = $item->first()->cimero;
+            $item->nombre = $cimero->getFullName();
+            $item->id = $cimero->id;
+            return $item;
+        })->sortByDesc('count');
+    }
+
 }

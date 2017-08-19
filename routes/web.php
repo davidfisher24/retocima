@@ -28,6 +28,9 @@ Route::get('/detallescima/{id}', 'CimasListadoController@showCimaDetails')->name
 Route::get('/ranking', 'CimeroRankingController@baseRanking')->name('ranking');
 Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDetails')->name('cimero');
 
+/* statistics */
+Route::get('/estadistica', 'StatisticsController@testView')->name('estadistics');
+
 /* cimeroCuenta */
 Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
 Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');

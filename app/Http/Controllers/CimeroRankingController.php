@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Services\CimeroRankingService;
 use App\Services\CimeroLogroService;
 
 use App\Cimero;
@@ -22,9 +21,8 @@ class CimeroRankingController extends Controller
     * @return void
     */
 
-    public function __construct(CimeroRankingService $cimeroRankingService, CimeroLogroService $cimeroLogroService)
+    public function __construct(CimeroLogroService $cimeroLogroService)
     {
-        $this->cimeroRankingService = $cimeroRankingService;
         $this->cimeroLogroService = $cimeroLogroService;
     }
 
@@ -37,7 +35,7 @@ class CimeroRankingController extends Controller
     public function baseRanking()
     {
 
-    	$cimeros = $this->cimeroRankingService->getRankingOfAllCimeros();
+    	$cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
         return view('publicarea.ranking',compact('cimeros'));
     }
 

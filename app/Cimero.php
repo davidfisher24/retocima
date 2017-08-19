@@ -31,6 +31,17 @@ class Cimero extends Authenticatable
 
 
     /**
+     * Returns full name of the model
+     *
+     * @return string FullName
+     */
+    public function getFullName()
+    {
+        return $this->nombre . " " . $this->apellido1 . " " . $this->apellido2;
+    }
+  
+
+    /**
      * Relationship - User has various logros
      *
      * @collection logros
@@ -41,7 +52,7 @@ class Cimero extends Authenticatable
         return $this->hasMany('App\Logro')->where('cima_estado','!=', 4);
     }
 
-  
+
 }
 
 
