@@ -15,9 +15,8 @@
                             </div>
                             <div class="panel-body">
                         @foreach ($commGroup as $provGroup)
-                            
                             @foreach ($provGroup as $logro)
-                                {{$logro->cima_codigo}}
+                                <a href="{{URL::to('/')}}/detallescima/{{$logro->cima_id}}">{{$logro->cima_codigo}}</a>
                             @endforeach
                             
                         @endforeach
