@@ -50,6 +50,8 @@ class CimeroCuentaController extends Controller
     {
     	
     	$cimero = Cimero::find(Auth::id());
+        $cimero->fullAddress = $cimero->getFullAddress();
+        $cimero->fullName = $cimero->getFullName();
     	
         return view('userarea.cimeroCuenta', compact('cimero'));
     }

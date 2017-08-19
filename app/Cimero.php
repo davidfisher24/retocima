@@ -39,6 +39,17 @@ class Cimero extends Authenticatable
     {
         return $this->nombre . " " . $this->apellido1 . " " . $this->apellido2;
     }
+
+    /**
+     * Returns full addreess of the model
+     *
+     * @return string FullAddress
+     */
+    public function getFullAddress()
+    {
+        $fullAddress = $this->direccion . ", " . $this->poblacion . ", " . $this->codigopostal . ", " . $this->provincia;  
+        return str_replace(", ,",",",$fullAddress);
+    }
   
 
     /**

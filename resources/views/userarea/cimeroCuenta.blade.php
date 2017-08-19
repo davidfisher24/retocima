@@ -15,11 +15,10 @@
                 </div>
 
                 <div class="panel-body">
-
-                    <p>Nombre:   {{$cimero->nombre}} {{$cimero->apellido1}}  {{$cimero->apellido2}} </p>
+                    <p>Nombre:   {{$cimero->fullName}} </p>
                     <p>Usuario:   {{$cimero->username}} </p>
                     <p>Correo Electronico:   {{$cimero->email}} </p>
-                    <p>Direccion:   {{$cimero->direccion}}, {{$cimero->poblacion}}, {{$cimero->codigopostal}}, {{$cimero->provincia}}   </p>
+                    <p>Direccion:   {{$cimero->fullAddress}}  </p>
                     <p>puertofavorito:   {{$cimero->puertofavorito}}</p>
                     <p>puertomasduro:   {{$cimero->puertomasduro}}</p>
                     <p>puertomasfacil:   {{$cimero->puertomasfacil}}</p>

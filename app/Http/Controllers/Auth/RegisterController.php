@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Cimero;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -48,22 +48,28 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'nombre' => 'required|string|max:50',
+            'apellido1' => 'required|string|max:50',
+            'apellido2' => 'string|max:50',
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:cimeros',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Create a new cimero instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Cimero
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Cimero::create([
+            'nombre' => $data['nombre'],
+            'apellido1' => $data['apellido1'],
+            'apellido2' => $data['apellido2'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
