@@ -79,4 +79,5 @@ class CimeroCuentaController extends Controller
     {
         return view('userarea.anadirLogros');
     }
+
 }

@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::group(['middleware' => 'api'], function() {
     Route::get('communidads', function() {
         return App\Communidad::all()->toJSON();
@@ -30,8 +31,9 @@ Route::group(['middleware' => 'api'], function() {
         return App\Cima::where('provincia_id',$id)->get()->toJSON();
     });
 
-    Route::get('userlogros', function() {
+    Route::get('/userlogros', function() {
         return App\Cimero::find(1060)->logros()->get()->pluck('cima_id')->toArray();
     });
 
+    
 });
