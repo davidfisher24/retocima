@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(3);
+var bind = __webpack_require__(4);
 var isBuffer = __webpack_require__(18);
 
 /*global toString:true*/
@@ -397,10 +397,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(4);
+    adapter = __webpack_require__(5);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(4);
+    adapter = __webpack_require__(5);
   }
   return adapter;
 }
@@ -477,6 +477,103 @@ module.exports = defaults;
 /* 2 */
 /***/ (function(module, exports) {
 
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
 var g;
 
 // This works in non-strict mode
@@ -501,7 +598,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -519,7 +616,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -530,7 +627,7 @@ var settle = __webpack_require__(22);
 var buildURL = __webpack_require__(24);
 var parseHeaders = __webpack_require__(25);
 var isURLSameOrigin = __webpack_require__(26);
-var createError = __webpack_require__(5);
+var createError = __webpack_require__(6);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
 
 module.exports = function xhrAdapter(config) {
@@ -706,7 +803,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -731,7 +828,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -743,7 +840,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -766,103 +863,6 @@ Cancel.prototype.toString = function toString() {
 Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
 
 
 /***/ }),
@@ -894,7 +894,8 @@ window.Vue = __webpack_require__(36);
  */
 
 Vue.component('example', __webpack_require__(37));
-Vue.component('task', __webpack_require__(40));
+Vue.component('tasklist', __webpack_require__(40));
+Vue.component('task', __webpack_require__(43));
 
 var app = new Vue({
   el: '#app'
@@ -18048,7 +18049,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(13)(module)))
 
 /***/ }),
 /* 13 */
@@ -30735,7 +30736,7 @@ module.exports = __webpack_require__(17);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(3);
+var bind = __webpack_require__(4);
 var Axios = __webpack_require__(19);
 var defaults = __webpack_require__(1);
 
@@ -30770,9 +30771,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(7);
+axios.Cancel = __webpack_require__(8);
 axios.CancelToken = __webpack_require__(34);
-axios.isCancel = __webpack_require__(6);
+axios.isCancel = __webpack_require__(7);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -31122,7 +31123,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(5);
+var createError = __webpack_require__(6);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -31541,7 +31542,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(31);
-var isCancel = __webpack_require__(6);
+var isCancel = __webpack_require__(7);
 var defaults = __webpack_require__(1);
 
 /**
@@ -31694,7 +31695,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(7);
+var Cancel = __webpack_require__(8);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -41878,14 +41879,14 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(38),
   /* template */
@@ -41983,7 +41984,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(41),
   /* template */
@@ -41995,9 +41996,9 @@ var Component = __webpack_require__(8)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\retocima\\resources\\assets\\js\\components\\Task.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\retocima\\resources\\assets\\js\\components\\TaskList.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Task.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] TaskList.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -42006,9 +42007,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-bd9af27e", Component.options)
+    hotAPI.createRecord("data-v-c55c4002", Component.options)
   } else {
-    hotAPI.reload("data-v-bd9af27e", Component.options)
+    hotAPI.reload("data-v-c55c4002", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42043,6 +42044,192 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            completedInputs: 0,
+            userLogros: [],
+            communidads: []
+        };
+    },
+    mounted: function mounted() {
+        this.fetchCommunidads();
+    },
+    methods: {
+        fetchUserLogros: function fetchUserLogros() {
+            var self = this;
+            axios.get('api/userlogros').then(function (response) {
+                self.userLogros = response.data;
+                for (var key in self.$refs) {
+                    self.$refs[key].setuserLogrosFromParent(response.data);
+                }
+            });
+        },
+        fetchCommunidads: function fetchCommunidads() {
+            var self = this;
+            axios.get('api/communidads').then(function (response) {
+                self.communidads = response.data;
+                for (var key in self.$refs) {
+                    self.$refs[key].setCommunidadsFromParent(response.data);
+                }
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-10 col-md-offset-1"
+  }, [_c('form', {
+    staticClass: "form"
+  }, [_c('task', {
+    ref: "task1"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 0),
+      expression: "completedInputs > 0"
+    }],
+    ref: "task2"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 1),
+      expression: "completedInputs > 1"
+    }],
+    ref: "task3"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 2),
+      expression: "completedInputs > 2"
+    }],
+    ref: "task4"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 3),
+      expression: "completedInputs > 3"
+    }],
+    ref: "task5"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 4),
+      expression: "completedInputs > 4"
+    }],
+    ref: "task6"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 5),
+      expression: "completedInputs > 5"
+    }],
+    ref: "task7"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 6),
+      expression: "completedInputs > 6"
+    }],
+    ref: "task8"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 7),
+      expression: "completedInputs > 7"
+    }],
+    ref: "task9"
+  }), _vm._v(" "), _c('task', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.completedInputs > 8),
+      expression: "completedInputs > 8"
+    }],
+    ref: "task10"
+  })], 1)])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-c55c4002", module.exports)
+  }
+}
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(44),
+  /* template */
+  __webpack_require__(45),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\xampp\\htdocs\\retocima\\resources\\assets\\js\\components\\Task.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Task.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bd9af27e", Component.options)
+  } else {
+    hotAPI.reload("data-v-bd9af27e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -42062,19 +42249,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             communidads: [],
             provincias: [],
-            cimas: []
+            cimas: [],
+            userLogros: []
         };
     },
-    mounted: function mounted() {
-        this.fetchCommunidads();
-    },
     methods: {
-        fetchCommunidads: function fetchCommunidads() {
-            var _this = this;
-
-            axios.get('api/communidads').then(function (response) {
-                _this.communidads = response.data;
-            });
+        setCommunidadsFromParent: function setCommunidadsFromParent(data) {
+            this.communidads = data;
+        },
+        setUserLogrosFromParent: function setUserLogrosFromParent(data) {
+            this.userLogros = data;
         },
         fetchAndShowProvinces: function fetchAndShowProvinces(event) {
             this.cimas = [];
@@ -42084,11 +42268,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.provincias = response.data;
                 if (response.data.length === 1) {
                     self.fetchAndShowCimas(response.data[0].id);
+                    self.$parent.completedInputs++;
                 }
             });
         },
         fetchAndShowCimas: function fetchAndShowCimas(event) {
-            var _this2 = this;
+            var _this = this;
 
             var route;
             if (Number.isInteger(event)) {
@@ -42097,27 +42282,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 route = 'api/cimas/' + event.target.value;
             }
             axios.get(route).then(function (response) {
-                _this2.cimas = response.data;
+                _this.cimas = response.data;
             });
         },
         tagOptionCompleted: function tagOptionCompleted() {
-            // Need to do something to get the next input
+            this.$parent.completedInputs++;
         }
     }
 });
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-10 col-md-offset-1"
-  }, [_c('form', {
-    staticClass: "form"
-  }, [_c('div', {
     staticClass: "input-group"
   }, [_c('select', {
     on: {
@@ -42130,7 +42309,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": communidad.id
       }
-    }, [_vm._v("\n                        " + _vm._s(communidad.nombre) + "\n                    ")])
+    }, [_vm._v("\n            " + _vm._s(communidad.nombre) + "\n        ")])
   })), _vm._v(" "), _c('select', {
     on: {
       "change": function($event) {
@@ -42142,7 +42321,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": provincia.id
       }
-    }, [_vm._v("\n                        " + _vm._s(provincia.nombre) + "\n                    ")])
+    }, [_vm._v("\n            " + _vm._s(provincia.nombre) + "\n        ")])
   })), _vm._v(" "), _c('select', {
     on: {
       "change": function($event) {
@@ -42154,8 +42333,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": _vm.cimas.id
       }
-    }, [_vm._v("\n                        " + _vm._s(cima.nombre) + "\n                    ")])
-  }))])])])])
+    }, [_c('strong', [_vm._v(_vm._s(cima.codigo))]), _vm._v(" " + _vm._s(cima.nombre) + "\n        ")])
+  }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

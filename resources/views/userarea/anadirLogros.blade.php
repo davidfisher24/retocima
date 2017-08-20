@@ -17,8 +17,8 @@
                 
 
                 <div class="panel-body">
-                    <task>
-                    </task>
+                    <tasklist>
+                    </tasklist>
                 </div>
 
             </div>
@@ -27,11 +27,3 @@
 </div>
 @endsection
 
-<!--@foreach ($cimas as $cima)
-
-    @if(in_array($cima->id, $userLogros))
-        <p><strong> {{ $cima->provincia }} -- {{ $cima->nombre }} (: Ya lo tienes :) </strong></p>
-    @else
-        <p>{{ $cima->provincia }} -- {{ $cima->nombre }}</p>
-    @endif
-@endforeach-->

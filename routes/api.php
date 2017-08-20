@@ -30,4 +30,8 @@ Route::group(['middleware' => 'api'], function() {
         return App\Cima::where('provincia_id',$id)->get()->toJSON();
     });
 
+    Route::get('userlogros', function() {
+        return App\Cimero::find(Auth::id())->logros()->get()->pluck('cima_id')->toArray();
+    });
+
 });

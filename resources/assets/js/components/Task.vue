@@ -1,32 +1,24 @@
 <template> 
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <form class="form">
+    <div class="input-group">
 
-                <div class="input-group">
+        <select @change="fetchAndShowProvinces($event)">
+            <option v-for="communidad in communidads" :value="communidad.id">
+                {{communidad.nombre}}
+            </option>
+        </select>
 
-                    <select @change="fetchAndShowProvinces($event)">
-                        <option v-for="communidad in communidads" :value="communidad.id">
-                            {{communidad.nombre}}
-                        </option>
-                    </select>
+        <select @change="fetchAndShowCimas($event)">
+            <option v-for="provincia in provincias" :value="provincia.id">
+                {{provincia.nombre}}
+            </option>
+        </select>
 
-                    <select @change="fetchAndShowCimas($event)">
-                        <option v-for="provincia in provincias" :value="provincia.id">
-                            {{provincia.nombre}}
-                        </option>
-                    </select>
+        <select @change="tagOptionCompleted($event)">
+            <option v-for="cima in cimas" :value="cimas.id">
+                <strong>{{cima.codigo}}</strong> {{cima.nombre}}
+            </option>
+        </select>
 
-                    <select @change="tagOptionCompleted($event)">
-                        <option v-for="cima in cimas" :value="cimas.id">
-                            {{cima.nombre}}
-                        </option>
-                    </select>
-    
-                </div>
-
-            </form>
-        </div>
     </div>
 </template>
 
@@ -37,16 +29,15 @@
                 communidads: [],
                 provincias: [],
                 cimas: [],
+                userLogros: [],
             };
         },
-        mounted: function() {
-            this.fetchCommunidads();
-        },
         methods: {
-            fetchCommunidads: function(){
-                axios.get('api/communidads').then(response => {
-                  this.communidads = response.data
-                });
+            setCommunidadsFromParent: function(data) {
+                this.communidads = data;
+            },
+            setUserLogrosFromParent: function(data) {
+                this.userLogros = data;
             },
             fetchAndShowProvinces: function(event){
                 this.cimas = [];
@@ -56,6 +47,7 @@
                     self.provincias = response.data;
                     if (response.data.length === 1) {
                         self.fetchAndShowCimas(response.data[0].id);
+                        self.$parent.completedInputs ++;
                     }
                 });
             },
@@ -71,7 +63,7 @@
                 });
             },
             tagOptionCompleted: function(){
-                // Need to do something to get the next input
+                this.$parent.completedInputs ++;
             }
         }
     }

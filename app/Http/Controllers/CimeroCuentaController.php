@@ -77,8 +77,6 @@ class CimeroCuentaController extends Controller
 
     public function anadirLogros()
     {
-        $userLogros = $this->cimeroLogroService->getCimeroLogrosCimaIds(Auth::id());
-        $cimas = Cima::all();
-        return view('userarea.anadirLogros', compact('cimas'), compact('userLogros'));
+        return view('userarea.anadirLogros');
     }
 }
