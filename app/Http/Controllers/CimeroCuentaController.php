@@ -70,6 +70,25 @@ class CimeroCuentaController extends Controller
     }
 
     /**
+     * Show the cimero logros page with new logros after a redirect.
+     *
+     * @param array $new (new cimas added)
+     * @return Blade View
+     */
+
+    public function cimeroLogrosWithNewLogros($new)
+    {
+        $newCimas = json_decode($new);
+        $logros = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id())->filter(function ($item, $key) use($newCimas) {
+            return !in_array($item->id,$newCimas);
+        });
+
+        $addedCimas = Cima::with('communidad','provincia')->whereIn('id',$newCimas)->get();
+
+        return view('userarea.cimeroLogros', compact('logros'),compact('addedCimas'));
+    }
+
+    /**
      * Show the anadir cima page
      *
      * @return Blade View
@@ -83,15 +102,16 @@ class CimeroCuentaController extends Controller
     /**
      * Submit new logros from a form request
      *
-     * @param request $logros (array of ids)
+     * @param request ($logros as an array of ids)
      * @return Blade View
      */
 
     public function submitNewLogros(Request $request)
     {   
-        $logros = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
         $addedLogros = $this->cimeroLogroService->validateAndAddNewLogros($request->logros,Auth::id());
-        $addedCimas = Cima::with('communidad','provincia')->whereIn('id',$addedLogros)->get();
-        return view('userarea.cimeroLogros', compact('logros'), compact('addedCimas'));
+        return array('redirect' => 'cimerologrosnew', 'new' => json_encode($addedLogros));
     }
+
+    
+
 }

@@ -35,5 +35,6 @@ Route::get('/estadistica', 'StatisticsController@testView')->name('estadistics')
 Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
 Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');
 Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros');
+Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
 Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
 Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros');

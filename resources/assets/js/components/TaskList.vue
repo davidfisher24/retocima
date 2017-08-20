@@ -58,7 +58,7 @@
                         logros: logros,
                     })
                     .then(function (response) {
-                        console.log(response);
+                        window.location = '/retocima/public/cimerologrosnew' + "/" + response.data.new;
                     })
                     .catch(function (error) {
                         console.log(error);

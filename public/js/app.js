@@ -42084,7 +42084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.post('/retocima/public/submitlogros', {
                     logros: logros
                 }).then(function (response) {
-                    console.log(response);
+                    window.location = '/retocima/public/cimerologrosnew' + "/" + response.data.new;
                 }).catch(function (error) {
                     console.log(error);
                 });
