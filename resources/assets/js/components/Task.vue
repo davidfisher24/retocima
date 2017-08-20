@@ -1,22 +1,24 @@
 <template> 
     <div class="input-group">
 
-        <select @change="fetchAndShowProvinces($event)">
+        <select @change="handleChangedCommunidad($event)">
             <option value="">-- commundiad --</option>
             <option v-for="communidad in communidads" :value="communidad.id">
                 {{communidad.nombre}}
             </option>
         </select>
 
-        <select @change="fetchAndShowCimas($event)">
+        <select @change="handleChangedProvincia($event)">
             <option value="">-- provincia --</option>
+            <option v-if="provinciasVisible()" disabled>- select a communidad -</option>
             <option v-for="provincia in provincias" :value="provincia.id">
                 {{provincia.nombre}}
             </option>
         </select>
 
-        <select @change="tagOptionCompleted($event)">
+        <select @change="handleChangedCima($event)">
             <option value="">-- cima --</option>
+            <option v-if="cimasVisible()" disabled>- select a province -</option>
             <option v-for="cima in cimas" :value="cima.id" v-show="logroAlreadyCompleted(cima.id)">
                 <strong>{{cima.codigo}}</strong> {{cima.nombre}}
             </option>
@@ -51,7 +53,7 @@
             setUserLogrosFromParent: function(data) {
                 this.userLogros = data;
             },
-            fetchAndShowProvinces: function(event){
+            handleChangedCommunidad: function(event){
                 if (!event.target.value) {
                     this.cimas = [];
                     this.provincias = [];
@@ -65,11 +67,12 @@
                 axios.get(route).then(function(response){
                     self.provincias = response.data;
                     if (response.data.length === 1) {
-                        self.fetchAndShowCimas(response.data[0].id);
+                        // Needs to auto fill the provincia before getting the cimas
+                        // self.handleChangedProvincia(response.data[0].id);
                     }
                 });
             },
-            fetchAndShowCimas: function(event){
+            handleChangedProvincia: function(event){
                 var route;
                 if (Number.isInteger(event)) {
                     this.selectedProvince = event;
@@ -87,17 +90,27 @@
                   this.cimas = response.data
                 });
             },
-            tagOptionCompleted: function(event){
+            handleChangedCima: function(event){
                 if (!event.target.value) {
+                    this.userLogros.splice(this.userLogros.indexOf(this.selectedCima), 1);
                     this.selectedCima = null;
-                    this.completed = false;
                     return;
                 }
+                this.userLogros.push(Number(event.target.value));
                 this.selectedCima = event.target.value;
             },
+
             logroAlreadyCompleted: function(id){
                 if (this.userLogros.indexOf(id) !== -1) return false;
                 return true;
+            },
+            provinciasVisible : function(){
+                if (this.provincias.length === 0) return true;
+                return false;
+            },
+            cimasVisible: function(){
+                if (this.cimas.length === 0) return true;
+                return false;
             }
         }
     }

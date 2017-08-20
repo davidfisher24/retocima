@@ -42194,6 +42194,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42220,7 +42222,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setUserLogrosFromParent: function setUserLogrosFromParent(data) {
             this.userLogros = data;
         },
-        fetchAndShowProvinces: function fetchAndShowProvinces(event) {
+        handleChangedCommunidad: function handleChangedCommunidad(event) {
             if (!event.target.value) {
                 this.cimas = [];
                 this.provincias = [];
@@ -42234,11 +42236,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(route).then(function (response) {
                 self.provincias = response.data;
                 if (response.data.length === 1) {
-                    self.fetchAndShowCimas(response.data[0].id);
+                    // Needs to auto fill the provincia before getting the cimas
+                    // self.handleChangedProvincia(response.data[0].id);
                 }
             });
         },
-        fetchAndShowCimas: function fetchAndShowCimas(event) {
+        handleChangedProvincia: function handleChangedProvincia(event) {
             var _this = this;
 
             var route;
@@ -42258,17 +42261,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.cimas = response.data;
             });
         },
-        tagOptionCompleted: function tagOptionCompleted(event) {
+        handleChangedCima: function handleChangedCima(event) {
             if (!event.target.value) {
+                this.userLogros.splice(this.userLogros.indexOf(this.selectedCima), 1);
                 this.selectedCima = null;
-                this.completed = false;
                 return;
             }
+            this.userLogros.push(Number(event.target.value));
             this.selectedCima = event.target.value;
         },
+
         logroAlreadyCompleted: function logroAlreadyCompleted(id) {
             if (this.userLogros.indexOf(id) !== -1) return false;
             return true;
+        },
+        provinciasVisible: function provinciasVisible() {
+            if (this.provincias.length === 0) return true;
+            return false;
+        },
+        cimasVisible: function cimasVisible() {
+            if (this.cimas.length === 0) return true;
+            return false;
         }
     }
 });
@@ -42283,7 +42296,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('select', {
     on: {
       "change": function($event) {
-        _vm.fetchAndShowProvinces($event)
+        _vm.handleChangedCommunidad($event)
       }
     }
   }, [_c('option', {
@@ -42299,14 +42312,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 2), _vm._v(" "), _c('select', {
     on: {
       "change": function($event) {
-        _vm.fetchAndShowCimas($event)
+        _vm.handleChangedProvincia($event)
       }
     }
   }, [_c('option', {
     attrs: {
       "value": ""
     }
-  }, [_vm._v("-- provincia --")]), _vm._v(" "), _vm._l((_vm.provincias), function(provincia) {
+  }, [_vm._v("-- provincia --")]), _vm._v(" "), (_vm.provinciasVisible()) ? _c('option', {
+    attrs: {
+      "disabled": ""
+    }
+  }, [_vm._v("- select a communidad -")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.provincias), function(provincia) {
     return _c('option', {
       domProps: {
         "value": provincia.id
@@ -42315,14 +42332,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 2), _vm._v(" "), _c('select', {
     on: {
       "change": function($event) {
-        _vm.tagOptionCompleted($event)
+        _vm.handleChangedCima($event)
       }
     }
   }, [_c('option', {
     attrs: {
       "value": ""
     }
-  }, [_vm._v("-- cima --")]), _vm._v(" "), _vm._l((_vm.cimas), function(cima) {
+  }, [_vm._v("-- cima --")]), _vm._v(" "), (_vm.cimasVisible()) ? _c('option', {
+    attrs: {
+      "disabled": ""
+    }
+  }, [_vm._v("- select a province -")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.cimas), function(cima) {
     return _c('option', {
       directives: [{
         name: "show",
