@@ -14,16 +14,11 @@
                     <a href="{{ url('/cimerologros')  }}">Mis Logros</a>&nbsp;&nbsp;&nbsp;
                 </div>
 
-                <div class="panel-body">
-                    @foreach ($cimas as $cima)
+                
 
-                        @if(in_array($cima->id, $userLogros))
-                            <p><strong> {{ $cima->provincia }} -- {{ $cima->nombre }} (: Ya lo tienes :) </strong></p>
-                        @else
-                            <p>{{ $cima->provincia }} -- {{ $cima->nombre }}</p>
-                        @endif
-                    @endforeach
-                    
+                <div class="panel-body">
+                    <task>
+                    </task>
                 </div>
 
             </div>
@@ -31,3 +26,12 @@
     </div>
 </div>
 @endsection
+
+<!--@foreach ($cimas as $cima)
+
+    @if(in_array($cima->id, $userLogros))
+        <p><strong> {{ $cima->provincia }} -- {{ $cima->nombre }} (: Ya lo tienes :) </strong></p>
+    @else
+        <p>{{ $cima->provincia }} -- {{ $cima->nombre }}</p>
+    @endif
+@endforeach-->
