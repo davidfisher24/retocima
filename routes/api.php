@@ -31,7 +31,7 @@ Route::group(['middleware' => 'api'], function() {
     });
 
     Route::get('userlogros', function() {
-        return App\Cimero::find(Auth::id())->logros()->get()->pluck('cima_id')->toArray();
+        return App\Cimero::find(1060)->logros()->get()->pluck('cima_id')->toArray();
     });
 
 });

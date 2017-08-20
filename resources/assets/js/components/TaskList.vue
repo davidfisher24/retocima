@@ -1,17 +1,12 @@
 <template> 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <form class="form">
-                <task ref="task1"></task>
-                <task v-show="completedInputs > 0" ref="task2"></task>
-                <task v-show="completedInputs > 1" ref="task3"></task>
-                <task v-show="completedInputs > 2" ref="task4"></task>
-                <task v-show="completedInputs > 3" ref="task5"></task>
-                <task v-show="completedInputs > 4" ref="task6"></task>
-                <task v-show="completedInputs > 5" ref="task7"></task>
-                <task v-show="completedInputs > 6" ref="task8"></task>
-                <task v-show="completedInputs > 7" ref="task9"></task>
-                <task v-show="completedInputs > 8" ref="task10"></task>
+        <div class="col-md-12">
+            <form class="form" v-on:submit.prevent>
+                <div class="form-control" v-for="n in requestedInputs">
+                    <task ref="task"></task>
+                </div>
+                
+                <button class="btn btn-default" @click="submitLogros()">Submit</button>
             </form>
         </div>
     </div>
@@ -21,12 +16,13 @@
     export default {
         data: function() {
             return {
-                completedInputs: 0,
+                requestedInputs: 10,
                 userLogros: [],
                 communidads: [],
             };
         },
         mounted: function() {
+            this.fetchUserLogros();
             this.fetchCommunidads();
         },
         methods: {
@@ -34,16 +30,27 @@
                 var self = this;
                 axios.get('api/userlogros').then(function(response){
                     self.userLogros = response.data;
-                    for (var key in self.$refs) self.$refs[key].setuserLogrosFromParent(response.data);
+                    self.$refs.task.forEach(function(component){
+                        component.setUserLogrosFromParent(response.data);
+                    });
                 });
             },
             fetchCommunidads: function(){
                 var self = this;
                 axios.get('api/communidads').then(function(response){
                     self.communidads = response.data;
-                    for (var key in self.$refs) self.$refs[key].setCommunidadsFromParent(response.data);
+                    self.$refs.task.forEach(function(component){
+                        component.setCommunidadsFromParent(response.data);
+                    });
                 });
             },
+            submitLogros: function(){ 
+                this.$refs.task.forEach(function(component){
+                    if(component.completed) {
+                        console.log("Prepare to add cima " + component.selectedCima);
+                    }
+                });         
+            }
         }
     }
 </script>

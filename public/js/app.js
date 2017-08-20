@@ -42039,21 +42039,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            completedInputs: 0,
+            requestedInputs: 10,
             userLogros: [],
             communidads: []
         };
     },
     mounted: function mounted() {
+        this.fetchUserLogros();
         this.fetchCommunidads();
     },
     methods: {
@@ -42061,17 +42057,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
             axios.get('api/userlogros').then(function (response) {
                 self.userLogros = response.data;
-                for (var key in self.$refs) {
-                    self.$refs[key].setuserLogrosFromParent(response.data);
-                }
+                self.$refs.task.forEach(function (component) {
+                    component.setUserLogrosFromParent(response.data);
+                });
             });
         },
         fetchCommunidads: function fetchCommunidads() {
             var self = this;
             axios.get('api/communidads').then(function (response) {
                 self.communidads = response.data;
-                for (var key in self.$refs) {
-                    self.$refs[key].setCommunidadsFromParent(response.data);
+                self.$refs.task.forEach(function (component) {
+                    component.setCommunidadsFromParent(response.data);
+                });
+            });
+        },
+        submitLogros: function submitLogros() {
+            this.$refs.task.forEach(function (component) {
+                if (component.completed) {
+                    console.log("Prepare to add cima " + component.selectedCima);
                 }
             });
         }
@@ -42086,84 +42089,29 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "row"
   }, [_c('div', {
-    staticClass: "col-md-10 col-md-offset-1"
+    staticClass: "col-md-12"
   }, [_c('form', {
-    staticClass: "form"
-  }, [_c('task', {
-    ref: "task1"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 0),
-      expression: "completedInputs > 0"
-    }],
-    ref: "task2"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 1),
-      expression: "completedInputs > 1"
-    }],
-    ref: "task3"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 2),
-      expression: "completedInputs > 2"
-    }],
-    ref: "task4"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 3),
-      expression: "completedInputs > 3"
-    }],
-    ref: "task5"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 4),
-      expression: "completedInputs > 4"
-    }],
-    ref: "task6"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 5),
-      expression: "completedInputs > 5"
-    }],
-    ref: "task7"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 6),
-      expression: "completedInputs > 6"
-    }],
-    ref: "task8"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 7),
-      expression: "completedInputs > 7"
-    }],
-    ref: "task9"
-  }), _vm._v(" "), _c('task', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.completedInputs > 8),
-      expression: "completedInputs > 8"
-    }],
-    ref: "task10"
-  })], 1)])])
+    staticClass: "form",
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+      }
+    }
+  }, [_vm._l((_vm.requestedInputs), function(n) {
+    return _c('div', {
+      staticClass: "form-control"
+    }, [_c('task', {
+      ref: "task",
+      refInFor: true
+    })], 1)
+  }), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default",
+    on: {
+      "click": function($event) {
+        _vm.submitLogros()
+      }
+    }
+  }, [_vm._v("Submit")])], 2)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -42243,6 +42191,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42250,8 +42201,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             communidads: [],
             provincias: [],
             cimas: [],
-            userLogros: []
+            userLogros: [],
+            selectedCommunidad: null,
+            selectedProvince: null,
+            selectedCima: null
         };
+    },
+    computed: {
+        completed: function completed() {
+            if (this.selectedCommunidad && this.selectedProvince && this.selectedCima) return true;
+            return false;
+        }
     },
     methods: {
         setCommunidadsFromParent: function setCommunidadsFromParent(data) {
@@ -42261,6 +42221,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.userLogros = data;
         },
         fetchAndShowProvinces: function fetchAndShowProvinces(event) {
+            if (!event.target.value) {
+                this.cimas = [];
+                this.provincias = [];
+                this.selectedCommunidad = null;
+                return;
+            }
+            this.selectedCommunidad = event.target.value;
             this.cimas = [];
             var route = 'api/provincias/' + event.target.value;
             var self = this;
@@ -42268,7 +42235,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.provincias = response.data;
                 if (response.data.length === 1) {
                     self.fetchAndShowCimas(response.data[0].id);
-                    self.$parent.completedInputs++;
                 }
             });
         },
@@ -42277,16 +42243,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var route;
             if (Number.isInteger(event)) {
+                this.selectedProvince = event;
                 route = 'api/cimas/' + event;
             } else {
+                if (!event.target.value) {
+                    this.selectedProvince = null;
+                    this.cimas = [];
+                    return;
+                }
+                this.selectedProvince = event.target.value;
                 route = 'api/cimas/' + event.target.value;
             }
             axios.get(route).then(function (response) {
                 _this.cimas = response.data;
             });
         },
-        tagOptionCompleted: function tagOptionCompleted() {
-            this.$parent.completedInputs++;
+        tagOptionCompleted: function tagOptionCompleted(event) {
+            if (!event.target.value) {
+                this.selectedCima = null;
+                this.completed = false;
+                return;
+            }
+            this.selectedCima = event.target.value;
+        },
+        logroAlreadyCompleted: function logroAlreadyCompleted(id) {
+            if (this.userLogros.indexOf(id) > 0) return false;
+            return true;
         }
     }
 });
@@ -42304,37 +42286,55 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.fetchAndShowProvinces($event)
       }
     }
-  }, _vm._l((_vm.communidads), function(communidad) {
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("-- commundiad --")]), _vm._v(" "), _vm._l((_vm.communidads), function(communidad) {
     return _c('option', {
       domProps: {
         "value": communidad.id
       }
     }, [_vm._v("\n            " + _vm._s(communidad.nombre) + "\n        ")])
-  })), _vm._v(" "), _c('select', {
+  })], 2), _vm._v(" "), _c('select', {
     on: {
       "change": function($event) {
         _vm.fetchAndShowCimas($event)
       }
     }
-  }, _vm._l((_vm.provincias), function(provincia) {
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("-- provincia --")]), _vm._v(" "), _vm._l((_vm.provincias), function(provincia) {
     return _c('option', {
       domProps: {
         "value": provincia.id
       }
     }, [_vm._v("\n            " + _vm._s(provincia.nombre) + "\n        ")])
-  })), _vm._v(" "), _c('select', {
+  })], 2), _vm._v(" "), _c('select', {
     on: {
       "change": function($event) {
         _vm.tagOptionCompleted($event)
       }
     }
-  }, _vm._l((_vm.cimas), function(cima) {
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("-- cima --")]), _vm._v(" "), _vm._l((_vm.cimas), function(cima) {
     return _c('option', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.logroAlreadyCompleted(cima.id)),
+        expression: "logroAlreadyCompleted(cima.id)"
+      }],
       domProps: {
-        "value": _vm.cimas.id
+        "value": cima.id
       }
     }, [_c('strong', [_vm._v(_vm._s(cima.codigo))]), _vm._v(" " + _vm._s(cima.nombre) + "\n        ")])
-  }))])
+  })], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
