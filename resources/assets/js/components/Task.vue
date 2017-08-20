@@ -96,7 +96,7 @@
                 this.selectedCima = event.target.value;
             },
             logroAlreadyCompleted: function(id){
-                if (this.userLogros.indexOf(id) > 0) return false;
+                if (this.userLogros.indexOf(id) !== -1) return false;
                 return true;
             }
         }

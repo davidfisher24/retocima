@@ -42267,7 +42267,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selectedCima = event.target.value;
         },
         logroAlreadyCompleted: function logroAlreadyCompleted(id) {
-            if (this.userLogros.indexOf(id) > 0) return false;
+            if (this.userLogros.indexOf(id) !== -1) return false;
             return true;
         }
     }
