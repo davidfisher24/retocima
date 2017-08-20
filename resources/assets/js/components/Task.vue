@@ -3,15 +3,15 @@
         <div class="col-md-10 col-md-offset-1">
             <form class="form">
 
-                <div class="input-group" v-for="n in inputs">
+                <div class="input-group">
 
-                    <select @change="showProvinces($event)">
+                    <select @change="fetchAndShowProvinces($event)">
                         <option v-for="communidad in communidads" :value="communidad.id">
                             {{communidad.nombre}}
                         </option>
                     </select>
 
-                    <select @change="showCimas($event)">
+                    <select @change="fetchAndShowCimas($event)">
                         <option v-for="provincia in provincias" :value="provincia.id">
                             {{provincia.nombre}}
                         </option>
@@ -34,21 +34,44 @@
     export default {
         data: function() {
             return {
-                inputs: 1,
-                communidads: [{id:1,nombre:"Comm 1"},{id:2,nombre:"Comm 2"}],
-                provincias: [{id:1,nombre:"Prov 1"},{id:2,nombre:"Prov 2"}],
-                cimas: [{id:1,nombre:"Cima 1"},{id:2,nombre:"Cima 2"}],
+                communidads: [],
+                provincias: [],
+                cimas: [],
             };
         },
+        mounted: function() {
+            this.fetchCommunidads();
+        },
         methods: {
-            showProvinces: function(event){
-                console.log(event.target.value);
+            fetchCommunidads: function(){
+                axios.get('api/communidads').then(response => {
+                  this.communidads = response.data
+                });
             },
-            showCimas: function(event){
-                console.log(event.target.value);
+            fetchAndShowProvinces: function(event){
+                this.cimas = [];
+                var route = 'api/provincias/' + event.target.value;
+                var self = this;
+                axios.get(route).then(function(response){
+                    self.provincias = response.data;
+                    if (response.data.length === 1) {
+                        self.fetchAndShowCimas(response.data[0].id);
+                    }
+                });
+            },
+            fetchAndShowCimas: function(event){
+                var route;
+                if (Number.isInteger(event)) {
+                    route = 'api/cimas/' + event;
+                } else {
+                    route = 'api/cimas/' + event.target.value;
+                }
+                axios.get(route).then(response => {
+                  this.cimas = response.data
+                });
             },
             tagOptionCompleted: function(){
-                this.inputs ++;
+                // Need to do something to get the next input
             }
         }
     }

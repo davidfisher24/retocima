@@ -42060,21 +42060,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            inputs: 1,
-            communidads: [{ id: 1, nombre: "Comm 1" }, { id: 2, nombre: "Comm 2" }],
-            provincias: [{ id: 1, nombre: "Prov 1" }, { id: 2, nombre: "Prov 2" }],
-            cimas: [{ id: 1, nombre: "Cima 1" }, { id: 2, nombre: "Cima 2" }]
+            communidads: [],
+            provincias: [],
+            cimas: []
         };
     },
+    mounted: function mounted() {
+        this.fetchCommunidads();
+    },
     methods: {
-        showProvinces: function showProvinces(event) {
-            console.log(event.target.value);
+        fetchCommunidads: function fetchCommunidads() {
+            var _this = this;
+
+            axios.get('api/communidads').then(function (response) {
+                _this.communidads = response.data;
+            });
         },
-        showCimas: function showCimas(event) {
-            console.log(event.target.value);
+        fetchAndShowProvinces: function fetchAndShowProvinces(event) {
+            this.cimas = [];
+            var route = 'api/provincias/' + event.target.value;
+            var self = this;
+            axios.get(route).then(function (response) {
+                self.provincias = response.data;
+                if (response.data.length === 1) {
+                    self.fetchAndShowCimas(response.data[0].id);
+                }
+            });
+        },
+        fetchAndShowCimas: function fetchAndShowCimas(event) {
+            var _this2 = this;
+
+            var route;
+            if (Number.isInteger(event)) {
+                route = 'api/cimas/' + event;
+            } else {
+                route = 'api/cimas/' + event.target.value;
+            }
+            axios.get(route).then(function (response) {
+                _this2.cimas = response.data;
+            });
         },
         tagOptionCompleted: function tagOptionCompleted() {
-            this.inputs++;
+            // Need to do something to get the next input
         }
     }
 });
@@ -42090,47 +42117,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-md-10 col-md-offset-1"
   }, [_c('form', {
     staticClass: "form"
-  }, _vm._l((_vm.inputs), function(n) {
-    return _c('div', {
-      staticClass: "input-group"
-    }, [_c('select', {
-      on: {
-        "change": function($event) {
-          _vm.showProvinces($event)
-        }
+  }, [_c('div', {
+    staticClass: "input-group"
+  }, [_c('select', {
+    on: {
+      "change": function($event) {
+        _vm.fetchAndShowProvinces($event)
       }
-    }, _vm._l((_vm.communidads), function(communidad) {
-      return _c('option', {
-        domProps: {
-          "value": communidad.id
-        }
-      }, [_vm._v("\n                        " + _vm._s(communidad.nombre) + "\n                    ")])
-    })), _vm._v(" "), _c('select', {
-      on: {
-        "change": function($event) {
-          _vm.showCimas($event)
-        }
+    }
+  }, _vm._l((_vm.communidads), function(communidad) {
+    return _c('option', {
+      domProps: {
+        "value": communidad.id
       }
-    }, _vm._l((_vm.provincias), function(provincia) {
-      return _c('option', {
-        domProps: {
-          "value": provincia.id
-        }
-      }, [_vm._v("\n                        " + _vm._s(provincia.nombre) + "\n                    ")])
-    })), _vm._v(" "), _c('select', {
-      on: {
-        "change": function($event) {
-          _vm.tagOptionCompleted($event)
-        }
+    }, [_vm._v("\n                        " + _vm._s(communidad.nombre) + "\n                    ")])
+  })), _vm._v(" "), _c('select', {
+    on: {
+      "change": function($event) {
+        _vm.fetchAndShowCimas($event)
       }
-    }, _vm._l((_vm.cimas), function(cima) {
-      return _c('option', {
-        domProps: {
-          "value": _vm.cimas.id
-        }
-      }, [_vm._v("\n                        " + _vm._s(cima.nombre) + "\n                    ")])
-    }))])
-  }))])])
+    }
+  }, _vm._l((_vm.provincias), function(provincia) {
+    return _c('option', {
+      domProps: {
+        "value": provincia.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(provincia.nombre) + "\n                    ")])
+  })), _vm._v(" "), _c('select', {
+    on: {
+      "change": function($event) {
+        _vm.tagOptionCompleted($event)
+      }
+    }
+  }, _vm._l((_vm.cimas), function(cima) {
+    return _c('option', {
+      domProps: {
+        "value": _vm.cimas.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(cima.nombre) + "\n                    ")])
+  }))])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

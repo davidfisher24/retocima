@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'api'], function() {
+    Route::get('communidads', function() {
+        return App\Communidad::all()->toJSON();
+    });
+ 
+    Route::get('provincias/{id}', function($id) {
+        return App\Provincia::where('communidad_id',$id)->get()->toJSON();
+    });
+ 
+    Route::get('cimas/{id}', function($id) {
+        return App\Cima::where('provincia_id',$id)->get()->toJSON();
+    });
+
+});
