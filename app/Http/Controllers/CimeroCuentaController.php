@@ -80,4 +80,18 @@ class CimeroCuentaController extends Controller
         return view('userarea.anadirLogros');
     }
 
+    /**
+     * Submit new logros from a form request
+     *
+     * @param request $logros (array of ids)
+     * @return Blade View
+     */
+
+    public function submitNewLogros(Request $request)
+    {   
+        $logros = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
+        $addedLogros = $this->cimeroLogroService->validateAndAddNewLogros($request->logros,Auth::id());
+        $addedCimas = Cima::with('communidad','provincia')->whereIn('id',$addedLogros)->get();
+        return view('userarea.cimeroLogros', compact('logros'), compact('addedCimas'));
+    }
 }

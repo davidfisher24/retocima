@@ -42072,11 +42072,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         submitLogros: function submitLogros() {
+            var logros = [];
             this.$refs.task.forEach(function (component) {
                 if (component.completed) {
                     console.log("Prepare to add cima " + component.selectedCima);
+                    logros.push(component.selectedCima);
                 }
             });
+
+            if (logros.length > 0) {
+                axios.post('/retocima/public/submitlogros', {
+                    logros: logros
+                }).then(function (response) {
+                    console.log(response);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+                this.$refs.form.submit();
+            } else {
+                alert("No Logros Selected");
+            }
         }
     }
 });

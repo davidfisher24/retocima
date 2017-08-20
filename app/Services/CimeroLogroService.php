@@ -97,7 +97,7 @@ class CimeroLogroService
     /**
      * Returns all cimeros ranked by number of provinces started
      *
-      @return collection cimeros ranked by number of provinces with one logro
+     * @return collection cimeros ranked by number of provinces with one logro
      *
      */
 
@@ -110,6 +110,47 @@ class CimeroLogroService
             $item->id = $cimero->id;
             return $item;
         })->sortByDesc('count');
+    }
+
+    /**
+     * Validates an array of logros to be saved and asks the logros repo to save them
+     *
+     * @param array $logros (ids)
+     * @param intger $cimeroId
+     * @return collection cimas successfully added
+     *
+     */
+
+    public function validateAndAddNewLogros($logros,$cimeroId)
+    {
+        $addedLogros = array();
+
+        foreach ($logros as $logro) {
+            $logro = (integer) $logro;
+            $alreadyIncluded = $this->validateLogroIsNotAlreadyIncludedForCimero($logro,$cimeroId);
+            if(!$alreadyIncluded) {
+                $this->logroRepository->saveNewLogro($cimeroId,Cima::find($logro));
+                array_push($addedLogros,$logro);
+            }
+        }
+
+        return $addedLogros;
+    }
+
+    /**
+     * Validates that a user doesn't already have a logro included
+     *
+     * @param intger $logrosId
+     * @param intger $cimeroId
+     * @return boolean - does the user have the cima
+     *
+     */
+
+    public function validateLogroIsNotAlreadyIncludedForCimero($logroId,$cimeroId)
+    {
+        $check = Cimero::find($cimeroId)->logros->where('cima_id',$logroId)->count();
+        if ($check === 1) return true;
+        return false;
     }
 
 }
