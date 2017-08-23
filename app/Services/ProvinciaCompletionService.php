@@ -56,27 +56,46 @@ class ProvinciaCompletionService
 
 	public function getCimerosCompletedProvinces($cimeroId)
 	{
-		
-		return Provincia::all()->filter(function ($item) use ($cimeroId) {
-			return $this->hasCimeroCompletedProvince($cimeroId,$item->id);
+		return Provincia::all()->filter(function($item) use ($cimeroId) {
+			$provincia = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
+			$logros = Logro::where('cimero_id',$cimeroId)->where('provincia_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
+			return !array_diff($provincia,$logros);
 		});
-
 	}
 
 	public function getCimerosCompletedCommunidads($cimeroId)
 	{
-		
-		return Communidad::all()->filter(function ($item) use ($cimeroId) {
-			return $this->hasCimeroCompletedCommunidad($cimeroId,$item->id);
+		return Communidad::all()->filter(function($item) use ($cimeroId) {
+			$commundiad = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
+			$logros = Logro::where('cimero_id',$cimeroId)->where('communidad_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
+			return !array_diff($communidad,$logros);
 		});
-
 	}
 
 	public function getCimerosCompletedIberias($cimeroId)
 	{
-		
-		return Iberia::all()->filter(function ($item) use ($cimeroId) {
-			return $this->hasCimeroCompletedIberia($cimeroId,$item->id);
+		return Iberia::all()->filter(function($item) use ($cimeroId) {
+			$iberia = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
+			$logros = Logro::where('cimero_id',$cimeroId)->where('iberia_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
+			return !array_diff($iberia,$logros);
+		});
+	}
+
+	/**
+    * gets the combined completed provinces with communidads for a user
+    * 
+    * @param integer $cimeroId
+    *
+    * @return collection
+    */
+
+	public function getCImerosCompletedProvincesAndCommunidads($cimeroId)
+	{
+
+		$provinces = $this->getCimerosCompletedProvinces($cimeroId)->groupBy('communidad_id')->map(function($item) {
+			if (count(Provincia::where('communidad_id',$item->first()->communidad_id)) === count($item)) 
+				return Communidad::find($item->first()->communidad_id);
+			else return $item;
 		});
 
 	}
@@ -92,11 +111,9 @@ class ProvinciaCompletionService
 	public function getUsersWhoHaveCompletedAProvince($provinceId)
 	{
 		$provinceCimas = Provincia::find($provinceId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-		$count = count($provinceCimas);
 
 		$cimeros = Logro::whereIn('cima_codigo',$provinceCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($provinceCimas) {
 			return !array_diff($provinceCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
-			//return $item->unique('cima_codigo')->count() === $count;
 		});
 
 		return $cimeros->map(function($item){
@@ -108,10 +125,9 @@ class ProvinciaCompletionService
 	public function getUsersWhoHaveCompletedACommunidad($communidadId)
 	{
 		$communidadCimas = Communidad::find($communidadId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-		$count = count($communidadCimas);
 
-		$cimeros = Logro::whereIn('cima_codigo',$communidadCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($count) {
-			return $item->unique('cima_codigo')->count() === $count;
+		$cimeros = Logro::whereIn('cima_codigo',$communidadCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($communidadCimas) {
+			return !array_diff($communidadCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
 		});
 
 		return $cimeros->map(function($item){
@@ -125,8 +141,8 @@ class ProvinciaCompletionService
 		$iberiaCimas = Iberia::find($iberiaId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
 		$count = count($iberiaCimas);
 
-		$cimeros = Logro::whereIn('cima_codigo',$iberiaCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($count) {
-			return $item->unique('cima_codigo')->count() === $count;
+		$cimeros = Logro::whereIn('cima_codigo',$iberiaCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($iberiaCimas) {
+			return !array_diff($iberiaCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
 		});
 
 		return $cimeros->map(function($item){
