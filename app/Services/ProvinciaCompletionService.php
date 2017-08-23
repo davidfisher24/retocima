@@ -94,8 +94,9 @@ class ProvinciaCompletionService
 		$provinceCimas = Provincia::find($provinceId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
 		$count = count($provinceCimas);
 
-		$cimeros = Logro::whereIn('cima_codigo',$provinceCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($count) {
-			return count($item) >= $count;
+		$cimeros = Logro::whereIn('cima_codigo',$provinceCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($provinceCimas) {
+			return !array_diff($provinceCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
+			//return $item->unique('cima_codigo')->count() === $count;
 		});
 
 		return $cimeros->map(function($item){
@@ -110,7 +111,7 @@ class ProvinciaCompletionService
 		$count = count($communidadCimas);
 
 		$cimeros = Logro::whereIn('cima_codigo',$communidadCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($count) {
-			return count($item) >= $count;
+			return $item->unique('cima_codigo')->count() === $count;
 		});
 
 		return $cimeros->map(function($item){
@@ -125,7 +126,7 @@ class ProvinciaCompletionService
 		$count = count($iberiaCimas);
 
 		$cimeros = Logro::whereIn('cima_codigo',$iberiaCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($count) {
-			return count($item) >= $count;
+			return $item->unique('cima_codigo')->count() === $count;
 		});
 
 		return $cimeros->map(function($item){
@@ -137,4 +138,4 @@ class ProvinciaCompletionService
 }
 
 //$c = new App\Services\ProvinciaCompletionService()
-
+//$c->getUsersWhoHaveCompletedAProvince(1)
