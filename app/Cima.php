@@ -7,6 +7,39 @@ use Illuminate\Database\Eloquent\Model;
 class Cima extends Model
 {
     /**
+     * scope - return only active
+     *
+     * @return query
+    */
+
+    public function scopeActive($query)
+    {
+        return $query->where('estado', 1);
+    }
+
+    /**
+     * scope - return active and eliminated
+     *
+     * @return query
+    */
+
+    public function scopeActiveAndEliminated($query)
+    {
+        return $query->whereIn('estado', [1,3]);
+    }
+
+    /**
+     * scope - return active and substituted
+     *
+     * @return query
+    */
+
+    public function scopeActiveAndSubstituted($query)
+    {
+        return $query->whereIn('estado', [1,2]);
+    }
+
+    /**
      * Relationship - One cima has various vertientes
      *
      * @collection vertientes
@@ -56,19 +89,5 @@ class Cima extends Model
         return $this->hasOne('App\Iberia','id','iberia_id');
     }
 
-
-    // FUNCTIONS TO MOVE TO SERVICE LAYER
-
-    /**
-	 * Returns all cimas ranked by number of ascesions (logros)
-	 *
-	 */
-    public static function orderByAscensions()
-    {
-    	return Self::all()->map(function ($cima) {
-		    $cima['ascensionesCount'] = $cima->logros()->count();
-		    return $cima;
-		})->sortByDesc('ascensionesCount')->pluck('ascensionesCount','nombre');
-    }
 
 }
