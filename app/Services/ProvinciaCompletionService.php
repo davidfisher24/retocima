@@ -92,8 +92,8 @@ class ProvinciaCompletionService
 	public function getCImerosCompletedProvincesAndCommunidads($cimeroId)
 	{
 
-		$provinces = $this->getCimerosCompletedProvinces($cimeroId)->groupBy('communidad_id')->map(function($item) {
-			if (count(Provincia::where('communidad_id',$item->first()->communidad_id)) === count($item)) 
+		return $this->getCimerosCompletedProvinces($cimeroId)->groupBy('communidad_id')->map(function($item) {
+			if (Provincia::where('communidad_id',$item->first()->communidad_id)->count() === count($item)) 
 				return Communidad::find($item->first()->communidad_id);
 			else return $item;
 		});
