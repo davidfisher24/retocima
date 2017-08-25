@@ -42,6 +42,13 @@ class LogroRepositoryTest extends TestCase
         }
     }
 
+    /**
+     * Tests saving a new logro
+     *
+     * @return void
+     */
+
+
     public function testSaveNewLogro() 
     {
 
@@ -59,4 +66,81 @@ class LogroRepositoryTest extends TestCase
             'iberia_id' => $cima->iberia_id,
         ]);  
     }
+
+    /**
+     * Tests  deleting a single logro
+     *
+     * @return void
+     */
+
+    public function testRemoveSingleLogro()
+    {
+        $logroId = $this->faker->numberBetween(1, Logro::count());
+        $this->repo->removeSingleLogro($logroId);
+
+        $this->assertDatabaseMissing('logros', [
+            'id' => $logroId,
+        ]); 
+    }
+
+    /**
+     * Tests removing all the logros for one cimero
+     *
+     * @return void
+     */
+
+    public function testRemoveAllLogrosForACimero()
+    {
+        $cimeroId = $this->faker->numberBetween(1, Cimero::count());
+        $this->repo->removeAllLogrosForACimero($cimeroId);
+
+         $this->assertDatabaseMissing('logros', [
+            'cimero_id' => $cimeroId,
+        ]); 
+    }
+
+    /**
+     * Tests counting logros by a foreign key
+     *
+     * @return void
+     */
+
+    public function testCountLogrosByAForeignKey()
+    {
+        $foreignKeys = array('cimero_id','cima_id','provincia_id','communidad_id','iberia_id');
+        $foreignKey = $foreignKeys[rand(0,count($foreignKeys) - 1)];
+
+        $logros = $this->repo->countLogrosByAForeignKey($foreignKey);
+        $this->assertContainsOnlyInstancesOf(Logro::class,$logros);
+
+        foreach($logros as $logro) {
+            $this->assertArrayHasKey($foreignKey, $logro);
+            $this->assertArrayHasKey('logros_count', $logro);
+        }
+    }
+
+    /**
+     * Tests counting logros by two foreign keys
+     *
+     * @return void
+     */
+
+    public function testGetLogrosGroupedByTwoForeignKeys()
+    {
+        $foreignKeys = array('cimero_id','cima_id','provincia_id','communidad_id','iberia_id');
+        $index1 = rand(0,count($foreignKeys) - 1);
+
+        $foreignKey1 = $foreignKeys[$index1];
+        array_splice($foreignKeys, $index1, 1);
+        $foreignKey2 = $foreignKeys[rand(0,count($foreignKeys) - 1)];
+
+        $logros = $this->repo->getLogrosGroupedByTwoForeignKeys($foreignKey1,$foreignKey2);
+        $this->assertContainsOnlyInstancesOf(Logro::class,$logros);
+
+        foreach($logros as $logro) {
+            $this->assertArrayHasKey($foreignKey1, $logro);
+            $this->assertArrayHasKey($foreignKey1, $logro);
+        }
+    }
+
 }

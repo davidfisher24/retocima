@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 use App\Repositories\CimaRepository;
 
+use App\Cima;
 use App\Provincia;
 use App\Communidad;
 
@@ -33,7 +35,7 @@ class CimasListadoController extends Controller
     public function listCimasByCommunidad()
     {
     	
-    	$commList = $this->cimaRepository->getCommunidadListWithCimasCount();
+    	$commList = Cima::groupBy('communidad_id')->select('communidad_id',DB::raw('count(*) as total'))->with('communidad')->get()->sortBy('communidad');
         return view('publicarea.listadocommunidads',compact('commList'));
     }
 
@@ -48,7 +50,7 @@ class CimasListadoController extends Controller
 
 
         $commList = Communidad::orderBy('nombre')->get();
-        $provList = $this->cimaRepository->getprovinciaListWithCimasCount($communidadId);
+        $provList = Cima::where('communidad_id',$communidadId)->with('provincia')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
 
         if (!$provinciaId) $provinciaId = Provincia::where('communidad_id',$communidadId)->orderBy('nombre')->first()->id;
         $cimaList = $this->cimaRepository->getCimasInProvincia($provinciaId);

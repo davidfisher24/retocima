@@ -92,7 +92,7 @@ class CimaRepositoryTest extends TestCase
      * @return void
      */
 
-    public function testGetCommunidadListWithCimasCount(){
+    /*public function testGetCommunidadListWithCimasCount(){
         $cimas = $this->repo->getCommunidadListWithCimasCount();
         $this->assertContainsOnlyInstancesOf(Cima::class,$cimas);
 
@@ -101,7 +101,7 @@ class CimaRepositoryTest extends TestCase
             $this->assertArrayHasKey('communidad_id', $cima);
             $this->assertInstanceOf(Communidad::class,$cima->communidad);
         }
-    }
+    }*/
 
     /**
      * Test getting a province list with cimas count.
@@ -109,7 +109,7 @@ class CimaRepositoryTest extends TestCase
      * @return void
      */
 
-    public function testGetProvinciaListWithCimasCount(){
+    /*public function testGetProvinciaListWithCimasCount(){
     	$id = $this->faker->numberBetween(1, Provincia::count());
         $cimas = $this->repo->getProvinciaListWithCimasCount($id);
         $this->assertContainsOnlyInstancesOf(Cima::class,$cimas);
@@ -119,5 +119,5 @@ class CimaRepositoryTest extends TestCase
             $this->assertArrayHasKey('provincia_id', $cima);
             $this->assertInstanceOf(Provincia::class,$cima->provincia);
         }
-    }
+    }*/
 }
