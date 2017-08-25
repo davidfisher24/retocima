@@ -12,7 +12,7 @@ use App\Communidad;
 use App\Iberia;
 
 
-class ProvinciaCompletionService
+class AreaCompletionService
 {
 
 	/**
@@ -66,7 +66,7 @@ class ProvinciaCompletionService
 	public function getCimerosCompletedCommunidads($cimeroId)
 	{
 		return Communidad::all()->filter(function($item) use ($cimeroId) {
-			$commundiad = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
+			$communidad = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
 			$logros = Logro::where('cimero_id',$cimeroId)->where('communidad_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
 			return !array_diff($communidad,$logros);
 		});
@@ -113,7 +113,7 @@ class ProvinciaCompletionService
 		$provinceCimas = Provincia::find($provinceId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
 
 		$cimeros = Logro::whereIn('cima_codigo',$provinceCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($provinceCimas) {
-			return !array_diff($provinceCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
+			return !array_diff($provinceCimas,$item->unique('cima_codigo')->pluck('cima_codigo')->toArray());
 		});
 
 		return $cimeros->map(function($item){
@@ -127,7 +127,7 @@ class ProvinciaCompletionService
 		$communidadCimas = Communidad::find($communidadId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
 
 		$cimeros = Logro::whereIn('cima_codigo',$communidadCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($communidadCimas) {
-			return !array_diff($communidadCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
+			return !array_diff($communidadCimas,$item->unique('cima_codigo')->pluck('cima_codigo')->toArray());
 		});
 
 		return $cimeros->map(function($item){
@@ -142,7 +142,7 @@ class ProvinciaCompletionService
 		$count = count($iberiaCimas);
 
 		$cimeros = Logro::whereIn('cima_codigo',$iberiaCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($iberiaCimas) {
-			return !array_diff($iberiaCimas,$item->unique('cima_codigo')->pluck('cima_codigo'));
+			return !array_diff($iberiaCimas,$item->unique('cima_codigo')->pluck('cima_codigo')->toArray());
 		});
 
 		return $cimeros->map(function($item){
@@ -153,5 +153,5 @@ class ProvinciaCompletionService
 
 }
 
-//$c = new App\Services\ProvinciaCompletionService()
+//$c = new App\Services\AreaCompletionService()
 //$c->getUsersWhoHaveCompletedAProvince(1)

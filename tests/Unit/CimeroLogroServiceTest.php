@@ -61,12 +61,12 @@ class CimeroLogroServiceTest extends TestCase
      * @return void
      */
 
-    public function testGetRankingOfAllCimeros(){
+    /*public function testGetRankingOfAllCimeros(){
 
         $ranking = $this->service->getRankingOfAllCimeros();
         $this->assertCount(Cimero::count(),$ranking);
 
-    }
+    }*/
 
     /**
      * Tests getting a cimeros logros grouped by communidad
