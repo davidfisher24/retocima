@@ -25,7 +25,7 @@ Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasListadoController@list
 Route::get('/detallescima/{id}', 'CimasListadoController@showCimaDetails')->name('cima');
 
 /* cimeroRanking */
-Route::get('/ranking', 'CimeroRankingController@baseRanking')->name('ranking');
+Route::get('/ranking', 'CimeroRankingController@displayRankingPage')->name('ranking');
 Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDetails')->name('cimero');
 
 /* statistics */

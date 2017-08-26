@@ -1,6 +1,7 @@
 <template> 
     
     <div class="panel-body">
+
         <div class="col-md-12">
             <div class="row">
 
@@ -10,7 +11,7 @@
                 </select>
 
                 <select v-if="dataObject" v-model="pagination">
-                    <option v-show="count === 0" disabled>--</option>
+                    <option v-show="count === 0" disabled>0</option>
                     <option v-show="count > 0">10</option>
                     <option v-if="count / 25 >= 1">25</option>
                     <option v-if="count / 50 >= 1">50</option>
@@ -48,12 +49,13 @@
         data: function() {
             return {
                 columns: [],
-                dataObject: [],
-                filteredData: [],
+                dataObject: null,
+                filteredData: null,
 
                 count:0,
                 page: 1,
                 pagination: 25,
+
 
             };
         },
@@ -138,7 +140,8 @@
                     returnString += accent_map[string.charAt(i)] || string.charAt(i);
                 }
                 return returnString;
-            }
+            },
+
 
         }
     }

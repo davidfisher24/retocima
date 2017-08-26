@@ -26,17 +26,22 @@ class CimeroRankingController extends Controller
         $this->cimeroLogroService = $cimeroLogroService;
     }
 
+    public function displayRankingPage()
+    {
+        return view('publicarea.ranking');
+    }
+
     /**
-     * Show a ranking of all cimeros.
+     * Return array of all cimeros ranking, and a column structure for the table.
      *
-     * @return Blade View
+     * @return array Table Data
      */
 
     public function baseRanking()
     {
 
     	$cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
-        //return view('publicarea.ranking',compact('cimeros'));
+        
         $columns = array(
             array("field" => 'ranking', "title" => ''),
             array("field" => 'id', "title" => 'No. Cimero'),

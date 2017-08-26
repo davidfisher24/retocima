@@ -92,7 +92,6 @@
                 var route = 'api/cima/' + cimaId;
                 var self = this;
                 axios.get(route).then(function(response){
-                    console.log(response.data);
                     self.modalCima = response.data;
                     self.showCimaModal = true;
                 });
