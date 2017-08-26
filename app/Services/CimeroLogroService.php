@@ -70,8 +70,9 @@ class CimeroLogroService
 
     public function getRankingOfAllCimeros($filter = null){
 
-        return $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item){
+        return $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$index){
             $cimero = $item->cimero()->first();
+            $item->ranking = $index;
             $item->nombre = $cimero->getFullName();
             $item->id = $cimero->id;
             return $item;

@@ -8,7 +8,7 @@
                 <div class="panel-heading">Estadistica</div>
 
                 <div class="panel-body">
-                    Statistics Prepared to go here
+                    <datatable></datatable>
                 </div>
                 
             </div>

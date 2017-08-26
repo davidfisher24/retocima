@@ -21,6 +21,7 @@ Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
 
 Vue.component('cimamodal', require('./components/CimaModal.vue'));
+Vue.component('datatable', require('./components/DataTable.vue'));
 
 const app = new Vue({
     el: '#app'

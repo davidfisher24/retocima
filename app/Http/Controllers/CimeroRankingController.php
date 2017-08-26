@@ -36,7 +36,8 @@ class CimeroRankingController extends Controller
     {
 
     	$cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
-        return view('publicarea.ranking',compact('cimeros'));
+        //return view('publicarea.ranking',compact('cimeros'));
+        return $cimeros->flatten()->toJson();
     }
 
     /**

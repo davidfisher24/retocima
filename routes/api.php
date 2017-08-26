@@ -35,6 +35,10 @@ Route::group(['middleware' => 'api'], function() {
         return App\Cima::with('vertientes')->find($id)->toJSON();
     });
 
+
+
+    Route::get('/ranking', 'CimeroRankingController@baseRanking');
+
     // Temporary - need rerouting via api:auth
 
     Route::get('/userlogros', function() {
