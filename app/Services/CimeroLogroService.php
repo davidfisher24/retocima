@@ -70,13 +70,14 @@ class CimeroLogroService
 
     public function getRankingOfAllCimeros($filter = null){
 
-        return $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$index){
+        return $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$i){
             $cimero = $item->cimero()->first();
-            $item->ranking = $index;
+            $item->ranking = $i + 1;
             $item->nombre = $cimero->getFullName();
+            $item->provincia = $cimero->provincia;
             $item->id = $cimero->id;
             return $item;
-        });
+        })->sortByDesc('logros_count');
 
     }
 

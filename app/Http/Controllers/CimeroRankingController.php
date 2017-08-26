@@ -37,7 +37,18 @@ class CimeroRankingController extends Controller
 
     	$cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
         //return view('publicarea.ranking',compact('cimeros'));
-        return $cimeros->flatten()->toJson();
+        $columns = array(
+            array("field" => 'ranking', "title" => ''),
+            array("field" => 'id', "title" => 'No. Cimero'),
+            array("field" => 'nombre', "title" => 'Nombre'),
+            array("field" => 'provincia', "title" => 'Provincia'),
+            array("field" => 'logros_count', "title" => 'Logros'),
+        );
+        
+        return array(
+            "dataObject" => $cimeros->flatten(),
+            "columns" =>  $columns,
+        );
     }
 
     /**

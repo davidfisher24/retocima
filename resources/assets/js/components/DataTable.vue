@@ -19,7 +19,7 @@
 
                 <input v-if="dataObject" placeholder="Buscar ... " @keyup="filterBySearch">
 
-                <table class="table table-striped">
+                <table v-if="dataObject" class="table table-striped">
                     <thead class="thead-default">
                         <tr>
                             <th v-for="column in columns" >
@@ -47,22 +47,9 @@
     export default {
         data: function() {
             return {
-                columns: [
-                    {
-                        field: 'id',
-                        title: 'No. Cimero',
-                    },
-                    {
-                        field: 'nombre',
-                        title: 'Nombre'
-                    },
-                    {
-                        field: 'logros_count',
-                        title: 'Logros Count'
-                    }
-                ],
-                dataObject: null,
-                filteredData: null,
+                columns: [],
+                dataObject: [],
+                filteredData: [],
 
                 count:0,
                 page: 1,
@@ -93,9 +80,11 @@
             fetchData:function(){
                 var self = this;
                 axios.get('api/ranking').then(function(response){
-                    self.dataObject = response.data;
-                    self.filteredData = response.data;
-                    self.count = response.data.length;
+                    console.log(response.data);
+                    self.dataObject = response.data.dataObject;
+                    self.filteredData = response.data.dataObject;
+                    self.count = response.data.dataObject.length;
+                    self.columns = response.data.columns;
                 });
             },
 

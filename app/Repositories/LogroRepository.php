@@ -99,7 +99,7 @@ class LogroRepository
     {
         $filteredModel = $this->model;
         if ($filter) $filteredModel = $this->model->where($filter["key"],$filter["id"]);
-        return $filteredModel->select($foreign_key,DB::raw('count(*) as logros_count'))->groupBy($foreign_key)->get()->sortByDesc('logros_count');
+        return $filteredModel->select($foreign_key,DB::raw('count(*) as logros_count'))->groupBy($foreign_key)->get()->sortByDesc('logros_count')->values();
     }
 
     /**
