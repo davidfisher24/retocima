@@ -28,8 +28,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-show="dataObject && count === 0" :colspan="3"><p class="text-center">Nada Encontrado</p></tr>
-                        <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < (pagination * (page - 1)) + pagination">
+                        <tr v-show="dataObject && count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
+                        <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
                             <td v-for="column in columns">
                                 {{row[column.field]}}
                             </td>
@@ -73,7 +73,7 @@
         computed: {
 
             pages: function () {
-                return Math.round(this.count / this.pagination);
+                return Math.ceil(this.count / this.pagination);
             }
 
         },
