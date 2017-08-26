@@ -19,7 +19,7 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
 Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
-
+Vue.component('statisticscontainer', require('./components/StatisticsContainer.vue'));
 Vue.component('cimamodal', require('./components/CimaModal.vue'));
 Vue.component('datatable', require('./components/DataTable.vue'));
 

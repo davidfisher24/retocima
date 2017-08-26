@@ -81,8 +81,7 @@
 
             fetchData:function(){
                 var self = this;
-                axios.get('api/ranking').then(function(response){
-                    console.log(response.data);
+                axios.get('api/statistics/cimasbylogro').then(function(response){
                     self.dataObject = response.data.dataObject;
                     self.filteredData = response.data.dataObject;
                     self.count = response.data.dataObject.length;
@@ -141,7 +140,6 @@
                 }
                 return returnString;
             },
-
 
         }
     }

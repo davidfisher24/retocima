@@ -29,7 +29,7 @@ Route::get('/ranking', 'CimeroRankingController@displayRankingPage')->name('rank
 Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDetails')->name('cimero');
 
 /* statistics */
-Route::get('/estadistica', 'StatisticsController@testView')->name('estadistics');
+Route::get('/estadistica', 'StatisticsController@showStatisticsHomePage')->name('estadistics');
 
 /* cimeroCuenta */
 Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');

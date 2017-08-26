@@ -2,7 +2,6 @@
     
     <div class="panel-body">
         <cimamodal v-if="showCimaModal" @close="closeCimaModal" ref="showCimaModal">
-            <h3 slot="header">custom header</h3>
         </cimamodal>
 
         <div class="col-md-12">
