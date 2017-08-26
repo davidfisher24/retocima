@@ -1,5 +1,10 @@
 <template> 
+    
     <div class="panel-body">
+        <cimamodal v-if="showCimaModal" @close="closeCimaModal" ref="showCimaModal">
+            <h3 slot="header">custom header</h3>
+        </cimamodal>
+
         <div class="col-md-12">
             <div class="row">
                 <div v-for="communidad in communidads">
@@ -16,14 +21,14 @@
                             <div :id="communidad.divid"class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div v-for="addedcima in addedcimas">
-                                        <p v-if="addedcima.communidad_id === communidad.id" class="text-primary">
+                                        <a v-if="addedcima.communidad_id === communidad.id" @click="openCimaModal(addedcima.id)" class="text-primary">
                                             {{addedcima.codigo}} - {{addedcima.nombre}}  NUEVO!!
-                                        </p> 
+                                        </a> 
                                     </div>
                                     <div v-for="logro in logros">
-                                        <p v-if="logro.communidad_id === communidad.id">
+                                        <a v-if="logro.communidad_id === communidad.id" @click="openCimaModal(logro.id)">
                                             {{logro.codigo}} - {{logro.nombre}}
-                                        </p> 
+                                        </a> 
                                     </div>
                                 </div>
                             </div>
@@ -35,12 +40,16 @@
     </div>
 </template>
 
+
+
 <script>
     export default {
         data: function() {
             return {
                 communidads: [],
                 cimas: [],
+                showCimaModal : false,
+                modalCima: null,
             };
         },
         props: ['logros','addedcimas'],
@@ -77,7 +86,22 @@
                 });
 
                 this.communidads = distinctCommunidads;
-            }
+            },
+
+            openCimaModal: function(cimaId){
+                var route = 'api/cima/' + cimaId;
+                var self = this;
+                axios.get(route).then(function(response){
+                    console.log(response.data);
+                    self.modalCima = response.data;
+                    self.showCimaModal = true;
+                });
+            },
+
+            closeCimaModal: function(){
+                this.showCimaModal = false;
+                this.modalCima = null;
+            },
 
         }
     }

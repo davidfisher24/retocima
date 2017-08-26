@@ -31,6 +31,10 @@ Route::group(['middleware' => 'api'], function() {
         return App\Cima::where('provincia_id',$id)->get()->toJSON();
     });
 
+    Route::get('cima/{id}', function($id) {
+        return App\Cima::with('vertientes')->find($id)->toJSON();
+    });
+
     // Temporary - need rerouting via api:auth
 
     Route::get('/userlogros', function() {
