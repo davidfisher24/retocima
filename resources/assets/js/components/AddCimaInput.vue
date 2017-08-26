@@ -31,28 +31,38 @@
     export default {
         data: function() {
             return {
-                communidads: [],
+                communidads: this.$parent.communidads,
+                userLogros: this.$parent.userLogros,
                 provincias: [],
                 cimas: [],
-                userLogros: [],
                 selectedCommunidad: null,
                 selectedProvince: null,
                 selectedCima: null,
             };
         },
         computed: {
+
+            /**
+             * Checked that an input has been completed
+             * @trigger The parent form Submit button
+             * @return boolean
+            */
+
             completed: function () {
                 if(this.selectedCommunidad && this.selectedProvince && this.selectedCima) return true;
                 return false;
             }
         },
+
         methods: {
-            setCommunidadsFromParent: function(data) {
-                this.communidads = data;
-            },
-            setUserLogrosFromParent: function(data) {
-                this.userLogros = data;
-            },
+
+            /**
+             * Fills in a province list or empties other fields when changing a communidad input
+             * @trigger Change Communidad Input
+             * @params event
+             * @result Triggers ajax call to get provinces or empties the other inputs
+            */
+
             handleChangedCommunidad: function(event){
                 if (!event.target.value) {
                     this.cimas = [];
@@ -72,6 +82,14 @@
                     }
                 });
             },
+
+            /**
+             * Fills in a cima list or empties cima list when changing a province input
+             * @trigger Change Province Input
+             * @params event
+             * @result Triggers ajax call to get cimas or empties the cima input
+            */
+
             handleChangedProvincia: function(event){
                 var route;
                 if (Number.isInteger(event)) {
@@ -90,6 +108,14 @@
                   this.cimas = response.data
                 });
             },
+
+            /**
+             * Adds or removes a cima from list of completed cimas to prevent repetition
+             * @trigger Change Cima Input
+             * @params event
+             * @result Updates cima inputs
+            */
+
             handleChangedCima: function(event){
                 if (!event.target.value) {
                     this.userLogros.splice(this.userLogros.indexOf(this.selectedCima), 1);
@@ -100,14 +126,37 @@
                 this.selectedCima = event.target.value;
             },
 
+            /**
+             * Checks if a logro has already been completed
+             * @trigger Prepating a list of cimas
+             * @params id
+             * @result v-show on the cima input list
+            */
+
             logroAlreadyCompleted: function(id){
                 if (this.userLogros.indexOf(id) !== -1) return false;
                 return true;
             },
+
+            /**
+             * Checks if the province list should be visible
+             * @trigger this.data.provincias
+             * @return boolean
+             * @result disables the input field if false
+            */
+
             provinciasVisible : function(){
                 if (this.provincias.length === 0) return true;
                 return false;
             },
+
+            /**
+             * Checks if the cima list should be visible
+             * @trigger this.data.cimas
+             * @return boolean
+             * @result disables the input field if false
+            */
+
             cimasVisible: function(){
                 if (this.cimas.length === 0) return true;
                 return false;

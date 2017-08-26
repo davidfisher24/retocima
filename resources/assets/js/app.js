@@ -16,8 +16,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
-Vue.component('tasklist', require('./components/TaskList.vue'));
-Vue.component('task', require('./components/Task.vue'));
+Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
+Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 
 
 const app = new Vue({
