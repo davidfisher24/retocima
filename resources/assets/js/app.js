@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
 Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
+Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
 
 
 const app = new Vue({

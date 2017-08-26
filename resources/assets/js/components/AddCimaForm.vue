@@ -10,7 +10,7 @@
                     <button class="btn btn-default" @click="changeRequestedInputs">Go</button>
                 </div>
             </div>
-            <form class="form" v-on:submit.prevent>
+            <form class="form" ref="addLogrosForm" v-on:submit.prevent>
                 <div class="form-control" v-for="n in requestedInputs">
                     <addcimainput ref="addcimainput"></addcimainput>
                 </div>
@@ -89,19 +89,20 @@
                     }
                 });
 
-                if (logros.length > this.requestedInputs) {
-                    axios.post('/retocima/public/submitlogros', {
+                if (logros.length === this.requestedInputs) {
+                    axios.post(/*'retocima*/'/submitlogros', {
                         logros: logros,
                     })
                     .then(function (response) {
-                        window.location = '/retocima/public/cimerologrosnew' + "/" + response.data.new;
+                        window.location = /*'retocima/public*/'/cimerologrosnew' + "/" + response.data.new;
                     })
                     .catch(function (error) {
                         console.log(error);
                     }); 
-                    this.$refs.form.submit();
+                    console.log(this.$refs);
+                    this.$refs.addLogrosForm.submit();
                 } else {
-                    alert("No Logros Selected");
+                    alert("You have logros incomplete");
                 }          
             }
         }

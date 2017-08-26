@@ -14,18 +14,9 @@
                     <a href="{{ url('/anadirlogros')  }}">Añadir Logros</a>&nbsp;&nbsp;&nbsp;
                 </div>
 
-                <div class="panel-body">
-                    @if(!empty($addedCimas))
-                        NUEVO !!
-                        @foreach ($addedCimas as $addedCima)
-                            <p><strong> {{ $addedCima->nombre }}  -  {{ $addedCima->provincia }}  - {{ $addedCima->communidad }} </strong></p>
-                        @endforeach
-                    @endif
+                <cimerologrossummary :logros="{{ $logros }}" @if(!empty($addedCimas)) :addedcimas="{{ $addedCimas }}" @endif>
+                </cimerologrossummary>
 
-                    @foreach ($logros as $logro)
-                        <p> {{ $logro->nombre }}  -  {{ $logro->provincia }}  - {{ $logro->communidad }} </p>
-                    @endforeach
-                </div>
 
             </div>
         </div>
