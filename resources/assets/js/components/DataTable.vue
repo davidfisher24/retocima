@@ -25,7 +25,7 @@
                 <!-- Option Filters -->
 
                 <select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
-                    <option selected>{{key}}</option> 
+                    <option selected>Todos</option> 
                     <option v-for="option in filters[key]" :value="option">{{option}}</option>
                 </select>
 
@@ -76,6 +76,10 @@
                 pagination: 25,
 
                 filters: null,
+
+                currentFilters: [], // Array of objects {field: filter}
+                currentSearches: [], // Array of objects {field: search}
+                currentOrdering: [], // Array [field,order]
             };
         },
         computed: {
@@ -119,6 +123,7 @@
             */
 
             prepareSelectFilters: function(data,filtersOptions){
+
                 var self = this;
 
                 var filters = {};
@@ -146,62 +151,57 @@
             
 
             /**
-             * Filters on a search, or resets if no serach entered
-             * @trigger changing the input search
+             * Stores a current search filter
+             * @trigger changing an input search
              * @param event.target.value
-             * @result sets the data with filtered parameters
+             * @result deletes or sets the filter in the currentSearches object and calls the filterTable function
             */
 
             filterBySearch:function(event){
-                var self = this;
-
-                if (event.target.value.length === 0) {
-                    this.filteredData = this.dataObject;
-                    this.count = this.dataObject.length;
-                    return;
+                if (!event.target.value) {
+                    delete this.currentSearches.nombre;
                 }
 
-                var filteredData;
-                var searchValue = this.stripAccents(event.target.value.toLowerCase());
-                filteredData = this.dataObject.filter(function(item){
-                    return self.stripAccents(item.nombre.toLowerCase()).indexOf(searchValue) !== -1;
-                });
-
-                this.filteredData = filteredData;
-                this.count = filteredData.length;
-                this.page = 1;
-
+                this.currentSearches.nombre = event.target.value;
+                this.prepareFilteredTable();
             },
 
             /**
-             * Filters on an option change
-             * @trigger changing any select option filter
-             * @param event (id = key, value = option)
-             * @result filters the data object by the requested input
+             * Stores a current option filter
+             * @trigger changing an input select filter
+             * @param event.target.value
+             * @result deletes or sets the filter in the currentFilters object and calls the filterTable function
             */
 
             filterByOption: function(event){
-                var self = this;
-                this.filteredData = this.dataObject.filter(function (item) {
-                    return item[event.target.dataset.filter] === event.target.value;
-                });
+                if (!event.target.value || event.target.value === "") {
+                    delete this.currentFilters[event.target.dataset.filter];
+                    return
+                }
+
+                this.currentFilters[event.target.dataset.filter] = event.target.value;
+                this.prepareFilteredTable();
+
             },
 
             /**
-             * Sorts the data in ascending order
-             * @trigger clicking any ascending button in column header
-             * @param event (field = event.target.dataset.order)
-             * @result orders the visible data in ascending order
+             * Stores a current ordering filter
+             * @trigger clicking a table header order icon
+             * @param event.target.value
+             * @result deletes or sets the filter in the currentFilters object and calls the filterTable function
             */
 
             orderByAscending:function(event){
-                var self = this;
+                this.currentOrdering = [event.target.dataset.order,"asc"];
+                this.prepareFilteredTable();
+
+                /*var self = this;
                 var field = event.target.dataset.order;
                 this.filteredData = this.filteredData.sort(function(a,b){
                     if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return -1;
                     if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return 1;
                     return 0;
-                });
+                });*/
 
             },
 
@@ -213,11 +213,78 @@
             */
 
             orderByDescending:function(event){
-                var self = this;
+                this.currentOrdering = [event.target.dataset.order,"desc"];
+                this.prepareFilteredTable();
+
+                /*var self = this;
                 var field = event.target.dataset.order;
                 this.filteredData = this.filteredData.sort(function(a,b){
                     if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return -1;
                     if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return 1;
+                    return 0;
+                });*/
+            },
+
+            prepareFilteredTable:function(){
+                //currentFilters: [], // Array of objects {field: filter}
+                //currentSearches: [], // Array of objects {field: search}
+                //currentOrdering: [], // Array [field,order]
+
+                var self = this;
+
+                var filteredData = this.dataObject.filter(function(item){
+                    var filterOK = false;
+                    var searchOK = false;
+
+                    if (!self.currentSearches.nombre) {
+                        searchOK = true;
+                    } else {
+                        if (self.currentSearches.nombre && self.stripAccents(item.nombre.toLowerCase()).indexOf(self.stripAccents(self.currentSearches.nombre.toLowerCase())) !== -1) {
+                            searchOK = true;
+                        }
+                    }
+
+                    if (self.currentFilters.provincia === "Todos") {
+                        filterOK = true;
+                    } else {
+                        if (item.provincia === self.currentFilters.provincia) {
+                            filterOK = true;
+                        }
+                    }
+                    
+                    return searchOK === true && filterOK === true;
+                });
+
+                console.log(self.currentOrdering[1]);
+                if (self.currentOrdering.length > 0 && self.currentOrdering[1] === 'asc') {
+                   var filteredAndSortedData = self.sortDataByAscending(filteredData,self.currentOrdering[0]); 
+                } else if (self.currentOrdering.length > 0 && self.currentOrdering[1] === 'desc') {
+                    var filteredAndSortedData = self.sortDataByDescending(filteredData,self.currentOrdering[0]); 
+                } else {
+                    var filteredAndSortedData = self.sortDataByAscending(filteredData,'ranking');
+                }
+
+                this.filteredData = filteredAndSortedData;
+                this.count = filteredAndSortedData.length;
+                this.page = 1;
+            },
+
+            sortDataByAscending:function(data,field){
+                var self = this;
+
+                 return data.sort(function(a,b){
+                    if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return -1;
+                    if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return 1;
+                    return 0;
+                });
+            },
+
+            sortDataByDescending:function(data,field){
+                var self = this;
+
+                 return data.sort(function(a,b){
+                    if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return -1;
+                    if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return 1;
                     return 0;
                 });
             },
