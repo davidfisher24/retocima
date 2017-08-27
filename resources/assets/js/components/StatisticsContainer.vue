@@ -27,8 +27,8 @@
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#">CC.AA. más completadas</a></li>
                                 </div>
                             </li>
-                            <li><a href="#" @click="showcommunidads = true; showprovinces = false">Por Comunidad Autonoma</a></li>
-                            <li><a href="#" @click="showprovinces = true; showcommunidads = false">Por Provincia</a></li>
+                            <li><a href="#" @click="showcommunidads = true; showprovinces = false;">Por Comunidad Autonoma</a></li>
+                            <li><a href="#" @click="showprovinces = true; showcommunidads = false;">Por Provincia</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,9 +37,11 @@
 
         <div class="col-md-9">
             <div v-if="showcommunidads">
-                <a href="#" v-for="communidad in communidads" @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads">
+                <img href="#" v-for="communidad in communidads" :src="communidad.imageurl"  @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
+         
+                <!--<a href="#" v-for="communidad in communidads" @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads">
                     {{communidad.nombre}}
-                </a>
+                </a>-->
             </div>
             <div v-if="showprovinces">
                 <a href="#" v-for="provincia in provincias" @click="changeApiRoute" :data-apiroute="provincia.apiroute" data-show="showprovinces">
@@ -108,6 +110,7 @@
                 axios.get('api/communidads').then(function(response){
                     response.data.forEach(function(item){
                         item.apiroute = 'api/statistics/cimerosbylogroinzones/communidad_id/' + item.id + '/';
+                        item.imageurl = 'img/communidads/' + item.id + '.png';
                     });
                     self.communidads = response.data;
 
