@@ -10,7 +10,6 @@
                                     De Cimeros
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#" @click="changeApiRoute">Por número de cimas ascendidos</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="api/statistics/cimerosbyprovincesstarted/">Por provincias comenzadas</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute">Por provincias completadas</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute">Por CC.AA. completadas</a></li>
@@ -28,8 +27,8 @@
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#">CC.AA. más completadas</a></li>
                                 </div>
                             </li>
-                            <li><a href="#" @click="changeApiRoute">Por Comunidad Autonoma</a></li>
-                            <li><a href="#" @click="changeApiRoute">Por Provincia</a></li>
+                            <li><a href="#" @click="showcommunidads = true; showprovinces = false">Por Comunidad Autonoma</a></li>
+                            <li><a href="#" @click="showprovinces = true; showcommunidads = false">Por Provincia</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,6 +36,16 @@
         </div>
 
         <div class="col-md-9">
+            <div v-if="showcommunidads">
+                <a href="#" v-for="communidad in communidads" @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads">
+                    {{communidad.nombre}}
+                </a>
+            </div>
+            <div v-if="showprovinces">
+                <a href="#" v-for="provincia in provincias" @click="changeApiRoute" :data-apiroute="provincia.apiroute" data-show="showprovinces">
+                    {{provincia.nombre}}
+                </a>
+            </div>
             <datatable v-for="route in routesCalled" v-if="tableLoaded && apiroute === route" :key="route"></datatable>
         </div>
     </div>
@@ -51,6 +60,11 @@
                 tableLoaded: false,
                 apiroute: false,
                 routesCalled: [],
+
+                showprovinces: false,
+                showcommunidads: false,
+                provincias: [],
+                communidads: [],
             };
         },
         computed: {
@@ -58,20 +72,55 @@
 
         },
 
+        mounted: function() {
+            this.fetchComunidadsAndProvinces();
+        },
+
         methods: {
 
             /**
-             * Gets the requested data for the datatable
-             * @trigger onMounted()
-             * @result returns a dataobject and count
+             * Triggers a change of table on changing api route
+             * @trigger changeApiRoute() click envent
+             * @param event
+             * @result changes the visible table via ajax
             */
 
             changeApiRoute: function(event){
+                this.showcommunidads = event.target.dataset.show === "showcommunidads" ? true : false;
+                this.showprovinces = event.target.dataset.show === "showprovinces" ? true : false;
+
+
                 if (this.routesCalled.indexOf(event.target.dataset.apiroute) === -1)
                     this.routesCalled.push(event.target.dataset.apiroute);
                 this.apiroute = event.target.dataset.apiroute;
                 this.tableLoaded = true;
-            }
+            },
+
+            /**
+             * Gets a list of provinces and communidads for filtering
+             * @trigger mounted()
+             * @result stores the options with correct api routes
+            */
+
+            fetchComunidadsAndProvinces:function(){
+                var self = this;
+
+                axios.get('api/communidads').then(function(response){
+                    response.data.forEach(function(item){
+                        item.apiroute = 'api/statistics/cimerosbylogroinzones/communidad_id/' + item.id + '/';
+                    });
+                    self.communidads = response.data;
+
+                });
+
+                axios.get('api/provincias').then(function(response){
+                    response.data.forEach(function(item){
+                        item.apiroute = 'api/statistics/cimerosbylogroinzones/provincia_id/' + item.id + '/';
+                    });
+                    self.provincias = response.data;
+                });
+            },
+
         }
     }
 </script>

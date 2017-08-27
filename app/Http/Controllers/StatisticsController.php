@@ -154,8 +154,9 @@ class StatisticsController extends Controller
      */
     
 
-    public function getRankingOfAllCimeros(Request $request)
+    public function getRankingOfAllCimeros($filter, $id)
     {
+        $filter = array("key" => $filter, 'id' => $id);
 
         $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros($filter = $filter);
 
@@ -169,6 +170,8 @@ class StatisticsController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
+            "filters" => array(''),
+            "searches" => array(''),
         );
     }
 

@@ -19,6 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['middleware' => 'api'], function() {
+    Route::get('provincias', function() {
+        return App\Provincia::all()->toJSON();
+    });
+
     Route::get('communidads', function() {
         return App\Communidad::all()->toJSON();
     });
@@ -44,6 +48,8 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('/statistics/cimerosbyprovincesstarted/', 'StatisticsController@getCimerosWithProvinciasWithAtLeastOneLogro');
     Route::get('/statistics/provincesbylogro/', 'StatisticsController@getAllProvinciasRankedByLogros');
     Route::get('/statistics/comunidadsbylogro/', 'StatisticsController@getAllCommunidadsRankedByLogros');
+    Route::get('statistics/cimerosbylogroinzones/{filter}/{id}', 'StatisticsController@getRankingOfAllCimeros');
+
 
     // Temporary - need rerouting via api:auth
 
