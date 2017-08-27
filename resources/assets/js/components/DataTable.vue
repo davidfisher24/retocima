@@ -8,7 +8,7 @@
                 <!-- Page change -->
 
                 <select v-if="dataObject" v-model="page">
-                    <option v-show="count === 0" disabled>--</option>
+                    <option v-show="count === 0" disabled>0</option>
                     <option v-for="n in pages" :value="n">{{n}}</option>
                 </select>
 
@@ -23,7 +23,6 @@
                 </select>
 
                 <!-- Option Filters -->
-
                 <select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
                     <option selected>Todos</option> 
                     <option v-for="option in filters[key]" :value="option">{{option}}</option>
@@ -31,7 +30,7 @@
 
                 <!-- Text Filters -->
 
-                <input v-if="dataObject" placeholder="Buscar ... " @keyup="filterBySearch">
+                <input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">
 
                 <!-- Table -->
 
@@ -76,6 +75,7 @@
                 pagination: 25,
 
                 filters: null,
+                searches: null,
 
                 currentFilters: [], // Array of objects {field: filter}
                 currentSearches: [], // Array of objects {field: search}
@@ -110,6 +110,7 @@
                     self.filteredData = response.data.dataObject;
                     self.count = response.data.dataObject.length;
                     self.columns = response.data.columns;
+                    self.searches = response.data.searches;
                     self.prepareSelectFilters(response.data.dataObject, response.data.filters);
                 });
             },
@@ -160,10 +161,10 @@
 
             filterBySearch:function(event){
                 if (!event.target.value) {
-                    delete this.currentSearches.nombre;
+                    delete this.currentSearches[event.target.dataset.search];
                 }
 
-                this.currentSearches.nombre = event.target.value;
+                this.currentSearches[event.target.dataset.search] = event.target.value;
                 this.prepareFilteredTable();
             },
 
@@ -193,9 +194,7 @@
             */
 
             setOrderingPreference:function(event){
-                console.log(event.target.dataset);
                 this.currentOrdering = [event.target.dataset.field,event.target.dataset.order];
-                console.log(this.currentOrdering);
                 this.prepareFilteredTable();
             },
 
@@ -223,13 +222,28 @@
                         }
                     }
 
-                    if (self.currentFilters.provincia === "Todos") {
-                        filterOK = true;
-                    } else {
-                        if (item.provincia === self.currentFilters.provincia) {
-                            filterOK = true;
+                    var searchesMet = 0;
+                    var filtersMet = 0;
+                    
+                    Object.keys(self.currentSearches).forEach(function(key){
+                        if (item[key] === self.currentFilters[key]) {
+                            searchesMet++;
                         }
-                    }
+                    });
+
+                    
+                    Object.keys(self.currentFilters).forEach(function(key){
+                        if (self.currentFilters[key] === "Todos") {
+                        filtersMet++;
+                        } else {
+                            if (item[key] === self.currentFilters[key]) {
+                                filtersMet++;
+                            }
+                        }
+                    });
+
+                    if (filtersMet === Object.keys(self.currentFilters).length) filterOK = true;
+                    if (searchesMet === Object.keys(self.currentSearches).length) searchOK = true;
 
                     return searchOK === true && filterOK === true;
                 });
@@ -245,6 +259,7 @@
                 this.filteredData = filteredAndSortedData;
                 this.count = filteredAndSortedData.length;
                 this.page = 1;
+                console.log("Count " + this.count);
             },
 
             /**
