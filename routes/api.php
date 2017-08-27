@@ -38,7 +38,7 @@ Route::group(['middleware' => 'api'], function() {
 
 
     Route::get('/ranking', 'CimeroRankingController@baseRanking');
-    Route::get('/statistics/cimasbylogro/', 'StatisticsController@getRankingOfAllCimeros');
+    Route::get('/statistics/cimasbylogro/', 'StatisticsController@getAllCimasRankedByLogros');
 
     // Temporary - need rerouting via api:auth
 

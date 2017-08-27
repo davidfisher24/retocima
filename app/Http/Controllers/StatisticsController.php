@@ -41,8 +41,13 @@ class StatisticsController extends Controller
     {
         return view('publicarea.estadistica');
     }
-    
 
+    /**
+     * Returns provinces started statistics.
+     *
+     * @return Table object
+     */
+    
     public function getCimerosWithProvinciasWithAtLeastOneLogro()
     {
         $cimeros = $this->cimeroLogroService->getCimerosWithProvinciasWithAtLeastOneLogro();
@@ -60,6 +65,13 @@ class StatisticsController extends Controller
         );
     }
 
+    /**
+     * Returns cima by ascensiones statistics.
+     *
+     * @return Table object
+     */
+    
+
     public function getAllCimasRankedByLogros()
     {
         $cimas = $this->cimaLogroService->getAllCimasRankedByLogros();
@@ -75,8 +87,16 @@ class StatisticsController extends Controller
         return array(
             "dataObject" => $cimas->flatten(),
             "columns" =>  $columns,
+            "filters" => array('provincia'),
         );
     }
+
+    /**
+     * Returns provinces by ascensiones.
+     *
+     * @return Table object
+     */
+    
 
     public function getAllProvinciasRankedByLogros()
     {
@@ -94,6 +114,13 @@ class StatisticsController extends Controller
         );
     }
 
+    /**
+     * Returns communidads by acensiones statsitcs.
+     *
+     * @return Table object
+     */
+    
+
     public function getAllCommunidadsRankedByLogros()
     {
         $communidads = $this->communidadLogroService->getAllCommunidadsRankedByLogros();
@@ -110,9 +137,18 @@ class StatisticsController extends Controller
         );
     }
 
+    /**
+     * Returns cimeros ranking inside a province/communidad/iberia
+     *
+     * @param $request requests with keys and id filter
+     * example  $filter = array('key' => 'communidad_id', 'id' => 16);
+     *
+     * @return Table object
+     */
+    
+
     public function getRankingOfAllCimeros(Request $request)
     {
-        //$filter = array('key' => 'communidad_id', 'id' => 16);
 
         $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros($filter = $filter);
 

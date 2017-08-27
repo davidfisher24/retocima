@@ -53,6 +53,7 @@ class CimeroRankingController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
+            "filters" => ['provincia'],
         );
     }
 

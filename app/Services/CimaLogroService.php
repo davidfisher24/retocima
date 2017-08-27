@@ -36,8 +36,9 @@ class CimaLogroService
      */
 
     public function getAllCimasRankedByLogros(){
-        return $this->logroRepository->countLogrosByAForeignKey('cima_id')->map(function($item){
+        return $this->logroRepository->countLogrosByAForeignKey('cima_id')->map(function($item,$i){
             $cima = $item->cima()->first();
+            $item->ranking = $i + 1;
             $item->nombre = $cima->nombre;
             $item->codigo = $cima->codigo;
             $item->provincia = $cima->provincia;

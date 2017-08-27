@@ -5,10 +5,14 @@
         <div class="col-md-12">
             <div class="row">
 
+                <!-- Page change -->
+
                 <select v-if="dataObject" v-model="page">
                     <option v-show="count === 0" disabled>--</option>
                     <option v-for="n in pages" :value="n">{{n}}</option>
                 </select>
+
+                <!-- Page Size change -->
 
                 <select v-if="dataObject" v-model="pagination">
                     <option v-show="count === 0" disabled>0</option>
@@ -18,7 +22,18 @@
                     <option v-if="count / 100 >= 1">100</option>
                 </select>
 
+                <!-- Option Filters -->
+
+                <select v-for="(value, key) in filters" @change="filterByOption" :id="key">
+                    <option selected>{{key}}</option> 
+                    <option v-for="option in filters[key]" :value="option">{{option}}</option>
+                </select>
+
+                <!-- Text Filters -->
+
                 <input v-if="dataObject" placeholder="Buscar ... " @keyup="filterBySearch">
+
+                <!-- Table -->
 
                 <table v-if="dataObject" class="table table-striped">
                     <thead class="thead-default">
@@ -37,6 +52,8 @@
                         </tr>
                     </tbody>
                 </table>
+
+
             </div>
         </div>
     </div>
@@ -56,7 +73,7 @@
                 page: 1,
                 pagination: 25,
 
-
+                filters: null,
             };
         },
         computed: {
@@ -81,13 +98,44 @@
 
             fetchData:function(){
                 var self = this;
-                axios.get('api/statistics/cimasbylogro').then(function(response){
+
+                axios.get('api/ranking').then(function(response){
                     self.dataObject = response.data.dataObject;
                     self.filteredData = response.data.dataObject;
                     self.count = response.data.dataObject.length;
                     self.columns = response.data.columns;
+                    self.prepareSelectFilters(response.data.dataObject, response.data.filters);
                 });
             },
+
+            /**
+             * Parses the select filters from the given inputs and data
+             * @trigger fetchData() ajax promise
+             * @param object data
+             * @param array filterOptions
+             * @result sets the select option filters in the model
+            */
+
+            prepareSelectFilters: function(data,filtersOptions){
+                var filters = {};
+                filtersOptions.forEach(function(item){
+                    filters[item] = [];
+                });
+
+                data.forEach(function(item){
+                    for (var key in filters) {
+                        if (filters[key].indexOf(item[key]) === -1)
+                            filters[key].push(item[key]);
+                    };
+                });
+
+                for (var key in filters) {
+                    filters[key].sort();
+                };
+                this.filters = filters;
+            },
+
+            
 
             /**
              * Filters on a search, or resets if no serach entered
@@ -115,6 +163,19 @@
                 this.count = filteredData.length;
                 this.page = 1;
 
+            },
+
+            /**
+             * Filters on an option change
+             * @trigger changing any select option filter
+             * @param event (id = key, value = option)
+             * @result filters the data object by the requested input
+            */
+
+            filterByOption: function(event){
+                this.filteredData = this.dataObject.filter(function (item) {
+                    return item[event.target.id] === event.target.value;
+                });
             },
 
             /**
