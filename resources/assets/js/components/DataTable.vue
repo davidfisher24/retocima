@@ -104,8 +104,9 @@
 
             fetchData:function(){
                 var self = this;
+                //'api/statistics/cimasbylogro'
 
-                axios.get('api/statistics/cimasbylogro').then(function(response){
+                axios.get(this.$parent.apiroute).then(function(response){
                     self.dataObject = response.data.dataObject;
                     self.filteredData = response.data.dataObject;
                     self.count = response.data.dataObject.length;

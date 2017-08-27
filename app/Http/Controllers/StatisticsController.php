@@ -62,6 +62,7 @@ class StatisticsController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
+            "searches" => array('nombre'),
         );
     }
 
@@ -87,8 +88,8 @@ class StatisticsController extends Controller
         return array(
             "dataObject" => $cimas->flatten(),
             "columns" =>  $columns,
-            "filters" => array(),
-            "searches" => array('provincia','nombre'),
+            "filters" => array('provincia'),
+            "searches" => array('nombre'),
         );
     }
 
@@ -133,7 +134,7 @@ class StatisticsController extends Controller
         );
 
         return array(
-            "dataObject" => $comunidads->flatten(),
+            "dataObject" => $communidads->flatten(),
             "columns" =>  $columns
         );
     }
