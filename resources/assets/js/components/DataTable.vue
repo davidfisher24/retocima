@@ -40,8 +40,8 @@
                         <tr>
                             <th v-for="column in columns" >
                                 {{column.title}}
-                                <a @click="orderByAscending" :data-order="column.field">a</a>
-                                <a @click="orderByDescending" :data-order="column.field">d</a>
+                                <a @click="setOrderingPreference" :data-field="column.field" data-order="asc">a</a>
+                                <a @click="setOrderingPreference" :data-field="column.field" data-order="desc">d</a>
                             </th>
                         </tr>
                     </thead>
@@ -129,6 +129,7 @@
                 var filters = {};
                 filtersOptions.forEach(function(item){
                     filters[item] = [];
+                    self.currentFilters[item] = "Todos";
                 });
 
                 data.forEach(function(item){
@@ -185,45 +186,23 @@
             },
 
             /**
-             * Stores a current ordering filter
+             * Stores a current ordering filter 
              * @trigger clicking a table header order icon
-             * @param event.target.value
-             * @result deletes or sets the filter in the currentFilters object and calls the filterTable function
+             * @param event.target {field: dataset.field, order: dataset.order}
+             * @result Sets the ordering option in the currentordering array and calls the filterTable function
             */
 
-            orderByAscending:function(event){
-                this.currentOrdering = [event.target.dataset.order,"asc"];
+            setOrderingPreference:function(event){
+                console.log(event.target.dataset);
+                this.currentOrdering = [event.target.dataset.field,event.target.dataset.order];
+                console.log(this.currentOrdering);
                 this.prepareFilteredTable();
-
-                /*var self = this;
-                var field = event.target.dataset.order;
-                this.filteredData = this.filteredData.sort(function(a,b){
-                    if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return -1;
-                    if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return 1;
-                    return 0;
-                });*/
-
             },
 
             /**
-             * Sorts the data in descending order
-             * @trigger clicking any ascending button in column header
-             * @param event (field = event.target.dataset.order)
-             * @result orders the visible data in descending order
+             * Prepares the dataobject into the filteredData to be shown
+             * @trigger any filter or change function
             */
-
-            orderByDescending:function(event){
-                this.currentOrdering = [event.target.dataset.order,"desc"];
-                this.prepareFilteredTable();
-
-                /*var self = this;
-                var field = event.target.dataset.order;
-                this.filteredData = this.filteredData.sort(function(a,b){
-                    if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return -1;
-                    if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return 1;
-                    return 0;
-                });*/
-            },
 
             prepareFilteredTable:function(){
                 //currentFilters: [], // Array of objects {field: filter}
@@ -251,11 +230,10 @@
                             filterOK = true;
                         }
                     }
-                    
+
                     return searchOK === true && filterOK === true;
                 });
 
-                console.log(self.currentOrdering[1]);
                 if (self.currentOrdering.length > 0 && self.currentOrdering[1] === 'asc') {
                    var filteredAndSortedData = self.sortDataByAscending(filteredData,self.currentOrdering[0]); 
                 } else if (self.currentOrdering.length > 0 && self.currentOrdering[1] === 'desc') {
@@ -269,6 +247,13 @@
                 this.page = 1;
             },
 
+            /**
+             * Sorts data in ascending order
+             * @ param data dataobject
+             * @ param string field to search on
+             * @ return sorted data object
+            */
+
             sortDataByAscending:function(data,field){
                 var self = this;
 
@@ -278,6 +263,13 @@
                     return 0;
                 });
             },
+
+            /**
+             * Sorts data in descending order
+             * @ param data dataobject
+             * @ param string field to search on
+             * @ return sorted data object
+            */
 
             sortDataByDescending:function(data,field){
                 var self = this;
