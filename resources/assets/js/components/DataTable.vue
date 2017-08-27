@@ -214,19 +214,11 @@
                     var filterOK = false;
                     var searchOK = false;
 
-                    if (!self.currentSearches.nombre) {
-                        searchOK = true;
-                    } else {
-                        if (self.currentSearches.nombre && self.stripAccents(item.nombre.toLowerCase()).indexOf(self.stripAccents(self.currentSearches.nombre.toLowerCase())) !== -1) {
-                            searchOK = true;
-                        }
-                    }
-
                     var searchesMet = 0;
                     var filtersMet = 0;
-                    
+
                     Object.keys(self.currentSearches).forEach(function(key){
-                        if (item[key] === self.currentFilters[key]) {
+                        if (self.stripAccents(item[key].toLowerCase()).indexOf(self.stripAccents(self.currentSearches[key].toLowerCase())) !== -1) {
                             searchesMet++;
                         }
                     });
@@ -259,7 +251,6 @@
                 this.filteredData = filteredAndSortedData;
                 this.count = filteredAndSortedData.length;
                 this.page = 1;
-                console.log("Count " + this.count);
             },
 
             /**

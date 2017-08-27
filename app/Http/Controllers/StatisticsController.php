@@ -87,8 +87,8 @@ class StatisticsController extends Controller
         return array(
             "dataObject" => $cimas->flatten(),
             "columns" =>  $columns,
-            "filters" => array('provincia'),
-            "searches" => array('nombre'),
+            "filters" => array(),
+            "searches" => array('provincia','nombre'),
         );
     }
 
