@@ -33,8 +33,9 @@ class CommunidadLogroService
      */
 
     public function getAllCommunidadsRankedByLogros(){
-        return $this->logroRepository->countLogrosByAForeignKey('communidad_id')->map(function($item){
+        return $this->logroRepository->countLogrosByAForeignKey('communidad_id')->map(function($item,$i){
             $communidad = $item->communidad()->first();
+            $item->ranking = $i + 1;
             $item->nombre = $communidad->nombre;
             return $item;
         });

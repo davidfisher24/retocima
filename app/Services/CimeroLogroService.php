@@ -105,13 +105,16 @@ class CimeroLogroService
 
     public function getCimerosWithProvinciasWithAtLeastOneLogro()
     {
-        return $this->logroRepository->getLogrosGroupedByTwoForeignKeys('cimero_id','provincia_id')->groupBy('cimero_id')->transform(function($item){
-            $item->count = $item->count();
-            $cimero = $item->first()->cimero;
-            $item->nombre = $cimero->getFullName();
+        return $this->logroRepository->getLogrosGroupedByTwoForeignKeys('cimero_id','provincia_id')->groupBy('cimero_id')->transform(function($item,$i){
+            $item->first()->count = count($item);
+            return $item->first();
+        })->sortByDesc('count')->values()->map(function($item,$i){
+            $cimero = $item->cimero;
             $item->id = $cimero->id;
+            $item->nombre = $cimero->getFullName();
+            $item->ranking = $i + 1;
             return $item;
-        })->sortByDesc('count');
+        });
     }
 
     /**

@@ -113,7 +113,7 @@ class LogroRepository
 
     public function getLogrosGroupedByTwoForeignKeys($foreign_key_1,$foreign_key_2)
     {
-        return $this->model->select($foreign_key_1,$foreign_key_2)->groupBy($foreign_key_1,$foreign_key_2)->get();
+        return $this->model->select($foreign_key_1,$foreign_key_2)->groupBy($foreign_key_1,$foreign_key_2)->get()->values();
     }
 
 }

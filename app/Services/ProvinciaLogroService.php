@@ -33,8 +33,9 @@ class ProvinciaLogroService
      */
 
     public function getAllProvinciasRankedByLogros(){
-        return $this->logroRepository->countLogrosByAForeignKey('provincia_id')->map(function($item){
+        return $this->logroRepository->countLogrosByAForeignKey('provincia_id')->map(function($item,$i){
             $provincia = $item->provincia()->first();
+            $item->ranking = $i + 1;
             $item->nombre = $provincia->nombre;
             return $item;
         });
