@@ -24,7 +24,7 @@
 
                 <!-- Option Filters -->
 
-                <select v-for="(value, key) in filters" @change="filterByOption" :id="key">
+                <select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
                     <option selected>{{key}}</option> 
                     <option v-for="option in filters[key]" :value="option">{{option}}</option>
                 </select>
@@ -40,6 +40,8 @@
                         <tr>
                             <th v-for="column in columns" >
                                 {{column.title}}
+                                <a @click="orderByAscending" :data-order="column.field">a</a>
+                                <a @click="orderByDescending" :data-order="column.field">d</a>
                             </th>
                         </tr>
                     </thead>
@@ -99,7 +101,7 @@
             fetchData:function(){
                 var self = this;
 
-                axios.get('api/ranking').then(function(response){
+                axios.get('api/statistics/cimasbylogro').then(function(response){
                     self.dataObject = response.data.dataObject;
                     self.filteredData = response.data.dataObject;
                     self.count = response.data.dataObject.length;
@@ -117,6 +119,8 @@
             */
 
             prepareSelectFilters: function(data,filtersOptions){
+                var self = this;
+
                 var filters = {};
                 filtersOptions.forEach(function(item){
                     filters[item] = [];
@@ -130,7 +134,11 @@
                 });
 
                 for (var key in filters) {
-                    filters[key].sort();
+                    filters[key].sort(function(a,b){
+                        if(self.stripAccents(a) < self.stripAccents(b)) return -1;
+                        if(self.stripAccents(a) > self.stripAccents(b)) return 1;
+                        return 0;
+                    });
                 };
                 this.filters = filters;
             },
@@ -173,8 +181,44 @@
             */
 
             filterByOption: function(event){
+                var self = this;
                 this.filteredData = this.dataObject.filter(function (item) {
-                    return item[event.target.id] === event.target.value;
+                    return item[event.target.dataset.filter] === event.target.value;
+                });
+            },
+
+            /**
+             * Sorts the data in ascending order
+             * @trigger clicking any ascending button in column header
+             * @param event (field = event.target.dataset.order)
+             * @result orders the visible data in ascending order
+            */
+
+            orderByAscending:function(event){
+                var self = this;
+                var field = event.target.dataset.order;
+                this.filteredData = this.filteredData.sort(function(a,b){
+                    if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return -1;
+                    if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return 1;
+                    return 0;
+                });
+
+            },
+
+            /**
+             * Sorts the data in descending order
+             * @trigger clicking any ascending button in column header
+             * @param event (field = event.target.dataset.order)
+             * @result orders the visible data in descending order
+            */
+
+            orderByDescending:function(event){
+                var self = this;
+                var field = event.target.dataset.order;
+                this.filteredData = this.filteredData.sort(function(a,b){
+                    if(self.stripAccents(a[field]) < self.stripAccents(b[field])) return -1;
+                    if(self.stripAccents(a[field]) > self.stripAccents(b[field])) return 1;
+                    return 0;
                 });
             },
 
@@ -194,10 +238,11 @@
                     'ü': 'u',                      
                 };
 
+                if (typeof(string) === "number") { return string; }
                 if (!string) { return ''; }
                 var returnString = '';
                 for (var i = 0; i < string.length; i++) {
-                    returnString += accent_map[string.charAt(i)] || string.charAt(i);
+                    returnString += accent_map[string.toLowerCase().charAt(i)] || string.toLowerCase().charAt(i);
                 }
                 return returnString;
             },
