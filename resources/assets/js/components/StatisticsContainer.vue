@@ -1,3 +1,27 @@
+<style>
+    .tooltiptrigger {
+
+    }
+
+    .tooltiptrigger .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltiptrigger:hover .tooltiptext {
+        visibility: visible;
+    }
+</style>
+
 <template> 
     <div class="row">
         <div class="col-md-3">
@@ -37,7 +61,11 @@
 
         <div class="col-md-9">
             <div v-if="showcommunidads">
-                <img href="#" v-for="communidad in communidads" :src="communidad.imageurl"  @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
+                <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
+                    <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
+                    <span class="tooltiptext">{{communidad.nombre}}</span>
+                </div>
+                
          
                 <!--<a href="#" v-for="communidad in communidads" @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads">
                     {{communidad.nombre}}
@@ -88,6 +116,7 @@
             */
 
             changeApiRoute: function(event){
+
                 this.showcommunidads = event.target.dataset.show === "showcommunidads" ? true : false;
                 this.showprovinces = event.target.dataset.show === "showprovinces" ? true : false;
 
