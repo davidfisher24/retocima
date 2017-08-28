@@ -44,6 +44,7 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('/ranking', 'CimeroRankingController@baseRanking');
 
     // Statistics via ajax
+    Route::get('/ranking/baseranking/', 'CimeroRankingController@baseRanking');
     Route::get('/statistics/cimasbylogro/', 'StatisticsController@getAllCimasRankedByLogros');
     Route::get('/statistics/cimerosbyprovincesstarted/', 'StatisticsController@getCimerosWithProvinciasWithAtLeastOneLogro');
     Route::get('/statistics/provincesbylogro/', 'StatisticsController@getAllProvinciasRankedByLogros');

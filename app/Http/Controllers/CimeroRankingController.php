@@ -26,6 +26,13 @@ class CimeroRankingController extends Controller
         $this->cimeroLogroService = $cimeroLogroService;
     }
 
+    /**
+    * Returns base page view
+    * 
+    * @return blade view
+    */
+
+
     public function displayRankingPage()
     {
         return view('publicarea.ranking');
@@ -54,6 +61,7 @@ class CimeroRankingController extends Controller
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
             "filters" => array('provincia'),
+            "searches" => array('nombre'),
         );
     }
 
