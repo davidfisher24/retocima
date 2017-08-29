@@ -105,7 +105,7 @@ class AreaCompletionService
     * 
     * @param integer $provinciaId/$communidadId/$iberiaId
     *
-    * @return collection
+    * @return array
     */
 
 	public function getUsersWhoHaveCompletedAProvince($provinceId)
@@ -124,6 +124,48 @@ class AreaCompletionService
 	}
 
 	/**
+    * Gets all provinces ordered by number of completions
+    *
+    * @return array orders by completions
+    */
+
+	public function getProvincesOrderedByCompletions()
+	{
+		$number = Provincia::count();
+		$provinces = array();
+
+		for ($a = 1; $a <= $number; $a++) {
+			$province = Provincia::find($a);
+			$completions = $this->getAllCimerosWhoHaveCompletedAnArea('provincia_id',$a, $count = true);
+			$provinces[$completions] = array("provincia" => $province, "completions" => $completions);
+		}
+
+		krsort($provinces);
+		return array_values($provinces);
+	}
+
+	/**
+    * Gets all communidads ordered by number of completions
+    *
+    * @return array orders by completions
+    */
+
+	public function getCommunidadsOrderedByCompletions()
+	{
+		$number = Communidad::count();
+		$communidads = array();
+
+		for ($a = 1; $a <= $number; $a++) {
+			$communidad = Communidad::find($a);
+			$completions = $this->getAllCimerosWhoHaveCompletedAnArea('communidad_id',$a, $count = true);
+			$communidads[$completions] = array("communidad" => $communidad, "completions" => $completions);
+		}
+
+		krsort($communidads);
+		return array_values($communidads);
+	}
+
+	/**
     * performs the sql query to determine the users who have completed a province/communidad/iberia
     * 
     * @param foreign_key provincia_id/communidad_id/iberia_id
@@ -132,7 +174,7 @@ class AreaCompletionService
     * @return collection
     */
 
-	private function getAllCimerosWhoHaveCompletedAnArea($foreign_key,$id)
+	private function getAllCimerosWhoHaveCompletedAnArea($foreign_key,$id, $count = false)
 	{
 		$cimaCount = Cima::where($foreign_key, $id)->where('estado',1)->count();
 
@@ -142,8 +184,12 @@ class AreaCompletionService
 		$returnArray = array();
 
 		foreach ($result as $cimero) array_push($returnArray,Cimero::find($cimero->cimero_id));
-		return $returnArray;
+
+		if ($count) return count($returnArray);
+		else return $returnArray;
 	}
+
+	
 
 }
 
