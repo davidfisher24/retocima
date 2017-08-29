@@ -110,45 +110,39 @@ class AreaCompletionService
 
 	public function getUsersWhoHaveCompletedAProvince($provinceId)
 	{
-		$provinceCimas = Provincia::find($provinceId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-
-		$cimeros = Logro::whereIn('cima_codigo',$provinceCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($provinceCimas) {
-			return !array_diff($provinceCimas,$item->unique('cima_codigo')->pluck('cima_codigo')->toArray());
-		});
-
-		return $cimeros->map(function($item){
-			$id = $item->first()->cimero_id;
-			return Cimero::find($id);
-		});
+		return $this->getAllCimerosWhoHaveCompletedAnArea('provincia_id',$provinceId);
 	}
 
 	public function getUsersWhoHaveCompletedACommunidad($communidadId)
 	{
-		$communidadCimas = Communidad::find($communidadId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-
-		$cimeros = Logro::whereIn('cima_codigo',$communidadCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($communidadCimas) {
-			return !array_diff($communidadCimas,$item->unique('cima_codigo')->pluck('cima_codigo')->toArray());
-		});
-
-		return $cimeros->map(function($item){
-			$id = $item->first()->cimero_id;
-			return Cimero::find($id);
-		});
+		return $this->getAllCimerosWhoHaveCompletedAnArea('communidad_id',$communidadId);
 	}
 
 	public function getUsersWhoHaveCompletedAIberia($iberiaId)
 	{
-		$iberiaCimas = Iberia::find($iberiaId)->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-		$count = count($iberiaCimas);
+		return $this->getAllCimerosWhoHaveCompletedAnArea('iberia_id',$iberiaId);
+	}
 
-		$cimeros = Logro::whereIn('cima_codigo',$iberiaCimas)->get()->groupBy('cimero_id')->filter(function($item) use ($iberiaCimas) {
-			return !array_diff($iberiaCimas,$item->unique('cima_codigo')->pluck('cima_codigo')->toArray());
-		});
+	/**
+    * performs the sql query to determine the users who have completed a province/communidad/iberia
+    * 
+    * @param foreign_key provincia_id/communidad_id/iberia_id
+    * @param integer $id
+    *
+    * @return collection
+    */
 
-		return $cimeros->map(function($item){
-			$id = $item->first()->cimero_id;
-			return Cimero::find($id);
-		});
+	private function getAllCimerosWhoHaveCompletedAnArea($foreign_key,$id)
+	{
+		$cimaCount = Cima::where($foreign_key, $id)->where('estado',1)->count();
+
+		$rawQuery = "select * from (select count(distinct cima_codigo) as count, cimero_id from logros where ".$foreign_key." = ".$id." and cima_estado = 1 and cima_codigo in (select distinct codigo from cimas where ".$foreign_key." = ".$id." and estado = 1) group by cimero_id) as t where t.count = " . $cimaCount;
+		$result = DB::select($rawQuery);
+
+		$returnArray = array();
+
+		foreach ($result as $cimero) array_push($returnArray,Cimero::find($cimero->cimero_id));
+		return $returnArray;
 	}
 
 }
