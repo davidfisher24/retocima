@@ -166,12 +166,13 @@ class AreaCompletionService
 	}
 
 	/**
-    * performs the sql query to determine the users who have completed a province/communidad/iberia
+    * performs the sql query to determine all the users who have completed a province/communidad/iberia
     * 
     * @param foreign_key provincia_id/communidad_id/iberia_id
     * @param integer $id
+    * @param boolean $count  return only the count or full data
     *
-    * @return collection
+    * @return array $returnArray
     */
 
 	private function getAllCimerosWhoHaveCompletedAnArea($foreign_key,$id, $count = false)
@@ -189,9 +190,28 @@ class AreaCompletionService
 		else return $returnArray;
 	}
 
-	
+	/**
+    * performs the sql query to determine all the provinces/communidads/iberia completed by a user
+    * 
+    * @param foreign_key provincia_id/communidad_id/iberia_id
+    * @param integer $cimeroId
+    *
+    * @return array $completedAreas
+    */
 
+	public function getAreasCompletedByACimero($foreign_key,$cimeroId)
+	{
+		$rawQuery = "select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key;
+
+		return array_filter(DB::select($rawQuery),function($item){
+			return $item->count_logros === $item->count_all;
+		});
+
+	}
+	
 }
 
 //$c = new App\Services\AreaCompletionService()
 //$c->getUsersWhoHaveCompletedAProvince(1)
+
+//select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = 2 and logros.cima_estado = 1 and cimas.estado = 1 group by logros.provincia_id
