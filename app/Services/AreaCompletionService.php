@@ -121,19 +121,18 @@ class AreaCompletionService
     * 
     * @param integer $cimeroId
     *
-    * @return collection
+    * @return array ["provincias" => [App\Provincia,App\Provincia], "communidads" => [App\Communidad,App\Communidad]]
     */
 
-	/*public function getCImerosCompletedProvincesAndCommunidads($cimeroId)
+	public function getCImerosCompletedProvincesAndCommunidads($cimeroId)
 	{
+		$result = $this->getCimerosCompletedProvinceAndCommunidadIds($cimeroId);
 
-		return $this->getCimerosCompletedProvinces($cimeroId)->groupBy('communidad_id')->map(function($item) {
-			if (Provincia::where('communidad_id',$item->first()->communidad_id)->count() === count($item)) 
-				return Communidad::find($item->first()->communidad_id);
-			else return $item;
-		});
+		$result["communidads"] = array_map(function($item){return Communidad::find($item);},$result["communidads"]);
+		$result["provincias"] = array_map(function($item){return Provincia::find($item);},$result["provincias"]);
 
-	}*/
+		return $result;
+	}
 
 	
 
@@ -244,11 +243,34 @@ class AreaCompletionService
 		$rawQuery = "select id from cimas where ".$foreign_key." = ".$id." and estado = 1 and codigo not in (select distinct cima_codigo from logros where cimero_id = ".$cimeroId." and ".$foreign_key." = ".$id." and cima_estado = 1);";
 		return DB::select($rawQuery);
 	}
+
+	/**
+    * performs an sql query to get completed communidads and provinces for a cimero. Ignores the provinces if the communidad is complete
+    * 
+    * @param integer $cimeroId
+    *
+    * @return array ("provincias" => [id,id], "communidads" => [id,id])
+    */
+
+	private function getCimerosCompletedProvinceAndCommunidadIds($cimeroId)
+	{
+		$queryCommunidads = DB::select('select id from(select count(distinct logros.cima_codigo) as count_logros, logros.communidad_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.communidad_id =cimas.communidad_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 group by logros.communidad_id HAVING count_logros = count_all) X;');
+		$communidads = collect($queryCommunidads)->map(function($x){return $x->id;})->toArray();
+
+		$eliminateCommunidadsQuery = ""; 
+		if (count($communidads) > 0) $eliminateCommunidadsQuery = 'and logros.communidad_id not in ('.implode(',',$communidads).') ';
+
+		$queryProvincias = DB::select('select id from (select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 '.$eliminateCommunidadsQuery.' group by logros.provincia_id HAVING count_logros = count_all) X;');
+		$provincias = collect($queryProvincias)->map(function($x){return $x->id;})->toArray();
+
+		return array("communidads" => $communidads, "provincias" => $provincias);
+
+	}
 	
 }
 
 //$c = new App\Services\AreaCompletionService()
-//$c->getUsersWhoHaveCompletedAProvince(1)
+
 
 
 
