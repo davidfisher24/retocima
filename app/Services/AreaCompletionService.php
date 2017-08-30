@@ -50,35 +50,35 @@ class AreaCompletionService
     * 
     * @param integer $cimeroId
     *
-    * @return collection
+    * @return array of eloquent models Provincia/Communidad/Iberia
     */
 
 
 	public function getCimerosCompletedProvinces($cimeroId)
 	{
-		return Provincia::all()->filter(function($item) use ($cimeroId) {
-			$provincia = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-			$logros = Logro::where('cimero_id',$cimeroId)->where('provincia_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
-			return !array_diff($provincia,$logros);
-		});
+		$results = array();
+		foreach ($this->getAreasCompletedByACimero('provincia_id',$cimeroId) as $area) {
+		    $results[] = Provincia::find($area->id);
+		}
+		return $results;
 	}
 
 	public function getCimerosCompletedCommunidads($cimeroId)
 	{
-		return Communidad::all()->filter(function($item) use ($cimeroId) {
-			$communidad = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-			$logros = Logro::where('cimero_id',$cimeroId)->where('communidad_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
-			return !array_diff($communidad,$logros);
-		});
+		$results = array();
+		foreach ($this->getAreasCompletedByACimero('communidad_id',$cimeroId) as $area) {
+		    $results[] = Communidad::find($area->id);
+		}
+		return $results;
 	}
 
 	public function getCimerosCompletedIberias($cimeroId)
 	{
-		return Iberia::all()->filter(function($item) use ($cimeroId) {
-			$iberia = $item->cimas()->where('estado',1)->get()->pluck('codigo')->toArray();
-			$logros = Logro::where('cimero_id',$cimeroId)->where('iberia_id',$item->id)->get()->unique('cima_codigo')->pluck('cima_codigo')->toArray();
-			return !array_diff($iberia,$logros);
-		});
+		$results = array();
+		foreach ($this->getAreasCompletedByACimero('iberia_id',$cimeroId) as $area) {
+		    $results[] = Iberia::find($area->id);
+		}
+		return $results;
 	}
 
 	/**
@@ -199,7 +199,7 @@ class AreaCompletionService
     * @return array $completedAreas
     */
 
-	public function getAreasCompletedByACimero($foreign_key,$cimeroId)
+	private function getAreasCompletedByACimero($foreign_key,$cimeroId)
 	{
 		$rawQuery = "select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key;
 
