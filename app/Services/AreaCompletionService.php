@@ -201,11 +201,9 @@ class AreaCompletionService
 
 	private function getAreasCompletedByACimero($foreign_key,$cimeroId)
 	{
-		$rawQuery = "select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key;
+		$rawQuery = "select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key." HAVING count_logros = count_all";
 
-		return array_filter(DB::select($rawQuery),function($item){
-			return $item->count_logros === $item->count_all;
-		});
+		return DB::select($rawQuery);
 
 	}
 	
@@ -214,4 +212,6 @@ class AreaCompletionService
 //$c = new App\Services\AreaCompletionService()
 //$c->getUsersWhoHaveCompletedAProvince(1)
 
-//select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = 2 and logros.cima_estado = 1 and cimas.estado = 1 group by logros.provincia_id
+//select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = 2 and logros.cima_estado = 1 and cimas.estado = 1 group by logros.provincia_id HAVING count_logros = count_all;
+
+//select * from (select count(distinct cima_codigo) as count, cimero_id from logros where provincia_id = 1 and cima_estado = 1 and cima_codigo in (select distinct codigo from cimas where provincia_id = 1 and estado = 1) group by cimero_id) as t where t.count = 11;
