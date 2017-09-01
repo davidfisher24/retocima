@@ -9,6 +9,8 @@
 */
 
 use Illuminate\Database\Seeder;
+use App\Cima;
+use App\Vertiente;
 
 class VertientesAdditionalDataTableSeeder extends Seeder
 {
@@ -18,6 +20,8 @@ class VertientesAdditionalDataTableSeeder extends Seeder
      *
      * @return void
      */
+
+    public $error_log = array();
 
     public function run()
     {
@@ -29,6 +33,7 @@ class VertientesAdditionalDataTableSeeder extends Seeder
 		}
 
 		fclose($file);
+        echo implode(",",$this->error_log);
     }
 
     /**
@@ -39,27 +44,39 @@ class VertientesAdditionalDataTableSeeder extends Seeder
      */
 
     public function seedVertienteData($csvArray){
-    	$cimaCodigo = $csvArray[0];
-    	$cimaId;
+        if (is_array($csvArray)) {
+            $cimaCodigo = $csvArray[0];
+            $cimaId = null;;
 
-    	if (substr($cimaCodigo,4,1) === "e") {
-    		$cimaCodigo = substr($cimaCodigo,0,4);
-    		$cimaId = Cima::where('codigo',$cimaCodigo)->where('estado',2)->first()->id;
-    	} else {
-    		$cimaId = Cima::where('codigo',$cimaCodigo)->whereIn('estado',[1,3])->first()->id;
-    	}
+            if (substr($cimaCodigo,4,1) === "e") {
+                $cimaCodigo = substr($cimaCodigo,0,4);
+                $cima = Cima::where('codigo',$cimaCodigo)->where('estado',2)->first();
+                if ($cima) $cimaId = $cima->id;
+            } else {
+                $cima = Cima::where('codigo',$cimaCodigo)->whereIn('estado',[1,3])->first();
+                if ($cima) $cimaId = $cima->id;
+            }
 
-    	$vertienteName = $csvArray[1]; //lower case, strip accents
-    	$vertiente = Vertiente::where('cima_id',$cimaId)->where('vertiente',$vertienteName)->first();
+            if ($cimaId) {
+                $vertienteName = strtolower($csvArray[1]); //lower case, strip accents
+                $vertiente = Vertiente::where('cima_id',$cimaId)->where('vertiente',$vertienteName)->first();
 
-    	$vertiente->inicio = $csvArray[2];
-    	$vertiente->dudas = $csvArray[3];
-    	$vertiente->final = $csvArray[4];
-    	$vertiente->observaciones = $csvArray[5];
-    	$vertiente->lontitude_cima = $csvArray[6];
-    	$vertiente->latitude_cima = $csvArray[7];
-    	$vertiente->iframe = $csvArray[8];
+                if ($vertiente) {
+                    if($csvArray[2]) $vertiente->inicio = $csvArray[2];
+                    if($csvArray[3]) $vertiente->dudas = $csvArray[3];
+                    if($csvArray[4]) $vertiente->final = $csvArray[4];
+                    if($csvArray[5]) $vertiente->observaciones = $csvArray[5];
+                    if($csvArray[6]) $vertiente->longitude_cima = $csvArray[6];
+                    if($csvArray[7]) $vertiente->latitude_cima = $csvArray[7];
+                    if($csvArray[8]) $vertiente->iframe = $csvArray[8];
 
-		$vertiente->save();
+                    $vertiente->save();
+                } else {
+                    array_push($this->error_log,$csvArray[0]);
+                } 
+            }
+
+        }
+    	
     }
 }
