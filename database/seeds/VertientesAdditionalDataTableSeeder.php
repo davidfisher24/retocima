@@ -46,7 +46,7 @@ class VertientesAdditionalDataTableSeeder extends Seeder
     		$cimaCodigo = substr($cimaCodigo,0,4);
     		$cimaId = Cima::where('codigo',$cimaCodigo)->where('estado',2)->first()->id;
     	} else {
-    		$cimaId = Cima::where('codigo',$cimaCodigo)->where('estado',1)->first()->id;
+    		$cimaId = Cima::where('codigo',$cimaCodigo)->whereIn('estado',[1,3])->first()->id;
     	}
 
     	$vertienteName = $csvArray[1]; //lower case, strip accents

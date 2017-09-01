@@ -9,6 +9,7 @@
 */
 
 use Illuminate\Database\Seeder;
+use App\Cima;
 
 class CimasLatLngTableSeeder extends Seeder
 {
@@ -47,10 +48,14 @@ class CimasLatLngTableSeeder extends Seeder
     		$cimaCodigo = substr($cimaCodigo,0,4);
     		$cima = Cima::where('codigo',$cimaCodigo)->where('estado',2)->first();
     	} else {
-    		$cima = Cima::where('codigo',$cimaCodigo)->where('estado',1)->first();
+    		$cima = Cima::where('codigo',$cimaCodigo)->whereIn('estado',[1,3])->first();
     	}
 
-    	$cima->lontitude = $csvArray[2];
-    	$cima->latitude = $csvArray[3];
-		$cima->save();
+        if($cima) {
+            $cima->longitude = $csvArray[2];
+            $cima->latitude = $csvArray[3];
+            $cima->save();
+        }
     }
+
+}

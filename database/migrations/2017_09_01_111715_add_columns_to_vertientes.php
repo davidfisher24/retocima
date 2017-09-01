@@ -18,8 +18,8 @@ class AddColumnsToVertientes extends Migration
             $table->text('dudas');
             $table->text('final');
             $table->text('observaciones');
-            $table->decimal('longitude_cima',2,10);
-            $table->decimal('latitude_cima',2,10);
+            $table->decimal('longitude_cima',12,10);
+            $table->decimal('latitude_cima',12,10);
             $table->string('iframe',255);
         });
     }
