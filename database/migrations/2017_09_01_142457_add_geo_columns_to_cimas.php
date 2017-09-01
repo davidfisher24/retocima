@@ -14,8 +14,8 @@ class AddGeoColumnsToCimas extends Migration
     public function up()
     {
         Schema::table('cimas', function($table) {
-            $table->float('longitude');
-            $table->float('latitude');
+            $table->decimal('longitude',2,10);
+            $table->decimal('latitude',2,10);
         });
     }
 

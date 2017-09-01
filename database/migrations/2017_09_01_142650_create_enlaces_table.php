@@ -17,7 +17,7 @@ class CreateEnlacesTable extends Migration
             $table->increments('id');
             $table->increments('cima_id');
             $table->increments('vertiente_id');
-            $table->string('url');
+            $table->string('url',255);
             $table->timestamps();
         });
     }
