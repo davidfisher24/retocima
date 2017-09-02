@@ -5,6 +5,7 @@
 /public
 /storage/*.key
 /vendor
+/database/scrapers/node_modules
 /.idea
 /.vagrant
 Homestead.json

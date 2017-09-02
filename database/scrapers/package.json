@@ -1,0 +1,14 @@
+{
+  "name": "scaper",
+  "version": "0.0.1",
+  "description": "Website Scraper",
+  "main": "index.js",
+  "author": "David Fisher",
+  "dependencies": {
+    "cheerio": "latest",
+    "csv-write-stream": "^2.0.0",
+    "express": "latest",
+    "request": "latest",
+    "tinyreq": "^3.2.5"
+  }
+}
