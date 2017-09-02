@@ -58,8 +58,10 @@ class VertientesAdditionalDataTableSeeder extends Seeder
             }
 
             if ($cimaId) {
-                $vertienteName = strtolower($csvArray[1]); //lower case, strip accents
-                $vertiente = Vertiente::where('cima_id',$cimaId)->where('vertiente',$vertienteName)->first();
+
+                $vertiente = Vertiente::where('cima_id',$cimaId)->where('index',(int )$csvArray[1] + 1)->first();
+
+
 
                 if ($vertiente) {
                     if($csvArray[2]) $vertiente->inicio = $csvArray[2];
