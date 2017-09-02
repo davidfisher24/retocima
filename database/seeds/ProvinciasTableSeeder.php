@@ -21,7 +21,7 @@ class ProvinciasTableSeeder extends Seeder
 
     public function run()
     {
-        DB::table('provincias')->truncate();
+      DB::table('provincias')->truncate();
   		$file = fopen(base_path('/database/raw/provincias.csv'),"r");
 
   		while(! feof($file))
@@ -41,7 +41,7 @@ class ProvinciasTableSeeder extends Seeder
      */
 
     public function seedProvincia($csvArray){
-    	   $provincia = new Provincia();
+    	  $provincia = new Provincia();
 
       	$provincia->nombre = $csvArray[1];
       	$provincia->communidad_id = $csvArray[2];
