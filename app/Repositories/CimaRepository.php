@@ -32,7 +32,7 @@ class CimaRepository
      */
 
 	public function getCimaById($id){
-		return $this->model->with('vertientes','provincia','communidad','iberia')->find($id);
+		return $this->model->with('vertientes','vertientes.enlaces','provincia','communidad','iberia')->find($id);
 	}
 
 	/**

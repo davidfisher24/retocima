@@ -38,3 +38,10 @@ Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimero
 Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
 Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
 Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros');
+
+/* Test Routes */
+Route::get('/testcima/{id}',function($id){
+	$repo = new App\Repositories\CimaRepository(new App\Cima());
+	$cima = $repo->getCimaById($id);
+	return view('testarea.cima',compact('cima'));
+});
