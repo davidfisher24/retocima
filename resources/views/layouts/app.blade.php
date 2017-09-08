@@ -40,6 +40,7 @@
                         <li><a href="{{ url('/listadocommunidads') }}">Listado</a></li>
                         <li><a href="{{ url('/ranking') }}">Ranking</a></li>
                         <li><a href="{{ url('/estadistica') }}">Estadistica</a></li>
+                        <li><a href="{{ url('/mapa') }}">Mapa</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

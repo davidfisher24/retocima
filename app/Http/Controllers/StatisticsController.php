@@ -45,6 +45,7 @@ class StatisticsController extends Controller
         return view('publicarea.estadistica');
     }
 
+    
     /**
      * Returns provinces started statistics.
      *

@@ -88,6 +88,7 @@
                     <a href="{{ url('/ranking') }}">Ranking</a>
                     <a href="{{ url('/responsables') }}">Responsables</a>
                     <a href="{{ url('/estadistica') }}">Estadistica</a>
+                    <a href="{{ url('/mapa') }}">Mapa</a>
             </div>
         </div>
     </body>
