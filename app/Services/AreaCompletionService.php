@@ -272,9 +272,18 @@ class AreaCompletionService
 	
 	private function addRankingParameter($collection)
 	{	
+		$lastItem = null;
+		$currentRank = 1;
 		$rank = 1;
 		foreach($collection as $item){
-     	   $item->ranking = $rank;
+		   if ($item->completions === $lastItem) {
+		   		$item->ranking = $currentRank;
+		   }
+     	   else {
+     	   		$currentRank = $rank;
+     	   		$item->ranking = $rank;
+     	   }
+     	   $lastItem = $item->completions;
 		   $rank = $rank + 1;
 		}
 		return $collection;

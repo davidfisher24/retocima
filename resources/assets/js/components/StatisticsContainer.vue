@@ -66,10 +66,6 @@
                     <span class="tooltiptext">{{communidad.nombre}}</span>
                 </div>
                 
-         
-                <!--<a href="#" v-for="communidad in communidads" @click="changeApiRoute" :data-apiroute="communidad.apiroute" data-show="showcommunidads">
-                    {{communidad.nombre}}
-                </a>-->
             </div>
             <div v-if="showprovinces">
                 <a href="#" v-for="provincia in provincias" @click="changeApiRoute" :data-apiroute="provincia.apiroute" data-show="showprovinces">
