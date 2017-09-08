@@ -50,6 +50,11 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('/statistics/provincesbylogro/', 'StatisticsController@getAllProvinciasRankedByLogros');
     Route::get('/statistics/comunidadsbylogro/', 'StatisticsController@getAllCommunidadsRankedByLogros');
     Route::get('statistics/cimerosbylogroinzones/{filter}/{id}', 'StatisticsController@getRankingOfAllCimeros');
+    Route::get('statistics/provincesbycompletion', 'StatisticsController@getRankingOfProvincesByCompletion');
+    Route::get('statistics/comunidadsbycompletion', 'StatisticsController@getRankingOfCommunidadsByCompletion');
+    Route::get('statistics/cimerosbycommunidadscompleted', 'StatisticsController@getRankingOfCimerosByCommunidadCompletion');
+    Route::get('statistics/cimerosbyprovincescompleted', 'StatisticsController@getRankingOfCimerosByProvinciaCompletion');
+
 
 
     // Temporary - need rerouting via api:auth

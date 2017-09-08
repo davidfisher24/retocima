@@ -35,8 +35,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="api/statistics/cimerosbyprovincesstarted/">Por provincias comenzadas</a></li>
-                                    <li><a class="dropdown-item" href="#" @click="changeApiRoute">Por provincias completadas</a></li>
-                                    <li><a class="dropdown-item" href="#" @click="changeApiRoute">Por CC.AA. completadas</a></li>
+                                    <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="api/statistics/cimerosbyprovincescompleted/">Por provincias completadas</a></li>
+                                    <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="api/statistics/cimerosbycommunidadscompleted/">Por CC.AA. completadas</a></li>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -46,9 +46,9 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="api/statistics/cimasbylogro">CIMAs más ascendidos</a></li>
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="api/statistics/provincesbylogro/">Provincias más ascendidas</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#">Provincias más completadas</a></li>
+                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="api/statistics/provincesbycompletion">Provincias más completadas</a></li>
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="api/statistics/comunidadsbylogro/">CC.AA. más ascendidas</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#">CC.AA. más completadas</a></li>
+                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="api/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>
                                 </div>
                             </li>
                             <li><a href="#" @click="showcommunidads = true; showprovinces = false;">Por Comunidad Autonoma</a></li>

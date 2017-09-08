@@ -6,6 +6,7 @@ use App\Services\CimeroLogroService;
 use App\Services\CimaLogroService;
 use App\Services\ProvinciaLogroService;
 use App\Services\CommunidadLogroService;
+use App\Services\AreaCompletionService;
 
 use Illuminate\Http\Request;
 
@@ -22,12 +23,13 @@ class StatisticsController extends Controller
     * @return void
     */
 
-    public function __construct(CimeroLogroService $cimeroLogroService, CimaLogroService $cimaLogroService, ProvinciaLogroService $provinciaLogroService, CommunidadLogroService $communidadLogroService)
+    public function __construct(CimeroLogroService $cimeroLogroService, CimaLogroService $cimaLogroService, ProvinciaLogroService $provinciaLogroService, CommunidadLogroService $communidadLogroService, AreaCompletionService $areaCompletionService)
     {
         $this->cimeroLogroService = $cimeroLogroService;
         $this->cimaLogroService = $cimaLogroService;
         $this->provinciaLogroService = $provinciaLogroService;
         $this->communidadLogroService = $communidadLogroService;
+        $this->areaCompletionService = $areaCompletionService;
     }
 
     /**
@@ -176,6 +178,68 @@ class StatisticsController extends Controller
             "searches" => array(''),
         );
     }
+
+    /**
+     * Returns provinces by completion table
+     *
+     * @return Table object
+     */
+
+    public function getRankingOfProvincesByCompletion()
+    {
+        $provinces = $this->areaCompletionService->getProvincesOrderedByCompletions();
+        
+        $columns = array(
+            array("field" => 'ranking', "title" => ''),
+            array("field" => 'nombre', "title" => 'Provincia'),
+            array("field" => 'completions', "title" => 'Completada'),
+        );
+
+        return array(
+            "dataObject" => $provinces->flatten(),
+            "columns" =>  $columns,
+            "filters" => array(''),
+            "searches" => array(''),
+        );
+    }
+
+    /**
+     * Returns communidads by completions table
+     *
+     * @return Table object
+     */
+
+    public function getRankingOfCommunidadsByCompletion()
+    {
+        $communidads = $this->areaCompletionService->getCommunidadsOrderedByCompletions();
+        
+        $columns = array(
+            array("field" => 'ranking', "title" => ''),
+            array("field" => 'nombre', "title" => 'Communidad'),
+            array("field" => 'completions', "title" => 'Completada'),
+        );
+
+        return array(
+            "dataObject" => $communidads->flatten(),
+            "columns" =>  $columns,
+            "filters" => array(''),
+            "searches" => array(''),
+        );
+    }
+
+    public function getRankingOfCimerosByProvinciaCompletion()
+    {
+        return null;
+        // to do
+    }
+
+    public function getRankingOfCimerosByCommunidadCompletion()
+    {
+        return null;
+        // to do
+    }  
+
+
 
 
   

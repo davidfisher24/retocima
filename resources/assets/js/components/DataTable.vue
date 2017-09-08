@@ -3,30 +3,30 @@
     <div class="panel-body">
 
         <div class="col-md-12">
-            <div class="row">
+            <div v-if="dataObject" class="row">
 
-                <!-- Page Size change -->
+                <!-- HEADER-->
+                <div class="row">
+                    <!-- Page Size change -->
+                    <select v-model="pagination">
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
 
-                <select v-if="dataObject" v-model="pagination">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select>
+                    <!-- Option Filters -->
+                    <select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
+                        <option selected>Todos</option> 
+                        <option v-for="option in filters[key]" :value="option">{{option}}</option>
+                    </select>
 
-                <!-- Option Filters -->
-                <select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
-                    <option selected>Todos</option> 
-                    <option v-for="option in filters[key]" :value="option">{{option}}</option>
-                </select>
+                    <!-- Text Filters -->
+                    <input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">
+                </div>
 
-                <!-- Text Filters -->
-
-                <input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">
-
-                <!-- Table -->
-
-                <table v-if="dataObject" class="table table-striped">
+                <!-- TABLE -->
+                <table class="table table-striped">
                     <thead class="thead-default">
                         <tr>
                             <th v-for="column in columns" >
@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-show="dataObject && count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
+                        <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
                         <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
                             <td v-for="column in columns">
                                 {{row[column.field]}}
@@ -46,13 +46,20 @@
                     </tbody>
                 </table>
 
-                <!-- Page change -->
-                <ul class="list-inline"  v-if="dataObject">
-                    <li v-if="page !== 1" @click="previousPage">Prev</li>
-                    <li v-for="n in pages" :data-page="n" @click="changePage">{{n}}</li>
-                    <li v-if="page !== pages.length && pages !== 1" @click="nextPage">Next</li>
-                </ul>
-
+                <!-- FOOTER -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Mostrando {{pagination * (page - 1) + 1}} a {{pagination * page}} de {{count}} filas</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                    <!-- Page change -->
+                        <ul class="list-inline">
+                            <li v-if="page !== 1" @click="previousPage">Prev</li>
+                            <li v-for="n in pages" v-if="visiblePages.indexOf(n) !== -1" :data-page="n" @click="changePage">{{n}}</li>
+                            <li v-if="page !== pages.length && pages !== 1" @click="nextPage">Next</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,10 +89,30 @@
         },
         computed: {
 
+            /*
+            * Calculates the number of pages by divding total count by pagination choice
+            */
+
             pages: function () {
                 var pages = Math.ceil(this.count / this.pagination);
                 return pages > 0 ? pages : 1;
-            }
+            },
+
+            /*
+            * Calculates the pages to show in the page options
+            */
+
+            visiblePages: function() {
+                var visiblePages = [];
+                var current = this.page;
+                var number = this.pages;
+                var maximumLinks = 4;
+                while(current < number && visiblePages.length < maximumLinks){
+                    visiblePages.push(current + 1);
+                    current++;
+                }
+                return visiblePages;
+            },  
 
         },
 
@@ -178,7 +205,7 @@
             */
 
             changePage:function(event){
-                this.page = event.target.dataset.page;
+                this.page = parseInt(event.target.dataset.page);
             },
 
 

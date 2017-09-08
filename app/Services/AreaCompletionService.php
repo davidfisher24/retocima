@@ -139,43 +139,38 @@ class AreaCompletionService
 	/**
     * Gets all provinces ordered by number of completions
     *
-    * @return array of eloquent models ordered by number of completions
+    * @return eloquent collection of provinces ordered by number of completions
     */
 
 	public function getProvincesOrderedByCompletions()
 	{
-		$number = Provincia::count();
-		$provinces = array();
+		$provinces = Provincia::all();
+		$provinces->map(function($item){
+			$item->completions = count($this->getAllCimerosWhoHaveCompletedAnArea('provincia_id',$item->id));
+			return $item;
+		});
 
-		for ($a = 1; $a <= $number; $a++) {
-			$province = Provincia::find($a);
-			$completions = count($this->getAllCimerosWhoHaveCompletedAnArea('provincia_id',$a));
-			$provinces[$completions] = array("provincia" => $province, "completions" => $completions);
-		}
-
-		krsort($provinces);
-		return array_values($provinces);
+		$provinces = $provinces->sortByDesc('completions');
+		return $this->addRankingParameter($provinces);
 	}
 
 	/**
     * Gets all communidads ordered by number of completions
     *
-    * @return array of eloquent models ordered by number of completions
+    * @return eloquent collection of communidads ordered by number of completions
     */
 
 	public function getCommunidadsOrderedByCompletions()
 	{
-		$number = Communidad::count();
-		$communidads = array();
 
-		for ($a = 1; $a <= $number; $a++) {
-			$communidad = Communidad::find($a);
-			$completions = count($this->getAllCimerosWhoHaveCompletedAnArea('communidad_id',$a));
-			$communidads[$completions] = array("communidad" => $communidad, "completions" => $completions);
-		}
+		$communidads = Communidad::all();
+		$communidads->map(function($item){
+			$item->completions = count($this->getAllCimerosWhoHaveCompletedAnArea('communidad_id',$item->id));
+			return $item;
+		})->sortByDesc('completions');
 
-		krsort($communidads);
-		return array_values($communidads);
+		$communidads = $communidads->sortByDesc('completions');
+		return $this->addRankingParameter($communidads);
 	}
 
 	/**
@@ -266,7 +261,24 @@ class AreaCompletionService
 		return array("communidads" => $communidads, "provincias" => $provincias);
 
 	}
+
+	/**
+    * Adds a ranking parameter to the collection of items
+    * 
+    * @param collection $collection (must be previously ordered)
+    *
+    * @return collection with $ranking added
+    */
 	
+	private function addRankingParameter($collection)
+	{	
+		$rank = 1;
+		foreach($collection as $item){
+     	   $item->ranking = $rank;
+		   $rank = $rank + 1;
+		}
+		return $collection;
+	}
 }
 
 //$c = new App\Services\AreaCompletionService()
