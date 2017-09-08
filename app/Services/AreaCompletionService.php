@@ -12,7 +12,7 @@ use App\Communidad;
 use App\Iberia;
 
 
-class AreaCompletionService
+class AreaCompletionService extends BaseService
 {
 
 	/**
@@ -151,7 +151,7 @@ class AreaCompletionService
 		});
 
 		$provinces = $provinces->sortByDesc('completions');
-		return $this->addRankingParameter($provinces);
+		return $this->addRankingParameter($provinces,'completions');
 	}
 
 	/**
@@ -170,7 +170,7 @@ class AreaCompletionService
 		})->sortByDesc('completions');
 
 		$communidads = $communidads->sortByDesc('completions');
-		return $this->addRankingParameter($communidads);
+		return $this->addRankingParameter($communidads,'completions');
 	}
 
 	/**
@@ -260,33 +260,6 @@ class AreaCompletionService
 
 		return array("communidads" => $communidads, "provincias" => $provincias);
 
-	}
-
-	/**
-    * Adds a ranking parameter to the collection of items
-    * 
-    * @param collection $collection (must be previously ordered)
-    *
-    * @return collection with $ranking added
-    */
-	
-	private function addRankingParameter($collection)
-	{	
-		$lastItem = null;
-		$currentRank = 1;
-		$rank = 1;
-		foreach($collection as $item){
-		   if ($item->completions === $lastItem) {
-		   		$item->ranking = $currentRank;
-		   }
-     	   else {
-     	   		$currentRank = $rank;
-     	   		$item->ranking = $rank;
-     	   }
-     	   $lastItem = $item->completions;
-		   $rank = $rank + 1;
-		}
-		return $collection;
 	}
 }
 

@@ -8,7 +8,7 @@ use App\Provincia;
 
 use App\Repositories\LogroRepository;
 
-class ProvinciaLogroService 
+class ProvinciaLogroService extends BaseService
 {
 
     /**
@@ -33,12 +33,14 @@ class ProvinciaLogroService
      */
 
     public function getAllProvinciasRankedByLogros(){
-        return $this->logroRepository->countLogrosByAForeignKey('provincia_id')->map(function($item,$i){
+        $provincias = $this->logroRepository->countLogrosByAForeignKey('provincia_id')->map(function($item){
             $provincia = $item->provincia()->first();
-            $item->ranking = $i + 1;
             $item->nombre = $provincia->nombre;
             return $item;
         });
+
+        $provincias->sortByDesc('logros_count');
+        return $this->addRankingParameter($provincias,'logros_count');
     }
 
 }

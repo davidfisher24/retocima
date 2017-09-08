@@ -8,7 +8,7 @@ use App\Communidad;
 
 use App\Repositories\LogroRepository;
 
-class CommunidadLogroService 
+class CommunidadLogroService extends BaseService
 {
 
     /**
@@ -33,12 +33,14 @@ class CommunidadLogroService
      */
 
     public function getAllCommunidadsRankedByLogros(){
-        return $this->logroRepository->countLogrosByAForeignKey('communidad_id')->map(function($item,$i){
+        $communidads = $this->logroRepository->countLogrosByAForeignKey('communidad_id')->map(function($item){
             $communidad = $item->communidad()->first();
-            $item->ranking = $i + 1;
             $item->nombre = $communidad->nombre;
             return $item;
         });
+
+        $communidads->sortByDesc('logros_count');
+        return $this->addRankingParameter($communidads,'logros_count');
     }
 
 }

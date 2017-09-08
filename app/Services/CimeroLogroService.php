@@ -10,7 +10,7 @@ use App\Logro;
 
 use App\Repositories\LogroRepository;
 
-class CimeroLogroService 
+class CimeroLogroService extends BaseService
 {
 
     /**
@@ -70,14 +70,16 @@ class CimeroLogroService
 
     public function getRankingOfAllCimeros($filter = null){
 
-        return $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$i){
+        $cimeros = $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$i){
             $cimero = $item->cimero()->first();
-            $item->ranking = $i + 1;
             $item->nombre = $cimero->getFullName();
             $item->provincia = $cimero->provincia;
             $item->id = $cimero->id;
             return $item;
-        })->sortByDesc('logros_count');
+        });
+
+        $cimeros->sortByDesc('logros_count');
+        return $this->addRankingParameter($cimeros,'logros_count');
 
     }
 
@@ -105,16 +107,18 @@ class CimeroLogroService
 
     public function getCimerosWithProvinciasWithAtLeastOneLogro()
     {
-        return $this->logroRepository->getLogrosGroupedByTwoForeignKeys('cimero_id','provincia_id')->groupBy('cimero_id')->transform(function($item,$i){
+        $cimeros = $this->logroRepository->getLogrosGroupedByTwoForeignKeys('cimero_id','provincia_id')->groupBy('cimero_id')->transform(function($item,$i){
             $item->first()->count = count($item);
             return $item->first();
         })->sortByDesc('count')->values()->map(function($item,$i){
             $cimero = $item->cimero;
             $item->id = $cimero->id;
             $item->nombre = $cimero->getFullName();
-            $item->ranking = $i + 1;
             return $item;
         });
+
+        $cimeros->sortByDesc('count');
+        return $this->addRankingParameter($cimeros,'count');
     }
 
     /**
