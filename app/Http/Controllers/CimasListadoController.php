@@ -50,10 +50,10 @@ class CimasListadoController extends Controller
 
 
         $commList = Communidad::orderBy('nombre')->get();
-        $provList = Cima::where('communidad_id',$communidadId)->with('provincia')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
+        $provList = Cima::where('communidad_id',$communidadId)->with('provincia','vertientes')->groupBy('provincia_id')->select('provincia_id',DB::raw('count(*) as total'))->get()->sortBy('provincia');
 
         if (!$provinciaId) $provinciaId = Provincia::where('communidad_id',$communidadId)->orderBy('nombre')->first()->id;
-        $cimaList = $this->cimaRepository->getCimasInProvincia($provinciaId);
+        $cimaList = $this->cimaRepository->getCimasInProvincia($provinciaId)->sortBy('codigo');
 
         $currentCommunidad = (integer) $communidadId;
         $currentProvincia = (integer) $provinciaId;
@@ -62,7 +62,7 @@ class CimasListadoController extends Controller
     }
 
     /**
-     * Show a detaails of one cima with vertientess
+     * Show a detaails of one cima with vertientes
      *
      * @return Blade View
      */
