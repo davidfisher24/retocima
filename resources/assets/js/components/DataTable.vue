@@ -5,21 +5,13 @@
         <div class="col-md-12">
             <div class="row">
 
-                <!-- Page change -->
-
-                <select v-if="dataObject" v-model="page">
-                    <option v-show="count === 0" disabled>0</option>
-                    <option v-for="n in pages" :value="n">{{n}}</option>
-                </select>
-
                 <!-- Page Size change -->
 
                 <select v-if="dataObject" v-model="pagination">
-                    <option v-show="count === 0" disabled>0</option>
-                    <option v-show="count > 0">10</option>
-                    <option v-if="count / 25 >= 1">25</option>
-                    <option v-if="count / 50 >= 1">50</option>
-                    <option v-if="count / 100 >= 1">100</option>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
                 </select>
 
                 <!-- Option Filters -->
@@ -54,6 +46,12 @@
                     </tbody>
                 </table>
 
+                <!-- Page change -->
+                <ul class="list-inline"  v-if="dataObject">
+                    <li v-if="page !== 1" @click="previousPage">Prev</li>
+                    <li v-for="n in pages" :data-page="n" @click="changePage">{{n}}</li>
+                    <li v-if="page !== pages.length && pages !== 1" @click="nextPage">Next</li>
+                </ul>
 
             </div>
         </div>
@@ -85,7 +83,8 @@
         computed: {
 
             pages: function () {
-                return Math.ceil(this.count / this.pagination);
+                var pages = Math.ceil(this.count / this.pagination);
+                return pages > 0 ? pages : 1;
             }
 
         },
@@ -151,7 +150,37 @@
                 this.filters = filters;
             },
 
-            
+            /**
+             * Decreases page size by one
+             * @trigger click a page number
+             * @result sets the page number minus 1
+            */
+
+            nextPage:function(){
+                this.page = this.page + 1;
+            },
+
+            /**
+             * Increases page size by one
+             * @trigger click a page number
+             * @result sets the page number plus 1
+            */
+
+            previousPage:function(){
+                this.page = this.page - 1;
+            },
+
+            /**
+             * Goes to a specfic page
+             * @trigger click a page number
+             * @param event.target.dataset.page
+             * @result sets the page number to the number clicked
+            */
+
+            changePage:function(event){
+                this.page = event.target.dataset.page;
+            },
+
 
             /**
              * Stores a current search filter
