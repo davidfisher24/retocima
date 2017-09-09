@@ -20,12 +20,12 @@
                             <div :id="communidad.divid"class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div v-for="addedcima in addedcimas">
-                                        <a v-if="addedcima.communidad_id === communidad.id" @click="openCimaModal(addedcima.id)" class="text-primary">
+                                        <a v-if="addedcima.communidad_id === communidad.id" @click="openCimaInNewWindow(addedcima.id)" class="text-primary">
                                             {{addedcima.codigo}} - {{addedcima.nombre}}  NUEVO!!
                                         </a> 
                                     </div>
                                     <div v-for="logro in logros">
-                                        <a v-if="logro.communidad_id === communidad.id" @click="openCimaModal(logro.id)">
+                                        <a v-if="logro.communidad_id === communidad.id" @click="openCimaInNewWindow(logro.id)">
                                             {{logro.codigo}} - {{logro.nombre}}
                                         </a> 
                                     </div>
@@ -87,6 +87,14 @@
                 this.communidads = distinctCommunidads;
             },
 
+            /**
+             * Opens a modal with cima details  
+             *** NOT CURRENTLY USED ***
+             * @trigger onClick() of a cima link
+             * @params integer cimaId
+             * @result opens the child component cima modal for this logro
+            */
+
             openCimaModal: function(cimaId){
                 var route = 'api/cima/' + cimaId;
                 var self = this;
@@ -95,6 +103,26 @@
                     self.showCimaModal = true;
                 });
             },
+
+            /**
+             * Opens a cima details in a new window
+             * @trigger onClick() of a cima link
+             * @params integer cimaId
+             * @result opens a new window with the detalles cima page
+            */
+
+
+            openCimaInNewWindow: function(cimaId){
+                window.open("http://retocima/detallescima/" + cimaId);
+            },
+
+            /**
+             * Closes the current cima modal
+             *** NOT CURRENTLY USED ***
+             * @trigger onClick() of cima modal close lick
+             * @result closes the modal window
+            */
+
 
             closeCimaModal: function(){
                 this.showCimaModal = false;

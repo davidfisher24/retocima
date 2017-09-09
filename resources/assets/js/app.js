@@ -15,13 +15,19 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// FORMS
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
-Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 Vue.component('cimeroeditcuentaform', require('./components/CimeroEditCuentaForm.vue'));
+// FORMS CHILD COMPONENTS
+Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
+// INTERACIVE COMPONENTS
 Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
+// CONTAINER BUILDS
 Vue.component('rankingcontainer', require('./components/RankingContainer.vue'));
 Vue.component('statisticscontainer', require('./components/StatisticsContainer.vue'));
-Vue.component('cimamodal', require('./components/CimaModal.vue'));
+// MODAL WINDOWS
+Vue.component('cimamodal', require('./components/CimaModal.vue')); /* NOT CURRENTLY USED */
+// SHARED COMPONENTS
 Vue.component('datatable', require('./components/DataTable.vue'));
 
 const app = new Vue({
