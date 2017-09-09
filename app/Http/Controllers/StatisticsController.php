@@ -231,14 +231,40 @@ class StatisticsController extends Controller
 
     public function getRankingOfCimerosByProvinciaCompletion()
     {
-        return null;
-        // to do
+        $cimeros = $this->areaCompletionService->getCimerosOrderByCompletedProvinces();
+        
+        $columns = array(
+            array("field" => 'ranking', "title" => ''),
+            array("field" => 'id', "title" => 'No. Cimero'),
+            array("field" => 'nombre', "title" => 'Cimero'),
+            array("field" => 'count', "title" => 'Prov. Comp.'),
+        );
+
+        return array(
+            "dataObject" => $cimeros->flatten(),
+            "columns" =>  $columns,
+            "filters" => array(''),
+            "searches" => array(''),
+        );
     }
 
     public function getRankingOfCimerosByCommunidadCompletion()
     {
-        return null;
-        // to do
+         $cimeros = $this->areaCompletionService->getCimerosOrderByCompletedCommunidads();
+
+         $columns = array(
+            array("field" => 'ranking', "title" => ''),
+            array("field" => 'id', "title" => 'No. Cimero'),
+            array("field" => 'nombre', "title" => 'Cimero'),
+            array("field" => 'count', "title" => 'CCAA. Comp.'),
+        );
+
+        return array(
+            "dataObject" => $cimeros->flatten(),
+            "columns" =>  $columns,
+            "filters" => array(''),
+            "searches" => array(''),
+        );
     }  
 
 

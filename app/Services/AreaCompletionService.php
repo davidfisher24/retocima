@@ -174,6 +174,59 @@ class AreaCompletionService extends BaseService
 	}
 
 	/**
+    * Gets all cimeros ordered by number of completed provinces
+    *
+    * @return eloquent collection of communidads ordered by completed provinces
+    */
+
+	public function getCimerosOrderByCompletedProvinces()
+	{
+		$cimeros = $this->getCimerosOrderedByCompletedProvincesOrCommunidads("provincia_id");
+		$cimeros->transform(function($item){
+			$cimero = Cimero::find($item->cimero_id);
+			$cimero->nombre = $cimero->getFullName();
+			$cimero->count = $item->count;
+			return $cimero;
+		});
+		
+		$cimeros = $cimeros->sortByDesc('count');
+		return $this->addRankingParameter($cimeros, 'count');
+	}
+
+	/**
+    * Gets all cimeros ordered by number of completed communidads
+    *
+    * @return eloquent collection of cimeros ordered by completed communidads
+    */
+
+	public function getCimerosOrderByCompletedCommunidads()
+	{
+		$cimeros = $this->getCimerosOrderedByCompletedProvincesOrCommunidads("communidad_id");
+		$cimeros->transform(function($item){
+			$cimero = Cimero::find($item->cimero_id);
+			$cimero->nombre = $cimero->getFullName();
+			$cimero->count = $item->count;
+			return $cimero;
+		});
+		
+		$cimeros = $cimeros->sortByDesc('count');
+		return $this->addRankingParameter($cimeros, 'count');
+	}
+
+	/**
+    * Gets DB object of cimeros ordered by completed areas defined by a foreign key. Returns count and cimero_id
+    *
+    * @param string $foreign_key provincia_id, communidad_id
+    * @return eloquent collection 
+    */
+
+	public function getCimerosOrderedByCompletedProvincesOrCommunidads($foreign_key)
+	{
+		$rawQuery = "select t.cimero_id as cimero_id, count(t.".$foreign_key.") as count from (SELECT cimas.".$foreign_key." as ".$foreign_key.", logros.cimero_id as cimero_id, count(distinct cimas.id) as cimas_count, count(distinct logros.cima_codigo) as logros_count FROM cimas left join logros on cimas.".$foreign_key." = logros.".$foreign_key." where cimas.estado = 1 group by cimas.".$foreign_key.", logros.cimero_id order by logros.cimero_id) as t where t.cimas_count = t.logros_count group by t.cimero_id;";
+		return collect(DB::select($rawQuery));
+	}
+
+	/**
     * performs the sql query to determine all the users who have completed a province/communidad/iberia
     * 
     * @param foreign_key provincia_id/communidad_id/iberia_id
@@ -264,7 +317,4 @@ class AreaCompletionService extends BaseService
 }
 
 //$c = new App\Services\AreaCompletionService()
-
-
-
 
