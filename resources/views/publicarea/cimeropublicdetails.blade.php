@@ -69,7 +69,9 @@
                                     <div class="panel-body">
                                         @foreach ($commGroup as $provGroup)
                                             @foreach ($provGroup as $logro)
-                                                <a href="{{URL::to('/')}}/detallescima/{{$logro->cima_id}}">{{$logro->cima_codigo}}</a>
+                                                <!--<div>@if (!in_array($logro->communidad_id,$commKeys) && !in_array($logro->provincia_id,$provKeys))</div>-->
+                                                    <a href="{{URL::to('/')}}/detallescima/{{$logro->cima_id}}">{{$logro->cima_codigo}}</a>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                     </div>
