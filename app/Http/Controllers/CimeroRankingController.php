@@ -66,7 +66,10 @@ class CimeroRankingController extends Controller
         $logros = $this->cimeroLogroService->getCimeroLogrosGroupedByCommunidad($id);
         $completions = $this->areaCompletionService->getCImerosCompletedProvincesAndCommunidads($id,$provincesGrouped = true);
 
-        return view('publicarea.cimeropublicdetails',compact('cimero','logros','completions'));
+        $completedProvinces = $this->areaCompletionService->getCimerosCompletedProvinces($id);
+        $completedCommunidads = $this->areaCompletionService->getCimerosCompletedCommunidads($id);
+
+        return view('publicarea.cimeropublicdetails',compact('cimero','logros','completions','completedProvinces','completedCommunidads'));
 
     }
 

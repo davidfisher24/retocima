@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+    $completedProvinceIds = array_column($completedProvinces,'id');
+    $completedCommunidadIds = array_column($completedCommunidads,'id');
+?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -19,28 +24,28 @@
                     <p class="panel-title">CCAA Completadas</p>
                 </div>
                 <div class="panel-body">
-                    @if (count($completions["communidads"]) === 0)
+                    @if (count($completedCommunidads) === 0)
                         <p>Ninguno todavia</p>
                     @else
-                        @foreach ($completions["communidads"] as $communidad)
+                        @foreach ($completedCommunidads as $communidad)
                             <p>{{$communidad->nombre}}</p>
                         @endforeach
                     @endif
                 </div>
             </div>
-            <!-- Communidads complete -->
+            <!-- Provinces complete -->
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <p class="panel-title">Provincias Completadas</p>
                 </div>
                 <div class="panel-body">
-                    @if (count($completions["provincias"]) === 0)
+                    @if (count($completedProvinces) === 0)
                         <p>Ninguno todavia</p>
                     @else
-                        @foreach ($completions["provincias"] as $provinceGroup)
-                            @foreach ($provinceGroup as $provincia)
-                                <p>{{$provincia->nombre}}</p>
-                            @endforeach
+                        @foreach ($completedProvinces as $province)
+                            @if (!in_array($province->communidad_id,$completedCommunidadIds))
+                                <p>{{$province->nombre}}</p>
+                            @endif
                         @endforeach
                     @endif
                 </div>
@@ -49,10 +54,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <?php
-                        $provKeys = array_keys($completions["provincias"]->toArray());
-                        $commKeys = array_column($completions["communidads"],'id');
-                    ?>
+
                     @foreach ($logros as $commKey => $commGroup)
                         <div class="panel-group">
                             <div class="panel panel-success">
@@ -65,27 +67,34 @@
                                         </a>
                                     </p>
                                 </div>
-                                <div id="{{App\Communidad::find($commKey)->id}}" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        @foreach ($commGroup as $provGroup)
-                                            @foreach ($provGroup as $logro)
-                                                <!--<div>@if (!in_array($logro->communidad_id,$commKeys) && !in_array($logro->provincia_id,$provKeys))</div>-->
-                                                    <a href="{{URL::to('/')}}/detallescima/{{$logro->cima_id}}">{{$logro->cima_codigo}}</a>
-                                                @endif
-                                            @endforeach
-                                        @endforeach
+                                @if (in_array($commGroup->first()->first()->communidad_id, $completedCommunidadIds))
+                                    <div id="{{App\Communidad::find($commKey)->id}}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <span><strong>COMMUNIDAD COMPLETADO</strong></span>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div id="{{App\Communidad::find($commKey)->id}}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            @foreach ($commGroup as $provGroup)
+                                                <?php $indexes = array() ?>
+                                                @foreach ($provGroup as $index => $logro)
+                                                    @if(!in_array($logro->provincia_id,$completedProvinceIds))
+                                                        <a href="{{URL::to('/')}}/detallescima/{{$logro->cima_id}}">{{$logro->cima_codigo}}</a>
+                                                    @elseif (!in_array($logro->provincia_id,$indexes))
+                                                        <span><strong>{{App\Provincia::find($logro->provincia_id)->nombre}} COMPLETED</strong></span>
+                                                        <?php array_push($indexes,$logro->provincia_id); ?>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                                
                             </div>
                         </div>
                     @endforeach
-
-
-
-
-
                 </div>
-                
             </div>
         </div>
     </div>
