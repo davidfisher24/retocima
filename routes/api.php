@@ -39,23 +39,16 @@ Route::group(['middleware' => 'api'], function() {
         return App\Cima::with('vertientes')->find($id)->toJSON();
     });
 
-
-
-    Route::get('/ranking', 'CimeroRankingController@baseRanking');
-
-    // Statistics via ajax
-    Route::get('/ranking/baseranking/', 'CimeroRankingController@baseRanking');
-    Route::get('/statistics/cimasbylogro/', 'StatisticsController@getAllCimasRankedByLogros');
-    Route::get('/statistics/cimerosbyprovincesstarted/', 'StatisticsController@getCimerosWithProvinciasWithAtLeastOneLogro');
-    Route::get('/statistics/provincesbylogro/', 'StatisticsController@getAllProvinciasRankedByLogros');
-    Route::get('/statistics/comunidadsbylogro/', 'StatisticsController@getAllCommunidadsRankedByLogros');
-    Route::get('statistics/cimerosbylogroinzones/{filter}/{id}', 'StatisticsController@getRankingOfAllCimeros');
-    Route::get('statistics/provincesbycompletion', 'StatisticsController@getRankingOfProvincesByCompletion');
-    Route::get('statistics/comunidadsbycompletion', 'StatisticsController@getRankingOfCommunidadsByCompletion');
-    Route::get('statistics/cimerosbycommunidadscompleted', 'StatisticsController@getRankingOfCimerosByCommunidadCompletion');
-    Route::get('statistics/cimerosbyprovincescompleted', 'StatisticsController@getRankingOfCimerosByProvinciaCompletion');
-
-
+    Route::get('/ranking/baseranking/', 'Api\ApiTablesController@baseCimeroRanking');
+    Route::get('/statistics/cimasbylogro/', 'Api\ApiTablesController@getAllCimasRankedByLogros');
+    Route::get('/statistics/cimerosbyprovincesstarted/', 'Api\ApiTablesController@getCimerosWithProvinciasWithAtLeastOneLogro');
+    Route::get('/statistics/provincesbylogro/', 'Api\ApiTablesController@getAllProvinciasRankedByLogros');
+    Route::get('/statistics/comunidadsbylogro/', 'Api\ApiTablesController@getAllCommunidadsRankedByLogros');
+    Route::get('/statistics/cimerosbylogroinzones/{filter}/{id}', 'Api\ApiTablesController@getRankingOfAllCimeros');
+    Route::get('/statistics/provincesbycompletion', 'Api\ApiTablesController@getRankingOfProvincesByCompletion');
+    Route::get('/statistics/comunidadsbycompletion', 'Api\ApiTablesController@getRankingOfCommunidadsByCompletion');
+    Route::get('/statistics/cimerosbycommunidadscompleted', 'Api\ApiTablesController@getRankingOfCimerosByCommunidadCompletion');
+    Route::get('/statistics/cimerosbyprovincescompleted', 'Api\ApiTablesController@getRankingOfCimerosByProvinciaCompletion');
 
     // Temporary - need rerouting via api:auth
 

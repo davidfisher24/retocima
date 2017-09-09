@@ -39,30 +39,15 @@ class CimeroRankingController extends Controller
     }
 
     /**
-     * Return array of all cimeros ranking, and a column structure for the table.
+     * Return all cimeros ranking.
      *
-     * @return array Table Data
+     * @return eloquent object
      */
 
     public function baseRanking()
     {
 
-    	$cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
-        
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'id', "title" => 'No. Cimero'),
-            array("field" => 'nombre', "title" => 'Nombre'),
-            array("field" => 'provincia', "title" => 'Provincia'),
-            array("field" => 'logros_count', "title" => 'Logros'),
-        );
-        
-        return array(
-            "dataObject" => $cimeros->flatten(),
-            "columns" =>  $columns,
-            "filters" => array('provincia'),
-            "searches" => array('nombre'),
-        );
+    	return $this->cimeroLogroService->getRankingOfAllCimeros();
     }
 
     /**

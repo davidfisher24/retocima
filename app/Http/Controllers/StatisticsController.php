@@ -54,100 +54,44 @@ class StatisticsController extends Controller
     
     public function getCimerosWithProvinciasWithAtLeastOneLogro()
     {
-        $cimeros = $this->cimeroLogroService->getCimerosWithProvinciasWithAtLeastOneLogro();
-
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'id', "title" => 'No. Cimero'),
-            array("field" => 'nombre', "title" => 'Nombre'),
-            array("field" => 'count', "title" => 'Logros'),
-        );
-
-        return array(
-            "dataObject" => $cimeros->flatten(),
-            "columns" =>  $columns,
-            "searches" => array('nombre'),
-            "filters" => array(),
-        );
+        return $this->cimeroLogroService->getCimerosWithProvinciasWithAtLeastOneLogro();
     }
-
 
 
     /**
      * Returns cima by ascensiones statistics.
      *
-     * @return Table object
+     * @return eloquent object
      */
     
 
     public function getAllCimasRankedByLogros()
     {
-        $cimas = $this->cimaLogroService->getAllCimasRankedByLogros();
-
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'provincia', "title" => 'Provincia'),
-            array("field" => 'codigo', "title" => 'Codigo'),
-            array("field" => 'nombre', "title" => 'Cima'),
-            array("field" => 'logros_count', "title" => 'Ascensiones'),
-        );
-
-        return array(
-            "dataObject" => $cimas->flatten(),
-            "columns" =>  $columns,
-            "filters" => array('provincia'),
-            "searches" => array('nombre'),
-        );
+        return $this->cimaLogroService->getAllCimasRankedByLogros();
     }
 
     /**
      * Returns provinces by ascensiones.
      *
-     * @return Table object
+     * @return eloquent object
      */
     
 
     public function getAllProvinciasRankedByLogros()
     {
-        $provincias = $this->provinciaLogroService->getAllProvinciasRankedByLogros();
-
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'nombre', "title" => 'Provincia'),
-            array("field" => 'logros_count', "title" => 'Ascensiones'),
-        );
-
-        return array(
-            "dataObject" => $provincias->flatten(),
-            "columns" =>  $columns,
-            "filters" => array('nombre'),
-            "searches" => array(), 
-        );
+        return $this->provinciaLogroService->getAllProvinciasRankedByLogros();
     }
 
     /**
      * Returns communidads by acensiones statsitcs.
      *
-     * @return Table object
+     * @return eloquent object
      */
     
 
     public function getAllCommunidadsRankedByLogros()
     {
-        $communidads = $this->communidadLogroService->getAllCommunidadsRankedByLogros();
-
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'nombre', "title" => 'Comunidad'),
-            array("field" => 'logros_count', "title" => 'Ascensiones'),
-        );
-
-        return array(
-            "dataObject" => $communidads->flatten(),
-            "columns" =>  $columns,
-            "filters" => array('nombre'),
-            "searches" => array(),
-        );
+        return $this->communidadLogroService->getAllCommunidadsRankedByLogros();
     }
 
     /**
@@ -156,120 +100,59 @@ class StatisticsController extends Controller
      * @param $request requests with keys and id filter
      * example  $filter = array('key' => 'communidad_id', 'id' => 16);
      *
-     * @return Table object
+     * @return eloquent object
      */
     
 
     public function getRankingOfAllCimeros($filter, $id)
     {
         $filter = array("key" => $filter, 'id' => $id);
-
-        $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros($filter = $filter);
-
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'id', "title" => 'No. Cimero'),
-            array("field" => 'nombre', "title" => 'Nombre'),
-            array("field" => 'logros_count', "title" => 'Logros'),
-        );
-
-        return array(
-            "dataObject" => $cimeros->flatten(),
-            "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
-        );
+        return $this->cimeroLogroService->getRankingOfAllCimeros($filter = $filter);
     }
 
     /**
-     * Returns provinces by completion table
+     * Returns provinces by completion 
      *
-     * @return Table object
+     * @return eloquent object
      */
 
     public function getRankingOfProvincesByCompletion()
     {
-        $provinces = $this->areaCompletionService->getProvincesOrderedByCompletions();
-        
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'nombre', "title" => 'Provincia'),
-            array("field" => 'completions', "title" => 'Completada'),
-        );
-
-        return array(
-            "dataObject" => $provinces->flatten(),
-            "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
-        );
+        return $this->areaCompletionService->getProvincesOrderedByCompletions();
     }
 
     /**
-     * Returns communidads by completions table
+     * Returns communidads by completions 
      *
-     * @return Table object
+     * @return eloquent object
      */
 
     public function getRankingOfCommunidadsByCompletion()
     {
-        $communidads = $this->areaCompletionService->getCommunidadsOrderedByCompletions();
-        
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'nombre', "title" => 'Communidad'),
-            array("field" => 'completions', "title" => 'Completada'),
-        );
-
-        return array(
-            "dataObject" => $communidads->flatten(),
-            "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
-        );
+        return $this->areaCompletionService->getCommunidadsOrderedByCompletions();
     }
+
+    /**
+     * Returns cimeros ranked by provinces completed
+     *
+     * @return eloquent object
+     */
 
     public function getRankingOfCimerosByProvinciaCompletion()
     {
-        $cimeros = $this->areaCompletionService->getCimerosOrderByCompletedProvinces();
-        
-        $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'id', "title" => 'No. Cimero'),
-            array("field" => 'nombre', "title" => 'Cimero'),
-            array("field" => 'count', "title" => 'Prov. Comp.'),
-        );
-
-        return array(
-            "dataObject" => $cimeros->flatten(),
-            "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
-        );
+        return $this->areaCompletionService->getCimerosOrderByCompletedProvinces();
     }
+
+    /**
+     * Returns cimeros ranked by completed communidads
+     *
+     * @return eloquent object
+     */
 
     public function getRankingOfCimerosByCommunidadCompletion()
     {
-         $cimeros = $this->areaCompletionService->getCimerosOrderByCompletedCommunidads();
-
-         $columns = array(
-            array("field" => 'ranking', "title" => ''),
-            array("field" => 'id', "title" => 'No. Cimero'),
-            array("field" => 'nombre', "title" => 'Cimero'),
-            array("field" => 'count', "title" => 'CCAA. Comp.'),
-        );
-
-        return array(
-            "dataObject" => $cimeros->flatten(),
-            "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
-        );
+        return $this->areaCompletionService->getCimerosOrderByCompletedCommunidads();
     }  
-
-
-
-
   
    
 }
