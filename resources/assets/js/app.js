@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
 Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
+Vue.component('cimeroeditcuentaform', require('./components/CimeroEditCuentaForm.vue'));
 Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
 Vue.component('rankingcontainer', require('./components/RankingContainer.vue'));
 Vue.component('statisticscontainer', require('./components/StatisticsContainer.vue'));

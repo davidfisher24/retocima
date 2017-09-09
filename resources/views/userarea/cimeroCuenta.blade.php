@@ -13,20 +13,7 @@
                         <div class="panel-heading">Mi Cuenta</div>
 
                         <div class="panel-body">
-                            <p>Nombre:   {{$cimero->fullName}} </p>
-                            <p>Usuario:   {{$cimero->username}} </p>
-                            <p>Correo Electronico:   {{$cimero->email}} </p>
-                            <p>Direccion:   {{$cimero->fullAddress}}  </p>
-                            <p>puertofavorito:   {{$cimero->puertofavorito}}</p>
-                            <p>puertomasduro:   {{$cimero->puertomasduro}}</p>
-                            <p>puertomasfacil:   {{$cimero->puertomasfacil}}</p>
-                            <p>bicicleta:   {{$cimero->bicicleta}}</p>
-                            <p>desarrollo:   {{$cimero->desarrollo}}</p>
-                            <p>grupo:   {{$cimero->grupo}}</p>
-                            <p>frase:   {{$cimero->frase}}</p>
-                            <p>nickmiarroba:   {{$cimero->nickmiarroba}}</p>
-                            <p>web:   {{$cimero->web}}</p>
-
+                            <cimeroeditcuentaform cimeromodel="{{$cimero}}"></cimeroeditcuentaform>
                         </div>
 
                     </div>
