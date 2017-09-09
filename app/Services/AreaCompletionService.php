@@ -120,21 +120,26 @@ class AreaCompletionService extends BaseService
     * gets the combined completed provinces with communidads for a user
     * 
     * @param integer $cimeroId
+    * @param boolean $provincesGroup (Should provinces be grouped into communidads)
     *
     * @return array ["provincias" => [App\Provincia,App\Provincia], "communidads" => [App\Communidad,App\Communidad]]
     */
 
-	public function getCImerosCompletedProvincesAndCommunidads($cimeroId)
+	public function getCImerosCompletedProvincesAndCommunidads($cimeroId, $provincesGrouped = false)
 	{
 		$result = $this->getCimerosCompletedProvinceAndCommunidadIds($cimeroId);
 
+
 		$result["communidads"] = array_map(function($item){return Communidad::find($item);},$result["communidads"]);
 		$result["provincias"] = array_map(function($item){return Provincia::find($item);},$result["provincias"]);
+		if ($provincesGrouped) $result["provincias"] = collect($result["provincias"])->groupBy('communidad_id')->keyBy(function($item){
+			return $item->first()->communidad_id;
+		});
 
 		return $result;
 	}
 
-	
+
 
 	/**
     * Gets all provinces ordered by number of completions

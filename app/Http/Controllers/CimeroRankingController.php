@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\CimeroLogroService;
+use App\Services\AreaCompletionService;
 
 use App\Cimero;
 
@@ -21,9 +22,10 @@ class CimeroRankingController extends Controller
     * @return void
     */
 
-    public function __construct(CimeroLogroService $cimeroLogroService)
+    public function __construct(CimeroLogroService $cimeroLogroService, AreaCompletionService $areaCompletionService)
     {
         $this->cimeroLogroService = $cimeroLogroService;
+        $this->areaCompletionService = $areaCompletionService;
     }
 
     /**
@@ -62,8 +64,9 @@ class CimeroRankingController extends Controller
 
         $cimero = Cimero::find($id);
         $logros = $this->cimeroLogroService->getCimeroLogrosGroupedByCommunidad($id);
+        $completions = $this->areaCompletionService->getCImerosCompletedProvincesAndCommunidads($id,$provincesGrouped = true);
 
-        return view('publicarea.cimeropublicdetails',compact('cimero','logros'));
+        return view('publicarea.cimeropublicdetails',compact('cimero','logros','completions'));
 
     }
 
