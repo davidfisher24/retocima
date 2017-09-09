@@ -133,7 +133,7 @@ class AreaCompletionService extends BaseService
 		$result["communidads"] = array_map(function($item){return Communidad::find($item);},$result["communidads"]);
 		$result["provincias"] = array_map(function($item){return Provincia::find($item);},$result["provincias"]);
 		if ($provincesGrouped) $result["provincias"] = collect($result["provincias"])->groupBy('communidad_id')->keyBy(function($item){
-			return $item->first()->communidad_id;
+			return $item->first()->id;
 		});
 
 		return $result;

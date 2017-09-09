@@ -49,6 +49,10 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <?php
+                        $provKeys = array_keys($completions["provincias"]->toArray());
+                        $commKeys = array_column($completions["communidads"],'id');
+                    ?>
                     @foreach ($logros as $commKey => $commGroup)
                         <div class="panel-group">
                             <div class="panel panel-success">
