@@ -16,8 +16,6 @@ class MapController extends Controller
         foreach($cimas as $cima) {
         	$clickEvent = 'mouseClickCima(' . $cima . ')';
         	Mapper::marker($cima->longitude, $cima->latitude, [
-        		'symbol' => 'circle', 
-        		'scale' => 1000,  
         		'eventClick' => $clickEvent,
         	]);
         }
