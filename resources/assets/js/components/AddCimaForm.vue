@@ -1,8 +1,8 @@
 <template> 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
                     <label for="numberInputs">
                         Cuantas cimas quieres anadir?
                         <input type="number" name="numberInputs" min="1" max="20" ref="selectedNumberInputs">
@@ -55,7 +55,7 @@
 
             fetchUserLogros: function(){
                 var self = this;
-                axios.get('api/userlogros').then(function(response){
+                axios.get('./api/userlogros').then(function(response){
                     self.userLogros = response.data;
                 });
             },
@@ -68,7 +68,7 @@
 
             fetchCommunidads: function(){
                 var self = this;
-                axios.get('api/communidads').then(function(response){
+                axios.get('./api/communidads').then(function(response){
                     self.communidads = response.data;
                 });
             },
@@ -90,11 +90,11 @@
                 });
 
                 if (logros.length === this.requestedInputs) {
-                    axios.post(/*'retocima*/'/submitlogros', {
+                    axios.post('./submitlogros', {
                         logros: logros,
                     })
                     .then(function (response) {
-                        window.location = /*'retocima/public*/'/cimerologrosnew' + "/" + response.data.new;
+                        window.location = './cimerologrosnew' + "/" + response.data.new;
                     })
                     .catch(function (error) {
                         console.log(error);

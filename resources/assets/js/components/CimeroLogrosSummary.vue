@@ -4,7 +4,7 @@
         <cimamodal v-if="showCimaModal" @close="closeCimaModal" ref="showCimaModal">
         </cimamodal>
 
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div class="row">
                 <div v-for="communidad in communidads">
                     <div class="panel-group">
@@ -96,7 +96,7 @@
             */
 
             openCimaModal: function(cimaId){
-                var route = 'api/cima/' + cimaId;
+                var route = './api/cima/' + cimaId;
                 var self = this;
                 axios.get(route).then(function(response){
                     self.modalCima = response.data;

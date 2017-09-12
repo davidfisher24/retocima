@@ -24,10 +24,10 @@
 
 <template> 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
             <div class="sidebar-nav">
                 <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                    <div class="">
                         <ul class="nav navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 col-xl-9">
             <div v-if="showcommunidads">
                 <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
                     <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
@@ -132,18 +132,18 @@
             fetchComunidadsAndProvinces:function(){
                 var self = this;
 
-                axios.get('api/communidads').then(function(response){
+                axios.get('./api/communidads').then(function(response){
                     response.data.forEach(function(item){
-                        item.apiroute = 'api/statistics/cimerosbylogroinzones/communidad_id/' + item.id + '/';
+                        item.apiroute = './api/statistics/cimerosbylogroinzones/communidad_id/' + item.id + '/';
                         item.imageurl = 'img/communidads/' + item.id + '.png';
                     });
                     self.communidads = response.data;
 
                 });
 
-                axios.get('api/provincias').then(function(response){
+                axios.get('./api/provincias').then(function(response){
                     response.data.forEach(function(item){
-                        item.apiroute = 'api/statistics/cimerosbylogroinzones/provincia_id/' + item.id + '/';
+                        item.apiroute = './api/statistics/cimerosbylogroinzones/provincia_id/' + item.id + '/';
                     });
                     self.provincias = response.data;
                 });

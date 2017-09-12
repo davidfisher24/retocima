@@ -56,7 +56,7 @@
 
             fetchProvinces: function(){
                 var self = this;
-                axios.get('api/provincias').then(function(response){
+                axios.get('./api/provincias').then(function(response){
                     self.provinces = response.data;
                 });
             },
@@ -78,7 +78,7 @@
                 });
 
                 if (logros.length === this.requestedInputs) {
-                    axios.post(/*'retocima*/'/submitlogros', {
+                    axios.post('./submitlogros', {
                         logros: logros,
                     })
                     .then(function (response) {

@@ -2,7 +2,7 @@
     
     <div class="panel-body">
 
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div v-if="dataObject" class="row">
 
                 <!-- HEADER-->
@@ -48,10 +48,10 @@
 
                 <!-- FOOTER -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
                         <p>Mostrando {{pagination * (page - 1) + 1}} a {{pagination * page}} de {{count}} filas</p>
                     </div>
-                    <div class="col-md-6 text-right">
+                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-right">
                     <!-- Page change -->
                         <ul class="list-inline">
                             <li v-if="page !== 1" @click="previousPage">Prev</li>
