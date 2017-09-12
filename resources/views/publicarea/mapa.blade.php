@@ -24,7 +24,7 @@
 
     function mouseClickCima(cima)
     {
-        console.log(cima);
+
     }
 
 </script>
