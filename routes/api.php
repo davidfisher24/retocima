@@ -39,11 +39,11 @@ Route::group(['middleware' => 'api'], function() {
         return App\Cima::with('vertientes')->find($id)->toJSON();
     });
 
-    Route::get('/ranking/baseranking/', 'Api\ApiTablesController@baseCimeroRanking');
-    Route::get('/statistics/cimasbylogro/', 'Api\ApiTablesController@getAllCimasRankedByLogros');
-    Route::get('/statistics/cimerosbyprovincesstarted/', 'Api\ApiTablesController@getCimerosWithProvinciasWithAtLeastOneLogro');
-    Route::get('/statistics/provincesbylogro/', 'Api\ApiTablesController@getAllProvinciasRankedByLogros');
-    Route::get('/statistics/comunidadsbylogro/', 'Api\ApiTablesController@getAllCommunidadsRankedByLogros');
+    Route::get('/ranking/baseranking', 'Api\ApiTablesController@baseCimeroRanking');
+    Route::get('/statistics/cimasbylogro', 'Api\ApiTablesController@getAllCimasRankedByLogros');
+    Route::get('/statistics/cimerosbyprovincesstarted', 'Api\ApiTablesController@getCimerosWithProvinciasWithAtLeastOneLogro');
+    Route::get('/statistics/provincesbylogro', 'Api\ApiTablesController@getAllProvinciasRankedByLogros');
+    Route::get('/statistics/comunidadsbylogro', 'Api\ApiTablesController@getAllCommunidadsRankedByLogros');
     Route::get('/statistics/cimerosbylogroinzones/{filter}/{id}', 'Api\ApiTablesController@getRankingOfAllCimeros');
     Route::get('/statistics/provincesbycompletion', 'Api\ApiTablesController@getRankingOfProvincesByCompletion');
     Route::get('/statistics/comunidadsbycompletion', 'Api\ApiTablesController@getRankingOfCommunidadsByCompletion');
