@@ -259,7 +259,9 @@ class AreaCompletionService extends BaseService
 
 	private function getAreasCompletedByACimero($foreign_key,$cimeroId)
 	{
-		$rawQuery = "select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key." HAVING count_logros = count_all";
+		/*$rawQuery = "select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key." HAVING count_logros = count_all";*/
+
+		$rawQuery = "select * FROM (select count(distinct logros.cima_codigo) as count_logros, logros.".$foreign_key." as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.".$foreign_key." = cimas.".$foreign_key." where logros.cimero_id = ".$cimeroId." and logros.cima_estado = 1 and cimas.estado = 1 group by logros.".$foreign_key.") X WHERE X.count_logros = X.count_all";
 
 		return DB::select($rawQuery);
 
