@@ -307,13 +307,15 @@ class AreaCompletionService extends BaseService
 
 	private function getCimerosCompletedProvinceAndCommunidadIds($cimeroId)
 	{
-		$queryCommunidads = DB::select('select id from(select count(distinct logros.cima_codigo) as count_logros, logros.communidad_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.communidad_id =cimas.communidad_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 group by logros.communidad_id HAVING count_logros = count_all) X;');
+		/*$queryCommunidads = DB::select('select id from(select count(distinct logros.cima_codigo) as count_logros, logros.communidad_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.communidad_id =cimas.communidad_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 group by logros.communidad_id HAVING count_logros = count_all) X;');*/
+		$queryCommunidads = DB::select('select id from(select count(distinct logros.cima_codigo) as count_logros, logros.communidad_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.communidad_id =cimas.communidad_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 group by logros.communidad_id) X WHERE X.count_logros = X.count_all;');
 		$communidads = collect($queryCommunidads)->map(function($x){return $x->id;})->toArray();
 
 		$eliminateCommunidadsQuery = ""; 
 		if (count($communidads) > 0) $eliminateCommunidadsQuery = 'and logros.communidad_id not in ('.implode(',',$communidads).') ';
 
-		$queryProvincias = DB::select('select id from (select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 '.$eliminateCommunidadsQuery.' group by logros.provincia_id HAVING count_logros = count_all) X;');
+		/*$queryProvincias = DB::select('select id from (select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 '.$eliminateCommunidadsQuery.' group by logros.provincia_id HAVING count_logros = count_all) X;');*/
+		$queryProvincias = DB::select('select id from (select count(distinct logros.cima_codigo) as count_logros, logros.provincia_id as id, count(distinct cimas.codigo) as count_all from logros inner join cimas on logros.provincia_id =cimas.provincia_id where logros.cimero_id = '.$cimeroId.' and logros.cima_estado = 1 and cimas.estado = 1 '.$eliminateCommunidadsQuery.' group by logros.provincia_id) X WHERE X.count_logros = X.count_all;');
 		$provincias = collect($queryProvincias)->map(function($x){return $x->id;})->toArray();
 
 		return array("communidads" => $communidads, "provincias" => $provincias);
