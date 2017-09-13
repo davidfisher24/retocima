@@ -72,7 +72,7 @@
                 }
                 this.selectedCommunidad = event.target.value;
                 this.cimas = [];
-                var route = './api/provincias/' + event.target.value;
+                var route = './api/provincias' + event.target.value;
                 var self = this;
                 axios.get(route).then(function(response){
                     self.provincias = response.data;
