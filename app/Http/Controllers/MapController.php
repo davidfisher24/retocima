@@ -21,7 +21,7 @@ class MapController extends Controller
                 ]);*/
 
                 $contentString = '<p class="panel-heading"><strong>'. $cima->codigo . ' ' . $cima->nombre . '</strong></p>';
-                $contentString .= '<a href="/detallescima/' . $cima->id . '" target="_BLANK">Mas Detalles</a>';
+                $contentString .= '<a href="./detallescima/' . $cima->id . '" target="_BLANK">Mas Detalles</a>';
                 Mapper::informationWindow($cima->longitude, $cima->latitude, $contentString, [
                     'open' => false, 
                     'maxWidth'=> 300, 
