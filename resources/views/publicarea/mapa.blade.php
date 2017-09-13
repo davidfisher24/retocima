@@ -7,7 +7,7 @@
 
                 <div class="panel-body">
                     <div class="col-md-8">
-                        <div style="width: 700px; height: 600px;">
+                        <div>
                             {!! Mapper::render() !!}
                         </div>
                     </div>
@@ -26,4 +26,3 @@
     }
 
 </script>
-
