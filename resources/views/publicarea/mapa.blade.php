@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
@@ -7,7 +9,7 @@
 
                 <div class="panel-body">
                     <div class="col-md-8">
-                        <div>
+                        <div style="width: 700px; height: 600px;">
                             {!! Mapper::render() !!}
                         </div>
                     </div>
@@ -26,3 +28,4 @@
     }
 
 </script>
+@endsection
