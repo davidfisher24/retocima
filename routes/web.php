@@ -31,16 +31,18 @@ Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDet
 /* statistics */
 Route::get('/estadistica', 'StatisticsController@showStatisticsHomePage')->name('estadistics');
 
-/* cimeroCuenta */
-Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
-Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');
-Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros');
-Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
-Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
-Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros');
-
 /*Map */
 Route::get('/mapa', 'MapController@showInitialMapPage')->name('mapa');
+
+/* cimeroCuenta */
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
+    Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');
+    Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros');
+    Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
+    Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
+    Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros');
+});
 
 /*Ajax Requests */
 Route::prefix('ajax')->group(function () {
@@ -73,10 +75,13 @@ Route::prefix('ajax')->group(function () {
     Route::get('/statistics/cimerosbycommunidadscompleted', 'Api\ApiTablesController@getRankingOfCimerosByCommunidadCompletion');
     Route::get('/statistics/cimerosbyprovincescompleted', 'Api\ApiTablesController@getRankingOfCimerosByProvinciaCompletion');
 
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/userlogros', function() {
+            return App\Cimero::find(Auth::id())->logros()->get()->pluck('cima_id')->toArray();
+        }); 
+    });
 
-    Route::get('/userlogros', function() {
-        return App\Cimero::find(Auth::id())->logros()->get()->pluck('cima_id')->toArray();
-	});
+    
 
 
 });
