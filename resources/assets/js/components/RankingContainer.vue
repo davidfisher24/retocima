@@ -12,7 +12,7 @@
     export default {
         data: function() {
             return {
-                apiroute: './api/ranking/baseranking',
+                apiroute: 'ajax/ranking/baseranking',
                 containerloaded: false,
             };
         },

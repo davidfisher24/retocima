@@ -55,7 +55,7 @@
 
             fetchUserLogros: function(){
                 var self = this;
-                axios.get('./api/userlogros').then(function(response){
+                axios.get('ajax/userlogros').then(function(response){
                     self.userLogros = response.data;
                 });
             },
@@ -68,7 +68,7 @@
 
             fetchCommunidads: function(){
                 var self = this;
-                axios.get('./api/communidads').then(function(response){
+                axios.get('ajax/communidads').then(function(response){
                     self.communidads = response.data;
                 });
             },
@@ -90,7 +90,7 @@
                 });
 
                 if (logros.length === this.requestedInputs) {
-                    axios.post('./submitlogros', {
+                    axios.post('submitlogros', {
                         logros: logros,
                     })
                     .then(function (response) {

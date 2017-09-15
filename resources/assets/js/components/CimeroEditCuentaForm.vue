@@ -56,7 +56,7 @@
 
             fetchProvinces: function(){
                 var self = this;
-                axios.get('./api/provincias').then(function(response){
+                axios.get('ajax/provincias').then(function(response){
                     self.provinces = response.data;
                 });
             },

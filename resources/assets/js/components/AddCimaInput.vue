@@ -72,7 +72,7 @@
                 }
                 this.selectedCommunidad = event.target.value;
                 this.cimas = [];
-                var route = './api/provincias/' + event.target.value;
+                var route = 'ajax/provincias/' + event.target.value;
                 var self = this;
                 axios.get(route).then(function(response){
                     self.provincias = response.data;
@@ -94,7 +94,7 @@
                 var route;
                 if (Number.isInteger(event)) {
                     this.selectedProvince = event;
-                    route = './api/cimas' + event;
+                    route = 'ajax/cimas' + event;
                 } else {
                     if (!event.target.value) {
                         this.selectedProvince = null;
@@ -102,7 +102,7 @@
                         return;
                     }
                     this.selectedProvince = event.target.value;
-                    route = 'api/cimas/' + event.target.value;
+                    route = 'ajax/cimas/' + event.target.value;
                 }
                 axios.get(route).then(response => {
                   this.cimas = response.data

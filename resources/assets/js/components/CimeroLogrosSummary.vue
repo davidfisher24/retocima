@@ -96,7 +96,7 @@
             */
 
             openCimaModal: function(cimaId){
-                var route = './api/cima/' + cimaId;
+                var route = 'ajax/cima/' + cimaId;
                 var self = this;
                 axios.get(route).then(function(response){
                     self.modalCima = response.data;
