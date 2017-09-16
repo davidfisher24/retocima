@@ -8,7 +8,7 @@
                 <div class="col-md-3">
                     @include('menus.userarea')
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" id="vuepage">
                     <div class="panel panel-default">
                         <div class="panel-heading">anadir Logros</div>
 

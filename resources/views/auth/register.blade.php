@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="vuepage">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
@@ -42,11 +42,78 @@
                             <label for="apellido2" class="col-md-4 control-label">Apellido 2</label>
 
                             <div class="col-md-6">
-                                <input id="apellido2" type="text" class="form-control" name="apellido2" value="{{ old('apellido2') }}" required autofocus>
+                                <input id="apellido2" type="text" class="form-control" name="apellido2" value="{{ old('apellido2') }}" autofocus>
 
                                 @if ($errors->has('apellido2'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('apellido2') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('fechanacimiento') ? ' has-error' : '' }}">
+                            <label for="fechanacimiento" class="col-md-4 control-label">Fecha Nacimiento</label>
+
+                            <div class="col-md-6">
+                                <input id="fechanacimiento" type="date" class="form-control" name="fechanacimiento" value="{{ old('fechanacimiento') }}" autofocus>
+
+                                @if ($errors->has('fechanacimiento'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('fechanacimiento') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pais" class="col-md-4 control-label">Pais</label>
+
+                            <div class="col-md-6">
+                                <select id="pais" class="form-control" name="pais" required>
+                                    @foreach ($paises as $pais)
+                                        <option value="{{$pais->id}}" 
+                                            @if (($pais->id === $spain && count($errors) < 1) || ($pais->id === $spain && old('pais') === (string) $spain)) {{"selected"}} 
+                                            @elseif ((int) old('pais') === $pais->id) {{"selected"}}
+                                            @endif
+                                        >
+                                            {{$pais->nombre}}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                                @if ($errors->has('provincia'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('provincia') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="provincia" class="col-md-4 control-label">Provincia</label>
+
+                            <div class="col-md-6">
+                                <select id="provincia" class="form-control" name="provincia" required 
+                                    @if (count($errors) >= 1 && old('pais') !== (string) $spain)
+                                        {{"disabled"}}
+                                    @endif
+                                >
+                                        <option disabled @if (count($errors) < 1) {{"selected"}}  @endif>Escoger Provincia</option>
+                                    @foreach ($provincias as $provincia)
+                                        <option value="{{$provincia->id}}" 
+                                            @if (count($errors) >= 1 && $provincia->id == old('provincia')) {{"selected"}} @endif
+                                        >
+                                            {{$provincia->nombre}}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                                @if ($errors->has('provincia'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('provincia') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -116,3 +183,13 @@
     </div>
 </div>
 @endsection
+
+<script>
+    window.onload = function(){
+        var spainId = {{$spain}};
+        $('#pais').on('change',function(){
+            $('#provincia').attr('disabled',(spainId === Number(event.target.value)) ? false : true);
+        }); 
+    }
+    
+</script>

@@ -6,7 +6,7 @@
     $completedCommunidadIds = array_column($completedCommunidads,'id');
 ?>
 
-<div class="container">
+<div class="container" id="vuepage">
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
             <!-- Personal details -->

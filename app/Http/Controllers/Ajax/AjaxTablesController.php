@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Ajax;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use App\Services\ProvinciaLogroService;
 use App\Services\CommunidadLogroService;
 use App\Services\AreaCompletionService;
 
-class ApiTablesController extends Controller
+class AjaxTablesController extends Controller
 {
 
 

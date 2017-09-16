@@ -64,16 +64,16 @@ Route::prefix('ajax')->group(function () {
         return App\Cima::with('vertientes')->find($id)->toJSON();
     });
 
-    Route::get('/ranking/baseranking', 'Api\ApiTablesController@baseCimeroRanking');
-    Route::get('/statistics/cimasbylogro', 'Api\ApiTablesController@getAllCimasRankedByLogros');
-    Route::get('/statistics/cimerosbyprovincesstarted', 'Api\ApiTablesController@getCimerosWithProvinciasWithAtLeastOneLogro');
-    Route::get('/statistics/provincesbylogro', 'Api\ApiTablesController@getAllProvinciasRankedByLogros');
-    Route::get('/statistics/comunidadsbylogro', 'Api\ApiTablesController@getAllCommunidadsRankedByLogros');
-    Route::get('/statistics/cimerosbylogroinzones/{filter}/{id}', 'Api\ApiTablesController@getRankingOfAllCimeros');
-    Route::get('/statistics/provincesbycompletion', 'Api\ApiTablesController@getRankingOfProvincesByCompletion');
-    Route::get('/statistics/comunidadsbycompletion', 'Api\ApiTablesController@getRankingOfCommunidadsByCompletion');
-    Route::get('/statistics/cimerosbycommunidadscompleted', 'Api\ApiTablesController@getRankingOfCimerosByCommunidadCompletion');
-    Route::get('/statistics/cimerosbyprovincescompleted', 'Api\ApiTablesController@getRankingOfCimerosByProvinciaCompletion');
+    Route::get('/ranking/baseranking', 'Ajax\AjaxTablesController@baseCimeroRanking');
+    Route::get('/statistics/cimasbylogro', 'Ajax\AjaxTablesController@getAllCimasRankedByLogros');
+    Route::get('/statistics/cimerosbyprovincesstarted', 'Ajax\AjaxTablesController@getCimerosWithProvinciasWithAtLeastOneLogro');
+    Route::get('/statistics/provincesbylogro', 'Ajax\AjaxTablesController@getAllProvinciasRankedByLogros');
+    Route::get('/statistics/comunidadsbylogro', 'Ajax\AjaxTablesController@getAllCommunidadsRankedByLogros');
+    Route::get('/statistics/cimerosbylogroinzones/{filter}/{id}', 'Ajax\AjaxTablesController@getRankingOfAllCimeros');
+    Route::get('/statistics/provincesbycompletion', 'Ajax\AjaxTablesController@getRankingOfProvincesByCompletion');
+    Route::get('/statistics/comunidadsbycompletion', 'Ajax\AjaxTablesController@getRankingOfCommunidadsByCompletion');
+    Route::get('/statistics/cimerosbycommunidadscompleted', 'Ajax\AjaxTablesController@getRankingOfCimerosByCommunidadCompletion');
+    Route::get('/statistics/cimerosbyprovincescompleted', 'Ajax\AjaxTablesController@getRankingOfCimerosByProvinciaCompletion');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/userlogros', function() {

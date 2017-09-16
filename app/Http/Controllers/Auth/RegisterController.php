@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Cimero;
+use App\Provincia;
+use App\Pais;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -54,6 +56,9 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:cimeros',
             'password' => 'required|string|min:6|confirmed',
+            'provincia' => 'required',
+            'pais' => 'required',
+            'fechanacimiento' => 'required|date|date_format:Y-m-d',
         ]);
     }
 
@@ -63,6 +68,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Cimero
      */
+
     protected function create(array $data)
     {
         return Cimero::create([
@@ -71,7 +77,25 @@ class RegisterController extends Controller
             'apellido2' => $data['apellido2'],
             'username' => $data['username'],
             'email' => $data['email'],
+            'provincia' => $data['provincia'],
+            'pais' => $data['pais'],
             'password' => bcrypt($data['password']),
+            'fechanacimiento' => $data['fechanacimiento'],
         ]);
     }
+
+     /**
+     * Show the registration form
+     *
+     * @return Blade view
+     */
+
+    public function showRegistrationForm()
+    {
+        $provincias = Provincia::all()->sortBy('nombre');
+        $paises = Pais::all()->sortBy('nombre');
+        $spain = Pais::where('nombre','Espana')->first()->id;
+        return view('auth.register', compact('provincias','paises','spain'));
+    }
+
 }

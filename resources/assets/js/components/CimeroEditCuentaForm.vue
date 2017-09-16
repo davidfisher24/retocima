@@ -15,14 +15,6 @@
                     <p><strong>Provincia:</strong>   {{cimero.provincia}}</p>
                     <p><strong>Codigo Postal:</strong>   {{cimero.codigopostal}}</p>
                     <p><strong>Fecha Nacimiento:</strong>   {{cimero.fechanacimiento}}</p>
-                    <p><strong>Bicicleta:</strong>   {{cimero.bicicleta}}</p>
-                    <p><strong>Grupo:</strong>   {{cimero.grupo}}</p>
-                    <p><strong>Desarrollo:</strong>   {{cimero.desarrollo}}</p>
-                    <p><strong>Puerto Favorito:</strong>   {{cimero.puertofavorito}}</p>
-                    <p><strong>Puerto Mas Duro:</strong>   {{cimero.puertomasduro}}</p>
-                    <p><strong>Puerto Mas Facil:</strong>   {{cimero.puertomasfacil}}</p>
-                    <p><strong>Nick Miarroba:</strong>   {{cimero.nickmiarroba}}</p>
-                    <p><strong>Web:</strong>   {{cimero.web}}</p>
                     <!--<button class="btn btn-default" @click="submitLogros()">Submit</button>-->
             </form>
         </div>

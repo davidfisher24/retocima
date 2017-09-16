@@ -27,7 +27,8 @@ class Cimero extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'web', 'puertofavorito', 'puertomasduro', 'puertomasfacil', 'bicicleta', 'desarrollo',
+        'grupo', 'frase', 'nickmiarroba', 'fechalta'
     ];
 
 
