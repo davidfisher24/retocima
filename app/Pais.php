@@ -17,4 +17,27 @@ class Pais extends Model
     {
         return $this->belongsTo('App\Cimero','id','pais');
     }
+
+    /** 
+     * Returns the id of Spain
+     *
+     * @return integer $spainId
+     */
+
+    public static function spain()
+    {
+        return Self::where('nombre','Espana')->first()->id;
+    }
+
+    /** 
+     * Returns countries in alphabetical order with Spain first
+     *
+     * @return integer $spainId
+     */
+
+    public static function spainFirstList()
+    {
+        $list = Self::all()->except(Self::spain())->sortBy('nombre');
+        return $list->prepend(Self::find(Self::spain()));
+    }
 }

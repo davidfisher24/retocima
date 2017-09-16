@@ -10,10 +10,8 @@
                     <p><strong>Apellido 2:</strong>   {{cimero.apellido2}}</p>
                     <p><strong>Usuario:</strong>   {{cimero.username}}</p>
                     <p><strong>Correo Electronico:</strong>   {{cimero.email}}</p>
-                    <p><strong>Direccion:</strong>   {{cimero.direccion}}</p>
-                    <p><strong>Poblacion:</strong>   {{cimero.poblacion}}</p>
-                    <p><strong>Provincia:</strong>   {{cimero.provincia}}</p>
-                    <p><strong>Codigo Postal:</strong>   {{cimero.codigopostal}}</p>
+                    <p><strong>Provincia:</strong>   {{cimero.provincia.nombre}}</p>
+                    <p><strong>Pais:</strong>   {{cimero.pais}}</p>
                     <p><strong>Fecha Nacimiento:</strong>   {{cimero.fechanacimiento}}</p>
                     <!--<button class="btn btn-default" @click="submitLogros()">Submit</button>-->
             </form>

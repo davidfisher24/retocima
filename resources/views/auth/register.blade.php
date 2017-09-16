@@ -186,7 +186,17 @@
 
 <script>
     window.onload = function(){
+        // Record id of Spain for referencing countries
         var spainId = {{$spain}};
+
+        // Set minimum and maximum times based on todays date
+        var date = new Date();
+        var startDate = (date.getFullYear() - 13) + "-" + ('0' + date.getMonth()).slice(-2) + "-" + ('0' + date.getDay()).slice(-2);
+        var endDate = (date.getFullYear() - 100) + "-" + ('0' + date.getMonth()).slice(-2) + "-" + ('0' + date.getDay()).slice(-2);
+        $('#fechanacimiento').attr('max',startDate);
+        $('#fechanacimiento').attr('min',endDate);
+
+        // Control the behaviour of the provincia input
         $('#pais').on('change',function(){
             $('#provincia').attr('disabled',(spainId === Number(event.target.value)) ? false : true);
         }); 

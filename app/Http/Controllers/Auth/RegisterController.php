@@ -49,7 +49,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $spain = (string) Pais::where('nombre','Espana')->first()->id;
+        $spain = (string) Pais::spain();
 
         return Validator::make($data, [
             'nombre' => 'required|string|max:50',
@@ -94,9 +94,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+
         $provincias = Provincia::all()->sortBy('nombre');
-        $paises = Pais::all()->sortBy('nombre');
-        $spain = Pais::where('nombre','Espana')->first()->id;
+        $paises = Pais::spainFirstList();
+        $spain = Pais::spain();
         return view('auth.register', compact('provincias','paises','spain'));
     }
 

@@ -49,7 +49,7 @@ class CimeroCuentaController extends Controller
     public function cimeroCuenta()
     {
     	
-    	$cimero = Cimero::find(Auth::id());
+    	$cimero = Cimero::with('provincia','pais')->find(Auth::id());
         $cimero->fullAddress = $cimero->getFullAddress();
         $cimero->fullName = $cimero->getFullName();
     	
