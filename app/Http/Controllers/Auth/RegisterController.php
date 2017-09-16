@@ -49,6 +49,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $spain = (string) Pais::where('nombre','Espana')->first()->id;
+
         return Validator::make($data, [
             'nombre' => 'required|string|max:50',
             'apellido1' => 'required|string|max:50',
@@ -56,7 +58,7 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:cimeros',
             'password' => 'required|string|min:6|confirmed',
-            'provincia' => 'required',
+            'provincia' => 'required_if:pais,'.$spain,
             'pais' => 'required',
             'fechanacimiento' => 'required|date|date_format:Y-m-d',
         ]);
@@ -77,7 +79,7 @@ class RegisterController extends Controller
             'apellido2' => $data['apellido2'],
             'username' => $data['username'],
             'email' => $data['email'],
-            'provincia' => $data['provincia'],
+            'provincia' => (array_key_exists('provincia',$data)) ? $data['provincia'] : null,
             'pais' => $data['pais'],
             'password' => bcrypt($data['password']),
             'fechanacimiento' => $data['fechanacimiento'],

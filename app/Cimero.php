@@ -16,9 +16,9 @@ class Cimero extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre', 'apellido1', 'apellido2', 'fechanacimiento', 'direccion', 'poblacion', 'provincia', 'codigopostal', 'email',
+        'nombre', 'apellido1', 'apellido2', 'fechanacimiento', 'direccion', 'poblacion', 'provincia', 'pais', 'codigopostal', 'email',
         'web', 'puertofavorito', 'puertomasduro', 'puertomasfacil', 'bicicleta', 'desarrollo', 'grupo', 'frase', 'username', 'password',
-        'nickmiarroba', 'fechaalta'
+        'nickmiarroba', 'fechaalta', 'direccion', 'poblacion', 'codigopostal',
     ];
 
     /**
@@ -28,7 +28,7 @@ class Cimero extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token', 'web', 'puertofavorito', 'puertomasduro', 'puertomasfacil', 'bicicleta', 'desarrollo',
-        'grupo', 'frase', 'nickmiarroba', 'fechalta'
+        'grupo', 'frase', 'nickmiarroba', 'fechalta', 'direccion', 'poblacion', 'codigopostal', 'fechaalta'
     ];
 
 
