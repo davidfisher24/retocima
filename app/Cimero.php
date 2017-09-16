@@ -64,6 +64,25 @@ class Cimero extends Authenticatable
         return $this->hasMany('App\Logro')->where('cima_estado','!=', 4);
     }
 
+    /**
+     * Relationship - User has one province
+     *
+     * @model provincia
+     */
+    public function provincia()
+    {
+        return $this->hasOne('App\Provincia','id','provincia');
+    }
+
+    /**
+     * Relationship - User has one pais
+     *
+     * @model provincia
+     */
+    public function pais()
+    {
+        return $this->hasOne('App\Pais','id','pais');
+    }
 
 }
 

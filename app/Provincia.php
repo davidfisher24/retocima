@@ -59,4 +59,13 @@ class Provincia extends Model
         return $this->hasOne('App\Iberia','id','iberia_id');
     }
     
+    /**
+     * Relationship - Each provincia belongs to many cimeros
+     *
+     * @collection cimeros
+     */
+    public function cimeros()
+    {
+        return $this->belongsTo('App\Cimero','id','provincia');
+    }
 }
