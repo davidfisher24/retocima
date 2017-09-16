@@ -14,8 +14,8 @@ class AddGeoColumnsToCimas extends Migration
     public function up()
     {
         Schema::table('cimas', function($table) {
-            $table->decimal('longitude',12,10);
-            $table->decimal('latitude',12,10);
+            $table->decimal('longitude',12,10)->nullable();
+            $table->decimal('latitude',12,10)->nullable();
         });
     }
 
@@ -27,8 +27,8 @@ class AddGeoColumnsToCimas extends Migration
     public function down()
     {
         Schema::table('cimas', function($table) {
-            $table->dropColumn('longitude');
-            $table->dropColumn('latitude');
+            $table->dropColumn('longitude')->nullable();
+            $table->dropColumn('latitude')->nullable();
         });
     }
 }

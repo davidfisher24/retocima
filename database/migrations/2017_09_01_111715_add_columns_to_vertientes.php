@@ -14,13 +14,13 @@ class AddColumnsToVertientes extends Migration
     public function up()
     {
         Schema::table('vertientes', function($table) {
-            $table->text('inicio');
-            $table->text('dudas');
-            $table->text('final');
-            $table->text('observaciones');
-            $table->decimal('longitude_cima',12,10);
-            $table->decimal('latitude_cima',12,10);
-            $table->string('iframe',255);
+            $table->text('inicio')->nullable();
+            $table->text('dudas')->nullable();
+            $table->text('final')->nullable();
+            $table->text('observaciones')->nullable();
+            $table->decimal('longitude_cima',12,10)->nullable();
+            $table->decimal('latitude_cima',12,10)->nullable();
+            $table->string('iframe',255)->nullable();
         });
     }
 
