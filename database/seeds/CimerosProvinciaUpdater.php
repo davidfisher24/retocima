@@ -25,7 +25,7 @@ class CimerosProvinciaUpdater extends Seeder
         $this->notFound = DB::table('cimeros')->select(DB::raw('distinct provincia'))->whereNotIn('provincia',$provincias)->get()->pluck('provincia')->toArray();
 
         $count = Cimero::count();
-        for ($i = 1; $i <= $count; $i++) {
+        for ($i = 900; $i <= $count; $i++) {
         	$this->updateCimeroProvincia($i);
         }
 
@@ -45,7 +45,8 @@ class CimerosProvinciaUpdater extends Seeder
     	$province = $cimero->provincia;
     	$id = null;
 
-    	if (!in_array($province, $this->notFound)) $id = Provincia::where('nombre',Cimero::find($cimeroId)->provincia)->first()->id;
+    	if (!in_array($province, $this->notFound) && strpos($province, 'font') === false) 
+            $id = Provincia::where('nombre',Cimero::find($cimeroId)->provincia)->first()->id;
     	else if ($province === 'Madrid') $id = 47;
     	else if ($province === 'Murcia') $id = 48;
     	else if ($province === 'Gipuzkoa' || $province === 'Guipuzcoa') $id = 39;
@@ -53,6 +54,7 @@ class CimerosProvinciaUpdater extends Seeder
     	else if ($province === 'Baleares' || $province === 'Balears' || $province === 'Illes Balears') $id = 14;
     	else if ($province === 'Vizcaya') $id = 38;
     	else if ($province === 'Araba') $id = 37;
+
 
     	
     	if ($id) {
