@@ -50,17 +50,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $spain = (string) Pais::spain();
+        $before = date("Y-m-d",strtotime("-13 years"));
+        $after = date("Y-m-d",strtotime("-100 years"));
 
         return Validator::make($data, [
-            'nombre' => 'required|string|max:50',
-            'apellido1' => 'required|string|max:50',
+            'nombre' => 'required|string|max:50|min:3',
+            'apellido1' => 'required|string|max:50|min:3',
             'apellido2' => 'string|max:50',
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:cimeros',
             'password' => 'required|string|min:6|confirmed',
             'provincia' => 'required_if:pais,'.$spain,
             'pais' => 'required',
-            'fechanacimiento' => 'required|date|date_format:Y-m-d',
+            'fechanacimiento' => 'required|date|date_format:Y-m-d|before:'.$before.'|after:'.$after,
         ]);
     }
 
@@ -94,7 +96,6 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-
         $provincias = Provincia::all()->sortBy('nombre');
         $paises = Pais::spainFirstList();
         $spain = Pais::spain();
