@@ -85,6 +85,19 @@ class Cimero extends Authenticatable
         return $this->hasOne('App\Pais','id','pais');
     }
 
+    /**
+     * Returns the text of the cimeros province, or "Extranjero if non is found"
+     *
+     * @return {string} 
+     */
+
+    public function getProvincia()
+    {
+        $provincia = $this->provincia()->first();
+        if (!$provincia) return "Extranjero";
+        return $provincia["nombre"];
+    }
+
 }
 
 

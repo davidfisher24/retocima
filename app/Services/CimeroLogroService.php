@@ -73,7 +73,7 @@ class CimeroLogroService extends BaseService
         $cimeros = $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$i){
             $cimero = $item->cimero()->first();
             $item->nombre = $cimero->getFullName();
-            $item->provincia = $cimero->provincia;
+            $item->provincia = $cimero->getProvincia();
             $item->id = $cimero->id;
             return $item;
         });
