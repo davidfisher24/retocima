@@ -38,6 +38,7 @@ class CimaLogroService extends BaseService
     public function getAllCimasRankedByLogros(){
         $cimas = $this->logroRepository->countLogrosByAForeignKey('cima_id')->map(function($item){
             $cima = $item->cima()->first();
+            $item->id = $cima->id;
             $item->nombre = $cima->nombre;
             $item->codigo = $cima->codigo;
             $item->provincia = $cima->provincia;

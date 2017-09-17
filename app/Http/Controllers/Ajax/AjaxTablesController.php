@@ -51,12 +51,17 @@ class AjaxTablesController extends Controller
             array("field" => 'provincia', "title" => 'Provincia'),
             array("field" => 'logros_count', "title" => 'Logros'),
         );
+
+        $links = array(
+            "nombre" => "cimeropublicdetails/",
+        );
         
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
             "filters" => array('provincia'),
             "searches" => array('nombre'),
+            "links" => $links,
         );
     }
 
@@ -79,11 +84,16 @@ class AjaxTablesController extends Controller
             array("field" => 'count', "title" => 'Logros'),
         );
 
+        $links = array(
+            "nombre" => "cimeropublicdetails/",
+        );
+
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
             "searches" => array('nombre'),
             "filters" => array(),
+            "links" => $links,
         );
     }
 
@@ -98,7 +108,7 @@ class AjaxTablesController extends Controller
 
     public function getAllCimasRankedByLogros()
     {
-        $cimas = $this->cimaLogroService->getAllCimasRankedByLogros();
+        $cimas = $this->cimaLogroService->getAllCimasRankedByLogros();;
 
         $columns = array(
             array("field" => 'ranking', "title" => ''),
@@ -108,11 +118,16 @@ class AjaxTablesController extends Controller
             array("field" => 'logros_count', "title" => 'Ascensiones'),
         );
 
+        $links = array(
+            "nombre" => "detallescima/",
+        );
+
         return array(
             "dataObject" => $cimas->flatten(),
             "columns" =>  $columns,
             "filters" => array('provincia'),
             "searches" => array('nombre'),
+            "links" => $links,
         );
     }
 
@@ -138,6 +153,7 @@ class AjaxTablesController extends Controller
             "columns" =>  $columns,
             "filters" => array('nombre'),
             "searches" => array(), 
+            "links" => $links,
         );
     }
 
@@ -189,11 +205,16 @@ class AjaxTablesController extends Controller
             array("field" => 'logros_count', "title" => 'Logros'),
         );
 
+        $links = array(
+            "nombre" => "cimeropublicdetails/",
+        );
+
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
             "filters" => array(''),
             "searches" => array(''),
+            "links" => $links,
         );
     }
 
@@ -262,11 +283,16 @@ class AjaxTablesController extends Controller
             array("field" => 'count', "title" => 'Prov. Comp.'),
         );
 
+        $links = array(
+            "nombre" => "cimeropublicdetails/",
+        );
+
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
             "filters" => array(''),
             "searches" => array(''),
+            "links" => $links,
         );
     }
 
@@ -287,11 +313,16 @@ class AjaxTablesController extends Controller
             array("field" => 'count', "title" => 'CCAA. Comp.'),
         );
 
+        $links = array(
+            "nombre" => "cimeropublicdetails/",
+        );
+
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
             "filters" => array(''),
             "searches" => array(''),
+            "links" => $links,
         );
     }  
 

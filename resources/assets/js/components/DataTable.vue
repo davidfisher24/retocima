@@ -40,7 +40,12 @@
                         <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
                         <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
                             <td v-for="column in columns">
-                                {{row[column.field]}}
+                                <a v-if="(column.field in links)" :href="links[column.field] + row.id" target="_BLANK">
+                                    {{row[column.field]}}
+                                </a>
+                                <p v-else>
+                                    {{row[column.field]}}
+                                </p>
                             </td>
                         </tr>
                     </tbody>
@@ -81,6 +86,7 @@
 
                 filters: null,
                 searches: null,
+                links: {},
 
                 currentFilters: [], // Array of objects {field: filter}
                 currentSearches: [], // Array of objects {field: search}
@@ -136,8 +142,10 @@
                     self.count = response.data.dataObject.length;
                     self.columns = response.data.columns;
                     self.searches = response.data.searches;
+                    if (response.data.links) self.links = response.data.links;
                     self.prepareSelectFilters(response.data.dataObject, response.data.filters);
                 });
+                
             },
 
             /**
