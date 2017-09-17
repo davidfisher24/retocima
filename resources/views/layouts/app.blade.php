@@ -36,9 +36,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                    	<li><a href="{{ route('register') }}">About</a></li>
                         <li><a href="{{ url('/listadocommunidads') }}">Listado</a></li>
                         <li><a href="{{ url('/ranking') }}">Ranking</a></li>
+                        <li><a href="{{ url('/patanegra') }}">Pata Negra</a></li>
                         <li><a href="{{ url('/estadistica') }}">Estadistica</a></li>
                         <li><a href="{{ url('/mapa') }}">Mapa</a></li>
                     </ul>

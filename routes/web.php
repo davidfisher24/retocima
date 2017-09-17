@@ -31,8 +31,11 @@ Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDet
 /* statistics */
 Route::get('/estadistica', 'StatisticsController@showStatisticsHomePage')->name('estadistics');
 
-/*Map */
+/* Map */
 Route::get('/mapa', 'MapController@showInitialMapPage')->name('mapa');
+
+/* Pata Negra */
+Route::get('/patanegra', 'PataNegraController@showInitialPataNegraPage')->name('patanegra');
 
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {

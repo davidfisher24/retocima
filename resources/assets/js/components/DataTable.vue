@@ -93,7 +93,17 @@
                 currentOrdering: [], // Array [field,order]
             };
         },
+
+        props: ['onloadroute'],
+
         computed: {
+
+            /* 
+             * Returns the onload route property
+            */
+            alternateRoute: function () {
+                return this.onloadroute ? this.onloadroute : null;
+            },
 
             /*
             * Calculates the number of pages by divding total count by pagination choice
@@ -136,7 +146,11 @@
 
             fetchData:function(){
                 var self = this;
-                axios.get(this.$parent.apiroute).then(function(response){
+                var route;
+                if (this.$parent.apiroute) route = this.$parent.apiroute;
+                else route = this.alternateRoute;
+                
+                axios.get(route).then(function(response){
                     self.dataObject = response.data.dataObject;
                     self.filteredData = response.data.dataObject;
                     self.count = response.data.dataObject.length;
