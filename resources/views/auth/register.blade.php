@@ -191,8 +191,13 @@
 
         // Set minimum and maximum times based on todays date
         var date = new Date();
-        var startDate = (date.getFullYear() - 13) + "-" + ('0' + date.getMonth()).slice(-2) + "-" + ('0' + date.getDay()).slice(-2);
-        var endDate = (date.getFullYear() - 100) + "-" + ('0' + date.getMonth()).slice(-2) + "-" + ('0' + date.getDay()).slice(-2);
+        var startDate = (date.getFullYear() - 13) + "-" + ('0' + date.getMonth()).slice(-2) + "-" + ('0' + date.getDate()).slice(-2);
+        var endDate = (date.getFullYear() - 100) + "-" + ('0' + date.getMonth()).slice(-2) + "-" + ('0' + date.getDate()).slice(-2);
+
+        console.log(date.getDay());
+        console.log(startDate);
+        console.log(endDate);
+
         $('#fechanacimiento').attr('max',startDate);
         $('#fechanacimiento').attr('min',endDate);
 
