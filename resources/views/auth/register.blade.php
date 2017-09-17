@@ -206,5 +206,10 @@
             $('#provincia').attr('disabled',(spainId === Number(event.target.value)) ? false : true);
         }); 
     }
-    
 </script>
+
+<style>
+    #provincia:disabled {
+        font-size:0.1px;
+    }
+</style>

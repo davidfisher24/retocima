@@ -31,8 +31,8 @@
                         <tr>
                             <th v-for="column in columns" >
                                 {{column.title}}
-                                <a @click="setOrderingPreference" :data-field="column.field" data-order="asc">a</a>
-                                <a @click="setOrderingPreference" :data-field="column.field" data-order="desc">d</a>
+                                <a @click="setOrderingPreference" :data-field="column.field" data-order="asc" class="glyphicon glyphicon-triangle-top"></a>
+                                <a @click="setOrderingPreference" :data-field="column.field" data-order="desc" class="glyphicon glyphicon-triangle-bottom"></a>
                             </th>
                         </tr>
                     </thead>
@@ -54,7 +54,7 @@
                 <!-- FOOTER -->
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
-                        <p>Mostrando {{pagination * (page - 1) + 1}} a {{pagination * page}} de {{count}} filas</p>
+                        <p>{{paginationInformationBar}}</p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-right">
                     <!-- Page change -->
@@ -129,6 +129,18 @@
                 }
                 return visiblePages;
             },  
+
+            /*
+             * Calculates the correct output for the pagination information text
+             */
+
+            paginationInformationBar: function() {
+                console.log(this.count);
+                console.log(this.pagination * this.page);
+                var from = this.pagination * (this.page - 1) + 1;
+                var to = Math.min(this.pagination * this.page, this.count);
+                return 'Mostrando ' + from + ' a ' + to + ' de ' + this.count + ' filas'; 
+            },
 
         },
 
