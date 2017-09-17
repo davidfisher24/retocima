@@ -25,7 +25,7 @@ class CimerosProvinciaUpdater extends Seeder
         $this->notFound = DB::table('cimeros')->select(DB::raw('distinct provincia'))->whereNotIn('provincia',$provincias)->get()->pluck('provincia')->toArray();
 
         $count = Cimero::count();
-        for ($i = 900; $i <= $count; $i++) {
+        for ($i = 1; $i <= $count; $i++) {
         	$this->updateCimeroProvincia($i);
         }
 
