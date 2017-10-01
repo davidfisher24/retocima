@@ -7,14 +7,16 @@
 
                 <!-- HEADER-->
                 <div class="row">
-                    <!-- Option Filters -->
-                    <!--<select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
-                        <option selected>Todos</option> 
-                        <option v-for="option in filters[key]" :value="option">{{option}}</option>
-                    </select>-->
 
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                        <!-- Option Filters -->
+                        <!--<select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
+                            <option selected>Todos</option> 
+                            <option v-for="option in filters[key]" :value="option">{{option}}</option>
+                        </select>-->
                     <!-- Text Filters -->
-                    <!--<input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">-->
+                        <!--<input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">-->
+                    </div>
                 </div>
 
                 <!-- TABLE -->

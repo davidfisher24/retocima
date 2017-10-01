@@ -11,6 +11,7 @@ use App\Services\AreaCompletionService;
 
 use Illuminate\Http\Request;
 
+
 class StatisticsController extends Controller
 {
 

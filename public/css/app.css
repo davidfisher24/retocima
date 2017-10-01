@@ -8368,7 +8368,7 @@ body .image-bg {
 
 nav {
   background-color: #87c1da !important;
-  min-height: 100px !important;
+  min-height: 60px !important;
 }
 
 .panel-heading {
@@ -8446,9 +8446,12 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.datatable table thead {
+  border: ridge;
+}
+
 .datatable table thead tr {
   background-color: #ddd;
-  border: 1px solid black !important;
 }
 
 .datatable table tbody tr:nth-child(odd) {

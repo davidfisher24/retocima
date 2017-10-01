@@ -14,7 +14,6 @@ html, body {
 		background: url('/img/bg-mountain.jpg') no-repeat center center fixed; 
 	}
 	
-
     background-color: $color2;
     background-size:cover;
     color: #636b6f;
@@ -24,9 +23,10 @@ html, body {
     margin: 0;
 }
 
+
 nav {
 	background-color: $color1 !important;
-	min-height:100px !important;
+	min-height:60px !important;
 }
 
 

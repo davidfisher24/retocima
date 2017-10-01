@@ -20,11 +20,30 @@
     .tooltiptrigger:hover .tooltiptext {
         visibility: visible;
     }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top:45px;
+        left:0px;
+        background-color: #f9f9f9;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 </style>
 
 <template> 
     <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div class="sidebar-nav">
                 <div class="navbar navbar-default" role="navigation">
                     <div class="">
@@ -33,7 +52,7 @@
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     De Cimeros
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimerosbyprovincesstarted">Por provincias comenzadas</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimerosbyprovincescompleted">Por provincias completadas</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimerosbycommunidadscompleted">Por CC.AA. completadas</a></li>
@@ -43,7 +62,7 @@
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     De Cimas
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimasbylogro">CIMAs más ascendidos</a></li>
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbylogro">Provincias más ascendidas</a></li>
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbycompletion">Provincias más completadas</a></li>
@@ -51,16 +70,36 @@
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>
                                 </div>
                             </li>
-                            <li><a href="#" @click="showcommunidads = true; showprovinces = false;">Por Comunidad Autonoma</a></li>
-                            <li><a href="#" @click="showprovinces = true; showcommunidads = false;">Por Provincia</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Por Communidad Autonoma
+                                </a>
+                                <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                                    <li v-for="communidad in communidads">
+                                        <a class="dropdown-item" href="#" @click="changeApiRoute" :data-apiroute="communidad.apiroute">{{communidad.nombre}}</a>
+                                    </li>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Por Provincia
+                                </a>
+                                <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                                    <li v-for="provincia in provincias">
+                                        <a class="dropdown-item" href="#" @click="changeApiRoute" :data-apiroute="provincia.apiroute">{{provincia.nombre}}</a>
+                                    </li>
+                                </div>
+                            </li>
+                            <!--<li><a href="#" @click="showcommunidads = true; showprovinces = false;">Por Comunidad Autonoma</a></li>
+                            <li><a href="#" @click="showprovinces = true; showcommunidads = false;">Por Provincia</a></li>-->
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
-            <div v-if="showcommunidads">
+            <!--<div v-if="showcommunidads">
                 <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
                     <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
                     <span class="tooltiptext">{{communidad.nombre}}</span>
@@ -71,9 +110,10 @@
                 <a href="#" v-for="provincia in provincias" @click="changeApiRoute" :data-apiroute="provincia.apiroute" data-show="showprovinces">
                     {{provincia.nombre}}
                 </a>
-            </div>
+            </div>-->
             <datatable v-for="route in routesCalled" v-if="tableLoaded && apiroute === route" :key="route"></datatable>
         </div>
+    </div>
     </div>
 </template>
 
