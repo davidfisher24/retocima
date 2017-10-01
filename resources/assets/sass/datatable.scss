@@ -1,0 +1,13 @@
+.datatable {
+	
+	table {
+
+		tbody {
+			tr:nth-child(odd) { 
+				background-color: $color2 !important;
+			}
+		}
+
+	}
+
+}

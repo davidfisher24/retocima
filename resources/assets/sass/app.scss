@@ -7,3 +7,76 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+html, body {
+	.image-bg {
+		background: url('/img/bg-mountain.jpg') no-repeat center center fixed; 
+	}
+
+    background-color: $color2;
+    background-size:cover;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+nav {
+	background-color: $color1 !important;
+}
+
+
+.panel-heading {
+	color: $color2 !important;
+	font-weight: 900;
+	border-color: $color2 !important;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+
+// Variables
+@import "homePageContent";
+@import "datatable";

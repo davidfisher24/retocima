@@ -1,0 +1,29 @@
+#home-page {
+	
+	.top-right {
+		background-color:white !important;
+		top: 0;
+		right: 0;
+		padding: 5px;
+	}
+
+	#home-page-content {
+		background-color: white;
+		width: 100%;
+
+		.title {
+			font-weight:400;
+			margin-bottom: -10px;
+		}
+
+		a:hover {
+			color:$color1;
+		}
+	}
+
+	.links {
+		margin-bottom: 10px;
+	}
+
+}
+

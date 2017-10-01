@@ -3,7 +3,7 @@
     <div class="panel-body">
 
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
-            <div v-if="dataObject" class="row">
+            <div v-if="dataObject" class="row datatable">
 
                 <!-- HEADER-->
                 <div class="row">
@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- TABLE -->
-                <table class="table table-striped">
+                <table class="table">
                     <thead class="thead-default">
                         <tr>
                             <th v-for="column in columns" >
