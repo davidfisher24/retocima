@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 col-xl-9">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div v-if="showcommunidads">
                 <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
                     <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">

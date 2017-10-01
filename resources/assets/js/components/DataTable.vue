@@ -7,22 +7,14 @@
 
                 <!-- HEADER-->
                 <div class="row">
-                    <!-- Page Size change -->
-                    <select v-model="pagination">
-                        <option>10</option>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>100</option>
-                    </select>
-
                     <!-- Option Filters -->
-                    <select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
+                    <!--<select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
                         <option selected>Todos</option> 
                         <option v-for="option in filters[key]" :value="option">{{option}}</option>
-                    </select>
+                    </select>-->
 
                     <!-- Text Filters -->
-                    <input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">
+                    <!--<input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">-->
                 </div>
 
                 <!-- TABLE -->
@@ -63,6 +55,17 @@
                             <li v-for="n in pages" v-if="visiblePages.indexOf(n) !== -1" :data-page="n" @click="changePage">{{n}}</li>
                             <li v-if="page !== pages.length && pages !== 1" @click="nextPage">Next</li>
                         </ul>
+                    </div>
+                    <!-- Page Size -->
+                    <!-- Page Size change -->
+                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
+                        <span>Page Size: </span>
+                        <select v-model="pagination">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
                     </div>
                 </div>
             </div>

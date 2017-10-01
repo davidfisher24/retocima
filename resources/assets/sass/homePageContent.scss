@@ -2,9 +2,14 @@
 	
 	.top-right {
 		background-color:white !important;
+		position: absolute;
 		top: 0;
 		right: 0;
 		padding: 5px;
+
+		a {
+			padding: 0 25px;
+		}
 	}
 
 	#home-page-content {
@@ -12,12 +17,13 @@
 		width: 100%;
 
 		.title {
+			font-size: 84px;
 			font-weight:400;
 			margin-bottom: -10px;
 		}
 
-		a:hover {
-			color:$color1;
+		a {
+			padding: 0 25px;
 		}
 	}
 

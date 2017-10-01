@@ -2,6 +2,13 @@
 	
 	table {
 
+		thead {
+			tr {
+				background-color:#ddd;
+				border:1px solid black !important;
+			}
+		}
+
 		tbody {
 			tr:nth-child(odd) { 
 				background-color: $color2 !important;

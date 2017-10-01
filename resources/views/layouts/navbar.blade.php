@@ -12,7 +12,10 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Reto Cima') }}
+                <img src="{{URL::asset('./img/logocima.png')}}" >
+            </a>
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <h1 class="m-t-0 m-b-0">RETO <br> &nbsp;&nbsp;CIMA</h1>
             </a>
         </div>
 

@@ -13,6 +13,7 @@ html, body {
 	.image-bg {
 		background: url('/img/bg-mountain.jpg') no-repeat center center fixed; 
 	}
+	
 
     background-color: $color2;
     background-size:cover;
@@ -25,6 +26,7 @@ html, body {
 
 nav {
 	background-color: $color1 !important;
+	min-height:100px !important;
 }
 
 
@@ -48,35 +50,29 @@ nav {
     position: relative;
 }
 
-.top-right {
-    position: absolute;
-    right: 10px;
-    top: 18px;
-}
-
 .content {
     text-align: center;
 }
 
-.title {
-    font-size: 84px;
-}
-
-.links > a {
+a {
     color: #636b6f;
-    padding: 0 25px;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
+    &:hover {
+        color:$color1;
+        text-decoration: none;
+    }
 }
 
-.m-b-md {
-    margin-bottom: 30px;
-}
 
 
-// Variables
+// Files
 @import "homePageContent";
 @import "datatable";
+
+
+// Utilities
+@import "utilities";
