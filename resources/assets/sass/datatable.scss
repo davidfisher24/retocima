@@ -11,10 +11,21 @@
 
 		tbody {
 			tr:nth-child(odd) { 
-				background-color: $color2 !important;
+				background-color: $base-color;
 			}
 		}
 
+	}
+
+	.pagination-options li {
+	    color: $link-color;
+	    padding: 8px 8px;
+	    text-decoration: none;
+
+	    &:hover {
+	    	cursor:pointer;
+	    	color: $cima-blue;
+	    }
 	}
 
 }

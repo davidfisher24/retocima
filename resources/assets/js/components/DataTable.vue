@@ -48,11 +48,11 @@
                 <!-- FOOTER -->
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
-                        <p>{{paginationInformationBar}}</p>
+                        <p class="pagination-information">{{paginationInformationBar}}</p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-right">
                     <!-- Page change -->
-                        <ul class="list-inline">
+                        <ul class="list-inline pagination-options">
                             <li v-if="page !== 1" @click="previousPage">Prev</li>
                             <li v-for="n in pages" v-if="visiblePages.indexOf(n) !== -1" :data-page="n" @click="changePage">{{n}}</li>
                             <li v-if="page !== pages.length && pages !== 1" @click="nextPage">Next</li>
@@ -62,7 +62,7 @@
                     <!-- Page Size change -->
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
                         <span>Page Size: </span>
-                        <select v-model="pagination">
+                        <select v-model="pagination" class="pagination-select">
                             <option>10</option>
                             <option>25</option>
                             <option>50</option>

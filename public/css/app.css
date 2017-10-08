@@ -1419,13 +1419,13 @@ textarea {
 }
 
 a {
-  color: #3097D1;
+  color: #636b6f;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #216a94;
+  color: #3f4447;
   text-decoration: underline;
 }
 
@@ -4412,7 +4412,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 
 .btn-link {
-  color: #3097D1;
+  color: #636b6f;
   font-weight: normal;
   border-radius: 0;
 }
@@ -4436,7 +4436,7 @@ fieldset[disabled] .btn-link {
 
 .btn-link:hover,
 .btn-link:focus {
-  color: #216a94;
+  color: #3f4447;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -5107,7 +5107,7 @@ tbody.collapse.in {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: #3097D1;
+  border-color: #636b6f;
 }
 
 .nav .nav-divider {
@@ -5971,7 +5971,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 6px 12px;
   line-height: 1.6;
   text-decoration: none;
-  color: #3097D1;
+  color: #636b6f;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -5995,7 +5995,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span:hover,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #216a94;
+  color: #3f4447;
   background-color: #eeeeee;
   border-color: #ddd;
 }
@@ -6234,7 +6234,7 @@ a.label:focus {
 
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-  color: #3097D1;
+  color: #636b6f;
   background-color: #fff;
 }
 
@@ -6338,7 +6338,7 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #3097D1;
+  border-color: #636b6f;
 }
 
 .alert {
@@ -7117,7 +7117,7 @@ button.list-group-item-danger.active:focus {
 
 .panel-default > .panel-heading {
   color: #333333;
-  background-color: #fff;
+  background-color: #f5f5f5;
   border-color: #d3e0e9;
 }
 
@@ -7126,7 +7126,7 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-default > .panel-heading .badge {
-  color: #fff;
+  color: #f5f5f5;
   background-color: #333333;
 }
 
@@ -8352,10 +8352,8 @@ button.close {
 
 html,
 body {
-  background-color: #9de1fe;
+  background-color: #fff;
   background-size: cover;
-  color: #636b6f;
-  font-family: 'Raleway', sans-serif;
   font-weight: 100;
   height: 100vh;
   margin: 0;
@@ -8366,15 +8364,116 @@ body .image-bg {
   background: url("/img/bg-mountain.jpg") no-repeat center center fixed;
 }
 
+.content {
+  text-align: center;
+}
+
+#home-page .top-right {
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+}
+
+#home-page .top-right a {
+  padding: 0 25px;
+}
+
+#home-page #home-page-content {
+  background-color: #fff;
+  width: 100%;
+}
+
+#home-page #home-page-content .title {
+  font-size: 84px;
+  font-weight: 400;
+  margin-bottom: -10px;
+}
+
+#home-page #home-page-content a {
+  padding: 0 25px;
+}
+
+#home-page .links {
+  margin-bottom: 10px;
+}
+
 nav {
-  background-color: #87c1da !important;
   min-height: 60px !important;
 }
 
+a:not(.navbar-brand) {
+  color: #636b6f !important;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:not(.navbar-brand):hover {
+  color: #3097D1 !important;
+  text-decoration: none;
+}
+
 .panel-heading {
-  color: #9de1fe !important;
+  color: #3097D1 !important;
   font-weight: 900;
-  border-color: #9de1fe !important;
+  text-decoration: underline;
+  -webkit-text-decoration-color: #5bc0de;
+          text-decoration-color: #5bc0de;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 100px;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.datatable table thead {
+  border: ridge;
+}
+
+.datatable table thead tr {
+  background-color: #ddd;
+}
+
+.datatable table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.datatable .pagination-options li {
+  color: #636b6f;
+  padding: 8px 8px;
+  text-decoration: none;
+}
+
+.datatable .pagination-options li:hover {
+  cursor: pointer;
+  color: #3097D1;
+}
+
+.m-t-0 {
+  margin-top: 0 !important;
+}
+
+.m-b-0 {
+  margin-bottom: 0 !important;
 }
 
 .full-height {
@@ -8395,74 +8494,5 @@ nav {
 
 .position-ref {
   position: relative;
-}
-
-.content {
-  text-align: center;
-}
-
-a {
-  color: #636b6f;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-a:hover {
-  color: #87c1da;
-  text-decoration: none;
-}
-
-#home-page .top-right {
-  background-color: white !important;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-}
-
-#home-page .top-right a {
-  padding: 0 25px;
-}
-
-#home-page #home-page-content {
-  background-color: white;
-  width: 100%;
-}
-
-#home-page #home-page-content .title {
-  font-size: 84px;
-  font-weight: 400;
-  margin-bottom: -10px;
-}
-
-#home-page #home-page-content a {
-  padding: 0 25px;
-}
-
-#home-page .links {
-  margin-bottom: 10px;
-}
-
-.datatable table thead {
-  border: ridge;
-}
-
-.datatable table thead tr {
-  background-color: #ddd;
-}
-
-.datatable table tbody tr:nth-child(odd) {
-  background-color: #9de1fe !important;
-}
-
-.m-t-0 {
-  margin-top: 0 !important;
-}
-
-.m-b-0 {
-  margin-bottom: 0 !important;
 }
 
