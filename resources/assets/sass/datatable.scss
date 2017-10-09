@@ -17,15 +17,34 @@
 
 	}
 
-	.pagination-options li {
-	    color: $link-color;
-	    padding: 8px 8px;
-	    text-decoration: none;
+	p.pagination-information, .datatable-label {
+		font-size:14px;
+
+		.info {
+			font-size:16px;
+			font-weight:600;
+			color:$cima-blue;
+		}
+	}
+
+
+	ul.pagination-options {
+		margin:0;
+
+		li 	{
+
+		}
+
 
 	    &:hover {
 	    	cursor:pointer;
-	    	color: $cima-blue;
+	
 	    }
 	}
 
+	select.pagination-select {
+		display:inline;
+		width:auto;
+		padding:2px;
+	}
 }

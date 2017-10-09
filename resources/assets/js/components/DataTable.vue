@@ -48,21 +48,26 @@
                 <!-- FOOTER -->
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
-                        <p class="pagination-information">{{paginationInformationBar}}</p>
+                        <p class="pagination-information">
+                            Mostrando <span class="info">{{paginationInformationBar.from}}</span> 
+                            a <span class="info">{{paginationInformationBar.to}}</span> 
+                            de <span class="info">{{paginationInformationBar.count}}</span> filas
+    
+                        </p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-right">
                     <!-- Page change -->
-                        <ul class="list-inline pagination-options">
-                            <li v-if="page !== 1" @click="previousPage">Prev</li>
-                            <li v-for="n in pages" v-if="visiblePages.indexOf(n) !== -1" :data-page="n" @click="changePage">{{n}}</li>
-                            <li v-if="page !== pages.length && pages !== 1" @click="nextPage">Next</li>
+                        <ul class="list-inline pagination-options pagination">
+                            <li v-if="page !== 1" ><a @click="previousPage">Prev</a></li>
+                            <li v-for="n in pages" v-if="visiblePages.indexOf(n) !== -1" ><a :data-page="n" @click="changePage">{{n}}</a></li>
+                            <li v-if="page !== pages.length && pages !== 1" ><a @click="nextPage">Next</a></li>
                         </ul>
                     </div>
                     <!-- Page Size -->
                     <!-- Page Size change -->
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
-                        <span>Page Size: </span>
-                        <select v-model="pagination" class="pagination-select">
+                        <span class="datatable-label">Page Size: </span>
+                        <select v-model="pagination" class="pagination-select form-control">
                             <option>10</option>
                             <option>25</option>
                             <option>50</option>
@@ -140,11 +145,10 @@
              */
 
             paginationInformationBar: function() {
-                console.log(this.count);
-                console.log(this.pagination * this.page);
                 var from = this.pagination * (this.page - 1) + 1;
                 var to = Math.min(this.pagination * this.page, this.count);
-                return 'Mostrando ' + from + ' a ' + to + ' de ' + this.count + ' filas'; 
+                return {from: from, to: to, count: this.count};
+                //return 'Mostrando ' + from + ' a ' + to + ' de ' + this.count + ' filas'; 
             },
 
         },
