@@ -4,11 +4,35 @@
 
 <div class="container" id="vuepage">
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+        <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Listos
-                    <p class="panel-title">
+                    Cambiar Provincia
+                </div>
+                <div class="panel-body">
+                    @foreach ($commList as $comm)
+                        <div class="dropdown"> 
+                            <p>{{$comm->nombre}}</p>
+                            <div class="dropdown-content">
+                            <ul style="list-style:none;">
+                                @foreach($comm->provincias as $provincia)
+                                    <li>
+                                        <a href="{{URL::to('/')}}/listadoprovincias/{{$comm->id}}/{{$provincia->id}}">{{ $provincia->nombre }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 col-xl-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p>
+                        <img src="{{URL::asset('./img/communidads/' . $currentCommunidad . '.png')}}" height="24" width="32">&nbsp;
                         {{$commList->where('id',$currentCommunidad)->first()->nombre}} : 
                         {{$provList->where('provincia_id',$currentProvincia)->first()->provincia->nombre}}
                     </p>
@@ -102,7 +126,7 @@
                     </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
