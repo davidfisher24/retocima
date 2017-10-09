@@ -16,7 +16,7 @@
     <body class="image-bg">
         <div class="flex-center position-ref full-height" id="home-page">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links link-effect-underline">
                     @if (Auth::check())
                         <a href="{{ url('/dashboard') }}">Dashboard</a>
                     @else
@@ -31,7 +31,7 @@
                     Reto Cima
                 </div>
 
-                <div class="links">
+                <div class="links link-effect-underline">
                     <a href="{{ url('/listadocommunidads') }}">Listado</a>
                     <a href="{{ url('/ranking') }}">Ranking</a>
                     <a href="{{ url('/patanegra') }}">Pata Negra</a>

@@ -21,7 +21,7 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav link-effect-underline">
                 <li><a href="{{ url('/listadocommunidads') }}">Listado</a></li>
                 <li><a href="{{ url('/ranking') }}">Ranking</a></li>
                 <li><a href="{{ url('/patanegra') }}">Pata Negra</a></li>
@@ -30,7 +30,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right link-effect-underline">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">Login</a></li>
