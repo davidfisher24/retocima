@@ -8519,7 +8519,7 @@ ul.link-effect-underline a:hover:before,
   cursor: pointer;
 }
 
-.datatable select.pagination-select {
+.datatable .form-control {
   display: inline;
   width: auto;
   padding: 2px;

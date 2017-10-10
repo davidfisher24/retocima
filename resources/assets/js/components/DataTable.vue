@@ -12,7 +12,7 @@
                         <!-- Option Filters -->
                         <span v-for="(value, key) in filters">
                             <label>{{filtersTitles[key]}}&nbsp;:&nbsp;</label>
-                            <select  @change="filterByOption" :data-filter="key">
+                            <select  @change="filterByOption" :data-filter="key" class="form-control">
                                 <option selected>Todos</option> 
                                 <option v-for="option in filters[key]" :value="option">{{option}}</option>
                             </select>
@@ -20,36 +20,40 @@
                     <!-- Text Filters -->
                         <span  v-for="(value,key) in searches">
                             <label>{{key}}&nbsp;:&nbsp;</label>
-                            <input placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">
+                            <input placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value" class="form-control">
                         </span>
                     </div>
                 </div>
 
-                <!-- TABLE -->
-                <table class="table">
-                    <thead class="thead-default">
-                        <tr>
-                            <th v-for="column in columns" >
-                                {{column.title}}
-                                <a @click="setOrderingPreference" :data-field="column.field" data-order="asc" class="glyphicon glyphicon-triangle-top"></a>
-                                <a @click="setOrderingPreference" :data-field="column.field" data-order="desc" class="glyphicon glyphicon-triangle-bottom"></a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
-                        <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
-                            <td v-for="column in columns">
-                                <a v-if="(column.field in links)" :href="links[column.field] + row.id" target="_BLANK">
-                                    {{row[column.field]}}
-                                </a>
-                                <p v-else>
-                                    {{row[column.field]}}
-                                </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                        <!-- TABLE -->
+                        <table class="table">
+                            <thead class="thead-default">
+                                <tr>
+                                    <th v-for="column in columns" >
+                                        {{column.title}}
+                                        <a @click="setOrderingPreference" :data-field="column.field" data-order="asc" class="glyphicon glyphicon-triangle-top"></a>
+                                        <a @click="setOrderingPreference" :data-field="column.field" data-order="desc" class="glyphicon glyphicon-triangle-bottom"></a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
+                                <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
+                                    <td v-for="column in columns">
+                                        <a v-if="(column.field in links)" :href="links[column.field] + row.id" target="_BLANK">
+                                            {{row[column.field]}}
+                                        </a>
+                                        <p v-else>
+                                            {{row[column.field]}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
                 <!-- FOOTER -->
                 <div class="row">
@@ -69,6 +73,8 @@
                             <li v-if="page !== pages.length && pages !== 1" ><a @click="nextPage">Next</a></li>
                         </ul>
                     </div>
+                </div>
+                <div class="row">
                     <!-- Page Size -->
                     <!-- Page Size change -->
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">

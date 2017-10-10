@@ -20,7 +20,7 @@ class MapService
         );
         foreach($settings as $key => $setting) $defaults[$key] = $setting;
 
-    	Mapper::map($defaults['lat'], $defaults['lng'] , ['zoom' => $defaults['zoom'], 'cluster' => $defaults['cluster'], 'marker' => []);
+    	Mapper::map($defaults['lat'], $defaults['lng'] , ['zoom' => $defaults['zoom'], 'cluster' => $defaults['cluster'], 'marker' => []]);
         
         foreach($cimas as $cima) {
             if ($cima->latitude && $cima->longitude) {
