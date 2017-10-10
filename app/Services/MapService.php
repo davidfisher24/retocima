@@ -20,11 +20,12 @@ class MapService
         );
         foreach($settings as $key => $setting) $defaults[$key] = $setting;
 
-    	Mapper::map($defaults['lat'], $defaults['lng'] , ['zoom' => $defaults['zoom'], 'cluster' => $defaults['cluster'], 'marker' => []]);
+    	Mapper::map($defaults['lat'], $defaults['lng'] , ['zoom' => $defaults['zoom'], 'cluster' => $defaults['cluster'], 'marker' => []);
+        
         foreach($cimas as $cima) {
             if ($cima->latitude && $cima->longitude) {
-                //$clickEvent = 'mouseClickCima(' . $cima . ')';
-                $clickEvent = null;
+                $clickEvent = 'mouseClickCima(' . $cima . ')';
+                //$clickEvent = null;
                 $contentString = '<p class="panel-heading"><strong>'. $cima->codigo . ' ' . $cima->nombre . '</strong></p>';
                 $contentString .= '<a href="./detallescima/' . $cima->id . '" target="_BLANK">Mas Detalles</a>';
                 Mapper::informationWindow($cima->longitude, $cima->latitude, $contentString, [

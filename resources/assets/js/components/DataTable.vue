@@ -10,12 +10,18 @@
 
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
                         <!-- Option Filters -->
-                        <!--<select v-for="(value, key) in filters" @change="filterByOption" :data-filter="key">
-                            <option selected>Todos</option> 
-                            <option v-for="option in filters[key]" :value="option">{{option}}</option>
-                        </select>-->
+                        <span v-for="(value, key) in filters">
+                            <label>{{filtersTitles[key]}}&nbsp;:&nbsp;</label>
+                            <select  @change="filterByOption" :data-filter="key">
+                                <option selected>Todos</option> 
+                                <option v-for="option in filters[key]" :value="option">{{option}}</option>
+                            </select>
+                        </span>
                     <!-- Text Filters -->
-                        <!--<input v-for="value in searches" placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">-->
+                        <span  v-for="(value,key) in searches">
+                            <label>{{key}}&nbsp;:&nbsp;</label>
+                            <input placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value">
+                        </span>
                     </div>
                 </div>
 
@@ -95,6 +101,7 @@
                 pagination: 25,
 
                 filters: null,
+                filtersTitles: null,
                 searches: null,
                 links: {},
 
@@ -148,7 +155,6 @@
                 var from = this.pagination * (this.page - 1) + 1;
                 var to = Math.min(this.pagination * this.page, this.count);
                 return {from: from, to: to, count: this.count};
-                //return 'Mostrando ' + from + ' a ' + to + ' de ' + this.count + ' filas'; 
             },
 
         },
@@ -196,10 +202,15 @@
                 var self = this;
 
                 var filters = {};
-                filtersOptions.forEach(function(item){
-                    filters[item] = [];
-                    self.currentFilters[item] = "Todos";
-                });
+                var filtersTitles = {};
+
+
+                for (var key in filtersOptions) {
+                    filters[filtersOptions[key]] = [];
+                    filtersTitles[filtersOptions[key]] = key;
+                    self.currentFilters[filtersOptions[key]] = "Todos";
+                };
+
 
                 data.forEach(function(item){
                     for (var key in filters) {
@@ -215,7 +226,9 @@
                         return 0;
                     });
                 };
+
                 this.filters = filters;
+                this.filtersTitles = filtersTitles;
             },
 
             /**

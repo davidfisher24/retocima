@@ -59,8 +59,13 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
-            "filters" => array('provincia'),
-            "searches" => array('nombre'),
+            "filters" => array(
+                "Provincia" => "provincia",
+            ),
+            "searches" => array(
+                "Nombre" => 'nombre',
+                "Provincia" => "provincia",
+            ),
             "links" => $links,
         );
     }
@@ -91,7 +96,9 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
-            "searches" => array('nombre'),
+            "searches" => array(
+                "Nombre" => 'nombre',
+            ),
             "filters" => array(),
             "links" => $links,
         );
@@ -125,8 +132,12 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $cimas->flatten(),
             "columns" =>  $columns,
-            "filters" => array('provincia'),
-            "searches" => array('nombre'),
+            "filters" => array(
+                "Provincia" => "provincia",
+            ),
+            "searches" => array(
+                "Nombre" => 'nombre',
+            ),
             "links" => $links,
         );
     }
@@ -151,9 +162,10 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $provincias->flatten(),
             "columns" =>  $columns,
-            "filters" => array('nombre'),
+            "filters" => array(
+                "Nombre" => "nombre",
+            ),
             "searches" => array(), 
-            "links" => $links,
         );
     }
 
@@ -177,7 +189,9 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $communidads->flatten(),
             "columns" =>  $columns,
-            "filters" => array('nombre'),
+            "filters" => array(
+                "Nombre" => "nombre",
+            ),
             "searches" => array(),
         );
     }
@@ -212,8 +226,8 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
+            "filters" => array(),
+            "searches" => array(),
             "links" => $links,
         );
     }
@@ -237,8 +251,8 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $provinces->flatten(),
             "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
+            "filters" => array(),
+            "searches" => array(),
         );
     }
 
@@ -261,8 +275,8 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $communidads->flatten(),
             "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
+            "filters" => array(),
+            "searches" => array(),
         );
     }
 
@@ -290,8 +304,8 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
+            "filters" => array(),
+            "searches" => array(),
             "links" => $links,
         );
     }
@@ -320,8 +334,8 @@ class AjaxTablesController extends Controller
         return array(
             "dataObject" => $cimeros->flatten(),
             "columns" =>  $columns,
-            "filters" => array(''),
-            "searches" => array(''),
+            "filters" => array(),
+            "searches" => array(),
             "links" => $links,
         );
     }  
