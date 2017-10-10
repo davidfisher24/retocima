@@ -2,8 +2,14 @@
 
 @section('content')
 <?php
-    $completedProvinceIds = array_column($completedProvinces,'id');
-    $completedCommunidadIds = array_column($completedCommunidads,'id');
+    $completedProvinceIds = array_map(function($province) {
+      return $province['id'];
+    }, $completedProvinces);
+
+    $completedCommunidadIds = array_map(function($communidad) {
+      return $communidad['id'];
+    }, $completedCommunidads);
+
 ?>
 
 <div class="container" id="vuepage">
