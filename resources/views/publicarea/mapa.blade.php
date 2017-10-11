@@ -14,9 +14,10 @@
                         </div>
                         
                     </div>
-                    <div id="vuepage" class="col-md-4 col-sm-4 col-xs-4 col-lg-4 col-xl-4">
-
+                    <div id="vuepage" style="display:none;"></div>
+                    <div id="mappanel" class="col-md-4 col-sm-4 col-xs-4 col-lg-4 col-xl-4">
                     </div>
+
                 </div>
                 
             </div>
@@ -29,8 +30,19 @@
 
     function mouseClickCima(cima)
     {
-        console.log(cima.id);
+
+        const vueInstance = new window.Vue({
+            el: '#mappanel',
+            template:'<h1>'+cima.nombre+'</h1>',
+        });
 
     }
+
+    function mouseHoverCima(cima)
+    {
+
+
+    }
+
 
 </script>

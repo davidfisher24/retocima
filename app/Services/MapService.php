@@ -15,6 +15,7 @@ class MapService
 
     public function makeBasicCimasMap($cimas, $settings = array())
     {
+
         $defaults = array(
             'zoom' => 6, 'lat' => 40.416775, 'lng' => -3.703790, 'cluster' => true,
         );
@@ -25,6 +26,7 @@ class MapService
         foreach($cimas as $cima) {
             if ($cima->latitude && $cima->longitude) {
                 $clickEvent = 'mouseClickCima(' . $cima . ')';
+                $hoverEvent = 'mouseHoverCima(' . $cima . ')';
                 //$clickEvent = null;
                 $contentString = '<p class="panel-heading"><strong>'. $cima->codigo . ' ' . $cima->nombre . '</strong></p>';
                 $contentString .= '<a href="./detallescima/' . $cima->id . '" target="_BLANK">Mas Detalles</a>';
@@ -33,6 +35,7 @@ class MapService
                     'maxWidth'=> 300, 
                     'markers' => ['title' => 'Title'],
                     'eventClick' => $clickEvent,
+                    'eventMouseOver' => $hoverEvent,
                 ]);
             }  
         }
