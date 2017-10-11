@@ -68,7 +68,7 @@ class CimeroCuentaController extends Controller
     {
 
         $cimas = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
-        $map = $this->mapService->makeCimeroCimasMap($cimas);
+        $map = $this->mapService->makeBasicCimasMap($cimas);
         return view('userarea.cimeroStatistics');
     }
 
