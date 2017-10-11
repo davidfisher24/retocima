@@ -8,11 +8,14 @@
                 <div class="panel-heading">Mapa de Cimas</div>
 
                 <div class="panel-body">
-                    <div class="col-md-8">
-                        <div style="width: 700px; height: 600px;">
+                    <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-xl-8">
+                        <div style="width: auto; height: 500px;">
                             {!! Mapper::render() !!}
                         </div>
-                        <div id="vuepage" style="display:none;"></div>
+                        
+                    </div>
+                    <div id="vuepage" class="col-md-4 col-sm-4 col-xs-4 col-lg-4 col-xl-4">
+
                     </div>
                 </div>
                 
@@ -26,7 +29,8 @@
 
     function mouseClickCima(cima)
     {
-        console.log(cima);
+        console.log(cima.id);
+
     }
 
 </script>

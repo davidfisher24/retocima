@@ -104,28 +104,6 @@
             </div>
         </div>
     </div>
-    <!-- Test Graphics -->
-    <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <p class="panel-title">Logros Por Provincia</p>
-                </div>
-                <div class="panel-body" id="chart_1_div" style="padding:1px;">
-                    <?= $lava->render('PieChart', 'chart_1', 'chart_1_div') ?>
-                </div>
-            </div>  
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <p class="panel-title">Donde estoy en cada communidad</p>
-                </div>
-                <div class="panel-body" id="chart_2_div" style="padding:1px;">
-                    <?= $lava->render('ColumnChart', 'chart_2', 'chart_2_div') ?>
-                </div>
-            </div>  
-        </div>
-    </div>
+    
 </div>
 @endsection
