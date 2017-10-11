@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Services\CimeroLogroService;
+use App\Services\MapService;
 
 use App\Cimero;
 use App\Cima;
@@ -20,10 +21,11 @@ class CimeroCuentaController extends Controller
      * @return cimero controller
      */
 
-    public function __construct(CimeroLogroService $cimeroLogroService)
+    public function __construct(CimeroLogroService $cimeroLogroService, MapService $mapService)
     {
         $this->middleware('auth');
         $this->cimeroLogroService = $cimeroLogroService;
+        $this->mapService = $mapService;
     }
 
     /**
@@ -54,6 +56,20 @@ class CimeroCuentaController extends Controller
         $cimero->fullName = $cimero->getFullName();
     	
         return view('userarea.cimeroCuenta', compact('cimero'));
+    }
+
+    /**
+     * Show the cimero statistics page
+     *
+     * @return Blade View
+     */
+
+    public function cimeroStatistics()
+    {
+
+        $cimas = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
+        $map = $this->mapService->makeCimeroCimasMap($cimas);
+        return view('userarea.cimeroStatistics');
     }
 
     /**

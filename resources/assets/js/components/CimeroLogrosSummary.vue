@@ -113,7 +113,7 @@
 
 
             openCimaInNewWindow: function(cimaId){
-                window.open("http://retocima/detallescima/" + cimaId);
+                window.open("./detallescima/" + cimaId);
             },
 
             /**
