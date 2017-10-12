@@ -30,6 +30,7 @@ Vue.component('cimamodal', require('./components/CimaModal.vue')); /* NOT CURREN
 // SHARED COMPONENTS
 Vue.component('datatable', require('./components/DataTable.vue'));
 
+Vue.component('mapcontainer', require('./components/MapContainer.vue'));
 
 
 const app = new Vue({

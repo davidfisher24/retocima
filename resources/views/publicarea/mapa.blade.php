@@ -16,6 +16,7 @@
                     </div>
                     <div id="vuepage" style="display:none;"></div>
                     <div id="mappanel" class="col-md-4 col-sm-4 col-xs-4 col-lg-4 col-xl-4">
+                        <mapcontainer :cima="cima"></mapcontainer>
                     </div>
 
                 </div>
@@ -27,14 +28,33 @@
 @endsection
 
 <script type="text/javascript">
+    var vueInstance;
 
     function mouseClickCima(cima)
     {
 
-        const vueInstance = new window.Vue({
-            el: '#mappanel',
-            template:'<h1>'+cima.nombre+'</h1>',
-        });
+        if (vueInstance) {
+            vueInstance.cima = cima;
+        } else {
+            vueInstance = new window.Vue({
+                data: function() {
+                    return {
+                        cima: cima,
+                    };
+                },
+
+                el: '#mappanel',
+                watch: {
+                    cima: function(cima){
+                        console.log("The curent cima is " + cima.nombre);
+                    }
+                }
+            });
+
+            vueInstance.cima = cima;
+        }
+
+        
 
     }
 
