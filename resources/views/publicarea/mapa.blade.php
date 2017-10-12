@@ -44,11 +44,7 @@
                 },
 
                 el: '#mappanel',
-                watch: {
-                    cima: function(cima){
-                        console.log("The curent cima is " + cima.nombre);
-                    }
-                }
+
             });
 
             vueInstance.cima = cima;
@@ -58,11 +54,6 @@
 
     }
 
-    function mouseHoverCima(cima)
-    {
-
-
-    }
 
 
 </script>

@@ -27,15 +27,15 @@ class MapService
             if ($cima->latitude && $cima->longitude) {
                 $clickEvent = 'mouseClickCima(' . $cima . ')';
                 $hoverEvent = 'mouseHoverCima(' . $cima . ')';
-                //$clickEvent = null;
                 $contentString = '<p class="panel-heading"><strong>'. $cima->codigo . ' ' . $cima->nombre . '</strong></p>';
                 $contentString .= '<a href="./detallescima/' . $cima->id . '" target="_BLANK">Mas Detalles</a>';
+                $contentString = '';
                 Mapper::informationWindow($cima->longitude, $cima->latitude, $contentString, [
                     'open' => false, 
                     'maxWidth'=> 300, 
                     'markers' => ['title' => 'Title'],
                     'eventClick' => $clickEvent,
-                    'eventMouseOver' => $hoverEvent,
+                    //'eventMouseOver' => $hoverEvent,
                 ]);
             }  
         }

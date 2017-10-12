@@ -29,7 +29,7 @@ Vue.component('statisticscontainer', require('./components/StatisticsContainer.v
 Vue.component('cimamodal', require('./components/CimaModal.vue')); /* NOT CURRENTLY USED */
 // SHARED COMPONENTS
 Vue.component('datatable', require('./components/DataTable.vue'));
-
+// MAP COMPONENTS
 Vue.component('mapcontainer', require('./components/MapContainer.vue'));
 
 
