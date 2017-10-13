@@ -34,7 +34,7 @@ class TestController extends Controller
 
 
         $chartArray ["chart"] = array (
-            "type" => "bar" 
+            "type" => "column" 
         );
         $chartArray ["title"] = array (
             "text" => "Yearly sales" 
@@ -43,12 +43,25 @@ class TestController extends Controller
             "enabled" => false 
         );
         $chartArray ["xAxis"] = array (
-            "categories" => $xLabels
+            "type" => 'category',
+            "labels" => array (
+                "rotation" => -45,
+                "style" => array(
+                    "fontSize" => '13px',
+                    "fontFamily" => 'Verdana, sans-serif'
+                )
+            )
         );
         $chartArray ["yAxis"] = array (
             "allowDecimals" => true,
             "min" => 0,
-            "max" => 7000
+            "max" => 7000,
+            "title" => array(
+                "text" => "Ascensiones",
+            ),
+        );
+        $chartArray ["legend"] = array(
+            "enabled" => false,
         );
         $chartArray ["series"] = $seris;
 
