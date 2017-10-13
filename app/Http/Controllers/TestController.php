@@ -20,18 +20,12 @@ class TestController extends Controller
 
     public function showTestPage()
     {   
-        /*$data = $this->communidadLogroService->getAllCommunidadsRankedByLogros()->map(function($prov){
-            return array($prov->nombre,$prov->logros_count);
-        });
-
-        $lava = $this->graphicsService->makePieChart('chart',"X Data","Y Data","Example Data",$data);
-        return view('testarea.test',compact('lava'));*/
 
         $data = $this->communidadLogroService->getAllCommunidadsRankedByLogros()->map(function($comm){
             return array($comm->nombre,$comm->logros_count);
         });
 
-        $lava = $this->graphicsService->makeBarChart('chart',"X Data","Y Data","Example Data",$data);
-        return view('testarea.test',compact('lava'));
+
+        return view('testarea.test');
     }
 }

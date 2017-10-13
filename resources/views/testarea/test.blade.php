@@ -11,9 +11,6 @@
                     Hello World
                 </div>
                 
-                <div class="panel-body" id="chart_1_div" style="padding:1px;">
-                    <?= $lava->render('ColumnChart', 'chart', 'chart_1_div') ?>
-                </div>
             </div>
         </div>
     </div>
