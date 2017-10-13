@@ -87,8 +87,10 @@ Route::prefix('ajax')->group(function () {
         }); 
     });
 
-    
-
-
 });
+
+Route::prefix('test')->group(function () {
+    Route::get('/', 'TestController@showTestPage');
+});
+
 

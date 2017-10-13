@@ -17,7 +17,7 @@ class GraphicsService
                 ->addNumberColumn($yTitle);
 
         foreach($data as $datum) {
-            $chart->addRow([$data[0],$data[1]]);
+            $chart->addRow($datum);
         }
 
         $lava->PieChart($domId, $chart, [
@@ -25,15 +25,20 @@ class GraphicsService
             'is3D'   => $threeD,
             'legend' => array( 'position' => $legend),
         ]);
+
+        return $lava;
     }
 
-    public function makeComboBarChart($domId,$xTitle,$yTitles,$chartTitle,$data)
+    public function makeBarChart($domId,$xTitle,$yTitles,$chartTitle,$data)
     {
         $lava = new Lavacharts;
         $chart = $lava->DataTable();
 
         $chart->addStringColumn($xTitle);
-        foreach ($yTitles as $yTitle) $chart->addNumberColumn($yTitle);
+
+        if (is_array($yTitles)) foreach ($yTitles as $yTitle) $chart->addNumberColumn($yTitle);
+        else $chart->addNumberColumn($yTitles);
+        
 
         foreach($data as $dataRow) {
             $chart->addRow($dataRow);
@@ -46,6 +51,8 @@ class GraphicsService
                 'fontSize' => 14
             ]
         ]);
+
+        return $lava;
     }
 
 }
