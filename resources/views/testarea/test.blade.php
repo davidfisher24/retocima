@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     Hello World
                 </div>
-                
+                <div id="hc"></div>
             </div>
         </div>
     </div>
@@ -18,3 +18,13 @@
 <div class="container" id="vuepage" style="display:none;">
 </div>
 @endsection
+
+<script type="text/javascript">
+
+    window.onload = function(){
+        window.HighCharts.chart('hc', 
+            <?php echo json_encode($chartarray) ?>
+        ); 
+    }
+
+</script>

@@ -25,7 +25,35 @@ class TestController extends Controller
             return array($comm->nombre,$comm->logros_count);
         });
 
+        $xLabels = array();
+        $seris = array();
+        foreach ($data as $datum) {
+            array_push($xLabels,$datum[0]);
+            array_push($seris,array("name" => $datum[0], "data" => array($datum[1])));
+        }
 
-        return view('testarea.test');
+
+        $chartArray ["chart"] = array (
+            "type" => "bar" 
+        );
+        $chartArray ["title"] = array (
+            "text" => "Yearly sales" 
+        );
+        $chartArray ["credits"] = array (
+            "enabled" => false 
+        );
+        $chartArray ["xAxis"] = array (
+            "categories" => $xLabels
+        );
+        $chartArray ["yAxis"] = array (
+            "allowDecimals" => true,
+            "min" => 0,
+            "max" => 7000
+        );
+        $chartArray ["series"] = $seris;
+
+
+        
+        return view('testarea.test')->withChartarray ( $chartArray );
     }
 }
