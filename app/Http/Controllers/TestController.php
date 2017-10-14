@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cima;
+use App\Cimero;
+use App\Provincia;
 use App\Services\MapService;
 use App\Services\GraphicsService;
 use App\Services\ProvinciaLogroService;
@@ -23,12 +25,15 @@ class TestController extends Controller
     public function showTestPage()
     {   
 
+        
+
         $charts = array(
             $this->getBarChart(),
             $this->getPieChart(),
+            $this->getCimerosChart(),
         );
         
-        return view('testarea.test')->withChartarray ( $charts );
+        return view('testarea.test',compact('pataNegras'))->withChartarray ( $charts );
     }
 
     private function getBarChart()
@@ -136,7 +141,98 @@ class TestController extends Controller
 
         return $chartArray;
 
+    }
 
 
+    private function getCimerosChart()
+    {
+        $cimeros = Cimero::with('logros')->get()->groupBy('provincia')->map(function($group){
+            $logrosCount = 0;
+            $name = $group->first()->provincia ? Provincia::find($group->first()->provincia)->nombre : "Extranjero";
+            foreach($group as $person) $logrosCount = $logrosCount += count($person->logros);
+            return array(
+                "province" => $group->first()->provincia ? $group->first()->provincia : 0,
+                "name" => $name,
+                "logros" => $logrosCount,
+                "cimeros" => count($group),
+                "average" => round($logrosCount / count($group)),
+            );
+        });
+        //die(print_r($cimeros->first()));
+        //Array ( [province] => 17 [name] => Cantabria [logros] => 1586 [cimeros] => 48 [average] => 33.041666666667 ) 1
+        $xLabels = array();
+        $seris = array();
+        $seris2 = array();
+        $pieData = array();
+
+        foreach ($cimeros as $cimero) {
+            array_push($xLabels,$cimero["name"]);
+            array_push($seris,$cimero["average"]);
+            array_push($seris2,$cimero["logros"] / 50);
+            array_push($pieData,array("name" => $cimero["name"], "y" => $cimero["cimeros"]));
+        }
+
+        $chartArray ["chart"] = array (
+            "type" => "Combination chart" 
+        );
+        $chartArray ["title"] = array (
+            "text" => "Provincias con cimeros mas activas" 
+        );
+        $chartArray ["credits"] = array (
+            "enabled" => false 
+        );
+        $chartArray ["xAxis"] = array (
+            "categories" => $xLabels,
+            "type" => 'category',
+            "labels" => array (
+                "rotation" => -45,
+                "style" => array(
+                    "fontSize" => '13px',
+                    "fontFamily" => 'Verdana, sans-serif'
+                )
+            )
+        );
+        $chartArray ["yAxis"] = array (
+            "title" => array(
+                "text" => "Avg logros por cimero",
+            ),
+        );
+        $chartArray ["legend"] = array(
+            "enabled" => false,
+        );
+        $chartArray ["series"] = array(
+            array(
+                "name" => "Average Ascensiones",
+                "type" => "column",
+                "data" => $seris
+            ),
+            array(
+                "name" => "Total Ascensiones",
+                "type" => "spline",
+                "data" => $seris2,
+                "marker" => array(
+                    "lineWidth" => 2,
+                    "lineColor" => "red",
+                    "fillColor" => "white",
+                ),
+                "tooltip" => array(),
+            ),
+            array(
+                "name" => "Cimeros",
+                "type" => "pie",
+                "center" => array(900, 35),
+                "size" => 200,
+                "showInLegend" => false,
+                "dataLabels" => array(
+                    "enabled" => false,
+                ),
+                "data" => $pieData,
+            ),
+        );
+
+        return $chartArray;
     }
 }
+
+
+        

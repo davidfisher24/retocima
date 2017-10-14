@@ -8,6 +8,7 @@
                 <div class="panel-heading">Test</div>
                 <div id="hc" class="panel"></div>
                 <div id="hc2" class="panel"></div>
+                <div id="hc3" class="panel"></div>
             </div>
         </div>
     </div>
@@ -20,8 +21,6 @@
 
     window.onload = function(){
 
-        console.log(<?php echo json_encode($chartarray[1]) ?>);
-
         window.HighCharts.chart('hc', 
             <?php echo json_encode($chartarray[0]) ?>
         ); 
@@ -29,6 +28,16 @@
         window.HighCharts.chart('hc2', 
             <?php echo json_encode($chartarray[1]) ?>
         ); 
+
+        var chart3 = <?php echo json_encode($chartarray[2]) ?>;
+        chart3.series[1].tooltip.pointFormatter = function () {
+            return '<b>' + Math.round((this.y * 50)) + ' </b>Ascensiones en total';
+        };
+        console.log(chart3);
+        window.HighCharts.chart('hc3', 
+            chart3
+        ); 
+
 
 
 
