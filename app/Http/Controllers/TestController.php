@@ -21,6 +21,17 @@ class TestController extends Controller
     public function showTestPage()
     {   
 
+        
+
+        $charts = array(
+            $this->getBarChart(),
+        );
+        
+        return view('testarea.test')->withChartarray ( $charts );
+    }
+
+    private function getBarChart()
+    {
         $data = $this->communidadLogroService->getAllCommunidadsRankedByLogros()->map(function($comm){
             return array($comm->nombre,$comm->logros_count);
         });
@@ -29,7 +40,7 @@ class TestController extends Controller
         $seris = array();
         foreach ($data as $datum) {
             array_push($xLabels,$datum[0]);
-            array_push($seris,array("name" => $datum[0], "data" => array($datum[1])));
+            array_push($seris,$datum[1]);
         }
 
 
@@ -37,12 +48,13 @@ class TestController extends Controller
             "type" => "column" 
         );
         $chartArray ["title"] = array (
-            "text" => "Yearly sales" 
+            "text" => "Total Ascensiones por Communidad" 
         );
         $chartArray ["credits"] = array (
             "enabled" => false 
         );
         $chartArray ["xAxis"] = array (
+            "categories" => $xLabels,
             "type" => 'category',
             "labels" => array (
                 "rotation" => -45,
@@ -63,10 +75,13 @@ class TestController extends Controller
         $chartArray ["legend"] = array(
             "enabled" => false,
         );
-        $chartArray ["series"] = $seris;
+        $chartArray ["series"] = array(
+            array(
+                "name" => "Total Ascensiones",
+                "data" => $seris
+            ),
+        );
 
-
-        
-        return view('testarea.test')->withChartarray ( $chartArray );
+        return $chartArray;
     }
 }
