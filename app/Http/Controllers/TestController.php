@@ -8,23 +8,24 @@ use App\Services\MapService;
 use App\Services\GraphicsService;
 use App\Services\ProvinciaLogroService;
 use App\Services\CommunidadLogroService;
+use App\Services\PataNegraService;
 
 class TestController extends Controller
 {
-    public function __construct(MapService $mapService, GraphicsService $graphicsService, CommunidadLogroService $communidadLogroService)
+    public function __construct(MapService $mapService, GraphicsService $graphicsService, CommunidadLogroService $communidadLogroService, PataNegraService $pataNegraService)
     {
         $this->mapService = $mapService;
         $this->graphicsService = $graphicsService;
         $this->communidadLogroService = $communidadLogroService;
+        $this->pataNegraService = $pataNegraService;
     }
 
     public function showTestPage()
     {   
 
-        
-
         $charts = array(
             $this->getBarChart(),
+            $this->getPieChart(),
         );
         
         return view('testarea.test')->withChartarray ( $charts );
@@ -83,5 +84,59 @@ class TestController extends Controller
         );
 
         return $chartArray;
+    }
+
+    private function getPieChart()
+    {
+
+        $chartData = array();
+        $data = $this->pataNegraService->getPataNegrasRankedByAscensions();
+        foreach ($data as $datum) {
+            array_push($chartData,array(
+                $datum["cima"]->nombre . " (" . $datum["cima"]->provincia . ")",
+                $datum["ascensions"],
+            ));
+        }
+
+        $chartArray ["chart"] = array (
+            "type" => "pie",
+            "options3d" => array(
+                "enabled" => true,
+                "alpha" => 45,
+                "beta" => 0,
+            ), 
+        );
+
+        $chartArray ["title"] = array (
+            "text" => "Pata Negras por Ascensiones" 
+        );
+        $chartArray ["credits"] = array (
+            "enabled" => false 
+        );
+
+        $chartArray ["plotOptions"] = array (
+            "pie" => array (
+                "allowPointSelect" => true,
+                "cursor" => "pointer",
+                "depth" => 35,
+                "dataLabels" => array(
+                    "enabled" => true,
+                    "format" => "{point.name}"
+                ),  
+            ),
+        );
+
+        $chartArray ["series"] = array(
+            array(
+                "type" => "pie",
+                "name" => "Pata Negra Por Asenciones",
+                "data" => $chartData,
+            )
+        );
+
+        return $chartArray;
+
+
+
     }
 }

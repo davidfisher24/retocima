@@ -20,9 +20,16 @@
 
     window.onload = function(){
 
+        console.log(<?php echo json_encode($chartarray[1]) ?>);
+
         window.HighCharts.chart('hc', 
             <?php echo json_encode($chartarray[0]) ?>
         ); 
+
+        window.HighCharts.chart('hc2', 
+            <?php echo json_encode($chartarray[1]) ?>
+        ); 
+
 
 
     }
