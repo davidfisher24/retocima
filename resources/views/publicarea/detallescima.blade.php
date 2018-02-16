@@ -27,6 +27,13 @@
                              <h5 class="text-center">{{$cima->communidad}} --> {{$cima->provincia}}</h5>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
+                            @if ($userLogro)
+                                <div><h3>Logro Completed!</h3></div>
+                            @else
+                                <div>
+                                    <button class="btn btn-primary">Añadir Logro</button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 use App\Repositories\CimaRepository;
+use App\Services\CimeroLogroService;
 
 use App\Cima;
 use App\Provincia;
@@ -21,9 +23,10 @@ class CimasListadoController extends Controller
     * @return Cimas Controller
     */
 
-    public function __construct(CimaRepository $cimaRepository)
+    public function __construct(CimaRepository $cimaRepository, CimeroLogroService $cimeroLogroService)
     {
         $this->cimaRepository = $cimaRepository;
+        $this->cimeroLogroService = $cimeroLogroService;
     }
 
     /**
@@ -70,7 +73,8 @@ class CimasListadoController extends Controller
 
     public function showCimaDetails($cimaId)
     {
+        $userLogro = $this->cimeroLogroService->testCimeroLogroExists(Auth::user()->id,$cimaId);
         $cima = $this->cimaRepository->getCimaById($cimaId);
-        return view('publicarea.detallescima',compact('cima'));
+        return view('publicarea.detallescima',compact('cima','userLogro'));
     }
 }

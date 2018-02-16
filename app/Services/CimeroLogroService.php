@@ -162,4 +162,16 @@ class CimeroLogroService extends BaseService
         return false;
     }
 
+    /**
+     * Test if a cimero has a logro
+     *
+     * @param integer $id
+     * @param integer $cimaid
+     * @return Eloquent model logro or null
+     */
+
+    public function testCimeroLogroExists($cimeroId,$cimaId){
+        return Cimero::find($cimeroId)->logros->where('cima_id',$cimaId)->first();
+    }
+
 }
