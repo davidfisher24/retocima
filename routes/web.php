@@ -37,6 +37,11 @@ Route::get('/mapa', 'MapController@showInitialMapPage')->name('mapa');
 /* Pata Negra */
 Route::get('/patanegra', 'PataNegraController@showInitialPataNegraPage')->name('patanegra');
 
+/* Test Routes */
+Route::get('/test', 'TestController@showTestPage')->name('testpage');
+
+/* Test route */
+
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');

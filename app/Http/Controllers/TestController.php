@@ -11,18 +11,25 @@ use App\Services\GraphicsService;
 use App\Services\ProvinciaLogroService;
 use App\Services\CommunidadLogroService;
 use App\Services\PataNegraService;
+use App\Services\RecommenderService;
 
 class TestController extends Controller
 {
-    public function __construct(MapService $mapService, GraphicsService $graphicsService, CommunidadLogroService $communidadLogroService, PataNegraService $pataNegraService)
+    public function __construct(MapService $mapService, GraphicsService $graphicsService, CommunidadLogroService $communidadLogroService, PataNegraService $pataNegraService, RecommenderService $recommenderService)
     {
         $this->mapService = $mapService;
         $this->graphicsService = $graphicsService;
         $this->communidadLogroService = $communidadLogroService;
         $this->pataNegraService = $pataNegraService;
+        $this->recommenderService = $recommenderService;
     }
 
     public function showTestPage()
+    {
+        return $this->recommenderService->getCimaRecommendations();
+    }
+
+    public function showCharts()
     {   
 
         
