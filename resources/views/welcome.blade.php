@@ -60,10 +60,10 @@
                 @if (Route::has('login'))
                     <div class="top-right links link-effect-underline">
                         @if (Auth::check())
-                            <a href="{{ url('/dashboard') }}">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}">MI CUENTA</a>
                         @else
-                            <a href="{{ url('/login') }}">Login</a>
-                            <a href="{{ url('/register') }}">Register</a>
+                            <a href="{{ url('/login') }}">ENTRAR</a>
+                            <a href="{{ url('/register') }}">DAR SE ALTA</a>
                         @endif
                     </div>
                 @endif
@@ -89,7 +89,7 @@
                 <div class="container-fluid">
                     <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-3 col-xl-3 col-lg-3">
-                        <h3>Random Cimas</h3>
+                        <h4><strong>Cimas recomendadas para ti</strong></h4>
                         <?php
                             $cima1 = null;
                             $cima2 = null;
@@ -149,6 +149,14 @@
                     </div>
 
                     <div class="col-md-3 col-sm-3 col-xs-3 col-xl-3 col-lg-3">
+                        <a href="http://www.altimetrias.net/" target="blank">
+                            <img src="{{URL::asset('./img/APM1.png')}}" width="80%" height="auto">
+                        </a>
+                        <br>
+                        <br>
+                        <a href="http://www.ziklo.es/la-revista/" target="blank">
+                            <img src="{{URL::asset('./img/ziklo.jpg')}}" width="80%" height="auto">
+                        </a>
                     </div>
                     </div>
                 </div>
