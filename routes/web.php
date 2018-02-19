@@ -46,6 +46,7 @@ Route::get('/test', 'TestController@showTestPage')->name('testpage');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
     Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');
+    Route::post('/editarcuenta', 'CimeroCuentaController@editarCuenta')->name('cimeroCuenta');
     Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros');
     Route::get('/cimeroestadistica', 'CimeroCuentaController@cimeroStatistics')->name('cimeroStatistics');
     Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');

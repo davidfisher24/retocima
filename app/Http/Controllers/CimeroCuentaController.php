@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 use App\Services\CimeroLogroService;
 use App\Services\MapService;
 
 use App\Cimero;
 use App\Cima;
+use App\Provincia;
+use App\Pais;
 
 class CimeroCuentaController extends Controller
 {
@@ -52,12 +55,25 @@ class CimeroCuentaController extends Controller
     {
     	
     	$cimero = Cimero::with('provincia','pais')->find(Auth::id());
-        $cimero->fullAddress = $cimero->getFullAddress();
-        $cimero->fullName = $cimero->getFullName();
-        $cimero->formattedDate = $cimero->getFormattedBirthDate();
+        $provincias = Provincia::orderBy('nombre','asc')->get();
+        $paises = Pais::spainFirstList();
     	
-        return view('userarea.cimeroCuenta', compact('cimero'));
+        return view('userarea.cimeroCuenta', compact('cimero','provincias','paises'));
     }
+
+    public function editarCuenta(Request $request)
+    {
+        $cimero = Auth::user();
+        $errors = $this->validator($request->all(),$cimero);
+        if (count($errors) > 0) return json_encode(array("errors" => $errors));
+        $cimero = Auth::user();
+        $cimero->update($request->all());
+        $cimero->save();
+        $cimero = Cimero::with('provincia','pais')->find(Auth::id());
+        return $cimero;
+        
+    }
+
 
     /**
      * Show the cimero statistics page
@@ -127,6 +143,34 @@ class CimeroCuentaController extends Controller
     {   
         $addedLogros = $this->cimeroLogroService->validateAndAddNewLogros($request->logros,Auth::id());
         return array('redirect' => 'cimerologrosnew', 'new' => json_encode($addedLogros));
+    }
+
+
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator($data,$cimero)
+    {
+        $spain = (string) Pais::spain();
+        $before = date("Y-m-d",strtotime("-13 years"));
+        $after = date("Y-m-d",strtotime("-100 years"));
+
+        $validator = Validator::make($data, [
+            'nombre' => 'required|string|max:50|min:3',
+            'apellido1' => 'required|string|max:50|min:3',
+            'apellido2' => 'string|max:50',
+            'username' => 'required|string|max:50',
+            'email' => 'required|string|email|max:255|unique:cimeros,email,'.$cimero->id,
+            'provincia' => 'required_if:pais,'.$spain,
+            'pais' => 'required',
+            'fechanacimiento' => 'required|date|date_format:Y-m-d|before:'.$before.'|after:'.$after,
+        ]);
+
+        return $validator->errors();
     }
 
     

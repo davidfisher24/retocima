@@ -111,16 +111,6 @@ class Cimero extends Authenticatable
         return $pais["nombre"];
     }
 
-    /**
-     * Return Formatted Date
-     *
-     * @timestramp birthdate
-     */
-    public function getFormattedBirthDate()
-    {
-        $parts = explode("/",$this->fechanacimiento);
-        return $parts[2] . "-" . $parts[1] . "-" . $parts[0];
-    }
 
 }
 

@@ -13,7 +13,7 @@
                         <div class="panel-heading">Mi Cuenta</div>
 
                         <div class="panel-body">
-                            <cimeroeditcuentaform cimeromodel="{{$cimero}}"></cimeroeditcuentaform>
+                            <cimeroeditcuentaform cimeromodel="{{$cimero}}" provincias="{{$provincias}}" paises="{{$paises}}"></cimeroeditcuentaform>
                         </div>
 
                     </div>
