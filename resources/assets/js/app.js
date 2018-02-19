@@ -23,6 +23,7 @@ Vue.component('cimeroeditcuentaform', require('./components/CimeroEditCuentaForm
 Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 // INTERACIVE COMPONENTS
 Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
+Vue.component('cimaquickadd', require('./components/CimaQuickAdd.vue'));
 // CONTAINER BUILDS
 Vue.component('rankingcontainer', require('./components/RankingContainer.vue'));
 Vue.component('statisticscontainer', require('./components/StatisticsContainer.vue'));

@@ -174,4 +174,17 @@ class CimeroLogroService extends BaseService
         return Cimero::find($cimeroId)->logros->where('cima_id',$cimaId)->first();
     }
 
+    /**
+     * Test if a cimero has a logro
+     *
+     * @param {integer} LogroId
+     * @return {object or boolean} check
+     */
+
+    public function removeExistingLogro($logro){
+        $this->logroRepository->removeSingleLogro($logro->id);
+        $check = $this->testCimeroLogroExists($logro->cimero_id,$logro->cima_id);
+        return $check;
+    }
+
 }

@@ -9,7 +9,7 @@
 
         <div class="col-md-9 col-sm-9 col-xs-9 col-lg-9 col-xl-9">
             <div class="panel panel-default">
-                <div class="panel-heading">Change Password</div>
+                <div class="panel-heading">Cambiar Contraseña</div>
                 <div class="panel-body">
                 @if (Session::has('success'))
                     <div class="alert alert-success">{!! Session::get('success') !!}</div>
@@ -21,7 +21,7 @@
                     {{csrf_field()}}
  
                         <div class="form-group{{ $errors->has('old') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Old Password</label>
+                            <label for="password" class="col-md-4 control-label">Contrseña Actual</label>
  
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="old">
@@ -35,7 +35,7 @@
                         </div>
  
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label for="password" class="col-md-4 control-label">Nueva contraseña</label>
  
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password">
@@ -49,7 +49,7 @@
                             </div>
  
                             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                                <label for="password-confirm" class="col-md-4 control-label">Confirmar nueva contraseña</label>
  
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
@@ -64,7 +64,7 @@
  
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary form-control">Submit</button>
+                            <button type="submit" class="btn btn-primary form-control">Cambiar</button>
                                 </div>
                         </div>
                 </form>

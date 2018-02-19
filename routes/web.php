@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros');
     Route::get('/change-password', function() {return view('userarea.change-password'); });
     Route::post('/change-password', 'Auth\UpdatePasswordController@update');
+    Route::post('/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
 });
 
 /*Ajax Requests */

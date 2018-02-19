@@ -27,15 +27,17 @@
                              <h5 class="text-center">{{$cima->communidad}} --> {{$cima->provincia}}</h5>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
-                            @if ($userLogro)
+                            <cimaquickadd cima="{{$cima->id}}" logro="{{$userLogro}}"></cimaquickadd>
+                            <!--@if ($userLogro)
                                 <div>
-                                    <h3>Logro Completed!</h3>
+                                    <h3>Logro Completed!</h3><br>
+                                    <a>Quitar</a>
                                 </div>
                             @else
                                 <div>
                                     <button class="btn btn-primary">Añadir Logro</button>
                                 </div>
-                            @endif
+                            @endif-->
                         </div>
                     </div>
                 </div>

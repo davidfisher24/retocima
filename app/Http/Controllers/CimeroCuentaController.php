@@ -13,6 +13,7 @@ use App\Cimero;
 use App\Cima;
 use App\Provincia;
 use App\Pais;
+use App\Logro;
 
 class CimeroCuentaController extends Controller
 {
@@ -60,6 +61,13 @@ class CimeroCuentaController extends Controller
     	
         return view('userarea.cimeroCuenta', compact('cimero','provincias','paises'));
     }
+
+    /**
+     * Process edit account form including vallidation.
+     *
+     * @param request
+     * @return {object} cimero
+     */
 
     public function editarCuenta(Request $request)
     {
@@ -145,14 +153,34 @@ class CimeroCuentaController extends Controller
         return array('redirect' => 'cimerologrosnew', 'new' => json_encode($addedLogros));
     }
 
+    /**
+     * Show the anadir cima page
+     *
+     * @param request
+     * @return Update or remove object
+     */
+
+    public function updateLogro(Request $request)
+    {   
+        if ($request->get('action') === "add") {
+            $logros = array($request->get('cima'));
+            $added = $this->cimeroLogroService->validateAndAddNewLogros($logros,Auth::id());
+            return Logro::where('cimero_id',Auth::id())->where('cima_id',$request->get('cima'))->first();
+        } else if ($request->get('action') === "remove") {
+            $delete = $this->cimeroLogroService->removeExistingLogro(json_decode($request->get('logro')));
+            return $delete;
+        } 
+    }
+
 
 
     /**
-     * Get a validator for an incoming registration request.
+     * Get a validator for an incoming update account request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator($data,$cimero)
     {
         $spain = (string) Pais::spain();
