@@ -64,6 +64,9 @@ Route::prefix('ajax')->group(function () {
     Route::get('communidads', function() {
         return App\Communidad::all()->toJSON();
     });
+    Route::get('paises', function() {
+        return App\Pais::all()->toJSON();
+    });
 
     Route::get('provincias/{id}', function($id) {
         return App\Provincia::where('communidad_id',$id)->get()->toJSON();

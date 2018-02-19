@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Logro;
 use App\Cima;
+use App\Cimero;
 use Storage;
 
 class RecommenderService extends BaseService
@@ -36,8 +37,17 @@ class RecommenderService extends BaseService
         return $dictionary;
     }
 
+    public function buildRecommendationIndex($cimaId){
+        $dictionary = json_decode(Storage::get('cimerosDictionary.json'),true);
+        $index = array();
+        $cimeros = Cimero::all();
+        $index = $this->getCimaRecommendations($cimaId);
+        die(print_r($index));
+        Storage::disk('local')->put('index/'+$cimaId+'.json', json_encode($index));
+    }
+
     // Gets cima recommendations
-    public function getCimaRecommendations($cimaId = 1060) {
+    private function getCimaRecommendations($cimaId) {
         $dictionary = json_decode(Storage::get('cimerosDictionary.json'),true);
         $results = $this->findSimilarRows($dictionary,$cimaId);
         $ratings = $this->buildPredictionRatings($dictionary,$results,$cimaId);

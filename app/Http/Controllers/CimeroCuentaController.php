@@ -54,6 +54,7 @@ class CimeroCuentaController extends Controller
     	$cimero = Cimero::with('provincia','pais')->find(Auth::id());
         $cimero->fullAddress = $cimero->getFullAddress();
         $cimero->fullName = $cimero->getFullName();
+        $cimero->formattedDate = $cimero->getFormattedBirthDate();
     	
         return view('userarea.cimeroCuenta', compact('cimero'));
     }

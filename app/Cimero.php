@@ -98,6 +98,30 @@ class Cimero extends Authenticatable
         return $provincia["nombre"];
     }
 
+    /**
+     * Returns the text of the cimeros country
+     *
+     * @return {string} 
+     */
+
+    public function getPais()
+    {
+        $pais = $this->pais()->first();
+        if (!$pais) return "";
+        return $pais["nombre"];
+    }
+
+    /**
+     * Return Formatted Date
+     *
+     * @timestramp birthdate
+     */
+    public function getFormattedBirthDate()
+    {
+        $parts = explode("/",$this->fechanacimiento);
+        return $parts[2] . "-" . $parts[1] . "-" . $parts[0];
+    }
+
 }
 
 

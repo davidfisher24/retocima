@@ -26,7 +26,8 @@ class TestController extends Controller
 
     public function showTestPage()
     {
-        return $this->recommenderService->getCimaRecommendations();
+        //return $this->recommenderService->createLogrosDictionary();
+        return $this->recommenderService->buildRecommendationIndex(1060);
     }
 
     public function showCharts()
