@@ -28,16 +28,6 @@
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
                             <cimaquickadd cima="{{$cima->id}}" logro="{{$userLogro}}"></cimaquickadd>
-                            <!--@if ($userLogro)
-                                <div>
-                                    <h3>Logro Completed!</h3><br>
-                                    <a>Quitar</a>
-                                </div>
-                            @else
-                                <div>
-                                    <button class="btn btn-primary">Añadir Logro</button>
-                                </div>
-                            @endif-->
                         </div>
                     </div>
                 </div>

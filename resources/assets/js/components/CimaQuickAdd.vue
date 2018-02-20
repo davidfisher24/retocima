@@ -49,7 +49,6 @@
                     logro: this.userLogro,
                     cima: this.cima,
                 }).then(function(response){
-                    console.log(response);
                     if (response.data) {
                         self.userLogro = response.data;
                         self.completed = true;
@@ -65,7 +64,6 @@
                     action: 'remove',
                     logro: JSON.stringify(this.userLogro),
                 }).then(function(response){
-                    console.log(response);
                     if (!response.data) {
                         self.userLogro = null;
                         self.completed = false;

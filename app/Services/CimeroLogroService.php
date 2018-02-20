@@ -171,6 +171,7 @@ class CimeroLogroService extends BaseService
      */
 
     public function testCimeroLogroExists($cimeroId,$cimaId){
+        if (!$cimeroId) return null;
         return Cimero::find($cimeroId)->logros->where('cima_id',$cimaId)->first();
     }
 
