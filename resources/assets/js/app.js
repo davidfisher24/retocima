@@ -9,7 +9,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.HighCharts = require('highcharts');
- 
+
+//Vue.component('vuedrawer',require('vue-drawer'));
+//Vue.directive('touch',require('vue-touch'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -35,6 +37,7 @@ Vue.component('datatable', require('./components/DataTable.vue'));
 Vue.component('mapcontainer', require('./components/MapContainer.vue'));
 // COMPONENETS
 Vue.component('loadingcontainer', require('./components/LoadingContainer.vue'));
+Vue.component('cimaselectionlist', require('./components/CimaSelectionList.vue'));
 
 const app = new Vue({
     el: '#vuepage'

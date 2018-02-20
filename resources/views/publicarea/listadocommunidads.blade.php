@@ -9,6 +9,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Listado</div>
 
+
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
@@ -55,7 +56,9 @@
                 </div>
                 
             </div>
+            <!--<cimaselectionlist communidads="{{$communidads}}"></cimaselectionlist>-->
         </div>
+
     </div>
 </div>
 @endsection
