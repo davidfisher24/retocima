@@ -190,7 +190,7 @@ class CimeroCuentaController extends Controller
         $validator = Validator::make($data, [
             'nombre' => 'required|string|max:50|min:3',
             'apellido1' => 'required|string|max:50|min:3',
-            'apellido2' => 'string|max:50',
+            'apellido2' => 'string|max:50|nullable',
             'username' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:cimeros,email,'.$cimero->id,
             'provincia' => 'required_if:pais,'.$spain,

@@ -15,7 +15,7 @@
                 </div>
                 <br>
                 <div>
-                    <div id="province" v-show="isSpain"><p><strong>Provincia:</strong>   {{cimero.provincia.nombre}}  </p></div>
+                    <div id="province" v-if="isSpain"><p><strong>Provincia:</strong>   {{cimero.provincia.nombre}}  </p></div>
                     <div id="country"><p><strong>Pais:</strong>   {{cimero.pais.nombre}} </p></div>
                     <span><a v-on:click="section = 'location'">Editar Ubicacion</a></span>
                 </div>
@@ -71,8 +71,8 @@
                         <span class="error"></span>
                     </div><br><br>
 
-                    <label for="provincia" v-show="isSpain">Provincia</label>
-                    <div class="form-group" v-show="isSpain">
+                    <label for="provincia" v-if="isSpain">Provincia</label>
+                    <div class="form-group" v-if="isSpain">
                         <select name="provincia" v-model="updateCimero.provincia.id">
                             <option v-for="province in provinces" v-bind:value="province.id">{{province.nombre}}</option>
                         </select>
@@ -159,11 +159,15 @@
 
             /**
              * Checks if the current users province is set as Spain
-             * @result stores true or false for Spain
+             * @result stores true or false for Spain. Sets a default province for isSpain and null province
             */
 
             checkSpain:function(){
+                var self = this;
                 this.isSpain = this.cimero.pais.id === this.spainId ? true : false;
+                if (this.updateCimero.provincia === null && this.isSpain) {
+                    this.updateCimero.provincia = self.provinces[Object.keys(self.provinces)[0]];
+                }
             },
 
     
@@ -183,7 +187,7 @@
                     nombre: this.updateCimero.nombre,
                     username: this.updateCimero.username,
                     email: this.updateCimero.email,
-                    provincia: this.updateCimero.provincia.id,
+                    provincia: this.updateCimero.provincia ? this.updateCimero.provincia.id : null,
                     pais: this.updateCimero.pais.id,
                     fechanacimiento: this.updateCimero.fechanacimiento,
                 }

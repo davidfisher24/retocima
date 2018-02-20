@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use DateTime;
+use App\Pais;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -9,7 +10,23 @@ class Cimero extends Authenticatable
 {
     use Notifiable;
 
-    
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($model){
+            self::emptyProvinceIfNotSpain($model);
+        });
+
+        self::updating(function($model){
+            self::emptyProvinceIfNotSpain($model);
+        });
+    }
+
+    public function __construct(array $attributes = array()) {
+        parent::__construct($attributes);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +48,25 @@ class Cimero extends Authenticatable
         'grupo', 'frase', 'nickmiarroba', 'fechalta', 'direccion', 'poblacion', 'codigopostal', 'fechaalta'
     ];
 
+    /**
+     * Mutator - Ensures correct date time format
+     *
+     * @return datetime fechanacimiento
+     */
+    public function getFechanacimientoAttribute($value){
+        $date = DateTime::createFromFormat('d/m/Y', $value);
+        if ($date !== FALSE) return date_format($date, 'Y-m-d');
+        return $value;
+    }
+
+    /**
+     * Mutator -Ensures empty province if country is not Spain
+     *
+     * @param model
+     */
+    protected static function emptyProvinceIfNotSpain($model){
+        if ($model->pais !== Pais::spain()) $model->provincia = null;
+    }
 
     /**
      * Returns full name of the model

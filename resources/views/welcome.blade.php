@@ -89,7 +89,7 @@
                 <div class="container-fluid">
                     <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-3 col-xl-3 col-lg-3">
-                        <h4><strong>Cimas recomendadas para ti</strong></h4>
+                        <h4><strong>Descubrir Cimas</strong></h4>
                         <?php
                             $cima1 = null;
                             $cima2 = null;
@@ -137,7 +137,7 @@
                                 <p>Rating APM: {{$cima2->vertientes->first()->apm}}</p>
                                 <p>Acensiones: {{App\Logro::where('cima_id',$cima2->id)->count()}}</p>
                             </div>
-                            <a href="{{URL::to('/')}}/detallescima/{{$cima1->id}}">Ver</a>
+                            <a href="{{URL::to('/')}}/detallescima/{{$cima2->id}}">Ver</a>
                         </div>
                         
                     </div>
