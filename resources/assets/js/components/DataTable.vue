@@ -3,6 +3,7 @@
     <div class="panel-body">
 
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+            <loadingcontainer v-if="!dataObject"></loadingcontainer>
             <div v-if="dataObject" class="row datatable">
 
                 <!-- HEADER-->

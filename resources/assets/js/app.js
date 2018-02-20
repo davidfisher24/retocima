@@ -33,7 +33,8 @@ Vue.component('cimamodal', require('./components/CimaModal.vue')); /* NOT CURREN
 Vue.component('datatable', require('./components/DataTable.vue'));
 // MAP COMPONENTS
 Vue.component('mapcontainer', require('./components/MapContainer.vue'));
-
+// COMPONENETS
+Vue.component('loadingcontainer', require('./components/LoadingContainer.vue'));
 
 const app = new Vue({
     el: '#vuepage'

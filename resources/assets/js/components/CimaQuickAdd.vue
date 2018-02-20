@@ -28,7 +28,6 @@
 
         beforeMount: function() {
             this.userLogro = this.baseLogro;
-            console.log(this.userLogro);
             this.completed = this.userLogro ? true : false;
         },
 
