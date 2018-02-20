@@ -58,8 +58,7 @@
             remove: function(event){
                 event.preventDefault();
                 var self = this;
-                console.log(this.userLogro);
-                axios.post('update-logro',{
+                axios.post('/update-logro',{
                     action: 'remove',
                     logro: JSON.stringify(this.userLogro),
                 }).then(function(response){
