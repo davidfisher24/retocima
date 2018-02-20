@@ -43,7 +43,7 @@
             add: function(){
                 event.preventDefault();
                 var self = this;
-                axios.post('/update-logro',{
+                axios.post('update-logro',{
                     action: 'add',
                     logro: this.userLogro,
                     cima: this.cima,
@@ -58,7 +58,7 @@
             remove: function(event){
                 event.preventDefault();
                 var self = this;
-                axios.post('/update-logro',{
+                axios.post('update-logro',{
                     action: 'remove',
                     logro: JSON.stringify(this.userLogro),
                 }).then(function(response){

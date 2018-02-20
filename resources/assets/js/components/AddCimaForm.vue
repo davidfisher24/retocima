@@ -99,7 +99,6 @@
                     .catch(function (error) {
                         console.log(error);
                     }); 
-                    console.log(this.$refs);
                     this.$refs.addLogrosForm.submit();
                 } else {
                     alert("You have logros incomplete");
