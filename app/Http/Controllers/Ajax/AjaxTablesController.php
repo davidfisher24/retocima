@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Ajax;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+
 use App\Services\CimeroLogroService;
 use App\Services\CimaLogroService;
 use App\Services\ProvinciaLogroService;
@@ -42,7 +44,8 @@ class AjaxTablesController extends Controller
     public function baseCimeroRanking()
     {
 
-    	$cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
+        //$cimeros = Redis::exists('ranking') ? unserialize(Redis::get('ranking')) : $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
+        $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
         
         $columns = array(
             array("field" => 'ranking', "title" => ''),
@@ -80,6 +83,8 @@ class AjaxTablesController extends Controller
     
     public function getCimerosWithProvinciasWithAtLeastOneLogro()
     {
+        
+        //$cimeros = Redis::exists('cimerosprovincia') ? unserialize(Redis::get('cimerosprovincia')) : $this->cimeroLogroService->getCimerosWithProvinciasWithAtLeastOneLogro();
         $cimeros = $this->cimeroLogroService->getCimerosWithProvinciasWithAtLeastOneLogro();
 
         $columns = array(
@@ -115,7 +120,8 @@ class AjaxTablesController extends Controller
 
     public function getAllCimasRankedByLogros()
     {
-        $cimas = $this->cimaLogroService->getAllCimasRankedByLogros();;
+        //$cimas = Redis::exists('cimaslogros') ? unserialize(Redis::get('cimaslogros')) : $this->cimaLogroService->getAllCimasRankedByLogros();
+        $cimas = $this->cimaLogroService->getAllCimasRankedByLogros();
 
         $columns = array(
             array("field" => 'ranking', "title" => ''),
@@ -151,6 +157,7 @@ class AjaxTablesController extends Controller
 
     public function getAllProvinciasRankedByLogros()
     {
+        //$provincias = Redis::exists('provinciaslogros') ? unserialize(Redis::get('provinciaslogros')) : $this->provinciaLogroService->getAllProvinciasRankedByLogros();
         $provincias = $this->provinciaLogroService->getAllProvinciasRankedByLogros();
 
         $columns = array(
@@ -178,6 +185,7 @@ class AjaxTablesController extends Controller
 
     public function getAllCommunidadsRankedByLogros()
     {
+        //$communidads = Redis::exists('communidadslogros') ? unserialize(Redis::get('communidadslogros')) : $this->communidadLogroService->getAllCommunidadsRankedByLogros();
         $communidads = $this->communidadLogroService->getAllCommunidadsRankedByLogros();
 
         $columns = array(

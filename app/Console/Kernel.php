@@ -13,7 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\CacheRankingCommand::class,
+        Commands\CacheCimerosProvinciaCommand::class,
+        Commands\CacheCimasLogrosCommand::class,
+        Commands\CacheCommunidadsLogrosCommand::class,
+        Commands\CacheProvinciasLogrosCommand::class
     ];
 
     /**
