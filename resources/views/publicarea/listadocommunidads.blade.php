@@ -7,10 +7,11 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Listado</div>
+                <div class="list panel-heading">Listado</div>
+                <!--<div class="search panel-heading">Busqueda</div>-->
 
 
-                <div class="panel-body">
+                <!--<div class="panel-body">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
                             @for ($i = 0; $i < count($communidads) /2; $i ++)
@@ -53,13 +54,17 @@
                             @endfor
                         </div>
                     </div>
-                </div>
+                </div>-->
                 
             </div>
-            <!--<cimaselectionlist communidads="{{$communidads}}"></cimaselectionlist>-->
-            <!--<cimasearch cimas="{{$cimas}}"></cimasearch>-->
+            <div class="list"><cimaselectionlist communidads="{{$communidads}}" cimas="{{$cimas}}"></cimaselectionlist></div>
+            <!--<div class="search"><cimasearch cimas="{{$cimas}}"></cimasearch></div>-->
         </div>
 
     </div>
 </div>
+
+<script>
+
+</script>
 @endsection

@@ -37,7 +37,7 @@ class CimasListadoController extends Controller
 
     public function listCimasByCommunidad()
     {
-    	$cimas = Cima::orderBy('nombre','desc')->get();
+    	$cimas = Cima::with('vertientes')->orderBy('nombre','asc')->get();
         $communidads = Communidad::with('provincias','cimas')->get()->sortBy('nombre');
         return view('publicarea.listadocommunidads',compact('communidads','cimas'));
     }
