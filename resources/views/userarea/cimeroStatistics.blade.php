@@ -11,13 +11,28 @@
                 <div class="col-md-9" id="vuepage">
                     <div class="panel panel-default">
                         <div class="panel-heading">Mis Estadisticas</div>
-                        <div style="width: 700px; height: 600px;">
+
+                        <!-- Chart -->
+                        <div id="hc" class="panel"></div>
+                        <!-- Map -->
+                        <!--<div style="width: 700px; height: 600px;">
                             {!! Mapper::render() !!}
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    window.onload = function(){
+        window.HighCharts.chart('hc', 
+            <?php echo json_encode($chartarray[0]) ?>
+        ); 
+    }
+
+</script>
 @endsection
+

@@ -42,6 +42,11 @@ class CimeroLogroService extends BaseService
 
 	}
 
+    private function getCimeroLogros($id)
+    {
+        return Cimero::find($id)->logros()->get();
+    }
+
 	/**
      * Returns all logros with details for a cimero
      *
@@ -59,6 +64,15 @@ class CimeroLogroService extends BaseService
 
     	return $logros;
 	}
+
+    public function getCimeroProvinciaCount($id) {
+        return $this->getCimeroLogros($id)->groupBy('provincia_id')->map(function ($item, $key) {
+            return array(
+                "provincia" => $item->first()->provincia->nombre,
+                "count" => $item->count()
+            );
+        })->sortByDesc('count');
+    }
 
     /**
      * Returns all cimeros ranked by numero of logros
