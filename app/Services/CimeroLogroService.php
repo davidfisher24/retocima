@@ -28,6 +28,20 @@ class CimeroLogroService extends BaseService
     }
 
 
+    /**
+     * Returns all logros for cimero
+     *
+     * @param integer $cimeroId
+     * @return eloquent collection logros
+     *
+     */
+
+    private function getCimeroLogros($id)
+    {
+        return Cimero::find($id)->logros()->get();
+    }
+
+
 	/**
      * Returns all logro_ids for a cimero
      *
@@ -38,13 +52,17 @@ class CimeroLogroService extends BaseService
 
 	public function getCimeroLogrosCimaIds($id)
 	{
-		return Cimero::find($id)->logros()->get()->pluck('cima_id')->toArray();
+		return $this->getCimeroLogros($id)->pluck('cima_id')->toArray();
 
 	}
 
-    private function getCimeroLogros($id)
+    public function getLogrosOrderedByAltitud($id)
     {
-        return Cimero::find($id)->logros()->get();
+        return $this->getCimeroWithDetailedLogros($id)->map(function($cima){
+            $cima["altitud"] = $cima->vertientes->first()->altitud;
+            return $cima;
+        })->sortByDesc('altitud');
+
     }
 
 	/**
@@ -58,12 +76,21 @@ class CimeroLogroService extends BaseService
 
 	public function getCimeroWithDetailedLogros($id)
 	{
-    	$logros = Cimero::find($id)->logros()->get()->map(function($item, $index){
-    		return Cima::find($item->cima_id);
+    	$logros = $this->getCimeroLogros($id)->map(function($item, $index){
+    		return Cima::with('vertientes')->find($item->cima_id);
     	});
 
     	return $logros;
 	}
+
+    /**
+     * Returns cimeros provinces counted by number of logros
+     *
+     * @param integer $cimeroId
+     *
+     * @return collection provincias with logro count
+     *
+     */
 
     public function getCimeroProvinciaCount($id) {
         return $this->getCimeroLogros($id)->groupBy('provincia_id')->map(function ($item, $key) {

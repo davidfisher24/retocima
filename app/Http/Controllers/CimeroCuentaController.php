@@ -100,9 +100,13 @@ class CimeroCuentaController extends Controller
         $map = $this->mapService->makeBasicCimasMap($cimas);
         return view('userarea.cimeroStatistics',compact('cimas')); */
 
+        /* Bar and pir chart */
         $cimas = $this->cimeroLogroService->getCimeroProvinciaCount(Auth::id());
-        $chart = $this->graphicsService->cimeroBarChart($cimas,"provincia","count","Logros por provincia");
-        $charts = array($chart);
+        $heights = $this->cimeroLogroService->getLogrosOrderedByAltitud(Auth::id());
+        $chart1 = $this->graphicsService->barChart($cimas,"provincia","count","Logros por provincia");
+        $chart2 = $this->graphicsService->pieChart($cimas,"provincia","count","Logros por provincia");
+        $chart3 = $this->graphicsService->splineChart($heights,"nombre","altitud","Altitud de logros");
+        $charts = array($chart1,$chart2,$chart3);
         return view('userarea.cimeroStatistics')->withChartarray($charts);
     }
 
