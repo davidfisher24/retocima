@@ -44,7 +44,7 @@ class AjaxTablesController extends Controller
     public function baseCimeroRanking()
     {
 
-        //$cimeros = Redis::exists('ranking') ? unserialize(Redis::get('ranking')) : $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
+        //$cimeros = Redis::exists('ranking') ? unserialize(Redis::get('ranking')) : $this->cimeroLogroService->getRankingOfAllCimeros();
         $cimeros = $this->cimeroLogroService->getRankingOfAllCimeros();
         
         $columns = array(
@@ -248,6 +248,7 @@ class AjaxTablesController extends Controller
 
     public function getRankingOfProvincesByCompletion()
     {
+        //$provinces = Redis::exists('provinciacompletion') ? unserialize(Redis::get('provinciacompletion')) : $this->areaCompletionService->getProvincesOrderedByCompletions();
         $provinces = $this->areaCompletionService->getProvincesOrderedByCompletions();
         
         $columns = array(
@@ -272,6 +273,7 @@ class AjaxTablesController extends Controller
 
     public function getRankingOfCommunidadsByCompletion()
     {
+        //$communidads = Redis::exists('communidadcompletion') ? unserialize(Redis::get('communidadcompletion')) : $this->areaCompletionService->getCommunidadsOrderedByCompletions();
         $communidads = $this->areaCompletionService->getCommunidadsOrderedByCompletions();
         
         $columns = array(

@@ -17,7 +17,9 @@ class Kernel extends ConsoleKernel
         Commands\CacheCimerosProvinciaCommand::class,
         Commands\CacheCimasLogrosCommand::class,
         Commands\CacheCommunidadsLogrosCommand::class,
-        Commands\CacheProvinciasLogrosCommand::class
+        Commands\CacheProvinciasLogrosCommand::class,
+        Commands\CacheProvinciasCompletionCommand::class,
+        Commands\CacheCommunidadsCompletionCommand::class,
     ];
 
     /**
