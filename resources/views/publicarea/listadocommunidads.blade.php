@@ -57,6 +57,7 @@
                 
             </div>
             <!--<cimaselectionlist communidads="{{$communidads}}"></cimaselectionlist>-->
+            <!--<cimasearch cimas="{{$cimas}}"></cimasearch>-->
         </div>
 
     </div>
