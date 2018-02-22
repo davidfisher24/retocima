@@ -22,7 +22,7 @@ class LazyLoading
         } else {
             $response = $next($request);
             Redis::set($request->path(),serialize($response));
-            Redis::expire($request->path(), 24 * 60 * 60);
+            Redis::expire($request->path(), 15 * 60);
             return $response;
         }
     }
