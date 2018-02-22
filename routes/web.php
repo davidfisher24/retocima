@@ -44,17 +44,20 @@ Route::get('/test', 'TestController@showTestPage')->name('testpage');
 
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');
-    Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta');
-    Route::post('/editarcuenta', 'CimeroCuentaController@editarCuenta')->name('cimeroCuenta');
-    Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros');
+    Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');  
+    Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta'); 
+    Route::post('/editarcuenta', 'CimeroCuentaController@editarCuenta')->name('cimeroCuenta'); // WRITE - edit account
+    Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros'); 
     Route::get('/cimeroestadistica', 'CimeroCuentaController@cimeroStatistics')->name('cimeroStatistics');
     Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
     Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
-    Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros');
     Route::get('/change-password', function() {return view('userarea.change-password'); });
     Route::post('/change-password', 'Auth\UpdatePasswordController@update');
-    Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
+    
+    Route::middleware(['writeThroughLogros'])->group(function () {
+        Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros'); 
+        Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro'); 
+    });
 });
 
 /*Ajax Requests */

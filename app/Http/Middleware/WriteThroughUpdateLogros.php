@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Redis;
+use App\Jobs\WriteThroughLogros;
 
-class WriteThrough
+class writeThroughUpdateLogros
 {
     /**
      * Handle an incoming request.
@@ -16,9 +18,7 @@ class WriteThrough
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-
-        // Perform action
-
+        WriteThroughLogros::dispatch($request);
         return $response;
     }
 }

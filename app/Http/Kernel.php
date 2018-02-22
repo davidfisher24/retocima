@@ -57,6 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'lazyLoading' => \App\Http\Middleware\LazyLoading::class,
-        'writeThrough' => \App\Http\Middleware\WriteThrough::class,
+        'writeThroughLogros' => \App\Http\Middleware\writeThroughUpdateLogros::class,
     ];
 }
