@@ -38,15 +38,21 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->username}} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ url('/dashboard') }}">Dashboard</a>
+                                <a href="{{ url('/cimerocuenta') }}">Mi Cuenta</a>
+                                <a href="{{ url('/cimeroestadistica') }}">Mis Estadisticas</a>
+                                <a href="{{ url('/cimerologros') }}">Mis Logros</a>
+                                <a href="{{ url('/anadirlogros') }}">Anadir Logro</a>
+                                <a href="{{ url('/change-password') }}">Cambiar Contraseña</a>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    Logout
+                                    Cerrar Sesion
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

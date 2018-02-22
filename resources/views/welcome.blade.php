@@ -14,36 +14,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
 
-    <!-- FULL PAGE BACKGROUND NO DATA OPTION -->
-    <!--<body class="image-bg">
-        <div class="flex-center position-ref full-height" id="home-page">
-            @if (Route::has('login'))
-                <div class="top-right links link-effect-underline">
-                    @if (Auth::check())
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
 
-            <div class="content" id="home-page-content">
-                <div class="title">
-                    Reto Cima
-                </div>
-
-                <div class="links link-effect-underline">
-                    <a href="{{ url('/listadocommunidads') }}">Listado</a>
-                    <a href="{{ url('/ranking') }}">Ranking</a>
-                    <a href="{{ url('/patanegra') }}">Pata Negra</a>
-                    <a href="{{ url('/estadistica') }}">Estadistica</a>
-                    <a href="{{ url('/mapa') }}">Mapa</a>
-            </div>
-        </div>
-    </body>-->
-
-    <!-- DATA DIV OPTION -->
     <body>
         <div id="home-page">
 
@@ -61,11 +32,21 @@
                     <div class="top-right links link-effect-underline">
                         @if (Auth::check())
                             <a href="{{ url('/dashboard') }}">MI CUENTA</a>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                CERRAR SESION
+                            </a>
+
                         @else
                             <a href="{{ url('/login') }}">ENTRAR</a>
                             <a href="{{ url('/register') }}">DAR SE ALTA</a>
                         @endif
                     </div>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 @endif
             </nav>
 
