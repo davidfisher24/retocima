@@ -74,7 +74,8 @@ class CimasListadoController extends Controller
     public function showCimaDetails($cimaId)
     {
         $userLogro = $this->cimeroLogroService->testCimeroLogroExists(Auth::id(),$cimaId);
-        $cima = $this->cimaRepository->getCimaById($cimaId);
+        //$cima = $this->cimaRepository->getCimaById($cimaId);
+        $cima = $this->cimaRepository->getCimaByIdWithStatistics($cimaId);
         return view('publicarea.detallescima',compact('cima','userLogro'));
     }
 }

@@ -35,6 +35,17 @@ class CimaRepository
 		return $this->model->with('vertientes','vertientes.enlaces','provincia','communidad','iberia')->find($id);
 	}
 
+    /**
+     * A single cima by id with statistics object
+     *
+     * @param integer $id
+     * @return Eloquent model cima
+     */
+
+    public function getCimaByIdWithStatistics($id){
+       return $this->model->with('vertientes','vertientes.enlaces','provincia','communidad','iberia','logros')->find($id);
+    }
+
 	/**
      * Get all cimas in a province
      *
