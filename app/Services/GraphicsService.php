@@ -129,13 +129,14 @@ class GraphicsService
         $chartArray ["xAxis"] = array (
             "categories" => $xLabels,
             "type" => 'category',
-            "labels" => array (
+            "labels" => false,
+            /*"labels" => array (
                 "rotation" => -45,
                 "style" => array(
                     "fontSize" => '13px',
                     "fontFamily" => 'Verdana, sans-serif'
                 )
-            )
+            )*/
         );
         $chartArray ["yAxis"] = array (
             "allowDecimals" => false,
