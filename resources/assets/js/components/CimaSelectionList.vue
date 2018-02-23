@@ -142,7 +142,7 @@
              */
 
             imageSource: function(id){
-                return "/img/communidads/"+id+".png";
+                return window.location.origin + "/img/communidads/"+id+".png";
             },
 
             getLink:function(id){
