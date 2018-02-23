@@ -17,7 +17,10 @@ class MapController extends Controller
     public function showInitialMapPage()
     {
     	$cimas = Cima::with('provincia','communidad','vertientes')->get();
+        // Googlemappr laravel version
         $map = $this->mapService->makeBasicCimasMap($cimas);
-        return view('publicarea.mapa');
+        return view('publicarea.mapa',compact('cimas'));
+        // Vue Googlemaps version
+        //return view('publicarea.mapa',compact('cimas'));
     }
 }

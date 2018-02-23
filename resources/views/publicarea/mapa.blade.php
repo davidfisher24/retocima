@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid" >
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Mapa de Cimas</div>
 
-                <div class="panel-body">
+                <!--div class="panel-body" id="vuepage">
+                <googlemap cimas="{{$cimas}}"></googlemap>-->
+                    <!--LARAVEL ELEMENT -->
                     <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-xl-8">
                         <div style="width: auto; height: 500px;">
                             {!! Mapper::render() !!}
@@ -53,7 +55,4 @@
         
 
     }
-
-
-
 </script>

@@ -10,6 +10,12 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.HighCharts = require('highcharts');
 
+/*Vue.use(require('vue2-google-maps'), {
+  load: {
+    key: 'AIzaSyAtqWsq5Ai3GYv6dSa6311tZiYKlbYT4mw',
+  }
+})*/
+
 //Vue.component('vuedrawer',require('vue-drawer'));
 //Vue.directive('touch',require('vue-touch'));
 
@@ -41,6 +47,7 @@ Vue.component('mapcontainer', require('./components/MapContainer.vue'));
 Vue.component('loadingcontainer', require('./components/LoadingContainer.vue'));
 Vue.component('cimaselectionlist', require('./components/CimaSelectionList.vue'));
 Vue.component('cimasearch', require('./components/CimaSearch.vue'));
+//Vue.component('googlemap', require('./components/GoogleMap.vue'));
 
 const app = new Vue({
     el: '#vuepage'
