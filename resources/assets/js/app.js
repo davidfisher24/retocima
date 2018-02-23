@@ -47,6 +47,7 @@ Vue.component('mapcontainer', require('./components/MapContainer.vue'));
 Vue.component('loadingcontainer', require('./components/LoadingContainer.vue'));
 Vue.component('cimaselectionlist', require('./components/CimaSelectionList.vue'));
 Vue.component('cimasearch', require('./components/CimaSearch.vue'));
+Vue.component('cimadetail', require('./components/CimaDetail.vue'));
 //Vue.component('googlemap', require('./components/GoogleMap.vue'));
 
 const app = new Vue({

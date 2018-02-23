@@ -51,9 +51,9 @@
                             </thead>
                             <tbody>
                                 <tr v-for="cima in currentCimas" v-if="cima.estado === 1">
-                                    <td>{{cima.estado}}</td>
+                                    <td>{{cima.codigo}}</td>
                                     <td>
-                                        <a :href="getLink(cima.id)" target="blank">{{cima.nombre}}</a>
+                                        <a @click="openCima(cima.id)">{{cima.nombre}}</a>
                                     </td>
                                     <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
                                     <td>
@@ -70,7 +70,7 @@
                                 <tr v-for="cima in currentCimas" v-if="cima.estado !== 1">
                                     <td>{{cima.codigo}}</td>
                                     <td>
-                                        <a :href="getLink(cima.id)" target="blank">{{cima.nombre}}</a>
+                                        <a @click="openCima(cima.id)">{{cima.nombre}}</a>
                                     </td>
                                     <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
                                     <td>
@@ -80,6 +80,21 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                <!-- Cima Panel -->
+                <div class="row item">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="currentCima">
+                        <h3>
+                            <a class="pull-left" @click="back">Atras</a>
+                            <a @click="previousCima">ANTERIOR</a>
+                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;&nbsp;
+                            {{currentCima.codigo}} -- {{currentCima.nombre}}
+                            <a @click="nextCima">SIGUIENTE</a>
+                        </h3>
+                        <cimadetail class="item active" v-if="currentCima" :cima="currentCima"></cimadetail>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -98,6 +113,7 @@
                 communidad: null,
                 province: null,
                 currentCimas: null,
+                currentCima: null,
             };
         },
         computed: {
@@ -126,7 +142,7 @@
              */
 
             imageSource: function(id){
-                return "./img/communidads/"+id+".png";
+                return "/img/communidads/"+id+".png";
             },
 
             getLink:function(id){
@@ -156,6 +172,47 @@
                 })[0];
                 this.panel = this.panel + 1;
                 $('#carousel').carousel(this.panel);
+            },
+
+            /*
+             * Opens cima panel
+             */
+
+            openCima:function(id){
+                this.currentCima = this.baseCimas.filter(function(cima){
+                    return cima.id === id;
+                })[0];
+                this.panel = this.panel + 1;
+                $('#carousel').carousel(this.panel);
+            },
+
+            /* 
+             * Show Previous Cima
+             */
+
+            previousCima:function(){
+                var currentId = this.currentCima.id;
+                var currentIndex = null;
+                var index = this.currentCimas.forEach(function(cima,i){
+                    if (cima.id === currentId) currentIndex = i;
+                });
+                this.currentCima = this.currentCimas[currentIndex -1];
+                this.$emit('update', this.currentCima);
+
+            },
+
+            /* 
+             * Show nextCima
+             */
+
+            nextCima:function(){
+                var currentId = this.currentCima.id;
+                var currentIndex = null;
+                var index = this.currentCimas.forEach(function(cima,i){
+                    if (cima.id === currentId) currentIndex = i;
+                });
+                this.currentCima = this.currentCimas[currentIndex + 1];
+                this.$emit('update', this.currentCima);
             },
 
         },

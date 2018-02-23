@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cima;
+use App\Communidad;
 use App\Cimero;
 use App\Provincia;
 use App\Services\MapService;
@@ -30,6 +31,19 @@ class TestController extends Controller
         //return $this->recommenderService->createLogrosDictionary();
         //return $this->recommenderService->buildRecommendationIndex(1060);
 
+    }
+
+    /**
+     * Show the list of communidads with number of cimas.
+     *
+     * @return Blade View
+     */
+
+    public function showTestListPage()
+    {
+        $cimas = Cima::with('vertientes')->orderBy('nombre','asc')->get();
+        $communidads = Communidad::with('provincias','cimas')->get()->sortBy('nombre');
+        return view('publicarea.testlist',compact('communidads','cimas'));
     }
 
     public function showCharts()
