@@ -142,7 +142,8 @@
              */
 
             imageSource: function(id){
-                return window.location.protocol + "//" + window.location.host + "/img/communidads/"+id+".png";
+                var baseUrl = window.location.origin === "http://79.137.45.63" ? "http://79.137.45.63/retocima/public/" : "";
+                return baseUrl + "/img/communidads/"+id+".png";
             },
 
             getLink:function(id){
