@@ -87,10 +87,10 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="currentCima">
                         <h3>
                             <a class="pull-left" @click="back">Atras</a>
-                            <a @click="previousCima">ANTERIOR</a>
+                            <a @click="previousCima" v-if="previousCimaExists">ANTERIOR</a>
                             <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;&nbsp;
                             {{currentCima.codigo}} -- {{currentCima.nombre}}
-                            <a @click="nextCima">SIGUIENTE</a>
+                            <a @click="nextCima" v-if="nextCimaExists">SIGUIENTE</a>
                         </h3>
                         <cimadetail class="item active" v-if="currentCima" :cima="currentCima"></cimadetail>
                     </div>
@@ -114,6 +114,8 @@
                 province: null,
                 currentCimas: null,
                 currentCima: null,
+                previousCimaExists: false,
+                nextCimaExists: false,
             };
         },
         computed: {
@@ -180,9 +182,18 @@
              */
 
             openCima:function(id){
+                
                 this.currentCima = this.baseCimas.filter(function(cima){
                     return cima.id === id;
                 })[0];
+                // Test the index to see if we have a previous and next button
+                var currentIndex = null;
+                var index = this.currentCimas.forEach(function(cima,i){
+                    if (cima.id === id) currentIndex = i;
+                });
+                this.previousCimaExists = currentIndex !== 0 ? true : false;
+                this.nextCimaExists = currentIndex !== this.currentCimas.length -1 ? true : false;
+                //
                 this.panel = this.panel + 1;
                 $('#carousel').carousel(this.panel);
             },
@@ -192,12 +203,16 @@
              */
 
             previousCima:function(){
-                var currentId = this.currentCima.id;
+                var id = this.currentCima.id;
+                //
                 var currentIndex = null;
                 var index = this.currentCimas.forEach(function(cima,i){
-                    if (cima.id === currentId) currentIndex = i;
+                    if (cima.id === id) currentIndex = i -1; // MINUS ONE
                 });
-                this.currentCima = this.currentCimas[currentIndex -1];
+                this.previousCimaExists = currentIndex !== 0 ? true : false;
+                this.nextCimaExists = currentIndex !== this.currentCimas.length -1 ? true : false;
+                //
+                this.currentCima = this.currentCimas[currentIndex];
                 this.$emit('update', this.currentCima);
 
             },
@@ -207,12 +222,16 @@
              */
 
             nextCima:function(){
-                var currentId = this.currentCima.id;
+                var id = this.currentCima.id;
+                //
                 var currentIndex = null;
                 var index = this.currentCimas.forEach(function(cima,i){
-                    if (cima.id === currentId) currentIndex = i;
+                    if (cima.id === id) currentIndex = i + 1; // PLUS ONE
                 });
-                this.currentCima = this.currentCimas[currentIndex + 1];
+                this.previousCimaExists = currentIndex !== 0 ? true : false;
+                this.nextCimaExists = currentIndex !== this.currentCimas.length -1 ? true : false;
+                //
+                this.currentCima = this.currentCimas[currentIndex];
                 this.$emit('update', this.currentCima);
             },
 
