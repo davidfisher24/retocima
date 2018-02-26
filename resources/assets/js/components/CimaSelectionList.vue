@@ -128,8 +128,9 @@
             },
 
             showProvince: function(id){
+                var baseUrl = window.location.origin === "http://79.137.45.63" ? "http://79.137.45.63/retocima/public/" : "";
                 var self = this;
-                axios.get('/api/cimas/' + id).then(function(response){
+                axios.get(baseUrl + '/api/cimas/' + id).then(function(response){
                     self.cimas = response.data;
                 });
             },
