@@ -1,7 +1,6 @@
 <template> 
 
    <div class="panel-body container-fluid">
-
                 <!-- Communidads panel -->
 
                 <div class="row" v-if="!cimas && !cima">
