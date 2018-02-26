@@ -10,8 +10,8 @@
                 <div class="list panel-heading">Listado</div>
                 
             </div>
-            <div class="list"><cimaselectionlist communidads="{{$communidads}}" cimas="{{$cimas}}"></cimaselectionlist></div>
-            <!--<div class="search"><cimasearch cimas="{{$cimas}}"></cimasearch></div>-->
+            <div class="list"><cimaselectionlist communidads="{{$communidads}}"></cimaselectionlist></div>
+
         </div>
 
     </div>

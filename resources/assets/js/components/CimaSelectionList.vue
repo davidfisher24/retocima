@@ -1,48 +1,37 @@
 <template> 
 
    <div class="panel-body container-fluid">
-        <div class="carousel slide" data-ride="carousel" data-interval="false" id="carousel">
-            <div class="carousel-inner" id="panels">
+
                 <!-- Communidads panel -->
-                <div class="row item active">
+
+                <div class="row" v-if="!cimas && !cima">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
-                        <p v-for="index in (1, commCount/2)" @click="openCommunidad(comms[index-1].id)">
-                            <img :src="imageSource(comms[index-1].id)" height="24" width="32">&nbsp;
-                            <a>{{comms[index-1].nombre}}</a> ({{comms[index-1].cimas.length}})
+                       <p v-for="(communidad,index) in comms" v-if="index < count/2">
+                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
+                            <a @click="selectCommunidad(communidad.id)" >{{communidad.nombre}}</a> ({{communidad.cimas_count}})
+                            <ul v-if="selectedCommunidad === communidad.id">
+                                <li v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)">{{provincia.nombre}}</li>
+                            </ul>
                         </p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
-                        <p v-for="index in (1, commCount/2)" @click="openCommunidad(comms[index+commCount/2-1].id)">
-                            <img :src="imageSource(comms[index+commCount/2-1].id)" height="24" width="32">&nbsp;
-                            <a>{{comms[index+commCount/2-1].nombre}}</a> ({{comms[index+commCount/2-1].cimas.length}})
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Provincias panel -->
-                <div class="row item">
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center"  v-if="communidad">
-                        <h3>
-                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;&nbsp;{{communidad.nombre}}
-                            <a class="pull-left" @click="back">Atras</a>
-                        </h3>
-
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center"  v-if="communidad">
-                        <p v-for="provincia in communidad.provincias" @click="openProvince(provincia.id)">
-                            <a>{{provincia.nombre}}</a>
+                        <p v-for="(communidad,index) in comms" v-if="index >= count/2">
+                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
+                            <a @click="selectCommunidad(communidad.id)" >{{communidad.nombre}}</a> ({{communidad.cimas_count}})
+                            <ul v-if="selectedCommunidad === communidad.id">
+                                <li v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)">{{provincia.nombre}}</li>
+                            </ul>
                         </p>
                     </div>
                 </div>
 
                 <!-- Cimas panel -->
-                <div class="row item">
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="province">
+                <div class="row" v-if="cimas && !cima">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
                         <h3>
-                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;&nbsp;{{communidad.nombre}} -- {{province.nombre}}
-                            <a class="pull-left" @click="back">Atras</a>
+                            <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;{{cimas[0].communidad}} -- {{cimas[0].provincia}}
+                            <a class="pull-left" @click="cimas = null">Atras</a>
                         </h3>
-
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
                         <table class="table table-striped">
@@ -50,10 +39,10 @@
                                 <td>Cdg.</td><td>Nombre</td><td>Altitud</td><td>Vertientes</td>
                             </thead>
                             <tbody>
-                                <tr v-for="cima in currentCimas" v-if="cima.estado === 1">
+                                <tr v-for="cima in cimas" v-if="cima.estado === 1">
                                     <td>{{cima.codigo}}</td>
                                     <td>
-                                        <a @click="openCima(cima.id)">{{cima.nombre}}</a>
+                                        <a @click="showCima(cima.id)">{{cima.nombre}}</a>
                                     </td>
                                     <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
                                     <td>
@@ -67,10 +56,10 @@
                                 <td colspan="4">Cimas que fueron eliminados</td>
                             </thead>
                             <tbody>
-                                <tr v-for="cima in currentCimas" v-if="cima.estado !== 1">
+                                <tr v-for="cima in cimas" v-if="cima.estado !== 1">
                                     <td>{{cima.codigo}}</td>
                                     <td>
-                                        <a @click="openCima(cima.id)">{{cima.nombre}}</a>
+                                        <a @click="showCima(cima.id)">{{cima.nombre}}</a>
                                     </td>
                                     <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
                                     <td>
@@ -83,39 +72,34 @@
                 </div>
 
                 <!-- Cima Panel -->
-                <div class="row item">
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="currentCima">
+                <div class="row" v-if="cima">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
                         <h3>
-                            <a class="pull-left" @click="back">Atras</a>
-                            <a @click="previousCima" v-if="previousCimaExists">ANTERIOR</a>
-                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;&nbsp;
-                            {{currentCima.codigo}} -- {{currentCima.nombre}}
-                            <a @click="nextCima" v-if="nextCimaExists">SIGUIENTE</a>
+                            <a class="pull-left" @click="cima = null">Atras</a>
+                            <a v-if="cimas.indexOf(cima) !== 0" @click="cima = cimas[cimas.indexOf(cima) -1]">ANTERIOR</a>
+                            <img :src="imageSource(cima.communidad_id)" height="24" width="32">&nbsp;&nbsp;
+                            {{cima.codigo}} -- {{cima.nombre}} 
+                            <a v-if="cimas.indexOf(cima) + 1 !== cimas.length" @click="cima = cimas[cimas.indexOf(cima) +1]">SIGUIENTE</a>
                         </h3>
-                        <cimadetail class="item active" v-if="currentCima" :cima="currentCima"></cimadetail>
+                        <cimadetail class="item" :cima="cima"></cimadetail>
                     </div>
                     
                 </div>
-            </div>
-        </div>
     </div>
 
 
 </template>
 
+
 <script>
 
     export default {
-        props: ["communidads","cimas"],
+        props: ["communidads"],
         data: function() {
             return {
-                panel: 0,
-                communidad: null,
-                province: null,
-                currentCimas: null,
-                currentCima: null,
-                previousCimaExists: false,
-                nextCimaExists: false,
+                selectedCommunidad: null,
+                cimas: null,
+                cima: null,
             };
         },
         computed: {
@@ -124,20 +108,11 @@
 
         beforeMount: function() {
             this.comms = JSON.parse(this.communidads);
-            this.commCount = Object.keys(this.comms).length;
-            this.baseCimas = JSON.parse(this.cimas);
+            this.count = Object.keys(this.comms).length;
         },
 
         methods: {
 
-            /*
-             * Moves Back to a previous panel setting the index
-             */
-
-            back: function(){
-                this.panel = this.panel - 1;
-                $('#carousel').carousel(this.panel);
-            },
 
             /*
              * Gets a communidad image flag link
@@ -148,92 +123,26 @@
                 return baseUrl + "/img/communidads/"+id+".png";
             },
 
-            getLink:function(id){
-                return "/detallescima/" + id;
+            selectCommunidad: function(id){
+                if (this.selectedCommunidad === id) return this.selectedCommunidad = null;
+                this.selectedCommunidad = id;
             },
 
-            /*
-             * Opens communidad panel
-             */
-
-            openCommunidad:function(id){
-                this.communidad = this.comms[id -1];
-                this.panel = this.panel + 1;
-                $('#carousel').carousel(this.panel);
-            },
-
-            /*
-             * Opens province panel
-             */
-
-            openProvince:function(id){
-                this.currentCimas = this.baseCimas.filter(function(cima){
-                    return cima.provincia_id === id;
-                }).sort(function(a,b) {return a.codigo < b.codigo ? -1 : 1});
-                this.province = this.communidad.provincias.filter(function(provincia){
-                    return provincia.id === id;
-                })[0];
-                this.panel = this.panel + 1;
-                $('#carousel').carousel(this.panel);
-            },
-
-            /*
-             * Opens cima panel
-             */
-
-            openCima:function(id){
-                
-                this.currentCima = this.baseCimas.filter(function(cima){
-                    return cima.id === id;
-                })[0];
-                // Test the index to see if we have a previous and next button
-                var currentIndex = null;
-                var index = this.currentCimas.forEach(function(cima,i){
-                    if (cima.id === id) currentIndex = i;
+            showProvince: function(id){
+                var self = this;
+                axios.get('/api/cimas/' + id).then(function(response){
+                    self.cimas = response.data;
                 });
-                this.previousCimaExists = currentIndex !== 0 ? true : false;
-                this.nextCimaExists = currentIndex !== this.currentCimas.length -1 ? true : false;
-                //
-                this.panel = this.panel + 1;
-                $('#carousel').carousel(this.panel);
             },
 
-            /* 
-             * Show Previous Cima
-             */
-
-            previousCima:function(){
-                var id = this.currentCima.id;
-                //
-                var currentIndex = null;
-                var index = this.currentCimas.forEach(function(cima,i){
-                    if (cima.id === id) currentIndex = i -1; // MINUS ONE
-                });
-                this.previousCimaExists = currentIndex !== 0 ? true : false;
-                this.nextCimaExists = currentIndex !== this.currentCimas.length -1 ? true : false;
-                //
-                this.currentCima = this.currentCimas[currentIndex];
-                this.$emit('update', this.currentCima);
-
+            showCima: function(id){
+                var self = this;
+                this.cimas.forEach(function(cima){
+                    if (id === cima.id) return self.cima = cima;
+                })
             },
 
-            /* 
-             * Show nextCima
-             */
 
-            nextCima:function(){
-                var id = this.currentCima.id;
-                //
-                var currentIndex = null;
-                var index = this.currentCimas.forEach(function(cima,i){
-                    if (cima.id === id) currentIndex = i + 1; // PLUS ONE
-                });
-                this.previousCimaExists = currentIndex !== 0 ? true : false;
-                this.nextCimaExists = currentIndex !== this.currentCimas.length -1 ? true : false;
-                //
-                this.currentCima = this.currentCimas[currentIndex];
-                this.$emit('update', this.currentCima);
-            },
 
         },
 

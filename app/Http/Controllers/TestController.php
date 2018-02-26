@@ -41,9 +41,12 @@ class TestController extends Controller
 
     public function showTestListPage()
     {
-        $cimas = Cima::with('vertientes')->orderBy('nombre','asc')->get();
-        $communidads = Communidad::with('provincias','cimas')->get()->sortBy('nombre');
-        return view('publicarea.testlist',compact('communidads','cimas'));
+        //$cimas = Cima::with('vertientes')->orderBy('nombre','asc')->get();
+        //$communidads = Communidad::with('provincias','cimas')->get()->sortBy('nombre');
+        //return view('publicarea.testlist',compact('communidads','cimas'));
+
+        $communidads = Communidad::with('provincias')->withCount('cimas')->get()->sortBy('nombre');
+        return view('publicarea.testlist',compact('communidads'));
     }
 
     public function showCharts()
