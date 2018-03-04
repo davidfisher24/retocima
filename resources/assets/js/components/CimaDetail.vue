@@ -63,15 +63,15 @@
                                             <td class="text-center">Altimetrias</td>
                                         </tr>
         
-                                            <tr v-if="!cima.enlaces">
+                                            <tr v-if="vertiente.enlaces.length === 0">
                                                 <td class="text-center">
                                                     <p><strong>No Disponible!</strong></p>
                                                 </td>
                                             </tr>
-                                            <tr v-if="cima.enlaces">
+                                            <tr v-if="vertiente.enlaces.length > 0">
                                                 <td class="text-center">
-                                                    <a :href="enlace.url" target="_blank">
-                                                        Enlace <!--{{$index + 1}}-->
+                                                    <a v-for="(enlace,index) in vertiente.enlaces" :href="enlace.url" target="_blank">
+                                                        Enlace {{index + 1}}
                                                     </a>
                                                 </td>
                                             </tr>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer">
+                        <div class="panel-footer text-left">
                             <p><strong>Inicio: </strong>{{vertiente.inicio}}</p>
                             <p><strong>Dudas:  </strong>{{vertiente.dudas}}</p>
                             <p><strong>Final:  </strong>{{vertiente.final}}</p>

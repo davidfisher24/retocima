@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Reto Cima') }}</title>
 
@@ -54,10 +55,10 @@
 
                 <h2 class="text-left">&nbsp;&nbsp;CERTIFICADO IBÉRICO DE MONTAÑAS ASCENDIDAS</h2>
 
-
-                <div class="banner-image">
-                    <img src="{{URL::asset('./img/cima.jpg')}}"   />
+                <div id="vuepage">
+                <homepagecarousel></homepagecarousel>
                 </div>
+
 
                 <div class="links link-effect-underline">
                     <a href="{{ url('/listadocommunidads') }}">Listado</a>
@@ -66,6 +67,8 @@
                     <a href="{{ url('/estadistica') }}">Estadistica</a>
                     <a href="{{ url('/mapa') }}">Mapa</a>
                 </div>
+
+
 
                 <div class="container-fluid">
                     <div class="row">
@@ -144,4 +147,6 @@
             </div>
         </div>
     </body>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </html>

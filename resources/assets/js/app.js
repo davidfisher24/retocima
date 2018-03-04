@@ -10,11 +10,21 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.HighCharts = require('highcharts');
 
-/*Vue.use(require('vue2-google-maps'), {
+Vue.use(require('vue2-google-maps'), {
   load: {
     key: 'AIzaSyAtqWsq5Ai3GYv6dSa6311tZiYKlbYT4mw',
   }
-})*/
+})
+
+Vue.mixin({
+  data: function() {
+    return {
+      get globalReadOnlyProperty() {
+        return "Can't change me!";
+      }
+    }
+  }
+})
 
 //Vue.component('vuedrawer',require('vue-drawer'));
 //Vue.directive('touch',require('vue-touch'));
@@ -25,6 +35,10 @@ window.HighCharts = require('highcharts');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+// CAROUSELS
+Vue.component('homepagecarousel', require('./components/Carousels/CarouselHomePage.vue'));
+
 
 // FORMS
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));

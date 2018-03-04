@@ -29,10 +29,15 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
                         <h3>
                             <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;{{cimas[0].communidad}} -- {{cimas[0].provincia}}
-                            <a class="pull-left" @click="cimas = null">Atras</a>
+                            <a class="pull-left" @click="cimas = null, cimasmap = false">Atras</a>
+                            <a class="pull-left" @click="cimasmap = !cimasmap">
+                                <span v-if="!cimasmap">&nbsp;&nbsp;Ver Mapa</span>
+                                <span v-if="cimasmap">&nbsp;&nbsp;Ver Lista</span>
+                            </a>
                         </h3>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
+                    <!-- Simple list -->
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="!cimasmap">
                         <table class="table table-striped">
                             <thead>
                                 <td>Cdg.</td><td>Nombre</td><td>Altitud</td><td>Vertientes</td>
@@ -68,6 +73,28 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- Map list-->
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="cimasmap">
+                        <gmap-map
+                          :center="getMapCenter()"
+                          :zoom="getMapZoom()"
+                          map-type-id="terrain"
+                          style="width: 800px; height: 600px;"
+                        >
+                             <gmap-cluster :max-zoom="10" :grid-size="25">
+
+                                <gmap-marker
+                                  :key="index"
+                                  v-for="(cima, index) in cimas"
+                                  :position="{lng:parseFloat(cima.latitude), lat:parseFloat(cima.longitude)}"
+                                  :clickable="true"
+                                  :draggable="false"
+                                  @click="showCima(cima.id)"
+                                ></gmap-marker>
+
+                            </gmap-cluster>
+                        </gmap-map>
+                    </div>
                 </div>
 
                 <!-- Cima Panel -->
@@ -98,6 +125,7 @@
             return {
                 selectedCommunidad: null,
                 cimas: null,
+                cimasmap: false,
                 cima: null,
             };
         },
@@ -143,7 +171,35 @@
             },
 
 
+            getMapCenter: function(){
+                var lats = this.getLats();
+                var lngs = this.getLngs();
+                var latSum = lats.reduce(function(a, b) { return a + b; });
+                var lngSum = lngs.reduce(function(a, b) { return a + b; });
+                return {lat: lngSum / lngs.length, lng: latSum / lats.length};
+            },
 
+            getMapZoom: function(){
+                var lats = this.getLats();
+                var lngs = this.getLngs();
+                console.log(lats);
+                console.log(lngs);
+                var latDiff = Math.abs(Math.max.apply(null,lats) - Math.min.apply(null,lats));
+                var lngDiff = Math.abs(Math.max.apply(null,lngs) - Math.min.apply(null,lngs));
+                var maxDiff = Math.max(latDiff,lngDiff);
+                console.log(maxDiff);
+                console.log(parseInt(11 - maxDiff));
+                return parseInt(11 - maxDiff);
+                 
+            },
+
+            getLats: function(){
+                return this.cimas.map(function(a){ return parseFloat(a.latitude) }).filter(function(b) { return b !== 0});
+            },
+
+            getLngs: function(){
+                return this.cimas.map(function(a){ return parseFloat(a.longitude) }).filter(function(b) { return b !== 0});
+            },
         },
 
     }

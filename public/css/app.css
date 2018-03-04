@@ -8525,6 +8525,83 @@ ul.link-effect-underline a:hover:before,
   padding: 2px;
 }
 
+.agile .agile__arrow {
+  height: 100%;
+  bottom: 0;
+  width: 80px;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  background: transparent;
+}
+
+.agile .agile__arrow--prev {
+  left: 0;
+}
+
+.agile .agile__arrow--next {
+  right: 0;
+}
+
+.agile .svg-arrow {
+  fill: white;
+  fill-opacity: 0.2;
+  stroke: white;
+  stroke-opacity: 0.9;
+  stroke-width: 0.2;
+  height: 30%;
+}
+
+.agile .svg-arrow:hover {
+  fill-opacity: 0.7;
+}
+
+.agile .agile__dots {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.agile .agile__dots .agile__dot button {
+  margin: 4px;
+  padding: 4px 4px;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+.agile .agile__dots .agile__dot button:hover {
+  background-color: #fff;
+}
+
+.agile .agile__dots .agile__dot--current button {
+  background-color: #fff;
+}
+
+.agile .slide {
+  background-size: cover;
+  background-position: center;
+}
+
 .m-t-0 {
   margin-top: 0 !important;
 }
