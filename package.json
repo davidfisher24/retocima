@@ -21,6 +21,8 @@
   "dependencies": {
     "highcharts": "^6.0.1",
     "vue-agile": "^0.3.7",
-    "vue2-google-maps": "^0.8.8"
+    "vue-tables-2": "^1.3.53",
+    "vue2-google-maps": "^0.8.8",
+    "vuex": "^3.0.1"
   }
 }

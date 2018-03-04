@@ -38,7 +38,8 @@ Vue.mixin({
 
 // CAROUSELS
 Vue.component('homepagecarousel', require('./components/Carousels/CarouselHomePage.vue'));
-
+// TABLES
+Vue.component('rankingtable', require('./components/Tables/Ranking.vue'));
 
 // FORMS
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));

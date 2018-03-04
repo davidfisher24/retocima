@@ -48,6 +48,8 @@ class Cimero extends Authenticatable
         'grupo', 'frase', 'nickmiarroba', 'fechalta', 'direccion', 'poblacion', 'codigopostal', 'fechaalta'
     ];
 
+    protected $appends = ["fullname"];
+
     /**
      * Mutator - Ensures correct date time format
      *
@@ -57,6 +59,10 @@ class Cimero extends Authenticatable
         $date = DateTime::createFromFormat('d/m/Y', $value);
         if ($date !== FALSE) return date_format($date, 'Y-m-d');
         return $value;
+    }
+
+    public function getFullnameAttribute () {
+        return $this->nombre . " " . $this->apellido1 . " " . $this->apellido2;
     }
 
     /**

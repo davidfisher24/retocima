@@ -48,8 +48,19 @@ class CimeroRankingController extends Controller
 
     public function baseRanking()
     {
-
     	return $this->cimeroLogroService->getRankingOfAllCimeros();
+    }
+
+    /**
+     * Return all cimeros ranking.
+     *
+     * @return eloquent object
+     */
+
+    public function baseRankingWithCount()
+    {
+        $cimeros = Cimero::with('provincia')->withCount('logros')->get();
+        return json_encode(array("data" => $cimeros, "count" => $cimeros->count()));
     }
 
     /**
