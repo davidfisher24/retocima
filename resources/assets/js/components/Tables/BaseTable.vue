@@ -42,11 +42,12 @@
                             <tbody>
                                 <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
                                 <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
-                                    <td v-for="column in columns">
+                                    <td v-for="column in columns" style="position:relative;">
                                         <a v-if="(column.type == 'link')" :href="row[column.url]" target="_BLANK">
                                             {{row[column.field]}}
                                         </a>
-                                        <img v-else-if="(column.type == 'image')" :src="row[column.field]" style="height:22px;">
+                                        <img v-else-if="column.type == 'image' && row[column.field]" :src="row[column.field]">
+                                        <p v-else-if="column.type == 'image' && !row[column.field]"></p>
                                         <p v-else>
                                             {{row[column.field]}}
                                         </p>

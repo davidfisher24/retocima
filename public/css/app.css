@@ -8487,16 +8487,37 @@ ul.link-effect-underline a:hover:before,
   display: block;
 }
 
+.datatable table {
+  border: 1px solid #a6a6cc;
+}
+
 .datatable table thead {
-  border: ridge;
+  border: 0.5px solid #141419;
 }
 
 .datatable table thead tr {
-  background-color: #ddd;
+  background-color: #fff;
+}
+
+.datatable table thead tr th {
+  border-right: 0.5px solid #141419;
+  border-bottom: 1px solid #141419;
 }
 
 .datatable table tbody tr:nth-child(odd) {
-  background-color: #5bc0de;
+  background-color: #d0d0ff;
+}
+
+.datatable table tbody tr td {
+  position: relative;
+}
+
+.datatable table tbody tr td img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .datatable p.pagination-information,

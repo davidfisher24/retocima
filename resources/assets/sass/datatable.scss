@@ -2,16 +2,36 @@
 	
 	table {
 
+		border: 1px solid #a6a6cc;
 		thead {
-			border: ridge;
+			border: 0.5px solid #141419;
 			tr {
-				background-color:#ddd;
+				background-color: #fff;
+				th {
+					border-right: 0.5px solid #141419;
+					border-bottom: 1px solid #141419;
+				}
 			}
 		}
 
 		tbody {
-			tr:nth-child(odd) { 
-				background-color: $cima-light-blue;
+			tr {
+
+				&:nth-child(odd) {
+					background-color: #d0d0ff;
+				}
+
+				td {
+					position:relative;
+
+					img {
+						position:absolute;
+						top:0;
+						left:0;
+						height:100%;
+						width:100%;
+					}
+				}
 			}
 		}
 
