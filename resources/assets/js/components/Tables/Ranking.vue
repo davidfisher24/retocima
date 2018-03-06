@@ -1,52 +1,58 @@
 
 <template>
 <div id="ranking">
-    <!--<v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>-->
-    <v-server-table url="" :columns="columns" :options="options" :perPage="25">
-    </v-server-table>
+    <BaseTable 
+        :data="data"
+        :columns="columns"
+        :filterOptions="{Provincia:'provinciaName'}"
+        :searchOptions="{nombre:'fullName'}"
+    ></BaseTable>
 </div>
 </template>
 
 <script>
-    import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-    var options = {
-        perPage:25,
-    }
-    Vue.use(ServerTable, [options = options]);
-    //Vue.use(ServerTable, [options = options], [useVuex = false], [theme = 'bootstrap3'], [template = 'default']);
+
+    import BaseTable from './BaseTable.vue';
 
     export default {
+
+        components: {
+            'BaseTable': BaseTable,
+        },
+
+        mounted: function() {
+            this.fetchData();
+        },
+
         data: function() {
             return {
-                el: "#ranking",
-                columns: ['rank','id','fullname', 'logros_count'],
-                options: {
-    
-                    headings: {
-                        rank: '',
-                        id: 'No. Cimero',
-                        nombre: 'Nombre',
-                    },
-                    requestFunction: function (data) {
-                        return axios.get("/api/ranking")
-                        .catch(function (e) {
-                            this.dispatch('error', e);
-                        }.bind(this));
-                    },
-
-                    responseAdapter: function(resp){
-                        var data = resp.data.map(function(d,i){
-                            d.logros_count = Math.floor(Math.random() * 1000);
-                            d.rank = i+1;
-                            return d;
-                        })
-                        return { data: data, count: resp.data.length }
-                    }
-
-
-                }
+                data: null,
+                columns: [
+                    { field: 'rank', title: '' },
+                    //{ field: 'image', title: '', type: 'image' },
+                    { field: 'fullName', title: 'Nombre', type:'link', url: 'link' },
+                    { field: 'provinciaName', title: 'Provincia' },
+                    { field: 'logros_count', title: 'Logros' },
+                ],
             };
         },
+
+        methods : {
+
+            fetchData: function(){
+                var self = this;
+                axios.get('api/ranking').then(function(response){
+                    response.data.map(function(d,i){
+                        d.rank = i+1;
+                        d.image = 'img/icons/silver.png';
+                        d.link = 'cimeropublicdetails/' + d.id;
+                    })
+                    self.data = response.data;
+                    self.rendered = true;
+                });
+            },
+
+        }
     }
 
 </script>

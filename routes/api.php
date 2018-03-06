@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,22 @@ Route::group(['middleware' => 'api'], function() {
     });
 
     Route::get('ranking',function(){
-    	return App\Cimero::all();
-    	$cimeros = App\Cimero::all();
-    	return json_encode(array("data" => $cimeros, "count" => $cimeros->count()));
+    	$cimeros = DB::table('cimeros')
+	    	->select(DB::raw(
+	    		'cimeros.*, 
+	    		CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", cimeros.apellido2) as fullName,
+	    		count(logros.cimero_id) as logros_count, 
+	    		provincias.nombre as provinciaName, 
+	    		paises.nombre as paisName'
+	    	))
+	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
+	    	->leftJoin('provincias', 'cimeros.provincia', '=', 'provincias.id')
+	    	->leftJoin('paises', 'cimeros.pais', '=', 'paises.id')
+	        ->groupBy('cimeros.id')
+	        ->orderBy('logros_count','desc')
+	        ->get();
+    	return $cimeros;
     });
-
 
 });
 
