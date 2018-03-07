@@ -28,7 +28,7 @@ Route::group(['middleware' => 'api'], function() {
     	$cimeros = DB::table('cimeros')
 	    	->select(DB::raw(
 	    		'cimeros.*, 
-	    		CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", cimeros.apellido2) as fullName,
+	    		CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
 	    		count(logros.cimero_id) as logros_count, 
 	    		provincias.nombre as provinciaName, 
 	    		paises.nombre as paisName'

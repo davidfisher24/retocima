@@ -10,7 +10,6 @@
                 <div class="row">
 
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
-                        <!-- Option Filters -->
                         <span v-for="(value, key) in filters">
                             <label>{{filtersTitles[key]}}&nbsp;:&nbsp;</label>
                             <select  @change="filterByOption" :data-filter="key" class="">
@@ -18,7 +17,6 @@
                                 <option v-for="option in filters[key]" :value="option">{{option}}</option>
                             </select>
                         </span>
-                    <!-- Text Filters -->
                         <span  v-for="(value,key) in searches">
                             <label>{{key}}&nbsp;:&nbsp;</label>
                             <input placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value" class="">
@@ -34,8 +32,8 @@
                                 <tr>
                                     <th v-for="column in columns" >
                                         {{column.title}}
-                                        <a @click="setOrderingPreference" :data-field="column.field" data-order="asc" class="glyphicon glyphicon-triangle-top"></a>
-                                        <a @click="setOrderingPreference" :data-field="column.field" data-order="desc" class="glyphicon glyphicon-triangle-bottom"></a>
+                                        <a v-if="column.sortable" @click="setOrderingPreference" :data-field="column.field" data-order="asc" class="glyphicon glyphicon-triangle-top"></a>
+                                        <a v-if="column.sortable" @click="setOrderingPreference" :data-field="column.field" data-order="desc" class="glyphicon glyphicon-triangle-bottom"></a>
                                     </th>
                                 </tr>
                             </thead>

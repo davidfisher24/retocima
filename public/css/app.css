@@ -8502,6 +8502,7 @@ ul.link-effect-underline a:hover:before,
 .datatable table thead tr th {
   border-right: 0.5px solid #141419;
   border-bottom: 1px solid #141419;
+  text-align: center;
 }
 
 .datatable table tbody tr:nth-child(odd) {
@@ -8518,7 +8519,6 @@ ul.link-effect-underline a:hover:before,
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
 }
 
 .datatable table tbody tr td p.number {

@@ -28,11 +28,11 @@
             return {
                 data: null,
                 columns: [
-                    { field: 'rank', title: '' },
-                    { field: 'image', title: '', type: 'image' },
-                    { field: 'fullName', title: 'Nombre', type:'link', url: 'link' },
-                    { field: 'provinciaName', title: 'Provincia' },
-                    { field: 'logros_count', title: 'Logros' },
+                    { field: 'rank', title: 'Posicion' },
+                    { field: 'image', title: 'Medalla', type: 'image' },
+                    { field: 'fullName', title: 'Nombre', type:'link', url: 'link', sortable: true },
+                    { field: 'provinciaName', title: 'Provincia', sortable: true },
+                    { field: 'logros_count', title: 'Logros', sortable: true },
                 ],
             };
         },
