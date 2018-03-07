@@ -26,10 +26,19 @@
 
 					img {
 						position:absolute;
+						background-color:transparent;
 						top:0;
 						left:0;
 						height:100%;
 						width:100%;
+					}
+
+					p.number {
+						text-align:center;
+					}
+
+					p.string {
+						text-align:left;
 					}
 				}
 			}
@@ -62,10 +71,5 @@
 	    }
 	}
 
-	.form-control {
-		display:inline;
-		width:auto;
-		padding:2px;
-	}
 
 }

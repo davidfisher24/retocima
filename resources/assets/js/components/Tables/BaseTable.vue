@@ -13,7 +13,7 @@
                         <!-- Option Filters -->
                         <span v-for="(value, key) in filters">
                             <label>{{filtersTitles[key]}}&nbsp;:&nbsp;</label>
-                            <select  @change="filterByOption" :data-filter="key" class="form-control">
+                            <select  @change="filterByOption" :data-filter="key" class="">
                                 <option selected>Todos</option> 
                                 <option v-for="option in filters[key]" :value="option">{{option}}</option>
                             </select>
@@ -21,7 +21,7 @@
                     <!-- Text Filters -->
                         <span  v-for="(value,key) in searches">
                             <label>{{key}}&nbsp;:&nbsp;</label>
-                            <input placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value" class="form-control">
+                            <input placeholder="Buscar ..." @keyup="filterBySearch" :data-search="value" class="">
                         </span>
                     </div>
                 </div>
@@ -42,13 +42,13 @@
                             <tbody>
                                 <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
                                 <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
-                                    <td v-for="column in columns" style="position:relative;">
+                                    <td v-for="column in columns">
                                         <a v-if="(column.type == 'link')" :href="row[column.url]" target="_BLANK">
                                             {{row[column.field]}}
                                         </a>
                                         <img v-else-if="column.type == 'image' && row[column.field]" :src="row[column.field]">
                                         <p v-else-if="column.type == 'image' && !row[column.field]"></p>
-                                        <p v-else>
+                                        <p v-else :class="{ number: isNumber(row[column.field]), string: isString(row[column.field])}">
                                             {{row[column.field]}}
                                         </p>
                                     </td>
@@ -98,6 +98,7 @@
 
 
 <script>
+
     export default {
         props: ['data','columns','filterOptions','searchOptions'],
         data: function() {
@@ -406,6 +407,28 @@
                 }
                 return returnString;
             },
+
+            /**
+             * Is Number
+             * @param value
+             * @return Boolean
+            */
+
+            isNumber:function(value) {
+                if (typeof(value) === 'number') return true;
+                return false;
+            },
+
+            /**
+             * Is String
+             * @param value
+             * @return Boolean
+            */
+
+            isString:function(value) {
+                if (typeof(value) === 'string') return true;
+                return false;
+            }
 
         }
     }

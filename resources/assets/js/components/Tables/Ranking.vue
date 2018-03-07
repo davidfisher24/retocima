@@ -5,7 +5,7 @@
         :data="data"
         :columns="columns"
         :filterOptions="{Provincia:'provinciaName'}"
-        :searchOptions="{nombre:'fullName'}"
+        :searchOptions="{Nombre:'fullName'}"
     ></BaseTable>
 </div>
 </template>
