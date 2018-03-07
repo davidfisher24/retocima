@@ -49,29 +49,29 @@
                     <div class="">
                         <ul class="nav navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!--<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     De Cimeros
                                 </a>
                                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimerosbyprovincesstarted">Por provincias comenzadas</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimerosbyprovincescompleted">Por provincias completadas</a></li>
                                     <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimerosbycommunidadscompleted">Por CC.AA. completadas</a></li>
-                                </div>
+                                </div>-->
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     De Cimas
                                 </a>
                                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#" @click="changeApiRoute" data-apiroute="ajax/statistics/cimasbylogro">CIMAs más ascendidos</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbylogro">Provincias más ascendidas</a></li>
+                                    <li><a class="dropdown-item" href="#" @click="activeTable = 'CimasRanking'">CIMAs más ascendidos</a></li>
+                                    <!--<li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbylogro">Provincias más ascendidas</a></li>
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbycompletion">Provincias más completadas</a></li>
                                     <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbylogro">CC.AA. más ascendidas</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>
+                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>-->
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!--<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Por Communidad Autonoma
                                 </a>
                                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
@@ -88,7 +88,7 @@
                                     <li v-for="provincia in provincias">
                                         <a class="dropdown-item" href="#" @click="changeApiRoute" :data-apiroute="provincia.apiroute">{{provincia.nombre}}</a>
                                     </li>
-                                </div>
+                                </div>-->
                             </li>
                             <!--<li><a href="#" @click="showcommunidads = true; showprovinces = false;">Por Comunidad Autonoma</a></li>
                             <li><a href="#" @click="showprovinces = true; showcommunidads = false;">Por Provincia</a></li>-->
@@ -99,6 +99,7 @@
         </div>
         <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+            <CimasRanking v-if="activeTable == 'CimasRanking'"></CimasRanking>
             <!--<div v-if="showcommunidads">
                 <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
                     <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
@@ -111,7 +112,7 @@
                     {{provincia.nombre}}
                 </a>
             </div>-->
-            <datatable v-for="route in routesCalled" v-if="tableLoaded && apiroute === route" :key="route"></datatable>
+            <!--<datatable v-for="route in routesCalled" v-if="tableLoaded && apiroute === route" :key="route"></datatable>-->
         </div>
     </div>
     </div>
@@ -120,12 +121,17 @@
 
 
 <script>
+import CimasRanking from './Tables/CimasRanking'
     export default {
+        components: {
+            'CimasRanking': CimasRanking,
+        },
+
         data: function() {
             return {
-                tableLoaded: false,
-                apiroute: false,
-                routesCalled: [],
+                activeTable: null,
+                //tableLoaded: false,
+                //routesCalled: [],
 
                 showprovinces: false,
                 showcommunidads: false,
@@ -133,35 +139,12 @@
                 communidads: [],
             };
         },
-        computed: {
-
-
-        },
 
         mounted: function() {
             this.fetchComunidadsAndProvinces();
         },
 
         methods: {
-
-            /**
-             * Triggers a change of table on changing api route
-             * @trigger changeApiRoute() click envent
-             * @param event
-             * @result changes the visible table via ajax
-            */
-
-            changeApiRoute: function(event){
-
-                this.showcommunidads = event.target.dataset.show === "showcommunidads" ? true : false;
-                this.showprovinces = event.target.dataset.show === "showprovinces" ? true : false;
-
-
-                if (this.routesCalled.indexOf(event.target.dataset.apiroute) === -1)
-                    this.routesCalled.push(event.target.dataset.apiroute);
-                this.apiroute = event.target.dataset.apiroute;
-                this.tableLoaded = true;
-            },
 
             /**
              * Gets a list of provinces and communidads for filtering

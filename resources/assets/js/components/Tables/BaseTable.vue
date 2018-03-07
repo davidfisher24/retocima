@@ -69,9 +69,11 @@
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-right">
                     <!-- Page change -->
                         <ul class="list-inline pagination-options pagination">
-                            <li v-if="page !== 1" ><a @click="previousPage">Prev</a></li>
+                            <li v-if="page !== 1" ><a @click="firstPage"><-<-</a></li>
+                            <li v-if="page !== 1" ><a @click="previousPage"><-</a></li>
                             <li v-for="n in pages" v-if="visiblePages.indexOf(n) !== -1" ><a :data-page="n" @click="changePage">{{n}}</a></li>
-                            <li v-if="page !== pages.length && pages !== 1" ><a @click="nextPage">Next</a></li>
+                            <li v-if="page !== pages" ><a @click="nextPage">-></a></li>
+                            <li v-if="page !== pages" ><a @click="lastPage">->-></a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +82,7 @@
                     <!-- Page Size change -->
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
                         <span class="datatable-label">Page Size: </span>
-                        <select v-model="pagination" class="pagination-select form-control">
+                        <select v-model="pagination" class="pagination-select">
                             <option>10</option>
                             <option>25</option>
                             <option>50</option>
@@ -234,6 +236,26 @@
             },
 
             /**
+             * Move to last page
+             * @trigger click last page button
+             * @result sets the page length
+            */
+
+            lastPage:function(){
+                this.page = this.pages;
+            },
+
+            /**
+             * Move to first page
+             * @trigger click last page button
+             * @result sets the page length
+            */
+
+            firstPage:function(){
+                this.page = 1;
+            },
+
+            /**
              * Goes to a specfic page
              * @trigger click a page number
              * @param event.target.dataset.page
@@ -334,12 +356,13 @@
                     return searchOK === true && filterOK === true;
                 });
 
+
                 if (self.currentOrdering.length > 0 && self.currentOrdering[1] === 'asc') {
                    var filteredAndSortedData = self.sortDataByAscending(filteredData,self.currentOrdering[0]); 
                 } else if (self.currentOrdering.length > 0 && self.currentOrdering[1] === 'desc') {
                     var filteredAndSortedData = self.sortDataByDescending(filteredData,self.currentOrdering[0]); 
                 } else {
-                    var filteredAndSortedData = self.sortDataByAscending(filteredData,'ranking');
+                    var filteredAndSortedData = self.sortDataByAscending(filteredData,'rank');
                 }
 
                 this.filteredData = filteredAndSortedData;

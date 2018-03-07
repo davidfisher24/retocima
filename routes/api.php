@@ -42,6 +42,23 @@ Route::group(['middleware' => 'api'], function() {
     	return $cimeros;
     });
 
+    //ALTER table logros ADD index cima_id (cima_id);
+    // select cimas.*, count(logros.cima_id) as logros_count from cimas left join logros on cimas.id = logros.cima_id group by cimas.id;
+    Route::get('cimasranking',function(){
+    	$cimas = DB::table('cimas')
+	    	->select(DB::raw(
+	    		'cimas.*, 
+	    		count(logros.cima_id) as logros_count,
+	    		provincias.nombre as provinciaName'
+	    	))
+	    	->leftJoin('logros', 'cimas.id', '=', 'logros.cima_id')
+	    	->leftJoin('provincias', 'cimas.provincia_id', '=', 'provincias.id')
+	        ->groupBy('cimas.id')
+	        ->orderBy('logros_count','desc')
+	        ->get();
+    	return $cimas;
+    });
+
 });
 
 
