@@ -64,10 +64,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#" @click="activeTable = 'CimasRanking'">CIMAs más ascendidos</a></li>
-                                    <!--<li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbylogro">Provincias más ascendidas</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbycompletion">Provincias más completadas</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbylogro">CC.AA. más ascendidas</a></li>
-                                    <li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>-->
+                                    <li><a class="dropdown-item" @click="activeTable = 'ProvinciasRanking'">Provincias más ascendidas</a></li>
+                                    <!--<li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/provincesbycompletion">Provincias más completadas</a></li>-->
+                                    <li><a class="dropdown-item" @click="activeTable = 'CommunidadsRanking'">CC.AA. más ascendidas</a></li>
+                                    <!--<li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>-->
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -100,6 +100,8 @@
         <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
             <CimasRanking v-if="activeTable == 'CimasRanking'"></CimasRanking>
+            <ProvinciasRanking v-if="activeTable == 'ProvinciasRanking'"></ProvinciasRanking>
+            <CommunidadsRanking v-if="activeTable == 'CommunidadsRanking'"></CommunidadsRanking>
             <!--<div v-if="showcommunidads">
                 <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
                     <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
@@ -122,9 +124,13 @@
 
 <script>
 import CimasRanking from './Tables/CimasRanking'
+import ProvinciasRanking from './Tables/ProvinciasRanking'
+import CommunidadsRanking from './Tables/CommunidadsRanking'
     export default {
         components: {
             'CimasRanking': CimasRanking,
+            'ProvinciasRanking': ProvinciasRanking,
+            'CommunidadsRanking': CommunidadsRanking,
         },
 
         data: function() {

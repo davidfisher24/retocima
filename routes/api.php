@@ -43,7 +43,11 @@ Route::group(['middleware' => 'api'], function() {
     });
 
     //ALTER table logros ADD index cima_id (cima_id);
+    //ALTER table logros ADD index provincia_id (provincia_id);
+    //ALTER table logros ADD index communidad_id (communidad_id);
     // select cimas.*, count(logros.cima_id) as logros_count from cimas left join logros on cimas.id = logros.cima_id group by cimas.id;
+    //select provincias.*, count(logros.provincia_id) as logros_count from provincias left join logros on provincias.id = logros.provincia_id group by provincias.id
+    //select communidads.*, count(logros.communidad_id) as logros_count from communidads left join logros on communidads.id = logros.communidad_id group by communidads.id
     Route::get('cimasranking',function(){
     	$cimas = DB::table('cimas')
 	    	->select(DB::raw(
@@ -57,6 +61,30 @@ Route::group(['middleware' => 'api'], function() {
 	        ->orderBy('logros_count','desc')
 	        ->get();
     	return $cimas;
+    });
+    Route::get('provinciasranking',function(){
+    	$provincias = DB::table('provincias')
+	    	->select(DB::raw(
+	    		'provincias.*, 
+	    		count(logros.provincia_id) as logros_count'
+	    	))
+	    	->leftJoin('logros', 'provincias.id', '=', 'logros.provincia_id')
+	        ->groupBy('provincias.id')
+	        ->orderBy('logros_count','desc')
+	        ->get();
+    	return $provincias;
+    });
+    Route::get('communidadsranking',function(){
+    	$communidads = DB::table('communidads')
+	    	->select(DB::raw(
+	    		'communidads.*, 
+	    		count(logros.communidad_id) as logros_count'
+	    	))
+	    	->leftJoin('logros', 'communidads.id', '=', 'logros.communidad_id')
+	        ->groupBy('communidads.id')
+	        ->orderBy('logros_count','desc')
+	        ->get();
+    	return $communidads;
     });
 
 });

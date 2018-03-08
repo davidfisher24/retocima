@@ -1,11 +1,9 @@
 
 <template>
-<div id="ranking">
+<div id="provinciasranking">
     <BaseTable 
         :data="data"
         :columns="columns"
-        :filterOptions="{Provincia:'provinciaName'}"
-        :searchOptions="{Nombre:'fullName'}"
     ></BaseTable>
 </div>
 </template>
@@ -29,8 +27,7 @@
                 data: null,
                 columns: [
                     { field: 'rank', title: 'Posicion' },
-                    { field: 'nombre', title: 'Cima', type:'link', url: 'link', sortable: true },
-                    { field: 'provinciaName', title: 'Provincia', sortable: true },
+                    { field: 'nombre', title: 'Nombre', sortable: true },
                     { field: 'logros_count', title: 'Logros', sortable: true },
                 ],
             };
@@ -40,10 +37,9 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/cimasranking').then(function(response){
+                axios.get('api/provinciasranking').then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
-                        d.link = 'detallescima/' + d.id;
                     })
                     self.data = response.data;
                 });
