@@ -28,11 +28,10 @@ Route::get('/detallescima/{id}', 'CimasListadoController@showCimaDetails')->name
 Route::get('/ranking', 'CimeroRankingController@displayRankingPage')->name('ranking');
 Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDetails')->name('cimero');
 
-/* statistics */
-Route::get('/estadistica', 'StatisticsController@showStatisticsHomePage')->name('estadistics');
 
-/* Map */
-Route::get('/mapa', 'MapController@showInitialMapPage')->name('mapa');
+Route::get('/estadistica', function () { return view('publicarea.estadistica');});
+
+Route::get('/mapa', function () {return view('publicarea.mapa');});
 
 /* Pata Negra */
 Route::get('/patanegra', 'PataNegraController@showInitialPataNegraPage')->name('patanegra');
