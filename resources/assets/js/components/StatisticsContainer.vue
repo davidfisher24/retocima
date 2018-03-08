@@ -70,13 +70,14 @@
                                     <!--<li><a class="dropdown-item" @click="changeApiRoute" href="#" data-apiroute="ajax/statistics/comunidadsbycompletion">CC.AA. más completadas</a></li>-->
                                 </div>
                             </li>
+                            <!-- Horrible dropdown panel -->
                             <li class="nav-item dropdown">
-                                <!--<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Por Communidad Autonoma
                                 </a>
                                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                                     <li v-for="communidad in communidads">
-                                        <a class="dropdown-item" href="#" @click="changeApiRoute" :data-apiroute="communidad.apiroute">{{communidad.nombre}}</a>
+                                        <a class="dropdown-item" href="#" @click="setRoute('communidad',communidad.id)">{{communidad.nombre}}</a>
                                     </li>
                                 </div>
                             </li>
@@ -86,12 +87,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                                     <li v-for="provincia in provincias">
-                                        <a class="dropdown-item" href="#" @click="changeApiRoute" :data-apiroute="provincia.apiroute">{{provincia.nombre}}</a>
+                                        <a class="dropdown-item" href="#" @click="setRoute('provincia',provincia.id)">{{provincia.nombre}}</a>
                                     </li>
-                                </div>-->
+                                </div>
                             </li>
-                            <!--<li><a href="#" @click="showcommunidads = true; showprovinces = false;">Por Comunidad Autonoma</a></li>
-                            <li><a href="#" @click="showprovinces = true; showcommunidads = false;">Por Provincia</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -99,9 +98,11 @@
         </div>
         <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+            <div v-if="!activeTable"></div>
             <CimasRanking v-if="activeTable == 'CimasRanking'"></CimasRanking>
             <ProvinciasRanking v-if="activeTable == 'ProvinciasRanking'"></ProvinciasRanking>
             <CommunidadsRanking v-if="activeTable == 'CommunidadsRanking'"></CommunidadsRanking>
+            <FiltersRanking v-if="activeTable == 'FiltersRanking'" :bringFilters="bringFilters"></FiltersRanking>
             <!--<div v-if="showcommunidads">
                 <div v-for="communidad in communidads" style="display:inline-block;" class="tooltiptrigger">
                     <img :src="communidad.imageurl" @click="changeApiRoute"  :data-apiroute="communidad.apiroute" data-show="showcommunidads" style="width:30px;height:20px;margin:2px;">
@@ -126,16 +127,19 @@
 import CimasRanking from './Tables/CimasRanking'
 import ProvinciasRanking from './Tables/ProvinciasRanking'
 import CommunidadsRanking from './Tables/CommunidadsRanking'
+import FiltersRanking from './Tables/FiltersRanking'
     export default {
         components: {
             'CimasRanking': CimasRanking,
             'ProvinciasRanking': ProvinciasRanking,
             'CommunidadsRanking': CommunidadsRanking,
-        },
+            'FiltersRanking' : FiltersRanking,
+        },  
 
         data: function() {
             return {
                 activeTable: null,
+                bringFilters:null,
                 //tableLoaded: false,
                 //routesCalled: [],
 
@@ -176,6 +180,12 @@ import CommunidadsRanking from './Tables/CommunidadsRanking'
                     });
                     self.provincias = response.data;
                 });
+            },
+
+            setRoute:function(type,id){
+                this.activeTable = null;
+                this.bringFilters = type + '/' + id;
+                this.activeTable = 'FiltersRanking';
             },
 
         }

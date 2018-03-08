@@ -36,6 +36,7 @@ Route::group(['middleware' => 'api'], function() {
 	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
 	    	->leftJoin('provincias', 'cimeros.provincia', '=', 'provincias.id')
 	    	->leftJoin('paises', 'cimeros.pais', '=', 'paises.id')
+	    	->where('logros.provincia_id',7)
 	        ->groupBy('cimeros.id')
 	        ->orderBy('logros_count','desc')
 	        ->get();
@@ -45,6 +46,8 @@ Route::group(['middleware' => 'api'], function() {
     //ALTER table logros ADD index cima_id (cima_id);
     //ALTER table logros ADD index provincia_id (provincia_id);
     //ALTER table logros ADD index communidad_id (communidad_id);
+    // select cimeros.id, count(logros.cimero_id) as logros_count from cimeros left join logros on cimeros.id = logros.cimero_id group by cimeros.id;
+    // select cimeros.id, count(logros.cimero_id) as logros_count from cimeros left join logros on cimeros.id = logros.cimero_id where logros.provincia_id = 5 group by cimeros.id;
     // select cimas.*, count(logros.cima_id) as logros_count from cimas left join logros on cimas.id = logros.cima_id group by cimas.id;
     //select provincias.*, count(logros.provincia_id) as logros_count from provincias left join logros on provincias.id = logros.provincia_id group by provincias.id
     //select communidads.*, count(logros.communidad_id) as logros_count from communidads left join logros on communidads.id = logros.communidad_id group by communidads.id
@@ -85,6 +88,21 @@ Route::group(['middleware' => 'api'], function() {
 	        ->orderBy('logros_count','desc')
 	        ->get();
     	return $communidads;
+    });
+    // Filters cimeros by province or communidad
+    Route::get('filtersranking/{filter}/{id}',function($filter,$id){
+    	$cimeros = DB::table('cimeros')
+	    	->select(DB::raw(
+	    		'cimeros.*, 
+	    		CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
+	    		count(logros.cimero_id) as logros_count'
+	    	))
+	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
+	    	->where('logros.'.$filter.'_id',$id)
+	        ->groupBy('cimeros.id')
+	        ->orderBy('logros_count','desc')
+	        ->get();
+    	return $cimeros;
     });
 
 });

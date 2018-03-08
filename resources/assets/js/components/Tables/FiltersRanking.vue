@@ -4,8 +4,6 @@
     <BaseTable 
         :data="data"
         :columns="columns"
-        :filterOptions="{Provincia:'provinciaName'}"
-        :searchOptions="{Nombre:'fullName'}"
     ></BaseTable>
 </div>
 </template>
@@ -20,6 +18,8 @@
             'BaseTable': BaseTable,
         },
 
+        props: ['bringFilters'],
+
         mounted: function() {
             this.fetchData();
         },
@@ -29,9 +29,7 @@
                 data: null,
                 columns: [
                     { field: 'rank', title: 'Posicion' },
-                    { field: 'image', title: 'Medalla', type: 'image' },
                     { field: 'fullName', title: 'Nombre', type:'link', url: 'link', sortable: true },
-                    { field: 'provinciaName', title: 'Provincia', sortable: true },
                     { field: 'logros_count', title: 'Logros', sortable: true },
                 ],
             };
@@ -41,15 +39,10 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/ranking').then(function(response){
+                axios.get('api/filtersranking/'+this.bringFilters).then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
-                        d.link = 'cimeropublicdetails/' + d.id;
-                        if (d.logros_count >= 480) d.image = 'img/icons/gold.png';
-                        else if (d.logros_count < 480 && d.logros_count >= 320) d.image = 'img/icons/silver.png';
-                        else if (d.logros_count >= 160 && d.logros_count < 320) d.image = 'img/icons/bronze.png';
-                        else d.image = '';
-
+                         d.link = 'cimeropublicdetails/' + d.id;
                     })
                     self.data = response.data;
                 });
