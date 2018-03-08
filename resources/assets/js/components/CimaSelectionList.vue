@@ -105,8 +105,8 @@
                         <h3>
                             <a class="pull-left" @click="cima = null">Atras</a>
                             <a v-if="cimas.indexOf(cima) !== 0" @click="cima = cimas[cimas.indexOf(cima) -1]">ANTERIOR</a>
-                            <img :src="imageSource(cima.communidad_id)" height="24" width="32">&nbsp;&nbsp;
-                            {{cima.codigo}} -- {{cima.nombre}} 
+                            <!--<img :src="imageSource(cima.communidad_id)" height="24" width="32">&nbsp;&nbsp;
+                            {{cima.codigo}} -- {{cima.nombre}} -->
                             <a v-if="cimas.indexOf(cima) + 1 !== cimas.length" @click="cima = cimas[cimas.indexOf(cima) +1]">SIGUIENTE</a>
                         </h3>
                         <cimadetail class="item" :cima="cima"></cimadetail>
