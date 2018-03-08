@@ -19,7 +19,8 @@ Auth::routes();
 
 
 /* cimasListado */
-Route::get('/listadocommunidads', 'CimasListadoController@listCimasByCommunidad')->name('communidads');
+Route::get('/listadocommunidads', function () { return view('publicarea.listadocommunidads');});
+//Route::get('/listadocommunidads', 'CimasListadoController@listCimasByCommunidad')->name('communidads');
 Route::get('/listadoprovincias/{id}', 'CimasListadoController@listCimasByProvincia')->name('provincias');
 Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasListadoController@listCimasByProvincia')->name('provincias');
 Route::get('/detallescima/{id}', 'CimasListadoController@showCimaDetails')->name('cima');
@@ -31,9 +32,8 @@ Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDet
 
 Route::get('/estadistica', function () { return view('publicarea.estadistica');});
 Route::get('/mapa', function () {return view('publicarea.mapa');});
+Route::get('/patanegra', function () {return view('publicarea.patanegra');});
 
-/* Pata Negra */
-Route::get('/patanegra', 'PataNegraController@showInitialPataNegraPage')->name('patanegra');
 
 /* Test Routes */
 Route::get('/test', 'TestController@showTestPage')->name('testpage');

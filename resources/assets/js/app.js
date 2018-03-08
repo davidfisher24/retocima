@@ -41,6 +41,7 @@ Vue.component('rankingtable', require('./components/Tables/Ranking.vue'));
 // CONTAINERS
 Vue.component('googlemap', require('./components/GoogleMap.vue'));
 Vue.component('statisticscontainer', require('./components/StatisticsContainer.vue'));
+Vue.component('patanegracontainer', require('./components/PataNegraContainer.vue'));
 
 // FORMS
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));

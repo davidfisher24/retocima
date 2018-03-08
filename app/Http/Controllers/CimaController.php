@@ -62,6 +62,11 @@ class CimaController extends Controller
     	return $cimas;
     }
 
+    public function pataNegraAction()
+    {
+        return Cima::with('provincia','communidad','vertientes')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
+    }
+
     
 
 }

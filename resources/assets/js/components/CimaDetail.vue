@@ -78,7 +78,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-xl-8 text-center">
-                                    <iframe :src="vertiente.iframe" style="width:500px;height:400px">
+                                    <iframe :src="vertiente.iframe" style="width:500px;height:400px;max-width:100%;">
                                     </iframe>
                                 </div>
                             </div>
@@ -106,14 +106,6 @@
 
             };
         },
-        computed: {
-
-        },
-
-        beforeMount: function() {
-            //this.cima = this.$parent.currentCima;
-            //console.log(this.cima);
-        },
 
         methods: {
 
@@ -121,11 +113,7 @@
         },
 
         created: function(){
-            /*this.$parent.$on('update', function(newCima){
-                this.cima = newCima;
-                console.log(newCima.id);
-                console.log(this.cima.id);
-            });*/
+   
         }
     }
 

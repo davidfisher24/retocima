@@ -40,7 +40,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="!cimasmap">
                         <table class="table table-striped">
                             <thead>
-                                <td>Cdg.</td><td>Nombre</td><td>Altitud</td><td>Vertientes</td>
+                                <td>Cdg.</td><td>Nombre</td><td>logros</td><td>Altitud</td><td>Vertientes</td>
                             </thead>
                             <tbody>
                                 <tr v-for="cima in cimas" v-if="cima.estado === 1">
@@ -48,6 +48,7 @@
                                     <td>
                                         <a @click="showCima(cima.id)">{{cima.nombre}}</a>
                                     </td>
+                                    <td>{{cima.logros_count}}</td>
                                     <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
                                     <td>
                                         <p  v-if="cima.vertientes[0]" v-for="vertiente in cima.vertientes">{{vertiente.vertiente}}</p>
@@ -65,6 +66,7 @@
                                     <td>
                                         <a @click="showCima(cima.id)">{{cima.nombre}}</a>
                                     </td>
+                                    <td>{{cima.logros_count}}</td>
                                     <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
                                     <td>
                                         <p v-if="cima.vertientes[0]" v-for="vertiente in cima.vertientes">{{vertiente.vertiente}}</p>
@@ -120,34 +122,30 @@
 <script>
 
     export default {
-        props: ["communidads"],
         data: function() {
             return {
+                comms: [],
+                count: 0,
                 selectedCommunidad: null,
                 cimas: null,
                 cimasmap: false,
                 cima: null,
             };
         },
-        computed: {
 
-        },
-
-        beforeMount: function() {
-            this.comms = JSON.parse(this.communidads);
-            this.count = Object.keys(this.comms).length;
+        mounted:function(){
+            var self = this;
+            axios.get('/api/communidads').then(function(response){
+                self.comms = response.data;
+                self.count = Object.keys(self.comms).length
+            });
         },
 
         methods: {
 
 
-            /*
-             * Gets a communidad image flag link
-             */
-
             imageSource: function(id){
-                var baseUrl = window.location.origin === "http://79.137.45.63" ? "http://79.137.45.63/retocima/public/" : "";
-                return baseUrl + "/img/communidads/"+id+".png";
+                return "/img/communidads/"+id+".png";
             },
 
             selectCommunidad: function(id){
@@ -156,9 +154,8 @@
             },
 
             showProvince: function(id){
-                var baseUrl = window.location.origin === "http://79.137.45.63" ? "http://79.137.45.63/retocima/public/" : "";
                 var self = this;
-                axios.get(baseUrl + '/api/cimas/' + id).then(function(response){
+                axios.get('/api/cimas/' + id).then(function(response){
                     self.cimas = response.data;
                 });
             },
@@ -182,13 +179,9 @@
             getMapZoom: function(){
                 var lats = this.getLats();
                 var lngs = this.getLngs();
-                console.log(lats);
-                console.log(lngs);
                 var latDiff = Math.abs(Math.max.apply(null,lats) - Math.min.apply(null,lats));
                 var lngDiff = Math.abs(Math.max.apply(null,lngs) - Math.min.apply(null,lngs));
                 var maxDiff = Math.max(latDiff,lngDiff);
-                console.log(maxDiff);
-                console.log(parseInt(11 - maxDiff));
                 return parseInt(11 - maxDiff);
                  
             },

@@ -19,7 +19,7 @@ class CommunidadController extends Controller
 
     public function allAction()
     {
-        return Communidad::all()->toJSON();
+        return Communidad::with('provincias')->withCount('cimas')->get()->toJSON();
     }
 
     /*
