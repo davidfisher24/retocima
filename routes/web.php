@@ -30,7 +30,6 @@ Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDet
 
 
 Route::get('/estadistica', function () { return view('publicarea.estadistica');});
-
 Route::get('/mapa', function () {return view('publicarea.mapa');});
 
 /* Pata Negra */
@@ -67,7 +66,7 @@ Route::prefix('ajax')->group(function () {
     });
     Route::get('communidads', function() {
         return App\Communidad::all()->toJSON();
-    });
+    }); // Used can move
     Route::get('paises', function() {
         return App\Pais::all()->toJSON();
     });
@@ -96,9 +95,7 @@ Route::prefix('ajax')->group(function () {
     });
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/userlogros', function() {
-            return App\Cimero::find(Auth::id())->logros()->get()->pluck('cima_id')->toArray();
-        }); 
+        Route::get('/userlogros', 'CimeroController@logrosArrayAction'); // Using this cos its authed
     });
 
 });

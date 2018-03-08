@@ -68,7 +68,7 @@
 
             fetchCommunidads: function(){
                 var self = this;
-                axios.get('ajax/communidads').then(function(response){
+                axios.get('api/communidads').then(function(response){
                     self.communidads = response.data;
                 });
             },

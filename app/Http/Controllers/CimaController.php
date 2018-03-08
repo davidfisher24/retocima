@@ -62,4 +62,6 @@ class CimaController extends Controller
     	return $cimas;
     }
 
+    
+
 }

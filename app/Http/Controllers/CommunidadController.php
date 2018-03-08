@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 
-use App\Cima;
+use App\Communidad;
 
 class CommunidadController extends Controller
 {
@@ -15,6 +15,11 @@ class CommunidadController extends Controller
     public function __construct()
     {
 
+    }
+
+    public function allAction()
+    {
+        return Communidad::all()->toJSON();
     }
 
     /*

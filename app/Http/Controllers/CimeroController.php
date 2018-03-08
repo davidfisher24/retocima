@@ -88,5 +88,15 @@ class CimeroController extends Controller
 	        ->get();
     	return $cimeros;
     }
+
+    public function logrosArrayAction(){
+        return $this->allLogros(Auth::id())->pluck('cima_id')->toArray();
+    }
+
+
+    private function allLogros($id)
+    {
+        return Cimero::find($id)->logros()->get();
+    }
   
 }
