@@ -21,7 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'api'], function() {
     Route::get('cimas/{id}', function($id) {
-        return App\Cima::where('provincia_id',$id)->with('vertientes','vertientes.enlaces')->get()->toJSON();
+        return App\Cima::where('provincia_id',$id)->with('vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
+    });
+
+    Route::get('cimas', function() {
+        return App\Cima::with('provincia','communidad','vertientes')->get()->toJSON();
     });
 
     Route::get('ranking',function(){

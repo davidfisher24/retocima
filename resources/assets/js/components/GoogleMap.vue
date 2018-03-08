@@ -1,5 +1,5 @@
 <template> 
-    <div id="wrapper">
+    <div id="wrapper" class="row">
         <gmap-map
           :center="mapCenter"
           :zoom="6"
@@ -32,10 +32,12 @@
 </template>
 
 <script>
+
     export default {
-        props: ["cimas"],
         data: function() {
             return {
+                cimas: [],
+                filteredCimas: [],
                 mapCenter: {lat:40.416775, lng:-3.703790},
                 selectedProvince: null,
                 infoWindow: {
@@ -47,22 +49,30 @@
         },
 
         beforeMount: function() {
-            this.baseCimas = JSON.parse(this.cimas);
-            this.filteredCimas = JSON.parse(this.cimas);
+        },
+
+        mounted: function(){
+          this.fetchData();
         },
 
         methods: {
 
+            fetchData: function(){
+                var self = this;
+                axios.get('api/cimas').then(function(response){
+                  self.cimas = response.data;
+                  self.filteredCimas = response.data;
+                });
+            },
+
             openInfoWindowTemplate:function(item) {
                 this.infoWindow.position = {lat:parseFloat(item.longitude), lng:parseFloat(item.latitude)};
-                this.infoWindow.template = "<p><strong>" + item.codigo +"</strong>" + item.nombre +"</p>";
+                this.infoWindow.template = "<p><strong>" + item.codigo +"</strong>   " + item.nombre +"</p>";
+                this.infoWindow.template += "<a href='detallescima/"+item.id+"' target='_BLANK'>VER</a>";
                 this.infoWindow.open = true;
             }
 
         },
-
-        
-
     }
 
 </script>

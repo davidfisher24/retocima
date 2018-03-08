@@ -51,9 +51,6 @@
                 </div>
 
                 <div id="vuepage" style="display:none">
-	                <!--<div class="panel-body">
-	                	<datatable onloadroute="ajax/statistics/cimasbylogro"></datatable>
-	                </div>-->
 	            </div>
 
             </div>
