@@ -7,6 +7,7 @@ use DB;
 use Auth;
 
 use App\Cimero;
+use App\Logro;
 
 
 class CimeroController extends Controller
@@ -93,6 +94,10 @@ class CimeroController extends Controller
         return $this->allLogros(Auth::id())->pluck('cima_id')->toArray();
     }
 
+    public function checkLogroAction($cimaId){
+        $logro = Logro::where('cima_id',$cimaId)->where('cimero_id',Auth::id())->first();
+        return $logro ? $logro->toJson() : null;
+    }
 
     private function allLogros($id)
     {

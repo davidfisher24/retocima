@@ -19,17 +19,19 @@
                 completed:false,
             };
         },
-        computed: {
+        /*computed: {
             baseLogro : function(){
                 if (this.logro) return JSON.parse(this.logro);
                 else return null;
             },
-        },
+        },*/
 
         beforeMount: function() {
-            this.userLogro = this.baseLogro;
+            //this.userLogro = this.baseLogro;
+            this.userLogro = this.logro;
             this.completed = this.userLogro ? true : false;
         },
+
 
         methods: {
 

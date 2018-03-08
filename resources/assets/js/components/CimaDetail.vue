@@ -24,9 +24,7 @@
                              <h5 class="text-center">{{cima.communidad}} --> {{cima.provincia}}</h5>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 col-xl-3">
-                            <!--@if (Auth::user())
-                                <cimaquickadd cima="{{$cima->id}}" logro="{{$userLogro}}"></cimaquickadd>
-                            @endif-->
+                            <cimaquickadd v-if="renderQuickAdd" :cima="cima.id" :logro="userLogro"></cimaquickadd>
                         </div>
                     </div>
                 </div>
@@ -103,8 +101,17 @@
         props: ["cima"],
         data: function() {
             return {
-
+                renderQuickAdd: false,
+                userLogro: null,
             };
+        },
+
+        mounted:function() {
+            var self = this;
+            axios.get('/ajax/checklogro/'+this.cima.id).then(function(response){
+                self.renderQuickAdd = true;
+                self.userLogro = response.data;
+            });
         },
 
         methods: {

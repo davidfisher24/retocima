@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
     Route::get('/change-password', function() {return view('userarea.change-password'); });
     Route::post('/change-password', 'Auth\UpdatePasswordController@update');
+    Route::post('/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
     
     //Route::middleware(['writeThroughLogros'])->group(function () {
         Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros'); 
@@ -95,7 +96,10 @@ Route::prefix('ajax')->group(function () {
     });
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/userlogros', 'CimeroController@logrosArrayAction'); // Using this cos its authed
+        
+        // Using this cos its authed
+        Route::get('/userlogros', 'CimeroController@logrosArrayAction'); 
+        Route::get('/checklogro/{cimaId}', 'CimeroController@checkLogroAction');
     });
 
 });
