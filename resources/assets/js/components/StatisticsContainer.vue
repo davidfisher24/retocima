@@ -4,6 +4,7 @@
             <h3>Choose what you want to see:</h3>
             <ul>
                 <!-- cimeros provincia started -->
+                <li><a @click="activeTable = 'CimerosRanking', route='provinciasstarted'">Cimeros por Provincias comenzados</a></li>
                 <!-- cimeros provincias completed -->
                 <!-- cimeros communidads completed -->
                 <li><a @click="activeTable = 'CimasRanking'">Las CIMAs más ascendidos</a></li>
@@ -30,6 +31,7 @@
         <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12" v-if="activeTable">
             <a href="#" @click="back">Atras</a>
+            <CimerosRanking v-if="activeTable == 'CimerosRanking'" :route="route"></CimerosRanking>
             <CimasRanking v-if="activeTable == 'CimasRanking'"></CimasRanking>
             <ProvinciasRanking v-if="activeTable == 'ProvinciasRanking'"></ProvinciasRanking>
             <CommunidadsRanking v-if="activeTable == 'CommunidadsRanking'"></CommunidadsRanking>
@@ -42,12 +44,14 @@
 
 
 <script>
+import CimerosRanking from './Tables/CimerosRanking'
 import CimasRanking from './Tables/CimasRanking'
 import ProvinciasRanking from './Tables/ProvinciasRanking'
 import CommunidadsRanking from './Tables/CommunidadsRanking'
 import FiltersRanking from './Tables/FiltersRanking'
     export default {
         components: {
+            'CimerosRanking' : CimerosRanking,
             'CimasRanking': CimasRanking,
             'ProvinciasRanking': ProvinciasRanking,
             'CommunidadsRanking': CommunidadsRanking,
@@ -56,6 +60,7 @@ import FiltersRanking from './Tables/FiltersRanking'
 
         data: function() {
             return {
+                route:null,
                 activeTable: null,
                 activeFilters: null,
                 bringFilters:null,

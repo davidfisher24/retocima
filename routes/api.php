@@ -105,6 +105,22 @@ Route::group(['middleware' => 'api'], function() {
     	return $cimeros;
     });
 
+    //  Provincias started
+    //select cimeros.id, count(distinct(logros.provincia_id)) as logros_count from cimeros left join logros on cimeros.id = logros.cimero_id group by cimeros.id;
+
+    Route::get('provinciasstarted',function(){
+    	$cimeros = DB::table('cimeros')
+	    	->select(DB::raw(
+	    		'cimeros.*, 
+	    		CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
+	    		count(distinct(logros.provincia_id)) as logros_count'
+	    	))
+	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
+	        ->groupBy('cimeros.id')
+	        ->orderBy('logros_count','desc')
+	        ->get();
+    	return $cimeros;
+    });
 });
 
 
