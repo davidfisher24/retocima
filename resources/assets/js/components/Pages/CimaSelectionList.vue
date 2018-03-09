@@ -1,3 +1,4 @@
+
 <template> 
 
    <div class="panel-body container-fluid">
@@ -5,7 +6,7 @@
 
                 <div class="row" v-if="!cimas && !cima">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
-                       <p v-for="(communidad,index) in comms" v-if="index < count/2">
+                       <p v-for="(communidad,index) in comms" v-if="index < count/2" class="communidad">
                             <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
                             <a @click="selectCommunidad(communidad.id)" >{{communidad.nombre}}</a> ({{communidad.cimas_count}})
                             <ul v-if="selectedCommunidad === communidad.id">
@@ -14,7 +15,7 @@
                         </p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
-                        <p v-for="(communidad,index) in comms" v-if="index >= count/2">
+                        <p v-for="(communidad,index) in comms" v-if="index >= count/2" class="communidad">
                             <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
                             <a @click="selectCommunidad(communidad.id)" >{{communidad.nombre}}</a> ({{communidad.cimas_count}})
                             <ul v-if="selectedCommunidad === communidad.id">
@@ -77,25 +78,7 @@
                     </div>
                     <!-- Map list-->
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="cimasmap">
-                        <gmap-map
-                          :center="getMapCenter()"
-                          :zoom="getMapZoom()"
-                          map-type-id="terrain"
-                          style="width: 800px; height: 600px;"
-                        >
-                             <gmap-cluster :max-zoom="10" :grid-size="25">
-
-                                <gmap-marker
-                                  :key="index"
-                                  v-for="(cima, index) in cimas"
-                                  :position="{lng:parseFloat(cima.latitude), lat:parseFloat(cima.longitude)}"
-                                  :clickable="true"
-                                  :draggable="false"
-                                  @click="showCima(cima.id)"
-                                ></gmap-marker>
-
-                            </gmap-cluster>
-                        </gmap-map>
+                        <ProvinceMap :cimas="cimas"></ProvinceMap>
                     </div>
                 </div>
 
@@ -121,7 +104,13 @@
 
 <script>
 
+    import ProvinceMap from '../Maps/ProvinceMap';
+
     export default {
+        components: {
+            'ProvinceMap' : ProvinceMap,
+        },
+
         data: function() {
             return {
                 comms: [],
@@ -171,31 +160,7 @@
             },
 
 
-            getMapCenter: function(){
-                var lats = this.getLats();
-                var lngs = this.getLngs();
-                var latSum = lats.reduce(function(a, b) { return a + b; });
-                var lngSum = lngs.reduce(function(a, b) { return a + b; });
-                return {lat: lngSum / lngs.length, lng: latSum / lats.length};
-            },
-
-            getMapZoom: function(){
-                var lats = this.getLats();
-                var lngs = this.getLngs();
-                var latDiff = Math.abs(Math.max.apply(null,lats) - Math.min.apply(null,lats));
-                var lngDiff = Math.abs(Math.max.apply(null,lngs) - Math.min.apply(null,lngs));
-                var maxDiff = Math.max(latDiff,lngDiff);
-                return parseInt(11 - maxDiff);
-                 
-            },
-
-            getLats: function(){
-                return this.cimas.map(function(a){ return parseFloat(a.latitude) }).filter(function(b) { return b !== 0});
-            },
-
-            getLngs: function(){
-                return this.cimas.map(function(a){ return parseFloat(a.longitude) }).filter(function(b) { return b !== 0});
-            },
+            
         },
 
     }
