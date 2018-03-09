@@ -1,7 +1,3 @@
-<style>
-
-</style>
-
 <template> 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
@@ -81,8 +77,9 @@
                                     </table>
                                 </div>
                                 <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-xl-8 text-center">
-                                    <iframe :src="vertiente.iframe" style="width:500px;height:400px;max-width:100%;">
-                                    </iframe>
+                                    <!--<iframe :src="vertiente.iframe" style="width:500px;height:400px;max-width:100%;">
+                                    </iframe>-->
+                                    <PathMap :id="vertiente.id"></PathMap>
                                 </div>
                             </div>
                         </div>
@@ -102,8 +99,13 @@
 </template>
 
 <script>
+    import PathMap from './PathMap';
+
     export default {
         props: ["cima"],
+        components: {
+            'PathMap' : PathMap,
+        },
         data: function() {
             return {
                 renderQuickAdd: false,
@@ -113,20 +115,12 @@
 
         mounted:function() {
             var self = this;
-            axios.get('/ajax/checklogro/'+this.cima.id).then(function(response){
+            /*axios.get('/ajax/checklogro/'+this.cima.id).then(function(response){
                 self.renderQuickAdd = true;
                 self.userLogro = response.data;
-            });
+            });;*/
         },
 
-        methods: {
-
-
-        },
-
-        created: function(){
-   
-        }
     }
 
 </script>

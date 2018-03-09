@@ -17,28 +17,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Php pages
+Route::get('/cimeropublicdetails/{id}', 'CimeroController@showPublicPage')->name('cimero');
+Route::get('/detallescima/{id}', 'CimaController@showCimaPageAction');
+Route::get('/test', 'TestController@showTestPage')->name('testpage');
 
-/* cimasListado */
+// Javascript elements
 Route::get('/listadocommunidads', function () { return view('publicarea.listadocommunidads');});
-//Route::get('/listadocommunidads', 'CimasListadoController@listCimasByCommunidad')->name('communidads');
-Route::get('/listadoprovincias/{id}', 'CimasListadoController@listCimasByProvincia')->name('provincias');
-Route::get('/listadoprovincias/{id}/{currentProv}', 'CimasListadoController@listCimasByProvincia')->name('provincias');
-Route::get('/detallescima/{id}', 'CimasListadoController@showCimaDetails')->name('cima');
-
-/* cimeroRanking */
-Route::get('/ranking', 'CimeroRankingController@displayRankingPage')->name('ranking');
-Route::get('/cimeropublicdetails/{id}', 'CimeroRankingController@cimeroPublicDetails')->name('cimero');
-
-
+Route::get('/ranking', function () { return view('publicarea.ranking');});
 Route::get('/estadistica', function () { return view('publicarea.estadistica');});
 Route::get('/mapa', function () {return view('publicarea.mapa');});
 Route::get('/patanegra', function () {return view('publicarea.patanegra');});
 
-
-/* Test Routes */
-Route::get('/test', 'TestController@showTestPage')->name('testpage');
-
-/* Test route */
 
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {

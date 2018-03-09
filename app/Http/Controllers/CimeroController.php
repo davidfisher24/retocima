@@ -9,13 +9,15 @@ use Auth;
 use App\Cimero;
 use App\Logro;
 
+use App\Services\AreaCompletionService;
+
 
 class CimeroController extends Controller
 {
 
-    public function __construct()
+    public function __construct(AreaCompletionService $areaCompletionService)
     {
-
+        $this->areaCompletionService = $areaCompletionService;
     }
 
     /*
@@ -90,18 +92,50 @@ class CimeroController extends Controller
     	return $cimeros;
     }
 
+    /*
+     * Cimeros logros in an id array
+     */
+
     public function logrosArrayAction(){
         return $this->allLogros(Auth::id())->pluck('cima_id')->toArray();
     }
+
+    /*
+     * Check a single logro for completion
+     * @param {integer} $cimero id 
+     */
 
     public function checkLogroAction($cimaId){
         $logro = Logro::where('cima_id',$cimaId)->where('cimero_id',Auth::id())->first();
         return $logro ? $logro->toJson() : null;
     }
 
+    /*
+     * All a cimeros logros
+     */
+
     private function allLogros($id)
     {
         return Cimero::find($id)->logros()->get();
+    }
+
+    /*
+     * Php public page
+     */
+
+
+    public function showPublicPage($id)
+    {
+
+        $cimero = Cimero::find($id);
+        $logros = $this->allLogros($id)->groupBy('communidad_id')->map(function($item){
+            return $item->groupBy('communidad_id','provincia_id')->keyBy($item->first()->first()->communidad->nombre);
+        });
+        $completions = $this->areaCompletionService->getCImerosCompletedProvincesAndCommunidads($id,$provincesGrouped = true);
+        $completedProvinces = $this->areaCompletionService->getCimerosCompletedProvinces($id);
+        $completedCommunidads = $this->areaCompletionService->getCimerosCompletedCommunidads($id);
+
+        return view('publicarea.cimeropublicdetails',compact('cimero','logros','completions','completedProvinces','completedCommunidads'));
     }
   
 }

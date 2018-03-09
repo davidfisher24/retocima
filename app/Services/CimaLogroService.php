@@ -49,4 +49,7 @@ class CimaLogroService extends BaseService
         return $this->addRankingParameter($cimas,'logros_count');
     }
 
+
+    
+
 }
