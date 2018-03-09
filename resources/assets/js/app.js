@@ -17,8 +17,8 @@ Vue.use(require('vue2-google-maps'), {
 Vue.mixin({
   data: function() {
     return {
-      get globalReadOnlyProperty() {
-        return "Can't change me!";
+      get baseUrl() {
+        return "";
       }
     }
   }
@@ -38,10 +38,17 @@ Vue.mixin({
 Vue.component('homepagecarousel', require('./components/Carousels/CarouselHomePage.vue'));
 // TABLES
 Vue.component('rankingtable', require('./components/Tables/Ranking.vue'));
-// CONTAINERS
-Vue.component('googlemap', require('./components/GoogleMap.vue'));
-Vue.component('statisticscontainer', require('./components/StatisticsContainer.vue'));
-Vue.component('patanegracontainer', require('./components/PataNegraContainer.vue'));
+// PAGE LAYOUTS
+Vue.component('statisticscontainer', require('./components/Pages/StatisticsContainer.vue'));
+Vue.component('patanegracontainer', require('./components/Pages/PataNegraContainer.vue'));
+Vue.component('cimaselectionlist', require('./components/Pages/CimaSelectionList.vue'));
+Vue.component('cimadetailfullpage', require('./components/Pages/CimeDetailFullPage.vue'));
+// MAPS
+Vue.component('googlemap', require('./components/Maps/GoogleMap.vue'));
+// ELEMENTS
+Vue.component('loadingcontainer', require('./components/Elements/LoadingContainer.vue'));
+Vue.component('cimaquickadd', require('./components/Elements/CimaQuickAdd.vue'));
+
 
 // FORMS
 Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
@@ -50,19 +57,8 @@ Vue.component('cimeroeditcuentaform', require('./components/CimeroEditCuentaForm
 Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 // INTERACIVE COMPONENTS
 Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
-Vue.component('cimaquickadd', require('./components/CimaQuickAdd.vue'));
-// CONTAINER BUILDS
-Vue.component('rankingcontainer', require('./components/RankingContainer.vue'));
-
-// MODAL WINDOWS
-Vue.component('cimamodal', require('./components/CimaModal.vue')); /* NOT CURRENTLY USED */
-// SHARED COMPONENTS
-Vue.component('datatable', require('./components/DataTable.vue'));
-// COMPONENETS
-Vue.component('loadingcontainer', require('./components/LoadingContainer.vue'));
-Vue.component('cimaselectionlist', require('./components/CimaSelectionList.vue'));
 Vue.component('cimadetail', require('./components/CimaDetail.vue'));
-Vue.component('googlemap', require('./components/GoogleMap.vue'));
+
 
 const app = new Vue({
     el: '#vuepage'

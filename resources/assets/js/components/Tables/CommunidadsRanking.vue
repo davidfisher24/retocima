@@ -37,7 +37,7 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/communidadsranking').then(function(response){
+                axios.get(this.baseUrl + '/api/communidadsranking').then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
                     })

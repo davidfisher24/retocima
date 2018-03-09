@@ -27,7 +27,6 @@
         },*/
 
         beforeMount: function() {
-            //this.userLogro = this.baseLogro;
             this.userLogro = this.logro;
             this.completed = this.userLogro ? true : false;
         },
@@ -45,7 +44,7 @@
             add: function(){
                 event.preventDefault();
                 var self = this;
-                axios.post('update-logro',{
+                axios.post(this.baseUrl + '/update-logro',{
                     action: 'add',
                     logro: this.userLogro,
                     cima: this.cima,
@@ -60,7 +59,7 @@
             remove: function(event){
                 event.preventDefault();
                 var self = this;
-                axios.post('update-logro',{
+                axios.post(this.baseUrl + '/update-logro',{
                     action: 'remove',
                     logro: JSON.stringify(this.userLogro),
                 }).then(function(response){

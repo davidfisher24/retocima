@@ -40,10 +40,10 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/cimasranking').then(function(response){
+                axios.get(this.baseUrl + '/api/cimasranking').then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
-                        d.link = 'detallescima/' + d.id;
+                        d.link = self.baseUrl + '/detallescima/' + d.id;
                     })
                     self.data = response.data;
                 });

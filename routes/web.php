@@ -19,8 +19,7 @@ Auth::routes();
 
 // Php pages
 Route::get('/cimeropublicdetails/{id}', 'CimeroController@showPublicPage')->name('cimero');
-Route::get('/detallescima/{id}', 'CimaController@showCimaPageAction');
-Route::get('/test', 'TestController@showTestPage')->name('testpage');
+//Route::get('/test', 'TestController@showTestPage')->name('testpage');
 
 // Javascript elements
 Route::get('/listadocommunidads', function () { return view('publicarea.listadocommunidads');});
@@ -28,6 +27,8 @@ Route::get('/ranking', function () { return view('publicarea.ranking');});
 Route::get('/estadistica', function () { return view('publicarea.estadistica');});
 Route::get('/mapa', function () {return view('publicarea.mapa');});
 Route::get('/patanegra', function () {return view('publicarea.patanegra');});
+Route::get('/detallescima/{id}', function ($id) {return view('publicarea.detallescima',compact('id'));});
+
 
 
 /* cimeroCuenta */
@@ -89,7 +90,7 @@ Route::prefix('ajax')->group(function () {
         
         // Using this cos its authed
         Route::get('/userlogros', 'CimeroController@logrosArrayAction'); 
-        Route::get('/checklogro/{cimaId}', 'CimeroController@checkLogroAction');
+        
     });
 
 });

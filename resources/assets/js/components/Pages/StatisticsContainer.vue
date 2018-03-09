@@ -44,11 +44,11 @@
 
 
 <script>
-import CimerosRanking from './Tables/CimerosRanking'
-import CimasRanking from './Tables/CimasRanking'
-import ProvinciasRanking from './Tables/ProvinciasRanking'
-import CommunidadsRanking from './Tables/CommunidadsRanking'
-import FiltersRanking from './Tables/FiltersRanking'
+import CimerosRanking from '../Tables/CimerosRanking'
+import CimasRanking from '../Tables/CimasRanking'
+import ProvinciasRanking from '../Tables/ProvinciasRanking'
+import CommunidadsRanking from '../Tables/CommunidadsRanking'
+import FiltersRanking from '../Tables/FiltersRanking'
     export default {
         components: {
             'CimerosRanking' : CimerosRanking,
@@ -78,10 +78,10 @@ import FiltersRanking from './Tables/FiltersRanking'
             fetchComunidadsAndProvinces:function(){
                 var self = this;
 
-                axios.get('ajax/communidads').then(function(response){
+                axios.get(this.baseUrl + '/ajax/communidads').then(function(response){
                     response.data.forEach(function(item){
-                        item.apiroute = 'ajax/statistics/cimerosbylogroinzones/communidad_id/' + item.id;
-                        item.imageurl = 'img/communidads/' + item.id + '.png';
+                        item.apiroute = self.baseUrl + '/ajax/statistics/cimerosbylogroinzones/communidad_id/' + item.id;
+                        item.imageurl = self.baseUrl + '/img/communidads/' + item.id + '.png';
                     });
                     self.communidads = response.data;
 
@@ -89,7 +89,7 @@ import FiltersRanking from './Tables/FiltersRanking'
 
                 axios.get('ajax/provincias').then(function(response){
                     response.data.forEach(function(item){
-                        item.apiroute = 'ajax/statistics/cimerosbylogroinzones/provincia_id/' + item.id;
+                        item.apiroute = self.baseUrl + '/ajax/statistics/cimerosbylogroinzones/provincia_id/' + item.id;
                     });
                     self.provincias = response.data;
                 });

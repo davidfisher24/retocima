@@ -133,9 +133,12 @@
             };
         },
 
+        beforeMount:function(){
+        },
+
         mounted:function(){
             var self = this;
-            axios.get('/api/communidads').then(function(response){
+            axios.get(this.baseUrl + '/api/communidads').then(function(response){
                 self.comms = response.data;
                 self.count = Object.keys(self.comms).length
             });
@@ -145,7 +148,7 @@
 
 
             imageSource: function(id){
-                return "/img/communidads/"+id+".png";
+                return this.baseUrl + "/img/communidads/"+id+".png";
             },
 
             selectCommunidad: function(id){
@@ -155,7 +158,7 @@
 
             showProvince: function(id){
                 var self = this;
-                axios.get('/api/cimas/' + id).then(function(response){
+                axios.get(this.baseUrl + '/api/cimas/' + id).then(function(response){
                     self.cimas = response.data;
                 });
             },

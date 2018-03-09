@@ -37,7 +37,7 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/provinciasranking').then(function(response){
+                axios.get(this.baseUrl + 'api/provinciasranking').then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
                     })

@@ -99,7 +99,7 @@
 </template>
 
 <script>
-    import PathMap from './PathMap';
+    import PathMap from './Maps/PathMap';
 
     export default {
         props: ["cima"],
@@ -114,11 +114,12 @@
         },
 
         mounted:function() {
+            console.log(this.cima);
             var self = this;
-            /*axios.get('/ajax/checklogro/'+this.cima.id).then(function(response){
-                self.renderQuickAdd = true;
+            axios.get('/api/checklogro/'+this.cima.id).then(function(response){
+                if (response.data !== 'unauthorized') self.renderQuickAdd = true;
                 self.userLogro = response.data;
-            });;*/
+            });;
         },
 
     }

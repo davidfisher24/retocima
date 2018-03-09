@@ -23,7 +23,7 @@
 }
 
 .spinner {
-    opacity: 0.7;
+    opacity: 0.4;
     width:250px;
     -webkit-animation: spin-me 3s linear infinite;
     animation: spin-me 3s linear infinite;

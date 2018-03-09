@@ -49,7 +49,7 @@ class CimaController extends Controller
      */
     public function oneAction($id)
     {
-    	return Cima::with('provincia','communidad','vertientes')->withCount('logros')->find($id)->toJSON();
+    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->find($id)->toJSON();
     }
 
     /*
@@ -57,7 +57,7 @@ class CimaController extends Controller
      */
     public function allAction()
     {
-    	return Cima::with('provincia','communidad','vertientes')->withCount('logros')->get()->toJSON();
+    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
     }
 
     /*

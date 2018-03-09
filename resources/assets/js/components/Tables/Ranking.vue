@@ -41,10 +41,10 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/ranking').then(function(response){
+                axios.get(this.baseUrl + 'api/ranking').then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
-                        d.link = 'cimeropublicdetails/' + d.id;
+                        d.link = self.baseUrl + '/cimeropublicdetails/' + d.id;
                         if (d.logros_count >= 480) d.image = 'img/icons/gold.png';
                         else if (d.logros_count < 480 && d.logros_count >= 320) d.image = 'img/icons/silver.png';
                         else if (d.logros_count >= 160 && d.logros_count < 320) d.image = 'img/icons/bronze.png';

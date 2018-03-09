@@ -27,7 +27,7 @@
 
         mounted:function() {
             var self=this;
-            axios.get('/maplines/'+self.id + '.txt').then(function(response){
+            axios.get(this.baseUrl + '/maplines/'+self.id + '.txt').then(function(response){
                 var coords = [];
                 response.data.data.forEach(function(d) {
                     coords.push({lat: d[0][0], lng: d[0][1]})

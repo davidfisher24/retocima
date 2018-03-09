@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'api'], function() {
     Route::get('cimas/{id}', 'CimaController@allInProviceAction');
     Route::get('cimas', 'CimaController@allAction');
+    Route::get('cima/{id}', 'CimaController@OneAction');
     Route::get('patanegra', 'CimaController@pataNegraAction');
     Route::get('communidads', 'CommunidadController@allAction');
     Route::get('ranking', 'CimeroController@rankAction');
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('communidadsranking', 'CommunidadController@rankAction');
     Route::get('filtersranking/{filter}/{id}', 'CimeroController@rankByAreaAction');
     Route::get('provinciasstarted', 'CimeroController@rankByProvincesStartedAction');
+    Route::get('/checklogro/{cimaId}', 'CimeroController@checkLogroAction');
 });
 
 

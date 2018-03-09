@@ -39,10 +39,10 @@
 
             fetchData: function(){
                 var self = this;
-                axios.get('api/filtersranking/'+this.bringFilters).then(function(response){
+                axios.get(this.baseUrl + '/api/filtersranking/'+this.bringFilters).then(function(response){
                     response.data.map(function(d,i){
                         d.rank = i+1;
-                         d.link = 'cimeropublicdetails/' + d.id;
+                        d.link = self.baseUrl + '/cimeropublicdetails/' + d.id;
                     })
                     self.data = response.data;
                 });
