@@ -31,7 +31,7 @@
 
                 <!-- Communidads panel -->
                 <div class="row" v-if="!cimas && !cima">
-                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
+                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 col-xl-6 text-left">
                        <div v-for="(communidad,index) in comms" v-if="index < count/2"  @click="selectCommunidad(communidad.id)" >
                            <p class="select-option bg-light">
                                 <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
+                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 col-xl-6 text-left">
                         <div v-for="(communidad,index) in comms" v-if="index >= count/2"  @click="selectCommunidad(communidad.id)" >
                             <p class="select-option">
                                 <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
@@ -64,56 +64,44 @@
                 <!-- Cimas panel -->
                 <div class="row panel" v-if="cimas && !cima">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-header">
-                        <ol class="breadcrumb">
-                            <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;
-                            <li class="breadcrumb-item"><span class="h4">{{cimas[0].communidad}}</span></li>
-                            <li class="breadcrumb-item active"><span class="h4">{{cimas[0].provincia}}</span></li>
-                        
-                            <button class="pull-left btn btn-default" @click="cimas = null, cimasmap = false">Atras</button>
-                            <button class="pull-right btn btn-default" @click="cimasmap = !cimasmap">
-                                <span v-if="!cimasmap">Ver Mapa</span>
-                                <span v-if="cimasmap">Ver Lista</span>
-                            </button>
-                        </ol>
+                        <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;
+                        <span class="h4 hidden-sm hidden-xs">{{cimas[0].communidad}} /</span> 
+                        <span class="h4">{{cimas[0].provincia}}</span>
+
+                        <button class="pull-left btn btn-default breadcrumb" @click="cimas = null, cimasmap = false">Atras</button>
+                        <button class="pull-right btn btn-default breadcrumb" @click="cimasmap = !cimasmap">
+                            <span v-if="!cimasmap">Ver Mapa</span>
+                            <span v-if="cimasmap">Ver Lista</span>
+                        </button>
                     </div>
                     <!-- Simple list -->
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-body" v-if="!cimasmap">
-                        <table class="table table-striped">
-                            <thead>
-                                <td>Cdg.</td><td>Nombre</td><td>logros</td><td>Altitud</td><td>Vertientes</td>
-                            </thead>
-                            <tbody>
-                                <tr v-for="cima in cimas" v-if="cima.estado === 1">
-                                    <td>{{cima.codigo}}</td>
-                                    <td>
-                                        <a @click="showCima(cima.id)">{{cima.nombre}}</a>
-                                    </td>
-                                    <td>{{cima.logros_count}}</td>
-                                    <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
-                                    <td>
-                                        <p  v-if="cima.vertientes[0]" v-for="vertiente in cima.vertientes">{{vertiente.vertiente}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-striped">
-                            <thead>
-                                <td colspan="4">Cimas que fueron eliminados</td>
-                            </thead>
-                            <tbody>
-                                <tr v-for="cima in cimas" v-if="cima.estado !== 1">
-                                    <td>{{cima.codigo}}</td>
-                                    <td>
-                                        <a @click="showCima(cima.id)">{{cima.nombre}}</a>
-                                    </td>
-                                    <td>{{cima.logros_count}}</td>
-                                    <td><span v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</span></td>
-                                    <td>
-                                        <p v-if="cima.vertientes[0]" v-for="vertiente in cima.vertientes">{{vertiente.vertiente}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-body fake-table" v-if="!cimasmap">
+                        <div class="row row-header">
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>Cdg.</p></div>
+                            <div class="col-md-4 col-xs-4 col-lg-4 col-xl-4 col-sm-4"><p>Nombre</p></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>Logros</p></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>Altitud</p></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>Verts.</p></div>
+                        </div>
+                        <div class="row row-link" v-for="cima in cimas" v-if="cima.estado === 1" @click="showCima(cima.id)">
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>{{cima.codigo}}</p></div>
+                            <div class="col-md-4 col-xs-4 col-lg-4 col-xl-4 col-sm-4"><a>{{cima.nombre}}</a></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>{{cima.logros_count}}</p></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</p></div>
+                            <div class="col-md-2 col-lg-2 col-xl-2 hidden-xs hidden-sm"><p v-if="cima.vertientes[0]" v-for="vertiente in cima.vertientes">{{vertiente.vertiente}}</p></div>
+                            <div class="hidden-xl hidden-lg hidden-md col-xs-2 col-sm-2"><span class="badge">{{cima.vertientes.length}}</span></div>
+                        </div>
+                        <div class="row row-delimiter" v-if="needCimasElimitedRow()">
+                            <div class="col-md-12 col-xs-12 col-lg-12 col-xl-12 col-sm-12 text-center"><p>Cimas que fueron eliminados</p></div>
+                        </div>
+                        <div class="row row-link" v-for="cima in cimas" v-if="cima.estado !== 1" @click="showCima(cima.id)">
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>{{cima.codigo}}</p></div>
+                            <div class="col-md-4 col-xs-4 col-lg-4 col-xl-4 col-sm-4"><a>{{cima.nombre}}</a></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p>{{cima.logros_count}}</p></div>
+                            <div class="col-md-2 col-xs-2 col-lg-2 col-xl-2 col-sm-2"><p v-if="cima.vertientes[0]">{{cima.vertientes[0].altitud}}m</p></div>
+                            <div class="col-md-2 col-lg-2 col-xl-2 hidden-xs hidden-sm"><p v-if="cima.vertientes[0]" v-for="vertiente in cima.vertientes">{{vertiente.vertiente}}</p></div>
+                            <div class="hidden-xl hidden-lg hidden-md col-xs-2 col-sm-2"><span class="badge">{{cima.vertientes.length}}</span></div>
+                        </div>
                     </div>
                     <!-- Map list-->
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 google-map-column"v-if="cimasmap">
@@ -194,12 +182,17 @@
                 });
             },
 
+            needCimasElimitedRow:function(){
+                return this.cimas.filter(function(c){ return c.estado != 1 }).length ? true : false;
+            },
+
             showCima: function(id){
                 var self = this;
                 this.cimas.forEach(function(cima){
                     if (id === cima.id) return self.cima = cima;
                 })
             },
+
 
             showCimaFromSearch: function(cima){
                 this.searchCimas = [];

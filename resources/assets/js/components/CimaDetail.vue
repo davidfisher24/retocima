@@ -76,7 +76,7 @@
                                             </tr>
                                     </table>
                                 </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-xl-8 text-center">
+                                <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8 col-xl-8 text-center google-map-column">
                                     <!--<iframe :src="vertiente.iframe" style="width:500px;height:400px;max-width:100%;">
                                     </iframe>-->
                                     <PathMap :id="vertiente.id"></PathMap>

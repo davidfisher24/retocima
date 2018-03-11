@@ -92,9 +92,47 @@ input {
     color: #ccc;
 }
 
+/* Map column on a bootstrap col from map sizing */
+
 .google-map-column {
     padding:0;
     margin-top:-10px;
 }
 
+.btn-default {
+	&:hover {
+	    background: #d0d0ff;
+	}
+}
+
+/* Fake Table made rfrom divs */
+
+.fake-table {
+	.row {
+		padding:4px;
+		box-shadow: 0 1px 1px rgba(1,1,1,0.25);
+
+		&:last-of-type {
+	    	box-shadow: 0 -1px -1px rgba(1,1,1,0.25);
+	    }
+	    
+	}
+
+	.row-header {
+    	background: #37474F;
+    	color: #e1f5fe;
+    }
+
+	.row-delimiter {
+    	background: #929fba;
+    	color: #b3e5fc
+    }
+
+    .row-link {
+    	cursor: pointer;
+    	&:hover {
+		    background: #d0d0ff;
+		}
+    }
+}
 

@@ -8727,9 +8727,46 @@ input:after {
   color: #ccc;
 }
 
+/* Map column on a bootstrap col from map sizing */
+
 .google-map-column {
   padding: 0;
   margin-top: -10px;
+}
+
+.btn-default:hover {
+  background: #d0d0ff;
+}
+
+/* Fake Table made rfrom divs */
+
+.fake-table .row {
+  padding: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+          box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+}
+
+.fake-table .row:last-of-type {
+  -webkit-box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
+          box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
+}
+
+.fake-table .row-header {
+  background: #37474F;
+  color: #e1f5fe;
+}
+
+.fake-table .row-delimiter {
+  background: #929fba;
+  color: #b3e5fc;
+}
+
+.fake-table .row-link {
+  cursor: pointer;
+}
+
+.fake-table .row-link:hover {
+  background: #d0d0ff;
 }
 
 .m-t-0 {
