@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Services\CimeroLogroService;
-use App\Services\MapService;
 use App\Services\GraphicsService;
 
 
@@ -27,11 +26,10 @@ class CimeroCuentaController extends Controller
      * @return cimero controller
      */
 
-    public function __construct(CimeroLogroService $cimeroLogroService, MapService $mapService, GraphicsService $graphicsService)
+    public function __construct(CimeroLogroService $cimeroLogroService, GraphicsService $graphicsService)
     {
         $this->middleware('auth');
         $this->cimeroLogroService = $cimeroLogroService;
-        $this->mapService = $mapService;
         $this->graphicsService = $graphicsService;
     }
 
@@ -94,11 +92,6 @@ class CimeroCuentaController extends Controller
 
     public function cimeroStatistics()
     {
-
-        /* Map
-        $cimas = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
-        $map = $this->mapService->makeBasicCimasMap($cimas);
-        return view('userarea.cimeroStatistics',compact('cimas')); */
 
         /* Bar and pir chart */
         $cimas = $this->cimeroLogroService->getCimeroProvinciaCount(Auth::id());

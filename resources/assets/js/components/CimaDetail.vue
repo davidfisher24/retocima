@@ -113,10 +113,12 @@
             };
         },
 
+        beforeMount: function(){
+        },
+
         mounted:function() {
-            console.log(this.cima);
             var self = this;
-            axios.get('/api/checklogro/'+this.cima.id).then(function(response){
+            axios.get('/ajax/checklogro/'+this.cima.id).then(function(response){
                 if (response.data !== 'unauthorized') self.renderQuickAdd = true;
                 self.userLogro = response.data;
             });;

@@ -8652,6 +8652,86 @@ input {
   border: 1px solid #d0d0ff;
 }
 
+input:after {
+  content: "* * *";
+}
+
+.select-option {
+  -webkit-box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+          box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+  -webkit-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
+  cursor: pointer;
+  padding: 4px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+
+.select-option:last-of-type {
+  -webkit-box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
+          box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
+}
+
+.select-option .badge {
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.select-option:hover {
+  background: #d0d0ff;
+}
+
+/* Changes bootstrap nave dropdown to be an open search menu positioned at 100% */
+
+.search-option-menu {
+  display: block;
+  margin-left: 15px;
+  margin-right: 15px;
+  right: 0;
+}
+
+.search-option {
+  -webkit-box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+          box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+  -webkit-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
+  cursor: pointer;
+  padding: 4px;
+  margin: 0px 5px 0px 5px;
+}
+
+.search-option:hover {
+  background: #d0d0ff;
+}
+
+/* search not found panel in dropdown list */
+
+.search-not-found {
+  cursor: none;
+}
+
+.search-not-found:hover {
+  background: white;
+}
+
+/* The search clear button at the right of the search input box */
+
+.search-clear {
+  position: absolute;
+  right: 25px;
+  top: 12.5px;
+  height: 14px;
+  margin: auto;
+  font-size: 14px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.google-map-column {
+  padding: 0;
+  margin-top: -10px;
+}
+
 .m-t-0 {
   margin-top: 0 !important;
 }

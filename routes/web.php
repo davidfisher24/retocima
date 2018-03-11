@@ -90,6 +90,7 @@ Route::prefix('ajax')->group(function () {
         
         // Using this cos its authed
         Route::get('/userlogros', 'CimeroController@logrosArrayAction'); 
+        Route::get('/checklogro/{cimaId}', 'CimeroController@checkLogroAction');
         
     });
 

@@ -1,10 +1,11 @@
 <template> 
     <div id="wrapper">
         <gmap-map
+          v-if="mounted"
           :center="getMapCenter()"
           :zoom="getMapZoom()"
           map-type-id="terrain"
-          style="width: 800px; height: 600px;"
+          :style="style"
         >
              <gmap-cluster :max-zoom="10" :grid-size="25">
 
@@ -27,11 +28,19 @@
         props: ["cimas"],
         data: function() {
             return {
-
+                mounted: false,
+                style: "",
             };
         },
 
         mounted:function() {
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.getElementById('wrapper').parentElement.getBoundingClientRect().y; 
+            var w = document.getElementById('wrapper').parentElement.offsetWidth;
+            //$('#wrapper').parent().width();
+            //$('#wrapper').parent().offset().top;
+            this.style = "width: "+w+"px; height: "+w+"px; margin:0;";
+            this.mounted = true;
+            document.getElementById('wrapper').parentElement.offsetWidth;
             console.log(this.cimas);
         },
 

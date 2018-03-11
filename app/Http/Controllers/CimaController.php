@@ -60,6 +60,14 @@ class CimaController extends Controller
     	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
     }
 
+    /* Searchs cimas by text 
+     *
+     */
+    public function searchAction($query)
+    {
+        return Cima::with('vertientes','vertientes.enlaces')->Search($query)->get()->toJSON();
+    }
+
     /*
      * Finds all cimas in a province
      */

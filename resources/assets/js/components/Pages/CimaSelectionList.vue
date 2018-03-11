@@ -1,44 +1,83 @@
+<style>
+
+.h4 {
+    font-size:1.2em;
+    font-weight:bold;
+}
+
+
+
+</style>
+
 
 <template> 
 
    <div class="panel-body container-fluid">
-                <!-- Communidads panel -->
+                <!-- Search box -->
+                <div class="row panel-body" v-if="!cimas && !cima">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 btn-group">
+                            <input type="search" class="form-control" placeholder="Buscar" v-model="searchInput" >
+                            <span class="glyphicon glyphicon-remove-circle search-clear" @click="clearSearch"></span>
+                            <ul class="dropdown-menu search-option-menu" :style="searchDisplay()">
+                               <p v-if="searchNotFound" class="search-option search-not-found">Nada Encontrado</p>
+                               <p v-for="cima in searchCimas" class="search-option" @click="showCimaFromSearch(cima)">
+                                        <span class="breadcrumb-item h4">{{cima.nombre}}</span> /
+                                        <span class="breadcrumb-item">{{cima.communidad}}</span> /
+                                        <span class="breadcrumb-item">{{cima.provincia}}</span>
+                                </p>
+                            </ul>
+                    </div>
+                </div>
 
+                <!-- Communidads panel -->
                 <div class="row" v-if="!cimas && !cima">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
-                       <p v-for="(communidad,index) in comms" v-if="index < count/2" class="communidad">
-                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
-                            <a @click="selectCommunidad(communidad.id)" >{{communidad.nombre}}</a> ({{communidad.cimas_count}})
-                            <ul v-if="selectedCommunidad === communidad.id">
-                                <li v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)">{{provincia.nombre}}</li>
-                            </ul>
-                        </p>
+                       <div v-for="(communidad,index) in comms" v-if="index < count/2"  @click="selectCommunidad(communidad.id)" >
+                           <p class="select-option bg-light">
+                                <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
+                                <a>{{communidad.nombre}}</a> 
+                                <span class="badge pull-right">{{communidad.cimas_count}}</span>
+                            </p>
+                            <div v-if="selectedCommunidad === communidad.id">
+                                <p v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)" class="select-option">
+                                    <a>{{provincia.nombre}}</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6 text-left">
-                        <p v-for="(communidad,index) in comms" v-if="index >= count/2" class="communidad">
-                            <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
-                            <a @click="selectCommunidad(communidad.id)" >{{communidad.nombre}}</a> ({{communidad.cimas_count}})
-                            <ul v-if="selectedCommunidad === communidad.id">
-                                <li v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)">{{provincia.nombre}}</li>
-                            </ul>
-                        </p>
+                        <div v-for="(communidad,index) in comms" v-if="index >= count/2"  @click="selectCommunidad(communidad.id)" >
+                            <p class="select-option">
+                                <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
+                                <a>{{communidad.nombre}}</a> 
+                                <span class="badge pull-right">{{communidad.cimas_count}}</span> 
+                            </p>
+                            <div v-if="selectedCommunidad === communidad.id">
+                                <p v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)" class="select-option">
+                                    <a>{{provincia.nombre}}</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Cimas panel -->
-                <div class="row" v-if="cimas && !cima">
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
-                        <h3>
-                            <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;{{cimas[0].communidad}} -- {{cimas[0].provincia}}
-                            <a class="pull-left" @click="cimas = null, cimasmap = false">Atras</a>
-                            <a class="pull-left" @click="cimasmap = !cimasmap">
-                                <span v-if="!cimasmap">&nbsp;&nbsp;Ver Mapa</span>
-                                <span v-if="cimasmap">&nbsp;&nbsp;Ver Lista</span>
-                            </a>
-                        </h3>
+                <div class="row panel" v-if="cimas && !cima">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-header">
+                        <ol class="breadcrumb">
+                            <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;
+                            <li class="breadcrumb-item"><span class="h4">{{cimas[0].communidad}}</span></li>
+                            <li class="breadcrumb-item active"><span class="h4">{{cimas[0].provincia}}</span></li>
+                        
+                            <button class="pull-left btn btn-default" @click="cimas = null, cimasmap = false">Atras</button>
+                            <button class="pull-right btn btn-default" @click="cimasmap = !cimasmap">
+                                <span v-if="!cimasmap">Ver Mapa</span>
+                                <span v-if="cimasmap">Ver Lista</span>
+                            </button>
+                        </ol>
                     </div>
                     <!-- Simple list -->
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="!cimasmap">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-body" v-if="!cimasmap">
                         <table class="table table-striped">
                             <thead>
                                 <td>Cdg.</td><td>Nombre</td><td>logros</td><td>Altitud</td><td>Vertientes</td>
@@ -77,7 +116,7 @@
                         </table>
                     </div>
                     <!-- Map list-->
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center" v-if="cimasmap">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 google-map-column"v-if="cimasmap">
                         <ProvinceMap :cimas="cimas"></ProvinceMap>
                     </div>
                 </div>
@@ -87,10 +126,10 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
                         <h3>
                             <a class="pull-left" @click="cima = null">Atras</a>
-                            <a v-if="cimas.indexOf(cima) !== 0" @click="cima = cimas[cimas.indexOf(cima) -1]">ANTERIOR</a>
+                            <a v-if="cimas && cimas.indexOf(cima) !== 0" @click="cima = cimas[cimas.indexOf(cima) -1]">ANTERIOR</a>
                             <!--<img :src="imageSource(cima.communidad_id)" height="24" width="32">&nbsp;&nbsp;
                             {{cima.codigo}} -- {{cima.nombre}} -->
-                            <a v-if="cimas.indexOf(cima) + 1 !== cimas.length" @click="cima = cimas[cimas.indexOf(cima) +1]">SIGUIENTE</a>
+                            <a v-if="cimas && cimas.indexOf(cima) + 1 !== cimas.length" @click="cima = cimas[cimas.indexOf(cima) +1]">SIGUIENTE</a>
                         </h3>
                         <cimadetail class="item" :cima="cima"></cimadetail>
                     </div>
@@ -119,6 +158,9 @@
                 cimas: null,
                 cimasmap: false,
                 cima: null,
+                searchInput: "",
+                searchCimas: [],
+                searchNotFound: false,
             };
         },
 
@@ -159,8 +201,52 @@
                 })
             },
 
+            showCimaFromSearch: function(cima){
+                this.searchCimas = [];
+                this.searchInput = "";
+                this.cima = cima;
+            },
+
+            searchDisplay: function(){
+                if (this.searchCimas.length === 0 && !this.searchNotFound) return "display:none;"
+                return "display:block;"
+            },
+
+            clearSearch: function() {
+                this.searchCimas = [];
+                this.searchInput = "";
+            },
+
+            searchCimasAjax: _.debounce(
+              function () {
+                var self = this;
+                axios.get(this.baseUrl + '/api/cimas/search/' + this.searchInput).then(function(response){
+                    self.searchCimas = [];
+                    if (response.data.length === 0) {
+                        self.searchNotFound = true;
+                        return;
+                    }
+                    self.searchNotFound = false;
+                    var i = 0;
+                    while (self.searchCimas.length < 4 && response.data.length > i) {
+                        if(response.data[i]) self.searchCimas.push(response.data[i]);
+                        i++;
+                    }
+                });
+              },500),
 
             
+        },
+
+        watch: {
+          searchInput: function () {
+            if (this.searchInput.length < 3) {
+                this.searchNotFound = false;
+                this.searchCimas = [];
+                return;
+            }
+            this.searchCimasAjax();
+          }
         },
 
     }
