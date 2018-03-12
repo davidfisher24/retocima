@@ -38,8 +38,17 @@ $input-color-placeholder: lighten($text-color, 30%);
 $link-color: #636b6f;
 $cima-blue: #3097D1;
 $cima-light-blue: #5bc0de;
+$hover-blue: #d0d0ff;
+$blue: #44608c;
+$grey: #666666;
+$white: #fff;
+$complement: #99560c;
 
 
+.complement {
+	color: $complement;
+}
 
-
-
+.blue {
+	color: $blue;
+}

@@ -5,8 +5,6 @@
 
     .slide--1 { background-image: url("/img/cima.jpg"); }
     .slide--2 { background-image: url("/img/cima2.jpg"); }
-    .slide--3 { background-image: url("/img/cima3.jpg"); }
-    .slide--4 { background-image: url("/img/cima4.jpg"); }
     
 </style>
 
@@ -15,9 +13,6 @@
         <agile :options="options">
             <div class="slide slide--1"></div>
             <div class="slide slide--2"></div>
-            <div class="slide slide--3"></div>
-            <div class="slide slide--4"></div>
- 
         </agile>
     </main>
 </template>
