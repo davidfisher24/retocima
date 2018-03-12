@@ -3,34 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\TextSearch;
 
 class Cima extends Model
 {
 
-    protected function fullTextWildcards($term)
-    {
-        $reservedSymbols = ['-', '+', '<', '>', '@', '(', ')', '~'];
-        $term = str_replace($reservedSymbols, '', $term);
- 
-        $words = explode(' ', $term);
-        $searchTerm = implode( ' ', $words);
- 
-        return $searchTerm;
-    }
-
-    public function scopeSearch($query, $term)
-    {
-        $term = $this->fullTextWildcards($term);
- 
-        $query->where(function ($q) use ($term) {
-          foreach ($this->searchable as $col) {
-            $q->orWhere($col, 'like', "%{$term}%");
-          }
-        })->get();
- 
-        return $query;
-    }
-
+    use TextSearch;
 
     protected $searchable = [
         'nombre'

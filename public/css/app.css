@@ -8657,8 +8657,8 @@ input:after {
 }
 
 .select-option {
-  -webkit-box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
-          box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+  -webkit-box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.25);
+          box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.25);
   -webkit-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
   cursor: pointer;
@@ -8668,8 +8668,8 @@ input:after {
 }
 
 .select-option:last-of-type {
-  -webkit-box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
-          box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
+  -webkit-box-shadow: 1px -1px -1px rgba(1, 1, 1, 0.25);
+          box-shadow: 1px -1px -1px rgba(1, 1, 1, 0.25);
 }
 
 .select-option .badge {
@@ -8691,8 +8691,8 @@ input:after {
 }
 
 .search-option {
-  -webkit-box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
-          box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+  -webkit-box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.25);
+          box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.25);
   -webkit-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
   cursor: pointer;
@@ -8730,7 +8730,7 @@ input:after {
 /* Map column on a bootstrap col from map sizing */
 
 .google-map-column {
-  padding: 0;
+  padding: 0px;
   margin-top: -10px;
 }
 
@@ -8742,13 +8742,13 @@ input:after {
 
 .fake-table .row {
   padding: 4px;
-  -webkit-box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
-          box-shadow: 0 1px 1px rgba(1, 1, 1, 0.25);
+  -webkit-box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.25);
+          box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.25);
 }
 
 .fake-table .row:last-of-type {
-  -webkit-box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
-          box-shadow: 0 -1px -1px rgba(1, 1, 1, 0.25);
+  -webkit-box-shadow: 1px -1px -1px rgba(1, 1, 1, 0.25);
+          box-shadow: 1px -1px -1px rgba(1, 1, 1, 0.25);
 }
 
 .fake-table .row-header {
@@ -8767,6 +8767,34 @@ input:after {
 
 .fake-table .row-link:hover {
   background: #d0d0ff;
+}
+
+/*Fonts */
+
+.h4 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.h3 {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+/* Panel-headers, floating buttons text wrap */
+
+.panel-header span,
+.panel-header p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: normal;
+  width: 75%;
+  padding-top: 10px;
+}
+
+.panel-header .clearfix {
+  height: 1px;
 }
 
 .m-t-0 {

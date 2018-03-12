@@ -1,20 +1,11 @@
-<style>
-
-.h4 {
-    font-size:1.2em;
-    font-weight:bold;
-}
-
-
-
-</style>
 
 
 <template> 
 
    <div class="panel-body container-fluid">
+                <loadingcontainer v-if="loading"></loadingcontainer>
                 <!-- Search box -->
-                <div class="row panel-body" v-if="!cimas && !cima">
+                <div class="row panel-body" v-if="!cimas && !cima && !loading">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 btn-group">
                             <input type="search" class="form-control" placeholder="Buscar" v-model="searchInput" >
                             <span class="glyphicon glyphicon-remove-circle search-clear" @click="clearSearch"></span>
@@ -30,7 +21,7 @@
                 </div>
 
                 <!-- Communidads panel -->
-                <div class="row" v-if="!cimas && !cima">
+                <div class="row" v-if="!cimas && !cima && !loading">
                     <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 col-xl-6 text-left">
                        <div v-for="(communidad,index) in comms" v-if="index < count/2"  @click="selectCommunidad(communidad.id)" >
                            <p class="select-option bg-light">
@@ -62,17 +53,18 @@
                 </div>
 
                 <!-- Cimas panel -->
-                <div class="row panel" v-if="cimas && !cima">
+                <div class="row panel" v-if="cimas && !cima && !loading">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-header">
                         <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;
-                        <span class="h4 hidden-sm hidden-xs">{{cimas[0].communidad}} /</span> 
-                        <span class="h4">{{cimas[0].provincia}}</span>
+                        <span class="h3 hidden-sm hidden-xs">{{cimas[0].communidad}} /</span> 
+                        <span class="h3">{{cimas[0].provincia}}</span>
 
                         <button class="pull-left btn btn-default breadcrumb" @click="cimas = null, cimasmap = false">Atras</button>
                         <button class="pull-right btn btn-default breadcrumb" @click="cimasmap = !cimasmap">
                             <span v-if="!cimasmap">Ver Mapa</span>
                             <span v-if="cimasmap">Ver Lista</span>
                         </button>
+                        <div class="clearfix"></div>
                     </div>
                     <!-- Simple list -->
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-body fake-table" v-if="!cimasmap">
@@ -110,18 +102,17 @@
                 </div>
 
                 <!-- Cima Panel -->
-                <div class="row" v-if="cima">
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center">
-                        <h3>
-                            <a class="pull-left" @click="cima = null">Atras</a>
-                            <a v-if="cimas && cimas.indexOf(cima) !== 0" @click="cima = cimas[cimas.indexOf(cima) -1]">ANTERIOR</a>
-                            <!--<img :src="imageSource(cima.communidad_id)" height="24" width="32">&nbsp;&nbsp;
-                            {{cima.codigo}} -- {{cima.nombre}} -->
-                            <a v-if="cimas && cimas.indexOf(cima) + 1 !== cimas.length" @click="cima = cimas[cimas.indexOf(cima) +1]">SIGUIENTE</a>
-                        </h3>
-                        <cimadetail class="item" :cima="cima"></cimadetail>
+                <div class="row panel panel-default" v-if="cima && !loading">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12 text-center panel-header">
+                        <span class="h3">{{cima.codigo}} {{cima.nombre}}</span>
+                        <button class="pull-left btn btn-default breadcrumb" @click="cima = null">Atras</button>
+                        <button class="pull-right btn btn-default breadcrumb" v-if="cimas && cimas.indexOf(cima) + 1 !== cimas.length" @click="cima = cimas[cimas.indexOf(cima) +1]">Siguiente</button>
+                        <button class="pull-right btn btn-default breadcrumb" v-if="cimas && cimas.indexOf(cima) !== 0" @click="cima = cimas[cimas.indexOf(cima) -1]">Anterior</button>
+                        <div class="clearfix"></div>
+                        <span class="h4">{{cima.communidad}} / {{cima.provincia}}</span>
                     </div>
-                    
+
+                    <cimadetail class="item" :cima="cima"></cimadetail>
                 </div>
     </div>
 
@@ -140,6 +131,7 @@
 
         data: function() {
             return {
+                loading: true,
                 comms: [],
                 count: 0,
                 selectedCommunidad: null,
@@ -160,6 +152,7 @@
             axios.get(this.baseUrl + '/api/communidads').then(function(response){
                 self.comms = response.data;
                 self.count = Object.keys(self.comms).length
+                self.loading = false;
             });
         },
 
@@ -177,8 +170,10 @@
 
             showProvince: function(id){
                 var self = this;
+                this.loading = true;
                 axios.get(this.baseUrl + '/api/cimas/' + id).then(function(response){
                     self.cimas = response.data;
+                    self.loading = false;
                 });
             },
 
@@ -188,8 +183,10 @@
 
             showCima: function(id){
                 var self = this;
+                this.loading = true;
                 this.cimas.forEach(function(cima){
                     if (id === cima.id) return self.cima = cima;
+                    self.loading = false;
                 })
             },
 

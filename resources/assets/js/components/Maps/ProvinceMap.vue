@@ -34,9 +34,10 @@
         },
 
         mounted:function() {
-            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.getElementById('wrapper').parentElement.getBoundingClientRect().y; 
+            var hEst = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.getElementById('wrapper').parentElement.getBoundingClientRect().y; 
             var w = document.getElementById('wrapper').parentElement.offsetWidth;
-            this.style = "width: "+w+"px; height: "+w+"px; margin:0;";
+            var h = document.getElementById('wrapper').parentElement.offsetHeight < 1 ? document.getElementById('wrapper').parentElement.offsetHeight : hEst;
+            this.style = "width: "+w+"px; height: "+h+"px; margin:0;";
             this.mounted = true;
         },
 

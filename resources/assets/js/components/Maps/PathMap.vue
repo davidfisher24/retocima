@@ -3,12 +3,13 @@
         <gmap-map
           v-if="coords && mounted"
           :center="getPathMapCenter()"
-          :zoom="12"
+          :zoom="11"
           map-type-id="terrain"
-          style="width: 500px; height: 400px;"
+          :style="style"
         >
             <gmap-polyline v-if="path" 
-            :path="path" />
+            :path="path" 
+            :options="{strokeColor: '#0000FF'}"/>
             <gmap-marker
               v-if="path"
               :position="coords[0]"
@@ -42,21 +43,27 @@
 
         mounted:function() {
             var self=this;
+            var hEst = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.getElementById('wrapper').parentElement.getBoundingClientRect().y;
             var w = document.getElementById('wrapper').parentElement.offsetWidth;
-            this.style = "width: "+w+"px; height: "+w+"px; margin:0;";
-            
-            axios.get(this.baseUrl + '/maplines/'+self.id + '.txt').then(function(response){
-                var coords = [];
-                response.data.data.forEach(function(d) {
-                    coords.push({lat: d[0][0], lng: d[0][1]})
-                });
-                self.mounted = true;
-                self.coords = coords;
-                self.putLine();
-            });
+            var h = document.getElementById('wrapper').parentElement.offsetHeight < 1 ? document.getElementById('wrapper').parentElement.offsetHeight : hEst;
+            this.style = "width: "+w+"px; height: "+h+"px; margin:0;";
+            self.mounted = true;
+            this.getMapLines();  
         },
 
         methods: {
+            getMapLines: function(){
+                var self=this;
+                axios.get(this.baseUrl + '/maplines/'+self.id + '.txt').then(function(response){
+                    var coords = [];
+                    response.data.data.forEach(function(d) {
+                        coords.push({lat: d[0][0], lng: d[0][1]})
+                    });
+                    self.coords = coords;
+                    self.putLine();
+                });
+            },
+
             getPathMapCenter: function(){
                 var lats = [], lngs = [];
                 this.coords.forEach(function(coord){
@@ -88,6 +95,14 @@
                 }
             },
         },
+
+        watch: { 
+            id: function(newVal, oldVal) { // watch it
+                this.coords = null;
+                this.path = [];
+                this.getMapLines();
+            }
+        }
     }
 
 </script>
