@@ -41,7 +41,6 @@ class CimeroController extends Controller
 	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
 	    	->leftJoin('provincias', 'cimeros.provincia', '=', 'provincias.id')
 	    	->leftJoin('paises', 'cimeros.pais', '=', 'paises.id')
-	    	->where('logros.provincia_id',7)
 	        ->groupBy('cimeros.id')
 	        ->orderBy('logros_count','desc')
 	        ->get();
