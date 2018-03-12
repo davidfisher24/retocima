@@ -22,26 +22,12 @@
 
                 <!-- Communidads panel -->
                 <div class="row" v-if="!cimas && !cima && !loading">
-                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 col-xl-6 text-left">
-                       <div v-for="(communidad,index) in comms" v-if="index < count/2"  @click="selectCommunidad(communidad.id)" >
+                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 col-xl-6"  v-for="chunk in chunkedCommunidads">
+                       <div v-for="(communidad,index) in chunk"  @click="selectCommunidad(communidad.id)" >
                            <p class="select-option bg-light">
                                 <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
                                 <a>{{communidad.nombre}}</a> 
                                 <span class="badge pull-right">{{communidad.cimas_count}}</span>
-                            </p>
-                            <div v-if="selectedCommunidad === communidad.id">
-                                <p v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)" class="select-option">
-                                    <a>{{provincia.nombre}}</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 col-xl-6 text-left">
-                        <div v-for="(communidad,index) in comms" v-if="index >= count/2"  @click="selectCommunidad(communidad.id)" >
-                            <p class="select-option">
-                                <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
-                                <a>{{communidad.nombre}}</a> 
-                                <span class="badge pull-right">{{communidad.cimas_count}}</span> 
                             </p>
                             <div v-if="selectedCommunidad === communidad.id">
                                 <p v-for="provincia in communidad.provincias" @click="showProvince(provincia.id)" class="select-option">
@@ -143,6 +129,13 @@
                 searchNotFound: false,
             };
         },
+
+        computed: {
+           chunkedCommunidads:function () {
+            return _.chunk(this.comms,this.comms.length/2);
+           },
+        },
+
 
         beforeMount:function(){
         },
