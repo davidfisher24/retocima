@@ -3,8 +3,8 @@
       height: 177px;
     }
 
-    .slide--1 { background-image: url("/img/cima.jpg"); }
-    .slide--2 { background-image: url("/img/cima2.jpg"); }
+    .slide--1 { background-image: url("/retocima/public/img/cima.jpg"); }
+    .slide--2 { background-image: url("/retocima/public/img/cima2.jpg"); }
     
 </style>
 
@@ -41,6 +41,7 @@
               },
             };
         },
+
     }
 
 </script>
