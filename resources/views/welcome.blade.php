@@ -55,7 +55,7 @@
 
                 <h2 class="text-left">&nbsp;&nbsp;CERTIFICADO IBÉRICO DE MONTAÑAS ASCENDIDAS</h2>
 
-                <div id="vuepage">
+                <div id="vuepage" class="hidden-sm hidden-xs visible-md visible-lg visible-xl">
                 <homepagecarousel></homepagecarousel>
                 </div>
 

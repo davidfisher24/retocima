@@ -2,17 +2,14 @@
     .slide {
       height: 177px;
     }
-
-    .slide--1 { background-image: url("/retocima/public/img/cima.jpg"); }
-    .slide--2 { background-image: url("/retocima/public/img/cima2.jpg"); }
     
 </style>
 
 <template>
     <main class="banner-image">
         <agile :options="options">
-            <div class="slide slide--1"></div>
-            <div class="slide slide--2"></div>
+            <div class="slide slide--1" :style="backgroundImage('/img/cima.jpg')"></div>
+            <div class="slide slide--2" :style="backgroundImage('/img/cima2.jpg')"></div>
         </agile>
     </main>
 </template>
@@ -41,6 +38,12 @@
               },
             };
         },
+
+        methods: {
+            backgroundImage: function(url){
+                return "background-image: url("+this.baseUrl + url+")";
+            }
+        }
 
     }
 
