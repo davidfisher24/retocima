@@ -178,7 +178,7 @@
                 var self = this;
                 this.loading = true;
                 this.cimas.forEach(function(cima){
-                    if (id === cima.id) return self.cima = cima;
+                    if (id === cima.id) self.cima = cima;
                     self.loading = false;
                 })
             },
