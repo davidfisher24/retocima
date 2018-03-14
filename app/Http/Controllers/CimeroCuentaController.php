@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Services\CimeroLogroService;
-use App\Services\GraphicsService;
+use App\Services\StatisticsService;
+
 
 
 use App\Cimero;
@@ -26,11 +27,13 @@ class CimeroCuentaController extends Controller
      * @return cimero controller
      */
 
-    public function __construct(CimeroLogroService $cimeroLogroService, GraphicsService $graphicsService)
+    public function __construct(CimeroLogroService $cimeroLogroService, StatisticsService $statisticsService)
     {
         $this->middleware('auth');
         $this->cimeroLogroService = $cimeroLogroService;
-        $this->graphicsService = $graphicsService;
+        $this->statisticsService = $statisticsService;
+
+        if (!Auth::id()) return "Unauthorized";
     }
 
     /**
@@ -47,13 +50,49 @@ class CimeroCuentaController extends Controller
         return view('userarea.dashboard', compact('cimero'));
     }
 
+    /*
+     * Full account details (API)
+     */
+
+    public function fullAccountAction()
+    {
+        
+        $cimero = Cimero::find(Auth::id());
+        
+        return Cimero::with('provincia','pais','logros')->find(Auth::id())->toJson();
+    }
+
+    /*
+     * Cimeros logros in an id array (API)
+     */
+
+    public function logrosArrayAction(){
+        return Cimero::with('logros')->find(Auth::id())->logros->pluck('cima_id')->toJson();
+    }
+
+    /*
+     * Cimeros logros (API)
+     */
+
+    public function allLogrosAction(){
+        return Logro::with('provincia','communidad','cima')->where('cimero_id',Auth::id())->get()->toJson();
+    }
+
+    /*
+     * Cimeros logros por communidad (API)
+     */
+
+    public function logrosByCommunidadStat(){
+        return $this->statisticsService->cimeroLogrosByCommunidad(Auth::id());
+    }
+
     /**
      * Show the cimro cuenta.
      *
      * @return Blade View
      */
 
-    public function cimeroCuenta()
+    /*public function cimeroCuenta()
     {
     	
     	$cimero = Cimero::with('provincia','pais')->find(Auth::id());
@@ -61,7 +100,7 @@ class CimeroCuentaController extends Controller
         $paises = Pais::spainFirstList();
     	
         return view('userarea.cimeroCuenta', compact('cimero','provincias','paises'));
-    }
+    }*/
 
     /**
      * Process edit account form including vallidation.
@@ -90,10 +129,9 @@ class CimeroCuentaController extends Controller
      * @return Blade View
      */
 
-    public function cimeroStatistics()
+    /*public function cimeroStatistics()
     {
 
-        /* Bar and pir chart */
         $cimas = $this->cimeroLogroService->getCimeroProvinciaCount(Auth::id());
         $heights = $this->cimeroLogroService->getLogrosOrderedByAltitud(Auth::id());
         $chart1 = $this->graphicsService->barChart($cimas,"provincia","count","Logros por provincia");
@@ -101,7 +139,7 @@ class CimeroCuentaController extends Controller
         $chart3 = $this->graphicsService->splineChart($heights,"nombre","altitud","Altitud de logros");
         $charts = array($chart1,$chart2,$chart3);
         return view('userarea.cimeroStatistics')->withChartarray($charts);
-    }
+    }*/
 
     /**
      * Show the cimero logros page.
@@ -109,12 +147,12 @@ class CimeroCuentaController extends Controller
      * @return Blade View
      */
 
-    public function cimeroLogros()
+    /*public function cimeroLogros()
     {
     	$logros = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id());
     	
     	return view('userarea.cimeroLogros', compact('logros'));
-    }
+    }*/
 
     /**
      * Show the cimero logros page with new logros after a redirect.
@@ -123,7 +161,7 @@ class CimeroCuentaController extends Controller
      * @return Blade View
      */
 
-    public function cimeroLogrosWithNewLogros($new)
+    /*public function cimeroLogrosWithNewLogros($new)
     {
         $newCimas = json_decode($new);
         $logros = $this->cimeroLogroService->getCimeroWithDetailedLogros(Auth::id())->filter(function ($item, $key) use($newCimas) {
@@ -133,7 +171,7 @@ class CimeroCuentaController extends Controller
         $addedCimas = Cima::with('communidad','provincia')->whereIn('id',$newCimas)->get();
 
         return view('userarea.cimeroLogros', compact('logros'),compact('addedCimas'));
-    }
+    }*/
 
     /**
      * Show the anadir cima page
@@ -141,10 +179,10 @@ class CimeroCuentaController extends Controller
      * @return Blade View
      */
 
-    public function anadirLogros()
+    /*public function anadirLogros()
     {
         return view('userarea.anadirLogros');
-    }
+    }*/
 
     /**
      * Submit new logros from a form request
@@ -156,7 +194,7 @@ class CimeroCuentaController extends Controller
     public function submitNewLogros(Request $request)
     {   
         $addedLogros = $this->cimeroLogroService->validateAndAddNewLogros($request->logros,Auth::id());
-        return array('redirect' => 'cimerologrosnew', 'new' => json_encode($addedLogros));
+        return $addedLogros;
     }
 
     /**

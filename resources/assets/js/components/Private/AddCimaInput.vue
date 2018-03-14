@@ -72,7 +72,7 @@
                 }
                 this.selectedCommunidad = event.target.value;
                 this.cimas = [];
-                var route = 'ajax/provincias/' + event.target.value;
+                var route = this.baseUrl + '/api/provincias/' + event.target.value;
                 var self = this;
                 axios.get(route).then(function(response){
                     self.provincias = response.data;
@@ -102,7 +102,7 @@
                         return;
                     }
                     this.selectedProvince = event.target.value;
-                    route = 'ajax/cimas/' + event.target.value;
+                    route = this.baseUrl + '/api/cimas/' + event.target.value;
                 }
                 axios.get(route).then(response => {
                   this.cimas = response.data

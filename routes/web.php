@@ -34,23 +34,25 @@ Route::get('/detallescima/{id}', function ($id) {return view('publicarea.detalle
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');  
-    Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta'); 
-    Route::post('/editarcuenta', 'CimeroCuentaController@editarCuenta')->name('cimeroCuenta'); // WRITE - edit account
-    Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros'); 
-    Route::get('/cimeroestadistica', 'CimeroCuentaController@cimeroStatistics')->name('cimeroStatistics');
-    Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
-    Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
+    //Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta'); 
+    //Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros'); 
+    //Route::get('/cimeroestadistica', 'CimeroCuentaController@cimeroStatistics')->name('cimeroStatistics');
+    //Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
+    //Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
     Route::get('/change-password', function() {return view('userarea.change-password'); });
     Route::post('/change-password', 'Auth\UpdatePasswordController@update');
-    Route::post('/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
-    
-    Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros'); 
-    Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro'); 
+    //Route::post('/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
+    //Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro'); 
 });
 
 /*Ajax Requests - Move to jwt in the long term*/
 Route::prefix('ajax')->group(function () {
-    Route::get('userlogros', 'CimeroController@logrosArrayAction');
-    Route::get('checklogro/{cimaId}', 'CimeroController@checkLogroAction');
+    Route::get('checklogro/{cimaId}', 'CimeroController@checkLogroAction'); // Public domain
+    Route::get('cimero', 'CimeroCuentaController@fullAccountAction');
+    Route::get('userlogros', 'CimeroCuentaController@logrosArrayAction');
+    Route::get('userfulllogros', 'CimeroCuentaController@allLogrosAction');
+    Route::get('logrosbycommunidad', 'CimeroCuentaController@logrosByCommunidadStat');
+    Route::post('editarcuenta', 'CimeroCuentaController@editarCuenta');
+    Route::post('submitlogros', 'CimeroCuentaController@submitNewLogros');
 });
 

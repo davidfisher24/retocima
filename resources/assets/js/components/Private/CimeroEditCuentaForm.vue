@@ -1,6 +1,7 @@
 <template> 
     <div class="row">
-        <div class="col-md-12">
+        <loadingcontainer v-if="loading"></loadingcontainer>
+        <div class="col-md-12" v-if="!loading">
 
             <!-- SECTION: show (presentation of information) -->
 
@@ -14,7 +15,7 @@
                     <span><a v-on:click="section = 'data'">Editar Datos</a></span>
                 </div>
                 <br>
-                <div>
+                <div v-if="provinces && countries && isSpain">
                     <div id="province" v-if="isSpain"><p><strong>Provincia:</strong>   {{cimero.provincia.nombre}}  </p></div>
                     <div id="country"><p><strong>Pais:</strong>   {{cimero.pais.nombre}} </p></div>
                     <span><a v-on:click="section = 'location'">Editar Ubicacion</a></span>
@@ -113,37 +114,68 @@
 
 <script>
     export default {
-        props: ['cimeromodel','provincias','paises'],
+        //props: ['basecimero','provincias','paises'],
         data: function() {
             return {
                 cimero : null,
                 spainId: null, // The Spain id for chcking if Spain is selected
                 isSpain: false,  // Checking Spain selection for the provinces dropdown
                 section: "show", // Section to display
-                updateCimero: null // Updates applied to the cimero model
+                updateCimero: null, // Updates applied to the cimero model
+                provinces: null,
+                countries: null,
+                loading: true,
+                loaded: 0,
             };
         },
-        computed: {
-            basecimero : function(){
-                return JSON.parse(this.cimeromodel);
-            },
-            provinces : function(){
-                return JSON.parse(this.provincias);
-            },
-            countries : function(){
-                return JSON.parse(this.paises);
-            },
-        },
+
         beforeMount: function() {
             var self = this;
             this.cimero = Object.assign({}, this.basecimero);
             this.updateCimero = Object.assign({}, this.basecimero);
-            this.findSpain();
-            this.checkSpain();
+        },
+
+        mounted: function (){
+            this.getCimero();
+            this.getProvinces();
+            this.getCountries();
+        },
+
+        watch: {
+            loaded: function(update,old){
+                if (update === 3) {
+                   this.findSpain();
+                   this.checkSpain();
+                   this.loading = false;
+                }
+            },
         },
 
         methods: {
 
+            getCimero: function(){
+                var self = this;
+                axios.get(this.baseUrl + '/ajax/cimero').then(function(response){
+                   self.cimero = response.data;
+                   self.loaded++;
+                });
+            },
+
+            getProvinces: function(){
+                var self = this;
+                axios.get(this.baseUrl + '/api/provincias').then(function(response){
+                   self.provinces = response.data;
+                   self.loaded++;
+                });
+            },
+
+            getCountries: function(){
+                var self = this;
+                axios.get(this.baseUrl + '/api/paises').then(function(response){
+                   self.countries = response.data;
+                   self.loaded++;
+                });
+            },
 
             /**
              * Find the id of spain in the countries list for tracking
@@ -191,7 +223,7 @@
                     pais: this.updateCimero.pais.id,
                     fechanacimiento: this.updateCimero.fechanacimiento,
                 }
-                axios.post('editarcuenta',updateData).then(function(response){
+                axios.post(this.baseUrl + '/ajax/editarcuenta',updateData).then(function(response){
                     if (response.data.errors) {
                         self.showErrors(response.data.errors);
                     } else {

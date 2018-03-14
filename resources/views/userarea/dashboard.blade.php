@@ -3,8 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div class="row">
+        <div class="col-md-12" id="vuepage">
+            <dashboard :cimero="{{$cimero}}"></dashboard>
+            <!--<div class="row">
                 <div class="col-md-3">
                     @include('menus.userarea')
                 </div>
@@ -21,7 +22,7 @@
                         
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

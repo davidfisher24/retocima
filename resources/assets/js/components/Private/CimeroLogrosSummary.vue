@@ -1,10 +1,8 @@
 <template> 
     
     <div class="panel-body">
-        <cimamodal v-if="showCimaModal" @close="closeCimaModal" ref="showCimaModal">
-        </cimamodal>
-
-        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+    <loadingcontainer v-if="loading"></loadingcontainer>
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12" v-if="!loading">
             <div class="row">
                 <div v-for="communidad in communidads">
                     <div class="panel-group">
@@ -19,14 +17,15 @@
                             </div>
                             <div :id="communidad.divid"class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div v-for="addedcima in addedcimas">
-                                        <a v-if="addedcima.communidad_id === communidad.id" @click="openCimaInNewWindow(addedcima.id)" class="text-primary">
-                                            {{addedcima.codigo}} - {{addedcima.nombre}}  NUEVO!!
-                                        </a> 
-                                    </div>
                                     <div v-for="logro in logros">
                                         <a v-if="logro.communidad_id === communidad.id" @click="openCimaInNewWindow(logro.id)">
-                                            {{logro.codigo}} - {{logro.nombre}}
+                                            {{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                                            <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
+                                                <strong>{{logro.cima.codigo}} - {{logro.cima.nombre}}  NUEVO!!</strong>
+                                            </span>
+                                            <span v-else-if="addedCimas.indexOf(logro.cima.id) === -1">
+                                                {{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                                            </span>
                                         </a> 
                                     </div>
                                 </div>
@@ -47,17 +46,30 @@
             return {
                 communidads: [],
                 cimas: [],
-                showCimaModal : false,
-                modalCima: null,
+                logros: null,
+                loading: true,
+                addedCimas: [],
             };
         },
-        props: ['logros','addedcimas'],
+        
+        beforeMount: function(){
+            this.addedCimas = this.$parent.addedCimas ? this.$parent.addedCimas : [];
+        },
 
         mounted: function() {
-            this.findDistinctCommunidads();
+            this.getLogros();
         },
 
         methods: {
+
+            getLogros: function(){
+                var self = this;
+                axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
+                   self.logros = response.data;
+                   self.findDistinctCommunidads();
+                   self.loading = false;
+                });
+            },
 
             /**
              * Gets the unique communidads from the logros
@@ -77,7 +89,7 @@
                             id: logro.communidad_id,
                             divid: 'collapse' + logro.communidad_id, 
                             href: '#collapse' + logro.communidad_id,
-                            nombre: logro.communidad
+                            nombre: logro.communidad.nombre
                         }
                     );
                     uniqueCheck[logro.communidad_id] = true;
@@ -87,22 +99,6 @@
                 this.communidads = distinctCommunidads;
             },
 
-            /**
-             * Opens a modal with cima details  
-             *** NOT CURRENTLY USED ***
-             * @trigger onClick() of a cima link
-             * @params integer cimaId
-             * @result opens the child component cima modal for this logro
-            */
-
-            openCimaModal: function(cimaId){
-                var route = 'ajax/cima/' + cimaId;
-                var self = this;
-                axios.get(route).then(function(response){
-                    self.modalCima = response.data;
-                    self.showCimaModal = true;
-                });
-            },
 
             /**
              * Opens a cima details in a new window
@@ -114,19 +110,6 @@
 
             openCimaInNewWindow: function(cimaId){
                 window.open("./detallescima/" + cimaId);
-            },
-
-            /**
-             * Closes the current cima modal
-             *** NOT CURRENTLY USED ***
-             * @trigger onClick() of cima modal close lick
-             * @result closes the modal window
-            */
-
-
-            closeCimaModal: function(){
-                this.showCimaModal = false;
-                this.modalCima = null;
             },
 
         }

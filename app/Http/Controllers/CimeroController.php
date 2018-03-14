@@ -91,14 +91,7 @@ class CimeroController extends Controller
     	return $cimeros;
     }
 
-    /*
-     * Cimeros logros in an id array
-     */
-
-    public function logrosArrayAction(){
-        if (!Auth::id()) return "Unauthorized";
-        return $this->allLogros(Auth::id())->pluck('cima_id')->toArray();
-    }
+    
 
     /*
      * Check a single logro for completion

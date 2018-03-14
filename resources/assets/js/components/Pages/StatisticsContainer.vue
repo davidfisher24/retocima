@@ -97,19 +97,15 @@ import FiltersRanking from '../Tables/FiltersRanking'
             fetchComunidadsAndProvinces:function(){
                 var self = this;
 
-                axios.get(this.baseUrl + '/ajax/communidads').then(function(response){
+                axios.get(this.baseUrl + '/api/communidads').then(function(response){
                     response.data.forEach(function(item){
-                        item.apiroute = self.baseUrl + '/ajax/statistics/cimerosbylogroinzones/communidad_id/' + item.id;
                         item.imageurl = self.baseUrl + '/img/communidads/' + item.id + '.png';
                     });
                     self.communidads = response.data;
 
                 });
 
-                axios.get('ajax/provincias').then(function(response){
-                    response.data.forEach(function(item){
-                        item.apiroute = self.baseUrl + '/ajax/statistics/cimerosbylogroinzones/provincia_id/' + item.id;
-                    });
+                axios.get(self.baseUrl + '/api/provincias').then(function(response){
                     self.provincias = response.data;
                 });
             },

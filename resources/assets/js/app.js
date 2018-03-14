@@ -43,20 +43,14 @@ Vue.component('statisticscontainer', require('./components/Pages/StatisticsConta
 Vue.component('patanegracontainer', require('./components/Pages/PataNegraContainer.vue'));
 Vue.component('cimaselectionlist', require('./components/Pages/CimaSelectionList.vue'));
 Vue.component('cimadetailfullpage', require('./components/Pages/CimeDetailFullPage.vue'));
+Vue.component('dashboard', require('./components/Pages/Dashboard.vue'));
 // MAPS
 Vue.component('googlemap', require('./components/Maps/GoogleMap.vue'));
 // ELEMENTS
 Vue.component('loadingcontainer', require('./components/Elements/LoadingContainer.vue'));
 Vue.component('cimaquickadd', require('./components/Elements/CimaQuickAdd.vue'));
 
-
-// FORMS
-Vue.component('addcimaform', require('./components/AddCimaForm.vue'));
-Vue.component('cimeroeditcuentaform', require('./components/CimeroEditCuentaForm.vue'));
-// FORMS CHILD COMPONENTS
-Vue.component('addcimainput', require('./components/AddCimaInput.vue'));
 // INTERACIVE COMPONENTS
-Vue.component('cimerologrossummary', require('./components/CimeroLogrosSummary.vue'));
 Vue.component('cimadetail', require('./components/CimaDetail.vue'));
 
 

@@ -12,7 +12,7 @@
             </div>
             <form class="form" ref="addLogrosForm" v-on:submit.prevent>
                 <div class="form-control" v-for="n in requestedInputs">
-                    <addcimainput ref="addcimainput"></addcimainput>
+                    <AddCimaInput ref="addcimainput"></AddCimaInput>
                 </div>
                 
                 <button class="btn btn-default" @click="submitLogros()">Submit</button>
@@ -22,7 +22,14 @@
 </template>
 
 <script>
+
+    import AddCimaInput from './AddCimaInput';
+
     export default {
+        components: {
+            'AddCimaInput' : AddCimaInput,
+        },
+
         data: function() {
             return {
                 requestedInputs: 0,
@@ -83,6 +90,7 @@
 
             submitLogros: function(){ 
                 var logros = [];
+                var self = this;
                 this.$refs.addcimainput.forEach(function(component){
                     if(component.completed) {
                         logros.push(component.selectedCima);
@@ -90,16 +98,16 @@
                 });
 
                 if (logros.length === this.requestedInputs) {
-                    axios.post('submitlogros', {
+                    axios.post(self.baseUrl + '/ajax/submitlogros', {
                         logros: logros,
                     })
                     .then(function (response) {
-                        window.location = './cimerologrosnew' + "/" + response.data.new;
+                        self.$parent.addedCimas = self.$parent.addedCimas.concat(response.data);
+                        self.$parent.section = 'summary';
                     })
                     .catch(function (error) {
                         console.log(error);
                     }); 
-                    this.$refs.addLogrosForm.submit();
                 } else {
                     alert("You have logros incomplete");
                 }          

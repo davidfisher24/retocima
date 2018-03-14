@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 
-use App\Cima;
+use App\Provincia;
 
 class ProvinciaController extends Controller
 {
@@ -15,6 +15,16 @@ class ProvinciaController extends Controller
     public function __construct()
     {
 
+    }
+
+    public function allAction()
+    {
+        return Provincia::all()->toJson();
+    }
+
+    public function communidadAction($communidadId)
+    {
+        return Provincia::where('communidad_id',$communidadId)->get()->toJson();
     }
 
     /*
