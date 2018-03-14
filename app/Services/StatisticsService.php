@@ -23,6 +23,14 @@ class StatisticsService
         })->sortByDesc('count')->flatten();
     }
 
+    public function cimeroLogrosByProvince($cimeroId)
+    {
+        return Logro::with('provincia')->where('cimero_id',$cimeroId)->get()->groupBy('provincia_id')->map(function ($item, $key) {
+            $item->first()->provincia->count = $item->count();
+            return $item->first()->provincia;
+        })->sortByDesc('count')->flatten();
+    }
+
     public function cimasSetByAltitud($query)
     {   
         return Cima::with('vertientes')->whereIn('id',$query)->get()->map(function($item,$key){

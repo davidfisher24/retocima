@@ -45,6 +45,7 @@ Route::prefix('ajax')->group(function () {
     Route::post('update-logro', 'CimeroCuentaController@updateLogro');
     // Stats
     Route::get('logrosbycommunidad', 'CimeroCuentaController@logrosByCommunidadStat');
+    Route::get('logrosbyprovincia', 'CimeroCuentaController@logrosByProvinciaStat');
     Route::get('logrosbyaltitud', 'CimeroCuentaController@logrosByAltitudStat');
 });
 

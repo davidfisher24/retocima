@@ -7,6 +7,7 @@
             <li class="select-option" @click="section = 'stats'"><a>Estadistica</a></li>
                 <div  v-if="section == 'stats'">
                     <p @click="subSectionStat = 'bar'" class="select-option">Logros por communidad</p>
+                    <p @click="subSectionStat = 'pie'" class="select-option">Logros por provincia</p>
                     <p @click="subSectionStat = 'spline'" class="select-option">Altitud de mis cimas</p>
                 </div>
             <li class="select-option" @click="section = 'password'"><a>Cambiar Contrasena</a></li>
