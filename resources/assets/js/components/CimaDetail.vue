@@ -7,6 +7,7 @@
                     <div class="panel panel-default"  v-if="cima.vertientes" v-for="vertiente in cima.vertientes">
                         <div class="text-center"><h4>Vertiente: <strong>{{vertiente.vertiente}}</strong></h4></div>
                         <div class="panel-body">
+                            <cimaquickadd v-if="renderQuickAdd" :cima="cima" :logro="userLogro"></cimaquickadd>
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4 col-xl-4 fake-table">
                                     <div class="row">
@@ -86,10 +87,10 @@
 
         mounted:function() {
             var self = this;
-            /*axios.get('/ajax/checklogro/'+this.cima.id).then(function(response){
-                if (response.data !== 'unauthorized') self.renderQuickAdd = true;
+            axios.get(self.baseUrl + '/ajax/checklogro/'+this.cima.id).then(function(response){
+                if (response.data !== 'Unauthorized') self.renderQuickAdd = true;
                 self.userLogro = response.data;
-            });*/
+            });
         },
 
     }

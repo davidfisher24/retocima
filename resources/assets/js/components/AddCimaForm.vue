@@ -55,7 +55,7 @@
 
             fetchUserLogros: function(){
                 var self = this;
-                axios.get('ajax/userlogros').then(function(response){
+                axios.get(self.baseUrl + '/ajax/userlogros').then(function(response){
                     self.userLogros = response.data;
                 });
             },

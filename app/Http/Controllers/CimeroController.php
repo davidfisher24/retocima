@@ -96,6 +96,7 @@ class CimeroController extends Controller
      */
 
     public function logrosArrayAction(){
+        if (!Auth::id()) return "Unauthorized";
         return $this->allLogros(Auth::id())->pluck('cima_id')->toArray();
     }
 
@@ -105,6 +106,7 @@ class CimeroController extends Controller
      */
 
     public function checkLogroAction($cimaId){
+        if (!Auth::id()) return "Unauthorized";
         $logro = Logro::where('cima_id',$cimaId)->where('cimero_id',Auth::id())->first();
         return $logro ? $logro->toJson() : null;
     }

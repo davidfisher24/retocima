@@ -44,61 +44,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/change-password', 'Auth\UpdatePasswordController@update');
     Route::post('/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
     
-    //Route::middleware(['writeThroughLogros'])->group(function () {
-        Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros'); 
-        Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro'); 
-    //});
+    Route::post('/submitlogros', 'CimeroCuentaController@submitNewLogros')->name('SubmitNewLogros'); 
+    Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro'); 
 });
 
-/*Ajax Requests */
+/*Ajax Requests - Move to jwt in the long term*/
 Route::prefix('ajax')->group(function () {
-    
-	Route::get('provincias', function() {
-        return App\Provincia::all()->toJSON();
-    });
-    Route::get('communidads', function() {
-        return App\Communidad::all()->toJSON();
-    }); // Used can move
-    Route::get('paises', function() {
-        return App\Pais::all()->toJSON();
-    });
-
-    Route::get('provincias/{id}', function($id) {
-        return App\Provincia::where('communidad_id',$id)->get()->toJSON();
-    });
-    Route::get('cimas/{id}', function($id) {
-        return App\Cima::where('provincia_id',$id)->get()->toJSON();
-    });
-    Route::get('cima/{id}', function($id) {
-        return App\Cima::with('vertientes')->find($id)->toJSON();
-    });
-
-    Route::middleware(['lazyLoading'])->group(function() {
-        Route::get('/ranking/baseranking', 'Ajax\AjaxTablesController@baseCimeroRanking');
-        Route::get('/statistics/cimasbylogro', 'Ajax\AjaxTablesController@getAllCimasRankedByLogros');
-        Route::get('/statistics/cimerosbyprovincesstarted', 'Ajax\AjaxTablesController@getCimerosWithProvinciasWithAtLeastOneLogro');
-        Route::get('/statistics/provincesbylogro', 'Ajax\AjaxTablesController@getAllProvinciasRankedByLogros');
-        Route::get('/statistics/comunidadsbylogro', 'Ajax\AjaxTablesController@getAllCommunidadsRankedByLogros');
-        Route::get('/statistics/cimerosbylogroinzones/{filter}/{id}', 'Ajax\AjaxTablesController@getRankingOfAllCimeros');
-        Route::get('/statistics/provincesbycompletion', 'Ajax\AjaxTablesController@getRankingOfProvincesByCompletion');
-        Route::get('/statistics/comunidadsbycompletion', 'Ajax\AjaxTablesController@getRankingOfCommunidadsByCompletion');
-        Route::get('/statistics/cimerosbycommunidadscompleted', 'Ajax\AjaxTablesController@getRankingOfCimerosByCommunidadCompletion');
-        Route::get('/statistics/cimerosbyprovincescompleted', 'Ajax\AjaxTablesController@getRankingOfCimerosByProvinciaCompletion');
-    });
-
-    Route::middleware(['auth'])->group(function () {
-        
-        // Using this cos its authed
-        Route::get('/userlogros', 'CimeroController@logrosArrayAction'); 
-        Route::get('/checklogro/{cimaId}', 'CimeroController@checkLogroAction');
-        
-    });
-
+    Route::get('userlogros', 'CimeroController@logrosArrayAction');
+    Route::get('checklogro/{cimaId}', 'CimeroController@checkLogroAction');
 });
-
-Route::prefix('test')->group(function () {
-    Route::get('/', 'TestController@showTestPage');
-    Route::get('/list', 'TestController@showTestListPage');
-});
-
 
