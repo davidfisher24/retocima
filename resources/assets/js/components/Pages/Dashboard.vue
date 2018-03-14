@@ -1,14 +1,20 @@
 <template> 
     <div class="row">
-        Welcome {{cimero.nombre}}
-        <a @click="section = 'edit'">Editar cuenta</a>
-        <a @click="section = 'summary'">Resumen Logros</a>
-        <a @click="section = 'add'">Anadir Cima</a>
-        <a @click="section = 'stats'">Estadistica</a>
-        <AddCimaForm v-if="section == 'add'"></AddCimaForm>
-        <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
-        <CimeroLogrosSummary v-if="section == 'summary'"></CimeroLogrosSummary>
-        <CimeroStatistics v-if="section == 'stats'"></CimeroStatistics>
+        <div class="col-md-4 col-xs-4 col-sm-4 col-xl-4 col-lg-4">
+            <li class="select-option" @click="section = 'edit'"><a>Editar cuenta</a></li>
+            <li class="select-option" @click="section = 'summary'"><a>Resumen Logros</a></li>
+            <li class="select-option" @click="section = 'add'"><a>Anadir Cima</a></li>
+            <li class="select-option" @click="section = 'stats'"><a>Estadistica</a></li>
+            <li class="select-option" @click="section = 'password'"><a>Cambiar Contrasena</a></li>
+        </div>
+        <div class="col-md-8 col-xs-8 col-sm-8 col-xl-8 col-lg-8">
+            <AddCimaForm v-if="section == 'add'"></AddCimaForm>
+            <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
+            <CimeroLogrosSummary v-if="section == 'summary'"></CimeroLogrosSummary>
+            <CimeroStatistics v-if="section == 'stats'"></CimeroStatistics>
+            <ChangePassword v-if="section == 'password'"></ChangePassword>
+        </div>
+
     </div>
 </template>
 
@@ -20,6 +26,7 @@
     import CimeroEditCuentaForm from '../Private/CimeroEditCuentaForm';
     import CimeroLogrosSummary from '../Private/CimeroLogrosSummary';
     import CimeroStatistics from '../Private/CimeroStatistics';
+    import ChangePassword from '../Private/ChangePassword';
 
     export default {
         props: ["cimero"],
@@ -28,6 +35,7 @@
             'CimeroEditCuentaForm' : CimeroEditCuentaForm,
             'CimeroLogrosSummary' : CimeroLogrosSummary,
             'CimeroStatistics' : CimeroStatistics,
+            'ChangePassword' : ChangePassword,
         },  
 
         data: function() {

@@ -114,7 +114,6 @@
 
 <script>
     export default {
-        //props: ['basecimero','provincias','paises'],
         data: function() {
             return {
                 cimero : null,
@@ -127,12 +126,6 @@
                 loading: true,
                 loaded: 0,
             };
-        },
-
-        beforeMount: function() {
-            var self = this;
-            this.cimero = Object.assign({}, this.basecimero);
-            this.updateCimero = Object.assign({}, this.basecimero);
         },
 
         mounted: function (){
@@ -156,7 +149,9 @@
             getCimero: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/ajax/cimero').then(function(response){
+                    console.log(response.data);
                    self.cimero = response.data;
+                   self.updateCimero = self.cimero;
                    self.loaded++;
                 });
             },
@@ -164,6 +159,7 @@
             getProvinces: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/api/provincias').then(function(response){
+                    console.log(response.data);
                    self.provinces = response.data;
                    self.loaded++;
                 });
@@ -172,6 +168,7 @@
             getCountries: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/api/paises').then(function(response){
+                    console.log(response.data);
                    self.countries = response.data;
                    self.loaded++;
                 });

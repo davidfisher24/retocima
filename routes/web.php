@@ -19,7 +19,6 @@ Auth::routes();
 
 // Php pages
 Route::get('/cimeropublicdetails/{id}', 'CimeroController@showPublicPage')->name('cimero');
-//Route::get('/test', 'TestController@showTestPage')->name('testpage');
 
 // Javascript elements
 Route::get('/listadocommunidads', function () { return view('publicarea.listadocommunidads');});
@@ -29,20 +28,11 @@ Route::get('/mapa', function () {return view('publicarea.mapa');});
 Route::get('/patanegra', function () {return view('publicarea.patanegra');});
 Route::get('/detallescima/{id}', function ($id) {return view('publicarea.detallescima',compact('id'));});
 
-
-
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'CimeroCuentaController@dashboard')->name('dashboard');  
-    //Route::get('/cimerocuenta', 'CimeroCuentaController@cimeroCuenta')->name('cimeroCuenta'); 
-    //Route::get('/cimerologros', 'CimeroCuentaController@cimeroLogros')->name('cimeroLogros'); 
-    //Route::get('/cimeroestadistica', 'CimeroCuentaController@cimeroStatistics')->name('cimeroStatistics');
-    //Route::get('/cimerologrosnew/{new}', 'CimeroCuentaController@cimeroLogrosWithNewLogros')->name('cimeroLogros');
-    //Route::get('/anadirlogros', 'CimeroCuentaController@anadirLogros')->name('anadirLogros');
-    Route::get('/change-password', function() {return view('userarea.change-password'); });
+    //Route::get('/change-password', function() {return view('userarea.change-password'); });
     Route::post('/change-password', 'Auth\UpdatePasswordController@update');
-    //Route::post('/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro');
-    //Route::post('/detallescima/update-logro', 'CimeroCuentaController@updateLogro')->name('editarLogro'); 
 });
 
 /*Ajax Requests - Move to jwt in the long term*/

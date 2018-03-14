@@ -43,11 +43,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/dashboard') }}">Dashboard</a>
-                                <a href="{{ url('/cimerocuenta') }}">Mi Cuenta</a>
-                                <a href="{{ url('/cimeroestadistica') }}">Mis Estadisticas</a>
-                                <a href="{{ url('/cimerologros') }}">Mis Logros</a>
-                                <a href="{{ url('/anadirlogros') }}">Anadir Logro</a>
+                                <a href="{{ url('/dashboard') }}">Mi Cuenta</a>
                                 <a href="{{ url('/change-password') }}">Cambiar Contraseña</a>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
