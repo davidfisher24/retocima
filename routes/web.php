@@ -51,8 +51,10 @@ Route::prefix('ajax')->group(function () {
     Route::get('cimero', 'CimeroCuentaController@fullAccountAction');
     Route::get('userlogros', 'CimeroCuentaController@logrosArrayAction');
     Route::get('userfulllogros', 'CimeroCuentaController@allLogrosAction');
-    Route::get('logrosbycommunidad', 'CimeroCuentaController@logrosByCommunidadStat');
     Route::post('editarcuenta', 'CimeroCuentaController@editarCuenta');
     Route::post('submitlogros', 'CimeroCuentaController@submitNewLogros');
+    // Stats
+    Route::get('logrosbycommunidad', 'CimeroCuentaController@logrosByCommunidadStat');
+    Route::get('logrosbyaltitud', 'CimeroCuentaController@logrosByAltitudStat');
 });
 

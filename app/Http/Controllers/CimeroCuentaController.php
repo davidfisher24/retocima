@@ -79,11 +79,15 @@ class CimeroCuentaController extends Controller
     }
 
     /*
-     * Cimeros logros por communidad (API)
+     * Statistics (API via service)
      */
 
     public function logrosByCommunidadStat(){
         return $this->statisticsService->cimeroLogrosByCommunidad(Auth::id());
+    }
+
+    public function logrosByAltitudStat(){
+        return $this->statisticsService->cimasSetByAltitud(Cimero::with('logros')->find(Auth::id())->logros->pluck('cima_id'));
     }
 
     /**
