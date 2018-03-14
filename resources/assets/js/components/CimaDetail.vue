@@ -7,7 +7,7 @@
                     <div class="panel panel-default"  v-if="cima.vertientes" v-for="vertiente in cima.vertientes">
                         <div class="text-center"><h4>Vertiente: <strong>{{vertiente.vertiente}}</strong></h4></div>
                         <div class="panel-body">
-                            <cimaquickadd v-if="renderQuickAdd" :cima="cima" :logro="userLogro"></cimaquickadd>
+                            <CimaQuickAdd :cima="cima"></CimaQuickAdd>
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4 col-xl-4 fake-table">
                                     <div class="row">
@@ -69,16 +69,16 @@
 
 <script>
     import PathMap from './Maps/PathMap';
+    import CimaQuickAdd from './Elements/CimaQuickAdd';
 
     export default {
         props: ["cima"],
         components: {
             'PathMap' : PathMap,
+            'CimaQuickAdd' : CimaQuickAdd,
         },
         data: function() {
             return {
-                renderQuickAdd: false,
-                userLogro: null,
             };
         },
 
@@ -86,11 +86,7 @@
         },
 
         mounted:function() {
-            var self = this;
-            axios.get(self.baseUrl + '/ajax/checklogro/'+this.cima.id).then(function(response){
-                if (response.data !== 'Unauthorized') self.renderQuickAdd = true;
-                self.userLogro = response.data;
-            });
+            
         },
 
     }

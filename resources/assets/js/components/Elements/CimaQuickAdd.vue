@@ -1,5 +1,5 @@
 <template> 
-    <div class="input-group">
+    <div class="input-group" v-if="mount">
 
         <div v-if="completed === true">
             <h3>Logro Completed!</h3><br>
@@ -13,26 +13,39 @@
 
 <script>
     export default {
-        props: ["cima","logro"],
+        props: ["cima"],
         data: function() {
             return {
+                mount: false,
                 completed:false,
             };
         },
-        /*computed: {
-            baseLogro : function(){
-                if (this.logro) return JSON.parse(this.logro);
-                else return null;
-            },
-        },*/
 
-        beforeMount: function() {
-            this.userLogro = this.logro;
-            this.completed = this.userLogro ? true : false;
+        mounted: function() {
+            this.checkAndMount();
+        },
+
+        watch: { 
+            cima: function(newVal, oldVal) {
+                this.mount = false;
+                this.completed = false;
+                this.checkAndMount();
+            }
         },
 
 
         methods: {
+
+            checkAndMount: function(){
+                var self = this;
+                axios.get(self.baseUrl + '/ajax/checklogro/'+this.cima.id).then(function(response){
+                    if (response.data !== 'Unauthorized') {
+                        self.mount = true;
+                        self.userLogro = response.data;
+                        self.completed = self.userLogro ? true : false;
+                    }
+                });
+            },
 
             /**
              * Fills in a province list or empties other fields when changing a communidad input
@@ -44,7 +57,7 @@
             add: function(){
                 event.preventDefault();
                 var self = this;
-                axios.post(this.baseUrl + '/update-logro',{
+                axios.post(this.baseUrl + '/ajax/update-logro',{
                     action: 'add',
                     logro: this.userLogro,
                     cima: this.cima,
@@ -59,7 +72,7 @@
             remove: function(event){
                 event.preventDefault();
                 var self = this;
-                axios.post(this.baseUrl + '/update-logro',{
+                axios.post(this.baseUrl + '/ajax/update-logro',{
                     action: 'remove',
                     logro: JSON.stringify(this.userLogro),
                 }).then(function(response){

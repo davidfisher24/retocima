@@ -149,7 +149,6 @@
             getCimero: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/ajax/cimero').then(function(response){
-                    console.log(response.data);
                    self.cimero = response.data;
                    self.updateCimero = self.cimero;
                    self.loaded++;
@@ -159,7 +158,6 @@
             getProvinces: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/api/provincias').then(function(response){
-                    console.log(response.data);
                    self.provinces = response.data;
                    self.loaded++;
                 });
@@ -168,7 +166,6 @@
             getCountries: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/api/paises').then(function(response){
-                    console.log(response.data);
                    self.countries = response.data;
                    self.loaded++;
                 });

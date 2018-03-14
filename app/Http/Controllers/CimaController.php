@@ -12,8 +12,6 @@ use App\Logro;
 class CimaController extends Controller
 {
 
-    //$c = new App\Http\Controllers\CimaController(new App\Cima());
-
     protected $model;
 
     public function __construct(Cima $model)

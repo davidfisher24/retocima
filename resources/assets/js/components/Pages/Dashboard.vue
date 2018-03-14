@@ -5,13 +5,17 @@
             <li class="select-option" @click="section = 'summary'"><a>Resumen Logros</a></li>
             <li class="select-option" @click="section = 'add'"><a>Anadir Cima</a></li>
             <li class="select-option" @click="section = 'stats'"><a>Estadistica</a></li>
+                <div  v-if="section == 'stats'">
+                    <p @click="subSectionStat = 'bar'" class="select-option">Logros por communidad</p>
+                    <p @click="subSectionStat = 'spline'" class="select-option">Altitud de mis cimas</p>
+                </div>
             <li class="select-option" @click="section = 'password'"><a>Cambiar Contrasena</a></li>
         </div>
         <div class="col-md-8 col-xs-8 col-sm-8 col-xl-8 col-lg-8">
             <AddCimaForm v-if="section == 'add'"></AddCimaForm>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
             <CimeroLogrosSummary v-if="section == 'summary'"></CimeroLogrosSummary>
-            <CimeroStatistics v-if="section == 'stats'"></CimeroStatistics>
+            <CimeroStatistics v-if="section == 'stats'" :subSection="subSectionStat"></CimeroStatistics>
             <ChangePassword v-if="section == 'password'"></ChangePassword>
         </div>
 
@@ -41,6 +45,7 @@
         data: function() {
             return {
                 section: '',
+                subSectionStat: 'bar',
                 addedCimas: [],
             };
         },
