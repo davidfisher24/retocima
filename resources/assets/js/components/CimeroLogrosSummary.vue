@@ -42,11 +42,12 @@
 
 <script>
     export default {
+        props: ["logros"],
         data: function() {
             return {
                 communidads: [],
                 cimas: [],
-                logros: null,
+                //logros: null,
                 loading: true,
                 addedCimas: [],
             };
@@ -57,19 +58,17 @@
         },
 
         mounted: function() {
-            this.getLogros();
+        },
+
+        watch: {
+            logros: function(){
+                this.findDistinctCommunidads();
+                this.loading = false;
+            },  
         },
 
         methods: {
 
-            getLogros: function(){
-                var self = this;
-                axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
-                   self.logros = response.data;
-                   self.findDistinctCommunidads();
-                   self.loading = false;
-                });
-            },
 
             /**
              * Gets the unique communidads from the logros

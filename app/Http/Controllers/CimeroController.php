@@ -113,23 +113,16 @@ class CimeroController extends Controller
         return Cimero::find($id)->logros()->get();
     }
 
-    /*
-     * Php public page
-     */
+    public function allLogrosAction($id){
+        return Logro::with('provincia','communidad','cima')->where('cimero_id',$id)->get()->toJson();
+    }
 
+    public function profileAction($id){
+        return Cimero::with('provincia','pais')->find($id)->toJson();
+    }
 
-    public function showPublicPage($id)
-    {
-
-        $cimero = Cimero::find($id);
-        $logros = $this->allLogros($id)->groupBy('communidad_id')->map(function($item){
-            return $item->groupBy('communidad_id','provincia_id')->keyBy($item->first()->first()->communidad->nombre);
-        });
-        $completions = $this->areaCompletionService->getCImerosCompletedProvincesAndCommunidads($id,$provincesGrouped = true);
-        $completedProvinces = $this->areaCompletionService->getCimerosCompletedProvinces($id);
-        $completedCommunidads = $this->areaCompletionService->getCimerosCompletedCommunidads($id);
-
-        return view('publicarea.cimeropublicdetails',compact('cimero','logros','completions','completedProvinces','completedCommunidads'));
+    public function completedAreasAction($id){
+        return $this->areaCompletionService->getCImerosCompletedProvincesAndCommunidads($id);
     }
   
 }

@@ -18,9 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 // Php pages
-Route::get('/cimeropublicdetails/{id}', 'CimeroController@showPublicPage')->name('cimero');
+//Route::get('/cimeropublicdetails/{id}', 'CimeroController@showPublicPage')->name('cimero');
 
 // Javascript elements
+Route::get('/cimeropublicdetails/{id}', function ($id) {return view('publicarea.cimeropublicdetails',compact('id'));});
 Route::get('/listadocommunidads', function () { return view('publicarea.listadocommunidads');});
 Route::get('/ranking', function () { return view('publicarea.ranking');});
 Route::get('/estadistica', function () { return view('publicarea.estadistica');});

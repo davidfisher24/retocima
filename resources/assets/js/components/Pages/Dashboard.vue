@@ -15,7 +15,7 @@
         <div class="col-md-8 col-xs-8 col-sm-8 col-xl-8 col-lg-8">
             <AddCimaForm v-if="section == 'add'"></AddCimaForm>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
-            <CimeroLogrosSummary v-if="section == 'summary'"></CimeroLogrosSummary>
+            <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros"></CimeroLogrosSummary>
             <CimeroStatistics v-if="section == 'stats'" :subSection="subSectionStat"></CimeroStatistics>
             <ChangePassword v-if="section == 'password'"></ChangePassword>
         </div>
@@ -29,7 +29,7 @@
 
     import AddCimaForm from '../Private/AddCimaForm';
     import CimeroEditCuentaForm from '../Private/CimeroEditCuentaForm';
-    import CimeroLogrosSummary from '../Private/CimeroLogrosSummary';
+    import CimeroLogrosSummary from '../CimeroLogrosSummary';
     import CimeroStatistics from '../Private/CimeroStatistics';
     import ChangePassword from '../Private/ChangePassword';
 
@@ -48,7 +48,14 @@
                 section: '',
                 subSectionStat: 'bar',
                 addedCimas: [],
+                logros: null,
             };
+        },
+
+        watch: {
+            section: function(newVal,oldVal) {
+                if (this.section === 'summary') this.loadSummary();
+            },
         },
 
         computed: {
@@ -59,7 +66,12 @@
         },
 
         methods: {
-     
+            loadSummary: function(){
+                var self = this;
+                axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
+                   self.logros = response.data;
+                });
+            },
         }
     }
 </script>

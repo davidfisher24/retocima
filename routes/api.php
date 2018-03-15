@@ -21,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['middleware' => 'api'], function() {
+    Route::get('cimero/profile/{id}', 'CimeroController@profileAction');
+    Route::get('cimero/logros/{id}', 'CimeroController@allLogrosAction');
+    Route::get('cimero/completions/{id}', 'CimeroController@completedAreasAction');
     Route::get('cimas/{id}', 'CimaController@allInProviceAction');
     Route::get('cimas', 'CimaController@allAction');
     Route::get('cima/{id}', 'CimaController@OneAction');

@@ -14,6 +14,10 @@ Vue.use(require('vue2-google-maps'), {
   }
 })
 
+//window.Vuetify = require('vuetify');
+//require('vuetify/dist/vuetify.min.css');
+//Vue.use(Vuetify);
+
 Vue.mixin({
   data: function() {
     return {
@@ -52,6 +56,7 @@ Vue.component('cimaquickadd', require('./components/Elements/CimaQuickAdd.vue'))
 
 // INTERACIVE COMPONENTS
 Vue.component('cimadetail', require('./components/CimaDetail.vue'));
+Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
 
 
 const app = new Vue({
