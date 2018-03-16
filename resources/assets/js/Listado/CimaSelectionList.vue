@@ -7,13 +7,13 @@
 <template> 
 <v-app>
     <v-container v-if="!cimas && !cima && !loading">
-        <v-layout row>
+        <v-layout>
             <v-flex xs12>
                 <v-text-field
                   label="Buscar"
                   v-model="searchInput"
                   clearable
-                  :rules="[searchSuccessful()]"
+                  :rules="[searchSuccessful]"
                 ></v-text-field>
                 <v-list v-if="searchCimas.length > 0">
                     <v-list-tile v-for="cima in searchCimas" :key="cima.id">
@@ -26,12 +26,12 @@
             </v-flex>
         </v-layout>
 
-        <v-layout row v-if="searchCimas.length < 1">
-            <v-flex xs12 md6 v-for="(chunk,index) in chunkedCommunidads" :key="index">
+        <v-layout v-if="searchCimas.length < 1" row wrap>
+            <v-flex v-for="(chunk,index) in chunkedCommunidads" :key="index" md6 sm12>
                 <v-expansion-panel v-for="(communidad,index) in chunk" :key="index">
                     <v-expansion-panel-content>
                       <div slot="header">
-                           <img :src="imageSource(communidad.id)" height="24" width="32">&nbsp;
+                           <img :src="imageSource(communidad.id)" height="20" width="24">&nbsp;
                             {{communidad.nombre}}
                             <v-badge color="grey">
                               <span slot="badge">{{communidad.cimas_count}}</span>
@@ -47,7 +47,7 @@
     </v-container>
 
     <v-container v-if="cimas && !cima && !loading">
-        <v-layout row>
+        <v-layout >
             <v-flex xs12>
                 <v-toolbar>
                 <v-toolbar-title>
@@ -118,7 +118,7 @@
     </v-container>
 
     <v-container v-if="cima && !loading">
-        <v-layout row>
+        <v-layout >
             <v-flex xs12>
                 <v-toolbar>
                 <v-toolbar-title>{{cima.codigo}} {{cima.nombre}}</v-toolbar-title>
@@ -286,7 +286,7 @@
               },500),
 
             searchSuccessful: function(){
-                var searchVal = !this.searchInput ? this.searchInput : '';
+                var searchVal = !this.searchInput ? '' : this.searchInput;
                 if (searchVal.length >= 3 && this.searchNotFound) return 'Nada Encontrado';
                 return true;
             },

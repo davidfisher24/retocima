@@ -61,6 +61,7 @@ Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
 
 
 Vue.component('cimaselectionlist', require('./Listado/CimaSelectionList.vue'));
+Vue.component('homepage', require('./Home/Home.vue'));
 const app = new Vue({
     el: '#vuepage'
 });

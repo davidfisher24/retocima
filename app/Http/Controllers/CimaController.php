@@ -50,6 +50,14 @@ class CimaController extends Controller
     	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->find($id)->toJSON();
     }
 
+    /* 
+     * Returns two random. Might do something else in the future
+     */
+    public function discoverAction()
+    {
+        return Cima::orderByRaw("RAND()")->take(2)->withCount('logros')->get()->toJSON();
+    }
+
     /*
      * Finds all cimas in a province
      */

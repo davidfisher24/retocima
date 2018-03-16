@@ -6,7 +6,7 @@
 </style>
 
 <template>
-    <main class="banner-image">
+    <main>
         <agile :options="options">
             <div class="slide slide--1" :style="backgroundImage('/img/cima.jpg')"></div>
             <div class="slide slide--2" :style="backgroundImage('/img/cima2.jpg')"></div>

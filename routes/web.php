@@ -18,7 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 // Php pages
-//Route::get('/cimeropublicdetails/{id}', 'CimeroController@showPublicPage')->name('cimero');
 
 // Javascript elements
 Route::get('/cimeropublicdetails/{id}', function ($id) {return view('publicarea.cimeropublicdetails',compact('id'));});
@@ -38,13 +37,15 @@ Route::middleware(['auth'])->group(function () {
 /*Ajax Requests - Move to jwt in the long term*/
 Route::prefix('ajax')->group(function () {
     Route::get('checklogro/{cimaId}', 'CimeroController@checkLogroAction'); // Public domain VERY CUTRE
+    Route::get('discover', 'CimaController@discoverAction'); // Public but here as we might need to recommend
+    // Private
     Route::get('cimero', 'CimeroCuentaController@fullAccountAction');
     Route::get('userlogros', 'CimeroCuentaController@logrosArrayAction');
     Route::get('userfulllogros', 'CimeroCuentaController@allLogrosAction');
     Route::post('editarcuenta', 'CimeroCuentaController@editarCuenta');
     Route::post('submitlogros', 'CimeroCuentaController@submitNewLogros');
     Route::post('update-logro', 'CimeroCuentaController@updateLogro');
-    // Stats
+    // Stats graphs
     Route::get('logrosbycommunidad', 'CimeroCuentaController@logrosByCommunidadStat');
     Route::get('logrosbyprovincia', 'CimeroCuentaController@logrosByProvinciaStat');
     Route::get('logrosbyaltitud', 'CimeroCuentaController@logrosByAltitudStat');
