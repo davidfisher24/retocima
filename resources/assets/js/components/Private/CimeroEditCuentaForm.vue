@@ -1,9 +1,88 @@
 <template> 
-    <div class="row">
+        
+        
+          <v-container fluid grid-list-lg>
+            <v-layout row wrap>
+                <loadingcontainer v-if="loading"></loadingcontainer>
+              <v-flex xs12 v-if="!loading">
+
+                <v-alert type="success" :value="success" transition="scale-transition">
+                    Success
+                </v-alert>
+
+                <v-alert type="error" :value="failure" transition="scale-transition">
+                    Error
+                </v-alert>
+
+                <v-card>
+                  <v-form>
+                    <v-text-field
+                      label="Nombre"
+                      v-model="updateCimero.nombre"
+                    ></v-text-field>
+                    <v-text-field
+                      label="Apellido 1"
+                      v-model="updateCimero.apellido1"
+                    ></v-text-field>
+                    <v-text-field
+                      label="Apellido 2"
+                      v-model="updateCimero.apellido2"
+                    ></v-text-field>
+                    <v-text-field
+                      label="Usuario"
+                      v-model="updateCimero.username"
+                    ></v-text-field>
+                    <v-text-field
+                      label="Correo Electronico"
+                      v-model="updateCimero.email"
+                    ></v-text-field>
+
+
+                    <v-select
+                      v-if="isSpain"
+                      :items="provinces"
+                      item-text="nombre"
+                      item-value="id"
+                      v-model="updateCimero.provincia.id"
+                      label="Provincia"
+                      class="input-group--focused"
+                      auto
+                    ></v-select>
+
+                    <v-select
+                      :change="checkSpain()"
+                      :items="countries"
+                      item-text="nombre"
+                      item-value="id"
+                      v-model="updateCimero.pais.id"
+                      label="Pais"
+                      class="input-group--focused"
+                      auto
+                      
+                    ></v-select>
+
+                    <input type="date" name="fechanacimiento" v-model="updateCimero.fechanacimiento" class="form-control"><span class="error"></span>
+                  </v-form>
+
+                  <v-btn
+                    @click="submit"
+                  >
+                    Cambiar
+                  </v-btn>
+                  <v-btn @click="reset">Anular</v-btn>
+
+                </v-card>
+              </v-flex>
+
+              
+
+            </v-layout>
+          </v-container>
+     
+    <!--<div class="row">
         <loadingcontainer v-if="loading"></loadingcontainer>
         <div class="col-md-12" v-if="!loading">
 
-            <!-- SECTION: show (presentation of information) -->
 
             <div v-if="section === 'show'">
                 <div>
@@ -27,7 +106,7 @@
                 </div>
             </div>
 
-             <!-- SECTION: data (edit data fields) -->
+
 
             <div v-if="section === 'data'">
                 <form class="form-inline">
@@ -60,7 +139,7 @@
                 </form>
             </div>
 
-            <!-- SECTION: location (edit location selects) -->
+
             <div v-if="section === 'location'">
                 <form class="form-inline">
 
@@ -90,7 +169,6 @@
             </div>
 
 
-            <!-- SECTION: birthdate (edits nirthdate) -->
             <div v-if="section === 'birthdate'">
                 <form class="form-inline">
 
@@ -109,7 +187,7 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
 </template>
 
 <script>
@@ -119,12 +197,14 @@
                 cimero : null,
                 spainId: null, // The Spain id for chcking if Spain is selected
                 isSpain: false,  // Checking Spain selection for the provinces dropdown
-                section: "show", // Section to display
+                //section: "show", 
                 updateCimero: null, // Updates applied to the cimero model
                 provinces: null,
                 countries: null,
                 loading: true,
                 loaded: 0,
+                success: false,
+                failure: false,
             };
         },
 
@@ -142,6 +222,9 @@
                    this.loading = false;
                 }
             },
+            updateCimero: function(update){
+                console.log(update.pais.id);
+            },
         },
 
         methods: {
@@ -151,6 +234,7 @@
                 axios.get(this.baseUrl + '/ajax/cimero').then(function(response){
                    self.cimero = response.data;
                    self.updateCimero = self.cimero;
+                   console.log(self.updateCimero.pais.id);
                    self.loaded++;
                 });
             },
@@ -159,6 +243,7 @@
                 var self = this;
                 axios.get(this.baseUrl + '/api/provincias').then(function(response){
                    self.provinces = response.data;
+                   console.log(self.provinces);
                    self.loaded++;
                 });
             },
@@ -167,6 +252,7 @@
                 var self = this;
                 axios.get(this.baseUrl + '/api/paises').then(function(response){
                    self.countries = response.data;
+                   console.log(self.countries);
                    self.loaded++;
                 });
             },
@@ -190,7 +276,11 @@
 
             checkSpain:function(){
                 var self = this;
-                this.isSpain = this.cimero.pais.id === this.spainId ? true : false;
+                console.log("checking spain");
+                this.isSpain = this.updateCimero.pais.id === this.spainId ? true : false;
+                console.log(this.updateCimero.pais.id);
+                console.log(this.spainId);
+                console.log(this.isSpain);
                 if (this.updateCimero.provincia === null && this.isSpain) {
                     this.updateCimero.provincia = self.provinces[Object.keys(self.provinces)[0]];
                 }
@@ -204,7 +294,7 @@
              * @result updates form and updates all data
             */
 
-            edit:function(event){
+            submit:function(event){
                 event.preventDefault();
                 var self = this;
                 var updateData = {
@@ -219,11 +309,13 @@
                 }
                 axios.post(this.baseUrl + '/ajax/editarcuenta',updateData).then(function(response){
                     if (response.data.errors) {
-                        self.showErrors(response.data.errors);
+                        //self.showErrors(response.data.errors);
+                        self.failure = true;
                     } else {
                        self.cimero = Object.assign({}, response.data);
                        self.updateCimero = Object.assign({}, response.data);
                        self.section = 'show'; 
+                       self.success = true;
                     }
                     
                 });
@@ -233,10 +325,10 @@
              * Cancels changes and returns the show page
             */
 
-            cancel:function(){
+            /*cancel:function(){
                 this.updateCimero = Object.assign({}, this.cimero);
                 this.section = 'show';
-            },
+            },*/
 
             /**
              * Resets all changes
