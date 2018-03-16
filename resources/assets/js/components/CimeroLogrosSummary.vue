@@ -1,55 +1,41 @@
 <template> 
-    
-    <div class="panel-body">
-    <loadingcontainer v-if="loading"></loadingcontainer>
-        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12" v-if="!loading">
-            <div class="row">
-                <div v-for="communidad in communidads">
-                    <div class="panel-group">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    {{communidad.nombre}}
-                                    <a data-toggle="collapse" :href="communidad.href">  
-                                        <span class="small">   Ver</span>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div :id="communidad.divid"class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div v-for="logro in logros">
-                                        <a v-if="logro.communidad_id === communidad.id" @click="openCimaInNewWindow(logro.id)">
-                                            {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                                            <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
-                                                <strong>{{logro.cima.codigo}} - {{logro.cima.nombre}}  NUEVO!!</strong>
-                                            </span>
-                                            <span v-else-if="addedCimas.indexOf(logro.cima.id) === -1">
-                                                {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                                            </span>
-                                        </a> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <v-flex>
+        <loadingcontainer v-if="loading"></loadingcontainer>
+        <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading">
+            <v-expansion-panel-content>
+              <div slot="header">{{communidad.nombre}}</div>
+              <v-card>
+                <v-card-text v-for="logro in logros" :key="logros.id" v-if="logro.communidad_id === communidad.id">
+                        {{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                        <!--{{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                        <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
+                            <strong>{{logro.cima.codigo}} - {{logro.cima.nombre}}  NUEVO!!</strong>
+                        </span>
+                        <span v-else-if="addedCimas.indexOf(logro.cima.id) === -1">
+                            {{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                        </span>-->
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+        </v-expansion-panel>
+    </v-flex>
+
+
 </template>
 
 
 
 <script>
+
     export default {
         props: ["logros"],
         data: function() {
             return {
                 communidads: [],
                 cimas: [],
-                //logros: null,
                 loading: true,
                 addedCimas: [],
+                dialog: false,
             };
         },
         

@@ -1,45 +1,43 @@
 <template> 
-    <div>
-      <div class="panel panel-success" v-if="success">
-        <p class="panel-title">{{message}}</p>
-      </div>
-      <div class="panel panel-danger" v-if="failure">
-        <p class="panel-title">{{message}}</p>
-      </div>
+  <v-flex xs8>
 
-      <form  role="form" class="form-horizontal" ref="changePasswordForm" v-on:submit.prevent>
-    
-                <div class="form-group">
-                    <label for="password" class="col-md-4 control-label">Contrseña Actual</label>
+      <v-alert type="success" :value="success" transition="scale-transition">
+        Tu Contrasena ha sido actualizado.
+      </v-alert>
 
-                    <div class="col-md-6">
-                        <input type="password" class="form-control" name="old" v-model="old" :disabled="disabled">
-                    </div>
-                </div>
+      <v-alert type="error" :value="failure" transition="scale-transition">
+        {{message}}
+      </v-alert>
 
-                <div class="form-group">
-                    <label for="password" class="col-md-4 control-label">Nueva contraseña</label>
+      <v-text-field
+        type="password"
+        label="Contrasena Actual"
+        v-model="old"
+        :disabled="disabled"
+      ></v-text-field>
 
-                    <div class="col-md-6">
-                        <input type="password" class="form-control" name="password" v-model="password" :disabled="disabled">
-                    </div>
-                </div>
+      <v-text-field
+        type="password"
+        label="Contrasena Nueva"
+        v-model="password"
+        :disabled="disabled"
+      ></v-text-field>
 
-                <div class="form-group">
-                    <label for="password-confirm" class="col-md-4 control-label">Confirmar nueva contraseña</label>
+      <v-text-field
+        type="password"
+        label="Confirmar Contrasena"
+        v-model="password_confirmation"
+        :disabled="disabled"
+      ></v-text-field>
 
-                    <div class="col-md-6">
-                        <input type="password" class="form-control" name="password_confirmation" v-model="password_confirmation" :disabled="disabled"> 
-                    </div>
-                </div>
-
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary form-control" @click="submit()">Cambiar</button>
-                    </div>
-            </div>
-    </form>
-  </div>
+      <v-btn
+        @click="submit"
+        :disabled="disabled"
+      >
+        Cambiar
+      </v-btn>
+      <v-btn @click="clear">Vaciar</v-btn>
+    </v-flex>
 </template>
 
 
@@ -63,6 +61,12 @@
 
 
       methods: {
+        clear: function(){
+          this.old = '';
+          this.password = "";
+          this.password_confirmation = "";
+        },
+
         submit: function(){ 
             var self = this;
             this.disabled = true;
@@ -74,6 +78,8 @@
               this.disabled = false;
               return;
             }
+            console.log(self.old);
+            console.log(self.password);
             axios.post(self.baseUrl + '/change-password', {
                 old: self.old,
                 password: self.password,
