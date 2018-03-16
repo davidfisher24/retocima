@@ -5,9 +5,14 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 const config = require('./env').default;
-require('./bootstrap');
+//require('./bootstrap');
+window._ = require('lodash');
+window.axios = require('axios');
+
+
 window.Vue = require('vue');
 window.HighCharts = require('highcharts');
+
 Vue.use(require('vue2-google-maps'), {
   load: {
     key: 'AIzaSyAtqWsq5Ai3GYv6dSa6311tZiYKlbYT4mw',
@@ -38,8 +43,7 @@ Vue.mixin({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// CAROUSELS
-Vue.component('homepagecarousel', require('./components/Carousels/CarouselHomePage.vue'));
+
 // TABLES
 Vue.component('rankingtable', require('./components/Tables/Ranking.vue'));
 // PAGE LAYOUTS
@@ -62,6 +66,9 @@ Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
 
 Vue.component('cimaselectionlist', require('./Listado/CimaSelectionList.vue'));
 Vue.component('homepage', require('./Home/Home.vue'));
+
+
+Vue.component('Flag', require('./components/Flag.vue'))
 const app = new Vue({
     el: '#vuepage'
 });

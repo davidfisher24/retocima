@@ -31,7 +31,7 @@
                 <v-expansion-panel v-for="(communidad,index) in chunk" :key="index">
                     <v-expansion-panel-content>
                       <div slot="header">
-                           <img :src="imageSource(communidad.id)" height="20" width="24">&nbsp;
+                           <Flag :id="communidad.id"></Flag>
                             {{communidad.nombre}}
                             <v-badge color="grey">
                               <span slot="badge">{{communidad.cimas_count}}</span>
@@ -51,7 +51,7 @@
             <v-flex xs12>
                 <v-toolbar>
                 <v-toolbar-title>
-                    <img :src="imageSource(cimas[0].communidad_id)" height="24" width="32">&nbsp;&nbsp;
+                    <Flag :id="cimas[0].communidad_id"></Flag>
                     {{cimas[0].communidad}} - {{cimas[0].provincia}}
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -149,11 +149,13 @@
 
     import ProvinceMap from '../components/Maps/ProvinceMap';
     import CimaDetail from './CimaDetail';
+    import Flag from '../components/Flag';
 
     export default {
         components: {
             'ProvinceMap' : ProvinceMap,
             'CimaDetail' : CimaDetail,
+            'Flag' : Flag,
         },
 
         data: function() {
@@ -200,11 +202,6 @@
         },
 
         methods: {
-
-            imageSource: function(id){
-                return this.baseUrl + "/img/communidads/"+id+".png";
-            },
-
             selectCommunidad: function(id){
                 if (this.selectedCommunidad === id) return this.selectedCommunidad = null;
                 this.selectedCommunidad = id;

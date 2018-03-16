@@ -6,10 +6,10 @@
 
 <template> 
 <v-app>
-  <homepagecarousel></homepagecarousel>
+  <HomePageCarousel></HomePageCarousel>
     <v-container >
         <v-layout>
-          CERTIFICADO IBÉRICO DE MONTAÑAS ASCENDIDAS
+          <h1 class="headline">CERTIFICADO IBÉRICO DE MONTAÑAS ASCENDIDAS</h1>
         </v-layout>
                  
         <v-layout>
@@ -17,7 +17,7 @@
               <v-card v-if="discoverCimas" v-for="cima in discoverCimas" :key="cima.id">
                 <v-card-title primary-title>
                   <div>
-                    <h3 class="headline mb-0">{{cima.codigo}} {{cima.nombre}}</h3>
+                    <p class="mb-0"><Flag :id="cima.communidad_id"></Flag>{{cima.codigo}} {{cima.nombre}}</p>
                     {{cima.communidad}} - {{cima.provincia}}<br>
                     Acensiones: {{cima.logros_count}}
                   </div>
@@ -53,11 +53,13 @@
 
 <script>
 
-  
+    import HomePageCarousel from './HomePageCarousel';
+    import Flag from '../components/Flag'
 
     export default {
         components: {
-  
+          'HomePageCarousel' : HomePageCarousel,
+          'Flag' : Flag,
         },
 
         data: function() {
