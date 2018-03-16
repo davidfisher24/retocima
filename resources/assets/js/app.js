@@ -14,9 +14,9 @@ Vue.use(require('vue2-google-maps'), {
   }
 })
 
-//window.Vuetify = require('vuetify');
-//require('vuetify/dist/vuetify.min.css');
-//Vue.use(Vuetify);
+window.Vuetify = require('vuetify');
+require('vuetify/dist/vuetify.min.css');
+Vue.use(Vuetify);
 
 Vue.mixin({
   data: function() {

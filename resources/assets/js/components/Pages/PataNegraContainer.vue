@@ -5,7 +5,7 @@
           :center="mapCenter"
           :zoom="6"
           map-type-id="terrain"
-          style="width: 100%; height: 100%"
+          style="width: 400px; height: 400px"
         >
              <gmap-cluster :max-zoom="10" :grid-size="25">
 
