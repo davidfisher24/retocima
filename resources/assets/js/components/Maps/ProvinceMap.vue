@@ -11,12 +11,24 @@
 
                 <gmap-marker
                   :key="index"
+                  :icon="icon"
                   v-for="(cima, index) in cimas"
                   :position="{lng:parseFloat(cima.latitude), lat:parseFloat(cima.longitude)}"
                   :clickable="true"
                   :draggable="false"
                   @click="showCima(cima.id)"
-                ></gmap-marker>
+                  @mouseover="openInfoWindowTemplate(cima)"
+     
+                >
+                </gmap-marker>
+
+                <gmap-info-window
+                    :options="{maxWidth: 300}"
+                    :position="infoWindow.position"
+                    :opened="infoWindow.open"
+                    @closeclick="infoWindow.open=false">
+                    <div v-html="infoWindow.template"></div>
+                </gmap-info-window>
 
             </gmap-cluster>
         </gmap-map>
@@ -30,7 +42,18 @@
             return {
                 mounted: false,
                 style: "",
+                infoWindow: {
+                    open:false,
+                    template: '',
+                    position: {lat:0,lng:0}
+                }
             };
+        },
+
+        computed: {
+          icon: function(){
+            return this.baseUrl + '/img/icons/marker.png';
+          }
         },
 
         mounted:function() {
@@ -66,6 +89,18 @@
 
             getLngs: function(){
                 return this.cimas.map(function(a){ return parseFloat(a.longitude) }).filter(function(b) { return b !== 0});
+            },
+
+            openInfoWindowTemplate:function(item) {
+                this.infoWindow.position = {lat:parseFloat(item.longitude), lng:parseFloat(item.latitude)};
+                this.infoWindow.template = "<p><strong>" + item.codigo +"</strong>   " + item.nombre +"</p>";
+                this.infoWindow.template += "<a href='detallescima/"+item.id+"' target='_BLANK'>VER</a>";
+                this.infoWindow.open = true;
+            },
+
+           closeInfoWindow:function(evt){
+
+              this.infoWindow.open = false;
             },
         },
     }
