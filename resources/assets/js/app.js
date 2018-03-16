@@ -45,20 +45,22 @@ Vue.component('rankingtable', require('./components/Tables/Ranking.vue'));
 // PAGE LAYOUTS
 Vue.component('statisticscontainer', require('./components/Pages/StatisticsContainer.vue'));
 Vue.component('patanegracontainer', require('./components/Pages/PataNegraContainer.vue'));
-Vue.component('cimaselectionlist', require('./components/Pages/CimaSelectionList.vue'));
+
 Vue.component('cimadetailfullpage', require('./components/Pages/CimeDetailFullPage.vue'));
 Vue.component('dashboard', require('./components/Pages/Dashboard.vue'));
 // MAPS
 Vue.component('googlemap', require('./components/Maps/GoogleMap.vue'));
 // ELEMENTS
 Vue.component('loadingcontainer', require('./components/Elements/LoadingContainer.vue'));
-Vue.component('cimaquickadd', require('./components/Elements/CimaQuickAdd.vue'));
+//Vue.component('cimaquickadd', require('./components/Elements/CimaQuickAdd.vue'));
 
 // INTERACIVE COMPONENTS
-Vue.component('cimadetail', require('./components/CimaDetail.vue'));
+//Vue.component('cimadetail', require('./components/CimaDetail.vue'));
 Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
 
 
+
+Vue.component('cimaselectionlist', require('./Listado/CimaSelectionList.vue'));
 const app = new Vue({
     el: '#vuepage'
 });

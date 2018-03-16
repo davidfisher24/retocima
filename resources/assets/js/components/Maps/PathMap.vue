@@ -42,12 +42,7 @@
         },
 
         mounted:function() {
-            var self=this;
-            var hEst = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.getElementById('wrapper').parentElement.getBoundingClientRect().y;
-            var w = document.getElementById('wrapper').parentElement.offsetWidth;
-            var h = document.getElementById('wrapper').parentElement.offsetHeight < 1 ? document.getElementById('wrapper').parentElement.offsetHeight : hEst;
-            this.style = "width: "+w+"px; height: "+h+"px; margin:0;";
-            self.mounted = true;
+            this.mounted = true;
             this.getMapLines();  
         },
 
@@ -61,6 +56,10 @@
                     });
                     self.coords = coords;
                     self.putLine();
+                    var w = document.getElementById('wrapper').parentElement.offsetWidth;
+                    var h = document.getElementById('wrapper').parentElement.parentElement.offsetHeight;
+                    if (h<1) h = w/1.6;
+                    self.style = "width: "+w+"px; height: "+h+"px; margin:0;";
                 });
             },
 

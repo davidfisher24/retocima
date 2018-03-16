@@ -1,15 +1,19 @@
-<template> 
-    <div class="input-group" v-if="mount">
 
-        <div v-if="completed === true">
-            <h3>Logro Completed!</h3><br>
-            <a @click="remove($event)">Quitar</a>
-        </div>
-        <div v-if="completed === false">
-            <button class="btn btn-primary" @click="add($event)">Añadir Logro</button>
-        </div>
-    </div>
+<template>
+  <div class="text-xs-center" v-if="mount">
+    <v-btn fab dark large color="indigo" v-if="completed === false && !loading" fixed bottom right @click="add($event)">
+      <!--<v-icon dark>add</v-icon>-->
+      Añadir
+    </v-btn>
+    <v-btn fab dark large color="cyan" v-if="completed === true && !loading" fixed bottom right @click="remove($event)">
+      <!--<v-icon dark>edit</v-icon>-->
+      Hecho
+    </v-btn>
+    <v-btn fab dark large color="indigo" v-if="loading" fixed bottom right loading>
+    </v-btn>
+  </div>
 </template>
+
 
 <script>
     export default {
@@ -18,6 +22,7 @@
             return {
                 mount: false,
                 completed:false,
+                loading: false,
             };
         },
 
@@ -47,16 +52,10 @@
                 });
             },
 
-            /**
-             * Fills in a province list or empties other fields when changing a communidad input
-             * @trigger Change Communidad Input
-             * @params event
-             * @result Triggers ajax call to get provinces or empties the other inputs
-            */
-
             add: function(){
                 event.preventDefault();
                 var self = this;
+                this.loading = true;
                 axios.post(this.baseUrl + '/ajax/update-logro',{
                     action: 'add',
                     logro: this.userLogro,
@@ -65,6 +64,7 @@
                     if (response.data) {
                         self.userLogro = response.data;
                         self.completed = true;
+                        self.loading = false;
                     }
                 });
             },
@@ -72,6 +72,7 @@
             remove: function(event){
                 event.preventDefault();
                 var self = this;
+                this.loading = true;
                 axios.post(this.baseUrl + '/ajax/update-logro',{
                     action: 'remove',
                     logro: JSON.stringify(this.userLogro),
@@ -79,6 +80,7 @@
                     if (!response.data) {
                         self.userLogro = null;
                         self.completed = false;
+                        self.loading = false;
                     }
                 });
             },
