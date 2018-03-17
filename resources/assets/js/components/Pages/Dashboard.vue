@@ -1,34 +1,29 @@
 <template>
 <v-app>
-    <v-container>
+    <v-container fluid>
       <v-layout row>
-        <v-flex xs4>
+  
         <v-navigation-drawer permanent>
             <v-list dense class="pt-0">
 
               <v-list-tile @click="section = 'edit'">
-                <v-list-tile-action><v-icon>dashboard</v-icon></v-list-tile-action>
                 <v-list-tile-content><v-list-tile-title>EDITAR CUENTA</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
               <v-list-tile @click="section = 'summary'">
-                <v-list-tile-action><v-icon>dashboard</v-icon></v-list-tile-action>
                 <v-list-tile-content><v-list-tile-title>RESUMEN LOGROS</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
               <v-list-tile @click="section = 'add'">
-                <v-list-tile-action><v-icon>dashboard</v-icon></v-list-tile-action>
                 <v-list-tile-content><v-list-tile-title>ANADIR CIMA</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
               <v-list-tile @click="section = 'password'">
-                <v-list-tile-action><v-icon>dashboard</v-icon></v-list-tile-action>
                 <v-list-tile-content><v-list-tile-title>CAMBIAR CONTRASENA</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
               <v-list-group no-action>
                 <v-list-tile slot="activator">
-                  <v-list-tile-action><v-icon>dashboard</v-icon></v-list-tile-action>
                   <v-list-tile-content><v-list-tile-title>ESTADISTICA</v-list-tile-title></v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile @click="setStat('bar')">
@@ -45,8 +40,8 @@
 
             </v-list>
           </v-navigation-drawer>
-        </v-flex>
-        <v-flex xs8>
+  
+        <v-flex xs12>
             <AddCimaForm v-if="section == 'add'"></AddCimaForm>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
             <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros"></CimeroLogrosSummary>

@@ -1,24 +1,22 @@
 <template> 
-    <v-flex>
+    <v-layout>
+        <v-flex class="px-5">
         <loadingcontainer v-if="loading"></loadingcontainer>
-        <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading">
+        <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading" >
             <v-expansion-panel-content>
               <div slot="header">{{communidad.nombre}}</div>
               <v-card>
                 <v-card-text v-for="logro in logros" :key="logros.id" v-if="logro.communidad_id === communidad.id">
                         {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                        <!--{{logro.cima.codigo}} - {{logro.cima.nombre}} 
                         <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
-                            <strong>{{logro.cima.codigo}} - {{logro.cima.nombre}}  NUEVO!!</strong>
+                            <strong> NUEVO!!</strong>
                         </span>
-                        <span v-else-if="addedCimas.indexOf(logro.cima.id) === -1">
-                            {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                        </span>-->
                 </v-card-text>
               </v-card>
             </v-expansion-panel-content>
         </v-expansion-panel>
     </v-flex>
+</v-layout>
 
 
 </template>

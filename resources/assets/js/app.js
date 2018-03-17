@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 const config = require('./env').default;
-//require('./bootstrap');
+import collapse from './bootstrap';//require('./bootstrap').collapse;
 window._ = require('lodash');
 window.axios = require('axios');
 

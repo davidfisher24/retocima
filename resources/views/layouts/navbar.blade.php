@@ -15,7 +15,7 @@
                 <img src="{{URL::asset('./img/logocima2.png')}}" width="40" height="40">
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
-                <h1 class="m-t-0 m-b-0">Reto Cima</h1>
+                <h1 class="">Reto Cima</h1>
             </a>
         </div>
 
