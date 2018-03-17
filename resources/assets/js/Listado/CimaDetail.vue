@@ -17,9 +17,6 @@
         :key="i"
       >
         <CimaQuickAdd :cima="cima"></CimaQuickAdd>
-        <v-card flat>
-          <v-card-text>
-
                 <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4 col-xl-4">
@@ -69,7 +66,6 @@
                 <p><strong>Final:  </strong>{{cima.vertientes[i].final}}</p>
                 <p><strong>Observaciones: </strong>{{cima.vertientes[i].observaciones}}</p>
             </div>
-          </v-card-text>
         </v-card>
       </v-tab-item>
     </v-tabs>
@@ -90,6 +86,18 @@
                 active:0,
             };
         },
+        computed: {
+            properties: function(){
+                return [
+                    {title: 'Altitud', value: this.cima.vertientes[this.active] ? this.cima.vertientes[this.active].altitud + "m" : " - "},
+                    {title: 'Desnivel', value: this.cima.vertientes[this.active] ? this.cima.vertientes[this.active].desnivel + "m" : " - "},
+                    {title: 'Logitud', value: this.cima.vertientes[this.active] ? this.cima.vertientes[this.active].longitud + "m" : " - "},
+                    {title: '% Medio', value: this.cima.vertientes[this.active] ? this.cima.vertientes[this.active].porcentage_medio + "%" : " - "},
+                    {title: '% Maximo', value: this.cima.vertientes[this.active] ? this.cima.vertientes[this.active].porcentage_maximo + "%" : " - "},
+                    {title: 'APM', value: this.cima.vertientes[this.active] ? this.cima.vertientes[this.active].apm : " - "},
+                ]
+            },
+        }
     }
 
 </script>

@@ -12,12 +12,14 @@
             :options="{strokeColor: '#0000FF'}"/>
             <gmap-marker
               v-if="path"
+              :icon="startIcon"
               :position="coords[0]"
               :clickable="false"
               :draggable="false"
             ></gmap-marker>
             <gmap-marker
                v-if="path"
+              :icon="finishIcon"
               :position="coords[coords.length -1]"
               :clickable="false"
               :draggable="false"
@@ -44,6 +46,15 @@
         mounted:function() {
             this.mounted = true;
             this.getMapLines();  
+        },
+
+        computed: {
+           startIcon: function(){
+                return this.baseUrl + '/img/icons/pin.png';
+            },
+            finishIcon: function(){
+                return this.baseUrl + '/img/icons/finish.png';
+            }, 
         },
 
         methods: {

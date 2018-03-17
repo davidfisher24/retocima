@@ -121,7 +121,7 @@
         </v-layout>
     </v-container>
 
-    <v-container v-if="cima && !loading">
+    <v-container v-if="cima && !loading" fluid>
         <v-layout >
             <v-flex xs12>
                 <v-toolbar>
@@ -287,11 +287,6 @@
                 });
               },500),
 
-            /*searchSuccessful: function(){
-                var searchVal = !this.searchInput ? '' : this.searchInput;
-                if (searchVal.length >= 3 && this.searchNotFound) return 'Nada Encontrado';
-                return true;
-            },*/
         },
 
         watch: {
