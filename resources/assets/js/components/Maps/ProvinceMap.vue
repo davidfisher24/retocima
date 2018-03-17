@@ -18,18 +18,20 @@
                   :draggable="false"
                   @click="showCima(cima.id)"
                   @mouseover="openInfoWindowTemplate(cima)"
-     
+                  @mouseout="infoWindow.open = false"
                 >
+
+                  
                 </gmap-marker>
 
+                
                 <gmap-info-window
-                    :options="{maxWidth: 300}"
-                    :position="infoWindow.position"
-                    :opened="infoWindow.open"
-                    @closeclick="infoWindow.open=false">
-                    <div v-html="infoWindow.template"></div>
-                </gmap-info-window>
-
+                      :options="infoWindow.options"
+                      :position="infoWindow.position"
+                      :opened="infoWindow.open"
+                      @closeclick="infoWindow.open=false">
+                      <div v-html="infoWindow.template"></div>
+                  </gmap-info-window>
             </gmap-cluster>
         </gmap-map>
     </div>
@@ -45,8 +47,10 @@
                 infoWindow: {
                     open:false,
                     template: '',
-                    position: {lat:0,lng:0}
-                }
+                    position: {lat:0,lng:0},
+                    options:{maxWidth: 300},
+                },
+                offSet: new google.maps.Size(0,-30),
             };
         },
 
@@ -94,8 +98,9 @@
             openInfoWindowTemplate:function(item) {
                 this.infoWindow.position = {lat:parseFloat(item.longitude), lng:parseFloat(item.latitude)};
                 this.infoWindow.template = "<p><strong>" + item.codigo +"</strong>   " + item.nombre +"</p>";
-                this.infoWindow.template += "<a href='detallescima/"+item.id+"' target='_BLANK'>VER</a>";
+                this.infoWindow.options = { pixelOffset: this.offSet};
                 this.infoWindow.open = true;
+
             },
 
            closeInfoWindow:function(evt){
