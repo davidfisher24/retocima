@@ -1,10 +1,11 @@
 <template> 
-    <div id="wrapper" class="row">
+    <div id="wrapper">
         <gmap-map
+          v-if="mounted"
           :center="mapCenter"
           :zoom="6"
           map-type-id="terrain"
-          style="width: 800px; height: 600px;"
+          :style="style"
         >
              <gmap-cluster :max-zoom="10" :grid-size="25">
 
@@ -44,7 +45,9 @@
                     open:false,
                     template: '',
                     position: {lat:0,lng:0}
-                }
+                },
+                mounted: false,
+                style: "",
             };
         },
 
@@ -52,7 +55,14 @@
         },
 
         mounted: function(){
+          console.log("mounted");
           this.fetchData();
+          var hEst = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - document.getElementById('wrapper').parentElement.getBoundingClientRect().y; 
+          var w = document.getElementById('wrapper').parentElement.offsetWidth;
+          var h = document.getElementById('wrapper').parentElement.offsetHeight < 1 ? document.getElementById('wrapper').parentElement.offsetHeight : hEst;
+          this.style = "width: "+w+"px; height: "+hEst+"px; margin:0;";
+          console.log(this.style);
+          this.mounted = true;
         },
 
         methods: {

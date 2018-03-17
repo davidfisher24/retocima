@@ -18,7 +18,7 @@
                   :draggable="false"
                   @click="showCima(cima.id)"
                   @mouseover="openInfoWindowTemplate(cima)"
-                  @mouseout=""
+                  @mouseout="infoWindow.open = false"
                 >
 
                   
@@ -33,7 +33,7 @@
                       <div v-html="infoWindow.template"></div>
 
                   </gmap-info-window>
-                  <div>Hello</div>
+      
             </gmap-cluster>
         </gmap-map>
     </div>
