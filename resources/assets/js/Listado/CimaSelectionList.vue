@@ -6,14 +6,14 @@
 
 <template> 
 <v-app>
-    <v-container v-if="!cimas && !cima && !loading">
+    <v-container v-if="!cimas && !cima && !loading" fluid>
         <v-layout>
             <v-flex xs12>
                 <v-text-field
                   label="Buscar"
                   v-model="searchInput"
                   clearable
-                  :rules="[searchSuccessful]"
+                  :error-messages="searchNotFound"
                 ></v-text-field>
                 <v-list v-if="searchCimas.length > 0">
                     <v-list-tile v-for="cima in searchCimas" :key="cima.id">
@@ -27,9 +27,9 @@
         </v-layout>
 
         <v-layout v-if="searchCimas.length < 1" row wrap>
-            <v-flex v-for="(chunk,index) in chunkedCommunidads" :key="index" md6 sm12>
-                <v-expansion-panel v-for="(communidad,index) in chunk" :key="index">
-                    <v-expansion-panel-content>
+            <v-flex v-for="(chunk,index) in chunkedCommunidads" :key="index"   class="py-0 mx-3 my-1" >
+                <v-expansion-panel v-for="(communidad,index) in chunk" :key="index" md6 sm12 xs12>
+                    <v-expansion-panel-content >
                       <div slot="header">
                            <Flag :id="communidad.id"></Flag>
                             {{communidad.nombre}}
@@ -37,16 +37,19 @@
                               <span slot="badge">{{communidad.cimas_count}}</span>
                             </v-badge>
                       </div>
-                       <v-card v-for="provincia in communidad.provincias" :key="provincia.id" >
-                        <v-card-text @click="showProvince(provincia.id)">{{provincia.nombre}}</v-card-text>
-                      </v-card>
+                
+                      <v-list dense>
+                        <v-list-tile v-for="provincia in communidad.provincias" :key="provincia.id" @click="showProvince(provincia.id)">
+                          <v-list-tile-title class="py-0">{{provincia.nombre}}</v-list-tile-title>
+                        </v-list-tile>
+                      </v-list>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
             </v-flex>
         </v-layout>
     </v-container>
 
-    <v-container v-if="cimas && !cima && !loading">
+    <v-container v-if="cimas && !cima && !loading" fluid>
         <v-layout >
             <v-flex xs12>
                 <v-toolbar>
@@ -86,12 +89,13 @@
                       </tr>
                     </template>
                   </v-data-table>
-                  <tr v-if="needCimasElimitedRow()">Cimas que fueron eliminadas o sustituidas</tr>
+                  <v-subheader v-if="!cimasmap && needCimasElimitedRow()"><p class="subheading">Cimas que fueron eliminadas o sustituidas</p></v-subheader>
                   <v-data-table
                     v-if="!cimasmap && needCimasElimitedRow()"
                     :headers="provinciaSectionHeaders"
                     :items="cimas"
                     hide-actions
+                    hide-headers
                     class="elevation-1"
                   >
 
@@ -112,7 +116,7 @@
                       </tr>
                     </template>
                   </v-data-table>
-                <ProvinceMap v-if="cimasmap" :cimas="cimas"></ProvinceMap>
+                <ProvinceMap v-if="cimasmap" :cimas="cimas" @chooseCima="showCima"></ProvinceMap>
             </v-flex>
         </v-layout>
     </v-container>
@@ -169,7 +173,8 @@
                 cima: null,
                 searchInput: "",
                 searchCimas: [],
-                searchNotFound: false,
+                searchNotFound: [],
+
 
                 provinciaSectionHeaders: [
                   { text: 'Cdg',sortable: false, },
@@ -255,7 +260,7 @@
             },
 
             searchDisplay: function(){
-                if (this.searchCimas.length === 0 && !this.searchNotFound) return "display:none;"
+                if (this.searchCimas.length === 0 && this.searchNotFound.length === 0) return "display:none;"
                 return "display:block;"
             },
 
@@ -270,10 +275,10 @@
                 axios.get(this.baseUrl + '/api/cimas/search/' + this.searchInput).then(function(response){
                     self.searchCimas = [];
                     if (response.data.length === 0) {
-                        self.searchNotFound = true;
+                        self.searchNotFound = ["Nada Encontrado"];
                         return;
                     }
-                    self.searchNotFound = false;
+                    self.searchNotFound = [];
                     var i = 0;
                     while (self.searchCimas.length <= 10 && response.data.length > i) {
                         if(response.data[i]) self.searchCimas.push(response.data[i]);
@@ -282,17 +287,17 @@
                 });
               },500),
 
-            searchSuccessful: function(){
+            /*searchSuccessful: function(){
                 var searchVal = !this.searchInput ? '' : this.searchInput;
                 if (searchVal.length >= 3 && this.searchNotFound) return 'Nada Encontrado';
                 return true;
-            },
+            },*/
         },
 
         watch: {
           searchInput: function (val) {
             if (!this.searchInput || this.searchInput.length < 3) {
-                this.searchNotFound = false;
+                this.searchNotFound = [];
                 this.searchCimas = [];
                 return;
             }

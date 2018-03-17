@@ -1,19 +1,19 @@
-<style>
-    .badge{
-        background: transparent;
-    }
-</style>
-
 <template> 
 <v-app>
   <HomePageCarousel></HomePageCarousel>
-    <v-container >
+    <v-container fluid>
         <v-layout>
-          <h1 class="headline">CERTIFICADO IBÉRICO DE MONTAÑAS ASCENDIDAS</h1>
+          <v-flex>
+            <h1 class="headline text-xs-center primary--text">
+            <span class="accent--text">C</span>ertificado 
+            <span class="accent--text">I</span>bérico de 
+            <span class="accent--text">M</span>ontañas 
+            <span class="accent--text">A</span>scendidas</h1>
+          </v-flex>
         </v-layout>
                  
         <v-layout>
-            <v-flex md3>
+            <v-flex md3 >
               <v-card v-if="discoverCimas" v-for="cima in discoverCimas" :key="cima.id">
                 <v-card-title primary-title>
                   <div>
@@ -27,6 +27,7 @@
                 </v-card-actions>
               </v-card>
             </v-flex>
+
             <v-flex md6>
               <h2>¿Qué es el C.I.M.A.?</h2>
               <p>El CIMA puede considerarse como un reto personal de carácter lúdico y no competitivo, para todos aquellos amantes del cicloturismo que deseen disfrutar ascendiendo los puertos más representativos de cada provincia española, así como Andorra y Portugal.</p>
@@ -54,12 +55,14 @@
 <script>
 
     import HomePageCarousel from './HomePageCarousel';
-    import Flag from '../components/Flag'
+
+
 
     export default {
         components: {
           'HomePageCarousel' : HomePageCarousel,
-          'Flag' : Flag,
+  
+
         },
 
         data: function() {
@@ -78,7 +81,7 @@
 
         mounted:function(){
           var self = this;
-          axios.get(self.baseUrl + '/ajax/discover').then(function(response){
+          axios.get(this.baseUrl + '/ajax/discover').then(function(response){
             self.discoverCimas = response.data;
             console.log(self.discoverCimas);
           });

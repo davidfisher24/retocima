@@ -18,7 +18,7 @@
                   :draggable="false"
                   @click="showCima(cima.id)"
                   @mouseover="openInfoWindowTemplate(cima)"
-                  @mouseout="infoWindow.open = false"
+                  @mouseout=""
                 >
 
                   
@@ -31,7 +31,9 @@
                       :opened="infoWindow.open"
                       @closeclick="infoWindow.open=false">
                       <div v-html="infoWindow.template"></div>
+
                   </gmap-info-window>
+                  <div>Hello</div>
             </gmap-cluster>
         </gmap-map>
     </div>
@@ -97,16 +99,19 @@
 
             openInfoWindowTemplate:function(item) {
                 this.infoWindow.position = {lat:parseFloat(item.longitude), lng:parseFloat(item.latitude)};
-                this.infoWindow.template = "<p><strong>" + item.codigo +"</strong>   " + item.nombre +"</p>";
+                this.infoWindow.template = "<p style='margin-bottom:0;'><strong>" + item.codigo +"</strong>   " + item.nombre +"</p>";
                 this.infoWindow.options = { pixelOffset: this.offSet};
                 this.infoWindow.open = true;
 
             },
 
-           closeInfoWindow:function(evt){
-
+            closeInfoWindow:function(evt){
               this.infoWindow.open = false;
             },
+
+            showCima:function(id){
+              this.$emit('chooseCima', id);
+            }
         },
     }
 

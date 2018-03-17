@@ -33,8 +33,6 @@ Vue.mixin({
   }
 })
 
-//Vue.component('vuedrawer',require('vue-drawer'));
-//Vue.directive('touch',require('vue-touch'));
 
 
 /**

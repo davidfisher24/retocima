@@ -1,19 +1,21 @@
 nav {
     min-height:60px !important;
-}
 
-a:not(.navbar-brand) {
-    color: $link-color !important;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    &:hover {
-        color:$cima-blue !important;
+    a:not(.navbar-brand) {
+        color: $link-color !important;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .1rem;
         text-decoration: none;
+        text-transform: uppercase;
+        &:hover {
+            color:$cima-blue !important;
+            text-decoration: none;
+        }
     }
 }
+
+
 
 
 

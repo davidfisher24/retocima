@@ -17,8 +17,6 @@
           imageSource: function(id){
               return this.baseUrl + "/img/communidads/"+this.id+".png";
           },
-          style:function(){
-          },
    
         },
     }
