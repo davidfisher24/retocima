@@ -26,19 +26,14 @@
 <script>
 
     export default {
-        props: ["logros"],
+        props: ["logros","addedCimas"],
         data: function() {
             return {
                 communidads: [],
                 cimas: [],
                 loading: true,
-                addedCimas: [],
                 dialog: false,
             };
-        },
-        
-        beforeMount: function(){
-            this.addedCimas = this.$parent.addedCimas ? this.$parent.addedCimas : [];
         },
 
         mounted: function() {

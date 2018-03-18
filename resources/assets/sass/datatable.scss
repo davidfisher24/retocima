@@ -1,3 +1,8 @@
+$border-light: #a6a6cc; 
+$border-heavy: #141419; 
+$light-blue: #d0d0ff;
+$bold-blue: #3097D1;
+
 .datatable {
 	
 	table {
@@ -5,7 +10,7 @@
 		thead {
 			border: 0.5px solid $border-light;
 			tr {
-				background-color: $white;
+				background-color: #fff;
 				th {
 					border-right: 0.5px solid $border-light;
 					border-bottom: 1px solid $border-light;

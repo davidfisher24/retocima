@@ -1,5 +1,47 @@
 <template> 
-    <div class="input-group">
+    <v-layout>
+        <v-flex md12>
+            <v-select
+                :items="communidads"
+                item-text="nombre"
+                item-value="id"
+                label="CC.AA"
+                v-model="selectedCommunidad"
+                class="input-group--focused mx5"
+                auto
+                placeholder="Communidad"
+              ></v-select>
+        </v-flex>
+        <v-flex md12>
+            <v-select
+                :loading="loadingProvinces"
+                v-if="provincias"
+                :items="provincias"
+                item-text="nombre"
+                item-value="id"
+                label="Provincia"
+                v-model="selectedProvince"
+                class="input-group--focused mx5"
+                auto
+                placeholder="Provincia"
+              ></v-select>
+        </v-flex>
+        <v-flex md12>
+            <v-select
+                :loading="loadingCimas"
+                v-if="cimas"
+                :items="cimas"
+                item-text="text"
+                item-value="id"
+                label="Cima"
+                v-model="selectedCima"
+                class="input-group--focused mx5"
+                auto
+                placeholder="Cima"
+              ></v-select>
+        </v-flex>
+    </v-layout>
+    <!--<div class="input-group">
 
         <select @change="handleChangedCommunidad($event)">
             <option value="">-- commundiad --</option>
@@ -24,21 +66,36 @@
             </option>
         </select>
 
-    </div>
+    </div>-->
 </template>
 
 <script>
     export default {
+        props: ["communidads","userLogros","disabled"],
         data: function() {
             return {
-                communidads: this.$parent.communidads,
-                userLogros: this.$parent.userLogros,
                 provincias: [],
                 cimas: [],
                 selectedCommunidad: null,
                 selectedProvince: null,
                 selectedCima: null,
+                loadingProvinces: false,
+                loadingCimas: false,
             };
+        },
+
+        watch: {
+            selectedCommunidad: function(){
+                this.handleChangedCommunidad();
+            },
+
+            selectedProvince: function(){
+                this.handleChangedProvincia();
+            },
+
+            selectedCima: function(){
+                this.$emit('chosenACima', this.selectedCima);
+            },
         },
         computed: {
 
@@ -56,6 +113,8 @@
 
         methods: {
 
+
+
             /**
              * Fills in a province list or empties other fields when changing a communidad input
              * @trigger Change Communidad Input
@@ -63,19 +122,22 @@
              * @result Triggers ajax call to get provinces or empties the other inputs
             */
 
-            handleChangedCommunidad: function(event){
-                if (!event.target.value) {
+            handleChangedCommunidad: function(){
+        
+                /*if (!event.target.value) {
                     this.cimas = [];
                     this.provincias = [];
                     this.selectedCommunidad = null;
                     return;
-                }
-                this.selectedCommunidad = event.target.value;
-                this.cimas = [];
-                var route = this.baseUrl + '/api/provincias/' + event.target.value;
+                }*/
+                //this.selectedCommunidad = event.target.value;
+                //this.cimas = [];
+                var route = this.baseUrl + '/api/provincias/' + this.selectedCommunidad;
                 var self = this;
+                this.loadingProvinces = true;
                 axios.get(route).then(function(response){
                     self.provincias = response.data;
+                    self.loadingProvinces = false;
                     if (response.data.length === 1) {
                         // Needs to auto fill the provincia before getting the cimas
                         // self.handleChangedProvincia(response.data[0].id);
@@ -90,8 +152,8 @@
              * @result Triggers ajax call to get cimas or empties the cima input
             */
 
-            handleChangedProvincia: function(event){
-                var route;
+            handleChangedProvincia: function(){
+                /*var route;
                 if (Number.isInteger(event)) {
                     this.selectedProvince = event;
                     route = 'ajax/cimas' + event;
@@ -103,9 +165,18 @@
                     }
                     this.selectedProvince = event.target.value;
                     route = this.baseUrl + '/api/cimas/' + event.target.value;
-                }
+                }*/
+                var self = this;
+                this.loadingCimas = true;
+                var route = this.baseUrl + '/api/cimas/' + this.selectedProvince;
                 axios.get(route).then(response => {
-                  this.cimas = response.data
+                  self.cimas = response.data.filter(function(cima){
+                    return self.userLogros.indexOf(cima.id) === -1
+                  }).map(function(p){
+                    p.text = p.codigo + " " + p.nombre;
+                    return p;
+                  });
+                  self.loadingCimas = false;
                 });
             },
 

@@ -1,24 +1,22 @@
 <template> 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
-                    <label for="numberInputs">
-                        Cuantas cimas quieres anadir?
-                        <input type="number" name="numberInputs" min="1" max="20" ref="selectedNumberInputs">
-                    </label>
-                    <button class="btn btn-default" @click="changeRequestedInputs">Go</button>
-                </div>
-            </div>
-            <form class="form" ref="addLogrosForm" v-on:submit.prevent>
-                <div class="form-control" v-for="n in requestedInputs">
-                    <AddCimaInput ref="addcimainput"></AddCimaInput>
-                </div>
-                
-                <button class="btn btn-default" @click="submitLogros()">Submit</button>
-            </form>
-        </div>
-    </div>
+ 
+    <v-form class="px-5"  v-model="valid" lazy-validation>
+        <v-flex md12 xs12>
+            <v-alert type="error" dismissible v-model="failure" transition="scale-transition">
+              Hay cimas sin completar
+            </v-alert>
+                <v-layout  v-for="input in inputs" :key="input">
+                  <AddCimaInput ref="addcimainput" :communidads="communidads" :userLogros="userLogros" @chosenACima="chosenACima"></AddCimaInput>
+                    <v-btn flat color="black" @click="removeInput(input)">X</v-btn>
+                </v-layout>
+
+              <v-btn @click="submitLogros">Submitir Cimas</v-btn>
+              <v-btn @click="otherCima">Anadir otra cima</v-btn>
+        </v-flex>
+
+
+    </v-form>
+
 </template>
 
 <script>
@@ -35,13 +33,26 @@
                 requestedInputs: 0,
                 userLogros: [],
                 communidads: [],
+                valid: true,
+                failure: false,
+                inputs: [Math.random()],
             };
         },
         mounted: function() {
             this.fetchUserLogros();
             this.fetchCommunidads();
         },
+
+        watch: {
+          steps (val) {
+            if (this.e1 > val) {
+              this.e1 = val
+            }
+          }
+        },
+
         methods: {
+
 
             /**
              * triggers change on the number of inputs
@@ -96,22 +107,37 @@
                         logros.push(component.selectedCima);
                     }
                 });
-
-                if (logros.length === this.requestedInputs) {
+                console.log(logros);
+                console.log(this.inputs);
+                console.log(this.inputs.length);
+                if (logros.length === this.inputs.length) {
                     axios.post(self.baseUrl + '/ajax/submitlogros', {
                         logros: logros,
                     })
                     .then(function (response) {
-                        self.$parent.addedCimas = self.$parent.addedCimas.concat(response.data);
-                        self.$parent.section = 'summary';
+                        self.$emit('addedCimas', response.data);
                     })
                     .catch(function (error) {
                         console.log(error);
+                        self.failure = true;
                     }); 
                 } else {
-                    alert("You have logros incomplete");
-                }          
-            }
+                    self.failure = true;
+                }         
+            },
+
+            otherCima: function(){
+                this.inputs.push(Math.random());
+            },
+
+            removeInput: function(key){
+                var index = this.inputs.indexOf(key);
+                this.inputs.splice(index, 1);
+            },
+
+            chosenACima: function(id){
+                this.userLogros.push(id);
+            },
         }
     }
 </script>

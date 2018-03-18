@@ -4,21 +4,23 @@
   <loadingcontainer v-if="loading"></loadingcontainer>
 
 
-    <v-form class="px-5" v-if="!loading">
+    <v-form class="px-5" v-if="!loading" v-model="valid" ref="form" lazy-validation>
      <v-alert type="success" dismissible v-model="success" transition="scale-transition">
-      Tu Cuenta ha sido actualizado con exito.
-  </v-alert>
+          Tu Cuenta ha sido actualizado con exito.
+      </v-alert>
 
-  <v-alert type="error" dismissible v-model="failure" transition="scale-transition">
-      {{errMessage}}
-  </v-alert>
+      <v-alert type="error" dismissible v-model="failure" transition="scale-transition">
+          {{errMessage}}
+      </v-alert>
       <v-text-field
         label="Nombre"
         v-model="updateCimero.nombre"
+        :rules="nameRules"
       ></v-text-field>
       <v-text-field
         label="Apellido 1"
         v-model="updateCimero.apellido1"
+        :rules="nameRules"
       ></v-text-field>
       <v-text-field
         label="Apellido 2"
@@ -27,10 +29,12 @@
       <v-text-field
         label="Usuario"
         v-model="updateCimero.username"
+        :rules="nameRules"
       ></v-text-field>
       <v-text-field
         label="Correo Electronico"
         v-model="updateCimero.email"
+        :rules="emailRules"
       ></v-text-field>
 
 
@@ -86,7 +90,15 @@
                 loaded: 0,
                 success: false,
                 failure: false,
+                valid: true,
                 errMessage: "",
+                nameRules: [
+                  v => !!v || 'Nombre es obligatorio',
+                ],
+                emailRules: [
+                  v => !!v || 'Correo electronico es obligatorio',
+                  v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail tiene que ser valido'
+                ],
             };
         },
 
@@ -169,31 +181,33 @@
             submit:function(event){
                 event.preventDefault();
                 var self = this;
-                var updateData = {
-                    apellido1: this.updateCimero.apellido1,
-                    apellido2: this.updateCimero.apellido2,
-                    nombre: this.updateCimero.nombre,
-                    username: this.updateCimero.username,
-                    email: this.updateCimero.email,
-                    provincia: this.updateCimero.provincia ? this.updateCimero.provincia.id : null,
-                    pais: this.updateCimero.pais.id,
-                    fechanacimiento: this.updateCimero.fechanacimiento,
+                if (this.$refs.form.validate()) {
+                  var updateData = {
+                      apellido1: this.updateCimero.apellido1,
+                      apellido2: this.updateCimero.apellido2,
+                      nombre: this.updateCimero.nombre,
+                      username: this.updateCimero.username,
+                      email: this.updateCimero.email,
+                      provincia: this.updateCimero.provincia ? this.updateCimero.provincia.id : null,
+                      pais: this.updateCimero.pais.id,
+                      fechanacimiento: this.updateCimero.fechanacimiento,
+                  }
+                  axios.post(this.baseUrl + '/ajax/editarcuenta',updateData).then(function(response){
+                      if (response.data.errors) {
+                          //self.showErrors(response.data.errors);
+                          var message = "";
+                          for(var key in response.data.errors) message += response.data.errors[key];
+                          self.errMessage = message;
+                          self.failure = true;
+                      } else {
+                         self.cimero = Object.assign({}, response.data);
+                         self.updateCimero = Object.assign({}, response.data);
+                         self.section = 'show'; 
+                         self.success = true;
+                      }
+                      
+                  });
                 }
-                axios.post(this.baseUrl + '/ajax/editarcuenta',updateData).then(function(response){
-                    if (response.data.errors) {
-                        //self.showErrors(response.data.errors);
-                        var message = "";
-                        for(var key in response.data.errors) message += response.data.errors[key];
-                        self.errMessage = message;
-                        self.failure = true;
-                    } else {
-                       self.cimero = Object.assign({}, response.data);
-                       self.updateCimero = Object.assign({}, response.data);
-                       self.section = 'show'; 
-                       self.success = true;
-                    }
-                    
-                });
             },
 
             /**

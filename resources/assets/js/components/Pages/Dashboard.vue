@@ -42,9 +42,9 @@
           </v-navigation-drawer>
   
         <v-flex xs12>
-            <AddCimaForm v-if="section == 'add'"></AddCimaForm>
+            <AddCimaForm v-if="section == 'add'" @addedCimas="addedCimasResponse"></AddCimaForm>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
-            <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros"></CimeroLogrosSummary>
+            <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros" :addedCimas="addedCimas"></CimeroLogrosSummary>
             <CimeroStatistics v-if="section == 'stats'" :subSection="subSectionStat"></CimeroStatistics>
             <ChangePassword v-if="section == 'password'"></ChangePassword>
         </v-flex>
@@ -100,6 +100,12 @@
                 axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
                    self.logros = response.data;
                 });
+            },
+
+            addedCimasResponse:function(newCimas){
+              console.log(newCimas);
+              this.addedCimas.concat(newCimas);
+              this.section = 'summary';
             },
         }
     }
