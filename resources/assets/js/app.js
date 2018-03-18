@@ -19,6 +19,7 @@ Vue.use(require('vue2-google-maps'), {
   }
 })
 
+import colors from 'vuetify/es5/util/colors';
 window.Vuetify = require('vuetify');
 require('vuetify/dist/vuetify.min.css');
 Vue.use(Vuetify);

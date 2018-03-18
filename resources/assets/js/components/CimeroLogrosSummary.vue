@@ -1,28 +1,32 @@
 <template> 
     <v-layout>
         <v-flex class="px-5">
-        <loadingcontainer v-if="loading"></loadingcontainer>
-        <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading" >
-            <v-expansion-panel-content>
-              <div slot="header">{{communidad.nombre}}</div>
-                <v-layout row>
-                  <v-flex sm6 xs6>
-                  <v-list v-for="(chunk,index) in chunkedLogros(communidad.id)" :key="index">
-                    <v-list-tile-content v-for="logro in chunk" :key="logro.id" class="py-1 px-1">
-                            {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                            <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
-                                <strong> NUEVO!!</strong>
-                            </span>
-                    </v-list-tile-content>
-                  </v-list>
-                  </v-flex>
-                </v-layout>
-            </v-expansion-panel-content>
-        </v-expansion-panel>
-    </v-flex>
-</v-layout>
-
-
+            <loadingcontainer v-if="loading"></loadingcontainer>
+            <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading" focusable>
+                <v-expansion-panel-content>
+                    <div slot="header" >{{communidad.nombre}}
+                        <v-badge color="black">
+                            <span slot="badge" v-html="countLogros(communidad.id)"></span>
+                        </v-badge>
+                    </div>
+                    <v-container>
+                        <v-layout row wrap>
+                            <v-flex xs12 md6 v-for="(chunk,index) in chunkedLogros(communidad.id)" :key="index">
+                                <v-list >
+                                    <v-list-tile-content v-for="logro in chunk" :key="logro.id" class="px-1 py-1" >
+                                        {{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                                            <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
+                                                <strong> NUEVO!!</strong>
+                                            </span>
+                                    </v-list-tile-content>
+                                </v-list>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+        </v-flex>
+    </v-layout>
 </template>
 
 
@@ -56,8 +60,13 @@
 
         methods: {
             chunkedLogros:function (communidadId) {
-                var result = this.logros.filter(l => l.communidad_id === communidadId)
-                return _.chunk(result,result.length/2);
+                var result = this.logros.filter(l => l.communidad_id === communidadId);
+                console.log(result);
+                return _.chunk(result,Math.ceil(result.length/2));
+           },
+
+           countLogros: function(communidadId){
+                return this.logros.filter(l => l.communidad_id === communidadId).length;
            },
 
             /**

@@ -1,9 +1,3 @@
-<style>
-    .badge{
-        background: transparent;
-    }
-</style>
-
 <template> 
 <v-app>
     <v-container v-if="!cimas && !cima && !loading" fluid>
