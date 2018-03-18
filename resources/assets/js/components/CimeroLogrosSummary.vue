@@ -5,14 +5,18 @@
         <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading" >
             <v-expansion-panel-content>
               <div slot="header">{{communidad.nombre}}</div>
-              <v-card>
-                <v-card-text v-for="logro in logros" :key="logros.id" v-if="logro.communidad_id === communidad.id">
-                        {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                        <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
-                            <strong> NUEVO!!</strong>
-                        </span>
-                </v-card-text>
-              </v-card>
+                <v-layout row>
+                  <v-flex sm6 xs6>
+                  <v-list v-for="(chunk,index) in chunkedLogros(communidad.id)" :key="index">
+                    <v-list-tile-content v-for="logro in chunk" :key="logro.id" class="py-1 px-1">
+                            {{logro.cima.codigo}} - {{logro.cima.nombre}} 
+                            <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
+                                <strong> NUEVO!!</strong>
+                            </span>
+                    </v-list-tile-content>
+                  </v-list>
+                  </v-flex>
+                </v-layout>
             </v-expansion-panel-content>
         </v-expansion-panel>
     </v-flex>
@@ -39,6 +43,10 @@
         mounted: function() {
         },
 
+        computed: {
+           
+        },
+
         watch: {
             logros: function(){
                 this.findDistinctCommunidads();
@@ -47,7 +55,10 @@
         },
 
         methods: {
-
+            chunkedLogros:function (communidadId) {
+                var result = this.logros.filter(l => l.communidad_id === communidadId)
+                return _.chunk(result,result.length/2);
+           },
 
             /**
              * Gets the unique communidads from the logros
