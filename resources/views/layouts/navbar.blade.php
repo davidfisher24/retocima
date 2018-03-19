@@ -21,7 +21,7 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav link-effect-underline">
+            <ul class="nav navbar-nav link-effect-underline primary--text">
                 <li><a href="{{ url('/listadocommunidads') }}">Listado</a></li>
                 <li><a href="{{ url('/ranking') }}">Ranking</a></li>
                 <li><a href="{{ url('/patanegra') }}">Pata Negra</a></li>

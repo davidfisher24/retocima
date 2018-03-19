@@ -7,6 +7,7 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "menus";
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_mixins";
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_forms";
@@ -14,9 +15,10 @@
 
 
 
+
 // Files
 //@import "homePageContent";
-@import "menus";
+//
 @import "datatable";
 @import "carousels";
 
@@ -27,3 +29,4 @@
 //@import "html-components";
 //@import "utilities";
 //@import "global";
+

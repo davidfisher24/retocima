@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 const config = require('./env').default;
-import collapse from './bootstrap';//require('./bootstrap').collapse;
+require('./bootstrap');
 window._ = require('lodash');
 window.axios = require('axios');
 
@@ -19,7 +19,6 @@ Vue.use(require('vue2-google-maps'), {
   }
 })
 
-import colors from 'vuetify/es5/util/colors';
 window.Vuetify = require('vuetify');
 require('vuetify/dist/vuetify.min.css');
 Vue.use(Vuetify);
@@ -33,6 +32,18 @@ Vue.mixin({
     }
   }
 })
+
+const theme = {
+  primary: '#1976D2', 
+  secondary: '#424242', 
+  tercary: '#424242',
+  accent: '#E65100',
+  error: '#FF5252', 
+  info: '#2196F3', 
+  success: '#4CAF50',
+  warning: '#FFC107', 
+  text: '#fff'
+};
 
 
 
@@ -69,6 +80,9 @@ Vue.component('homepage', require('./Home/Home.vue'));
 
 Vue.component('Flag', require('./components/Flag.vue'))
 const app = new Vue({
-    el: '#vuepage'
+    el: '#vuepage',
+    created() {
+       this.$vuetify.theme = theme
+    }
 });
 

@@ -1,52 +1,42 @@
 <template> 
 <v-app>
-  <HomePageCarousel></HomePageCarousel>
+    <HomePageCarousel></HomePageCarousel>
     <v-container fluid>
-
-                 
-        <v-layout>
-            <v-flex md3  class="text-xs-center">
-              <div v-if="discoverCimas" v-for="cima in discoverCimas" :key="cima.id" class="text-xs-center">
-                <v-card-title primary-title class="mx-3" >
-                  <div>
-                    <p class="mb-0"><Flag :id="cima.communidad_id"></Flag>{{cima.codigo}} {{cima.nombre}}</p>
-                    {{cima.communidad}} - {{cima.provincia}}<br>
-                    Acensiones: {{cima.logros_count}}
-                    <div><v-btn flat color="blue" class="ma-0 pa-0">Ver</v-btn></div>
-                  </div>
-                </v-card-title>
-              </div>
-            </v-flex>
-
-
-
-            <v-flex md6>
-              <v-layout>
-                <v-flex>
-                  <h1 class="headline text-xs-center primary--text">
-                  <span class="accent--text">C</span>ertificado 
-                  <span class="accent--text">I</span>bérico de 
-                  <span class="accent--text">M</span>ontañas 
-                  <span class="accent--text">A</span>scendidas</h1>
-                </v-flex>
-              </v-layout>
-              <h2>¿Qué es el C.I.M.A.?</h2>
-              <p>El CIMA puede considerarse como un reto personal de carácter lúdico y no competitivo, para todos aquellos amantes del cicloturismo que deseen disfrutar ascendiendo los puertos más representativos de cada provincia española, así como Andorra y Portugal.</p>
-              <p>Todas estas cumbres han sido debatidas y seleccionadas por representantes de las diferentes regiones de nuestra geografía para, tras varios años de ardua labor y discusión en el foro de www.altimetrias.com, consensuar una lista de 640 ascensiones en las que se busca no sólo dureza, también belleza e historia, dentro de las posibilidades orográficas de cada región.</p>
-              <p>Descubre, pues, los principales puertos de montaña ibéricos, y lánzate a alcanzar el máximo número de ascensiones</p>
-            </v-flex>
-            <v-flex md3 class="text-xs-center">
-              <a href="http://www.altimetrias.net/" target="blank">
-                  <img :src="image('img/APM1.png')" width="80%" height="auto">
-              </a>
-              <br>
-              <br>
-              <a href="http://www.ziklo.es/la-revista/" target="blank">
-                  <img :src="image('img/ziklo.jpg')" width="80%" height="auto">
-              </a>
-            </v-flex>
-        </v-layout>
+      <v-layout row wrap>
+        <v-flex xs12 md3 order-xs2 order-md1>
+ 
+            <v-card v-if="discoverCimas" v-for="cima in discoverCimas" :key="cima.id" class="ma-2 pa-4 primary--text text-xs-center" raised >
+                  <div class="title "><Flag :id="cima.communidad_id"></Flag>{{cima.codigo}} {{cima.nombre}}</div>
+                  <div class="mt-2 body-2">{{cima.communidad}} - {{cima.provincia}}</div>
+                  <div class="mt-1 body-2">Acensiones: {{cima.logros_count}}</div>
+                  <v-btn flat color="accent" block>Ver</v-btn>
+            </v-card>
+        </v-flex>
+        <v-flex xs12 md6 class="text-xs-center primary--text" order-xs1 order-md2>
+          <p class="headline display-2">
+          <span class="accent--text">C</span>ertificado 
+          <span class="accent--text">I</span>bérico de 
+          <span class="accent--text">M</span>ontañas 
+          <span class="accent--text">A</span>scendidas</p>
+          <p class="subheading">¿Qué es el C.I.M.A.?</p>
+          <p class="body-2">El CIMA puede considerarse como un reto personal de carácter lúdico y no competitivo, para todos aquellos amantes del cicloturismo que deseen disfrutar ascendiendo los puertos más representativos de cada provincia española, así como Andorra y Portugal.</p>
+          <p class="body-2">Todas estas cumbres han sido debatidas y seleccionadas por representantes de las diferentes regiones de nuestra geografía para, tras varios años de ardua labor y discusión en el foro de www.altimetrias.com, consensuar una lista de 640 ascensiones en las que se busca no sólo dureza, también belleza e historia, dentro de las posibilidades orográficas de cada región.</p>
+          <p class="body-2">Descubre, pues, los principales puertos de montaña ibéricos, y lánzate a alcanzar el máximo número de ascensiones</p>
+        </v-flex>
+        <v-flex xs12 md3 class="text-xs-center" order-xs3 order-md3>
+          <a href="http://www.altimetrias.net/" target="blank">
+              <img :src="image('img/APM1.png')" width="80%" height="auto" max-height="30%">
+          </a>
+          <br>
+          <br>
+          <a href="http://www.ziklo.es/la-revista/" target="blank">
+              <img :src="image('img/ziklo.jpg')" width="80%" height="auto" max-height="70%">
+          </a>
+        </v-flex>
+      </v-layout>
     </v-container>
+
+
 </v-app>
 
 
