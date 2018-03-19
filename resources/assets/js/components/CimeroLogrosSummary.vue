@@ -61,7 +61,6 @@
         methods: {
             chunkedLogros:function (communidadId) {
                 var result = this.logros.filter(l => l.communidad_id === communidadId);
-                console.log(result);
                 return _.chunk(result,Math.ceil(result.length/2));
            },
 
