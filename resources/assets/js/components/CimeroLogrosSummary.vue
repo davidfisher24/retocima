@@ -42,7 +42,8 @@
         },
 
         mounted: function() {
-            console.log(this.addedCimas);
+            this.findDistinctCommunidads();
+            this.loading = false;
         },
 
         computed: {
@@ -51,8 +52,7 @@
 
         watch: {
             logros: function(){
-                this.findDistinctCommunidads();
-                this.loading = false;
+                
             },  
         },
 

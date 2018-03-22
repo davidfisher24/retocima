@@ -22,7 +22,7 @@
                 </div>
             </div>
             <!-- Provinces complete -->
-            <div class="panel panel-success">
+            <div class="panel panel-success" v-if="completions">
                 <div class="panel-heading">
                     <p class="panel-title">Provincias Completadas</p>
                 </div>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-            <CimeroLogrosSummary :logros="logros"></CimeroLogrosSummary>
+            <CimeroLogrosSummary v-if="logros" :logros="logros" :addedCimas="[]"></CimeroLogrosSummary>
         </div>
     </div>
 
@@ -79,7 +79,6 @@
                 var self = this;
                 axios.get(this.baseUrl + '/api/cimero/profile/'+this.id).then(function(response){
                    self.profile = response.data;
-                   console.log(self.profile);
                 });
             },
       
@@ -95,7 +94,6 @@
                 var self = this;
                 axios.get(this.baseUrl + '/api/cimero/completions/'+this.id).then(function(response){
                    self.completions = response.data;
-                   console.log(self.completions);
                 });
             },
       

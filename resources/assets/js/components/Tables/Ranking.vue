@@ -1,28 +1,43 @@
 
 <template>
-<v-container>
-    <v-layout>
-        <v-flex>
-            <BaseTable 
-                :data="data"
-                :columns="columns"
-                :filterOptions="{Provincia:'provinciaName'}"
-                :searchOptions="{Nombre:'fullName'}"
-            ></BaseTable>
-        </v-flex>
-    </v-layout>
-</v-container>
+<v-app>
+    <v-container>
+        <v-layout>
+            <v-dialog v-model="modal" fullscreen>
+              <v-card>
+                <CimeroDetail :id="modalId" v-if="modal"></CimeroDetail>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="primary" flat="flat" @click.native="modal = false">Cerrar</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+
+            <v-flex>
+                <BaseTable 
+                    :data="data"
+                    :columns="columns"
+                    :filterOptions="{Provincia:'provinciaName'}"
+                    :searchOptions="{Nombre:'fullName'}"
+                    @openCimero="openCimero"
+                ></BaseTable>
+            </v-flex>
+        </v-layout>
+    </v-container>
+</v-app>
 </div>
 </template>
 
 <script>
 
     import BaseTable from './BaseTable.vue';
+    import CimeroDetail from '../CimeroDetail';
 
     export default {
 
         components: {
             'BaseTable': BaseTable,
+            'CimeroDetail' : CimeroDetail,
         },
 
         mounted: function() {
@@ -35,10 +50,12 @@
                 columns: [
                     { field: 'rank', title: 'Posicion' },
                     { field: 'image', title: 'Medalla', type: 'image' },
-                    { field: 'fullName', title: 'Nombre', type:'link', url: 'link', sortable: true },
+                    { field: 'fullName', title: 'Nombre', type:'link', url: 'link', sortable: true, event: "openCimero", eventId: "id" },
                     { field: 'provinciaName', title: 'Provincia', sortable: true },
                     { field: 'logros_count', title: 'Logros', sortable: true },
                 ],
+                modalId: 0,
+                modal: false,
             };
         },
 
@@ -59,6 +76,11 @@
                     self.data = response.data;
                 });
             },
+
+            openCimero:function(id){
+                this.modalId = id;
+                this.modal = true;
+            }
 
         }
     }

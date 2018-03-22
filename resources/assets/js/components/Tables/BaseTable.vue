@@ -41,9 +41,12 @@
                                 <tr v-show="count === 0"><td :colspan="columns.length" class="text-center">Nada Encontrado</td></tr>
                                 <tr v-for="(row, index) in filteredData" v-if="index >= pagination * (page - 1) && index < pagination * page">
                                     <td v-for="column in columns">
-                                        <a v-if="(column.type == 'link')" :href="row[column.url]" target="_BLANK">
+                                        <!--<a v-if="(column.type == 'link')" :href="row[column.url]" target="_BLANK">
                                             {{row[column.field]}}
-                                        </a>
+                                        </a>-->
+                                        <p v-if="(column.type == 'link')" @click="emitEvent(column.event,row[column.eventId])">
+                                            {{row[column.field]}} <!--emitEvent(column.event,row[column.eventId])-->
+                                        </p>
                                         <img v-else-if="column.type == 'image' && row[column.field]" :src="row[column.field]">
                                         <p v-else-if="column.type == 'image' && !row[column.field]"></p>
                                         <p v-else :class="{ number: isNumber(row[column.field]), string: isString(row[column.field])}">
@@ -449,7 +452,17 @@
             isString:function(value) {
                 if (typeof(value) === 'string') return true;
                 return false;
-            }
+            },
+
+            /**
+             * Emits a link event
+             * @param string eventName
+             * @param eventData
+            */
+
+            emitEvent:function(eventName,eventData){
+                this.$emit(eventName, eventData);
+            },
 
         }
     }
