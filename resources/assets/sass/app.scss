@@ -7,12 +7,11 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_mixins";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_forms";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_navbar";
 @import "menus";
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_mixins";
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_forms";
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_navbar";
-
 
 
 

@@ -1,8 +1,8 @@
 <template> 
 <v-app>
     <v-container v-if="!cimas && !cima && !loading" fluid>
-        <v-layout>
-            <v-flex xs12>
+        <v-layout row wrap>
+            <v-flex xs12 class="mx-3">
                 <v-text-field
                   label="Buscar"
                   v-model="searchInput"
@@ -21,13 +21,13 @@
         </v-layout>
 
         <v-layout v-if="searchCimas.length < 1" row wrap>
-            <v-flex v-for="(chunk,index) in chunkedCommunidads" :key="index"   class="py-0 mx-3 my-1" >
-                <v-expansion-panel v-for="(communidad,index) in chunk" :key="index" md6 sm12 xs12>
-                    <v-expansion-panel-content >
+          <v-flex md6 xs12 sm12  v-for="(chunk,index) in chunkedCommunidads" :key="index" class="px-3">
+            <v-expansion-panel>
+                    <v-expansion-panel-content v-for="(communidad,index) in chunk" :key="communidad.id" >
                       <div slot="header">
                            <Flag :id="communidad.id"></Flag>
                             {{communidad.nombre}}
-                            <v-badge color="grey">
+                            <v-badge top>
                               <span slot="badge">{{communidad.cimas_count}}</span>
                             </v-badge>
                       </div>
@@ -39,13 +39,13 @@
                       </v-list>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
-            </v-flex>
+          </v-flex>
         </v-layout>
     </v-container>
 
     <v-container v-if="cimas && !cima && !loading" fluid>
-        <v-layout >
-            <v-flex xs12>
+        <v-layout row wrap>
+            <v-flex xs12 class="mx-3">
                 <v-toolbar>
                 <v-toolbar-title>
                     <Flag :id="cimas[0].communidad_id"></Flag>
@@ -116,17 +116,17 @@
     </v-container>
 
     <v-container v-if="cima && !loading" fluid>
-        <v-layout >
-            <v-flex xs12>
-                <v-toolbar>
-                <v-toolbar-title>{{cima.codigo}} {{cima.nombre}}</v-toolbar-title>
+        <v-layout row wrap>
+            <v-flex xs12 class="mx-3">
+                <v-toolbar color="primary">
+                <v-toolbar-title class="white--text">{{cima.codigo}} {{cima.nombre}}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-toolbar-items>
-                  <v-btn flat color="info" @click="cima = null">Atras</v-btn>
-                  <v-btn flat color="info" v-if="cimas" @click="previousCima()">Anterior</v-btn>
-                  <v-btn flat color="info" v-if="cimas" @click="nextCima()">Siguiente</v-btn>
+                  <v-btn flat color="white" @click="cima = null">Atras</v-btn>
+                  <v-btn flat color="white" v-if="cimas" @click="previousCima()">Anterior</v-btn>
+                  <v-btn flat color="white" v-if="cimas" @click="nextCima()">Siguiente</v-btn>
                 </v-toolbar-items>
-              </v-toolbar>
+              </v-toolbar color="secondary">
               <v-system-bar status color="primary" dark>
                 <span>{{cima.provincia}} / {{cima.communidad}}</span>
               </v-system-bar>

@@ -1,11 +1,15 @@
 
 <template>
-<div id="ranking">
-    <BaseTable 
-        :data="data"
-        :columns="columns"
-    ></BaseTable>
-</div>
+<v-container>
+    <v-layout>
+        <v-flex>
+            <BaseTable 
+                :data="data"
+                :columns="columns"
+            ></BaseTable>
+        </v-flex>
+    </v-layout>
+</v-container>
 </template>
 
 <script>

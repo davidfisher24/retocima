@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" style="z-index: 200;margin-bottom:0;">
+<nav class="navbar navbar-static-top" style="z-index: 200;margin-bottom:0;">
     <div class="container">
         <div class="navbar-header">
 
@@ -60,4 +60,5 @@
             </ul>
         </div>
     </div>
+
 </nav>

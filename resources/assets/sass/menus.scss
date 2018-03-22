@@ -1,24 +1,31 @@
+
 nav {
     min-height:60px !important;
 
+    ul {
+        list-style:none;
+    }
+
     a:not(.navbar-brand) {
-        color: cyan !important;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: .1rem;
         text-decoration: none;
-        text-transform: uppercase;
         &:hover {
-            color:blue !important;
             text-decoration: none;
         }
 
         
     }
 
-    h1{
+    h1, li, a{
         margin:0;
-        margin-top:5px
+        margin-top:5px;
+        color: #1976D2;
+    }
+
+    button.navbar-toggle {
+        border-color: #1976D2;
+    }
+    span.icon-bar {
+        background-color: #1976D2;
     }
 }
 
@@ -26,7 +33,6 @@ nav {
 
 nav.link-effect-underline a, ul.link-effect-underline a, .links.link-effect-underline a {
     transition: 0.6s;
-    color: white;
     text-decoration: none;
     padding: 30px 8px 0 10px;
     margin: 0 10px;
@@ -39,7 +45,7 @@ nav.link-effect-underline a, ul.link-effect-underline a, .links.link-effect-unde
         height: 2px;
         bottom: -2px;
         left: 0;
-        background-color: blue;
+        background-color: #E65100;
         visibility: hidden;
         -webkit-transform: scaleX(0);
         transform: scaleX(0);

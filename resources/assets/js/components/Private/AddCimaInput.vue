@@ -1,5 +1,6 @@
 <template> 
-    <v-layout>
+<v-container>
+    <v-layout row wrap>
         <v-flex md12>
             <v-select
                 :items="communidads"
@@ -12,6 +13,8 @@
                 placeholder="Communidad"
               ></v-select>
         </v-flex>
+    </v-layout>
+    <v-layout row wrap>
         <v-flex md12>
             <v-select
                 :loading="loadingProvinces"
@@ -26,6 +29,8 @@
                 placeholder="Provincia"
               ></v-select>
         </v-flex>
+    </v-layout>
+    <v-layout row wrap>
         <v-flex md12>
             <v-select
                 :loading="loadingCimas"
@@ -41,6 +46,7 @@
               ></v-select>
         </v-flex>
     </v-layout>
+</v-container>
     <!--<div class="input-group">
 
         <select @change="handleChangedCommunidad($event)">

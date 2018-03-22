@@ -3,7 +3,7 @@
         <v-flex class="px-5">
             <loadingcontainer v-if="loading"></loadingcontainer>
             <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading" focusable>
-                <v-expansion-panel-content>
+                <v-expansion-panel-content >
                     <div slot="header" >{{communidad.nombre}}
                         <v-badge color="black">
                             <span slot="badge" v-html="countLogros(communidad.id)"></span>
@@ -14,10 +14,7 @@
                             <v-flex xs12 md6 v-for="(chunk,index) in chunkedLogros(communidad.id)" :key="index">
                                 <v-list >
                                     <v-list-tile-content v-for="logro in chunk" :key="logro.id" class="px-1 py-1" >
-                                        {{logro.cima.codigo}} - {{logro.cima.nombre}} 
-                                            <span v-if="addedCimas.indexOf(logro.cima.id) !== -1">
-                                                <strong> NUEVO!!</strong>
-                                            </span>
+                                        {{logro.cima.codigo}} - {{logro.cima.nombre}} <strong v-if="addedCimas.indexOf(logro.cima.id) !== -1"> NUEVO!!</strong>
                                     </v-list-tile-content>
                                 </v-list>
                             </v-flex>
@@ -45,6 +42,7 @@
         },
 
         mounted: function() {
+            console.log(this.addedCimas);
         },
 
         computed: {

@@ -1,7 +1,8 @@
 <template>
 <v-app>
-    <v-container fluid>
-      <v-layout row>
+    <v-container fluid grid-list-xs>
+      <v-layout row wrap>
+        <v-flex xs3>
   
         <v-navigation-drawer permanent>
             <v-list dense class="pt-0">
@@ -40,8 +41,8 @@
 
             </v-list>
           </v-navigation-drawer>
-  
-        <v-flex xs12>
+        </v-flex>
+        <v-flex xs9>
             <AddCimaForm v-if="section == 'add'" @addedCimas="addedCimasResponse"></AddCimaForm>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
             <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros" :addedCimas="addedCimas"></CimeroLogrosSummary>
@@ -104,7 +105,8 @@
 
             addedCimasResponse:function(newCimas){
               console.log(newCimas);
-              this.addedCimas.concat(newCimas);
+              this.addedCimas = this.addedCimas.concat(newCimas);
+              console.log(this.addedCimas);
               this.section = 'summary';
             },
         }

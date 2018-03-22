@@ -1,5 +1,5 @@
 <template>   
-<v-layout>
+<v-layout class="text-xs-center">
   <v-flex>
   <loadingcontainer v-if="loading"></loadingcontainer>
 
@@ -20,7 +20,7 @@
       <v-text-field
         label="Apellido 1"
         v-model="updateCimero.apellido1"
-        :rules="nameRules"
+        :rules="apellido2Rules"
       ></v-text-field>
       <v-text-field
         label="Apellido 2"
@@ -29,7 +29,7 @@
       <v-text-field
         label="Usuario"
         v-model="updateCimero.username"
-        :rules="nameRules"
+        :rules="usernameRules"
       ></v-text-field>
       <v-text-field
         label="Correo Electronico"
@@ -62,7 +62,7 @@
         autocomplete
       ></v-select>
 
-      <input type="date" name="fechanacimiento" v-model="updateCimero.fechanacimiento" class="form-control"><span class="error"></span>
+      <v-text-field type="date" name="fechanacimiento" v-model="updateCimero.fechanacimiento"></v-text-field>
     
 
     <v-btn
@@ -94,6 +94,12 @@
                 errMessage: "",
                 nameRules: [
                   v => !!v || 'Nombre es obligatorio',
+                ],
+                apellido1Rules: [
+                  v => !!v || 'Apellido 1 es obligatorio',
+                ],
+                usernameRules: [
+                  v => !!v || 'Usuario es obligatorio',
                 ],
                 emailRules: [
                   v => !!v || 'Correo electronico es obligatorio',

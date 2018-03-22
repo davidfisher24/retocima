@@ -1,12 +1,17 @@
 
 <template>
-<div id="ranking">
-    <BaseTable 
-        :data="data"
-        :columns="columns"
-        :filterOptions="{Provincia:'provinciaName'}"
-        :searchOptions="{Nombre:'fullName'}"
-    ></BaseTable>
+<v-container>
+    <v-layout>
+        <v-flex>
+            <BaseTable 
+                :data="data"
+                :columns="columns"
+                :filterOptions="{Provincia:'provinciaName'}"
+                :searchOptions="{Nombre:'fullName'}"
+            ></BaseTable>
+        </v-flex>
+    </v-layout>
+</v-container>
 </div>
 </template>
 

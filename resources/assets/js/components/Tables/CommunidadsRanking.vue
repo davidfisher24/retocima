@@ -1,10 +1,15 @@
 
 <template>
-<div id="communidadsranking">
-    <BaseTable 
-        :data="data"
-        :columns="columns"
-    ></BaseTable>
+<v-container>
+    <v-layout>
+        <v-flex>
+            <BaseTable 
+                :data="data"
+                :columns="columns"
+            ></BaseTable>
+        </v-flex>
+    </v-layout>
+</v-container>
 </div>
 </template>
 

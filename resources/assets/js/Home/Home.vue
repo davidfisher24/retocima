@@ -4,7 +4,6 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex xs12 md3 order-xs2 order-md1>
- 
             <v-card v-if="discoverCimas" v-for="cima in discoverCimas" :key="cima.id" class="ma-2 pa-4 primary--text text-xs-center" raised >
                   <div class="title "><Flag :id="cima.communidad_id"></Flag>{{cima.codigo}} {{cima.nombre}}</div>
                   <div class="mt-2 body-2">{{cima.communidad}} - {{cima.provincia}}</div>
@@ -35,8 +34,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-
-
 </v-app>
 
 

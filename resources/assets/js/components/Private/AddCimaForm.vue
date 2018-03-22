@@ -1,5 +1,4 @@
 <template> 
- 
     <v-form class="px-5"  v-model="valid" lazy-validation>
         <v-flex md12 xs12>
             <v-alert type="error" dismissible v-model="failure" transition="scale-transition">
@@ -13,8 +12,6 @@
               <v-btn @click="submitLogros">Submitir Cimas</v-btn>
               <v-btn @click="otherCima">Anadir otra cima</v-btn>
         </v-flex>
-
-
     </v-form>
 
 </template>
@@ -36,23 +33,17 @@
                 valid: true,
                 failure: false,
                 inputs: [Math.random()],
+                e1: 1,
+                steps: 2,
             };
         },
+
         mounted: function() {
             this.fetchUserLogros();
             this.fetchCommunidads();
         },
 
-        watch: {
-          steps (val) {
-            if (this.e1 > val) {
-              this.e1 = val
-            }
-          }
-        },
-
         methods: {
-
 
             /**
              * triggers change on the number of inputs
@@ -107,9 +98,7 @@
                         logros.push(component.selectedCima);
                     }
                 });
-                console.log(logros);
-                console.log(this.inputs);
-                console.log(this.inputs.length);
+
                 if (logros.length === this.inputs.length) {
                     axios.post(self.baseUrl + '/ajax/submitlogros', {
                         logros: logros,

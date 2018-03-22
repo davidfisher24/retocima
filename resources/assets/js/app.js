@@ -5,10 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 const config = require('./env').default;
-require('./bootstrap');
 window._ = require('lodash');
 window.axios = require('axios');
-
+require('./bootstrap');
 
 window.Vue = require('vue');
 window.HighCharts = require('highcharts');
@@ -76,7 +75,6 @@ Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
 
 Vue.component('cimaselectionlist', require('./Listado/CimaSelectionList.vue'));
 Vue.component('homepage', require('./Home/Home.vue'));
-
 
 Vue.component('Flag', require('./components/Flag.vue'))
 const app = new Vue({

@@ -17,9 +17,9 @@
         :key="i"
       >
         <CimaQuickAdd :cima="cima"></CimaQuickAdd>
-            <v-layout>
+            <v-layout wrap>
                 <v-flex md4 xs12>
-                    <v-card raised class="ma-2">
+                    <v-card raised class="pa-2">
                         <v-layout>
                             <v-flex md6><p><strong>Altitud:</strong></p></v-flex>
                             <v-flex md6><p>{{cima.vertientes[i].altitud}}</p></v-flex>
@@ -56,10 +56,10 @@
                     </v-card>
                 </v-flex>
                 <v-flex md8 xs12>
-                    <PathMap :id="cima.vertientes[i].id"></PathMap>
+                    <PathMap :id="cima.vertientes[i].id" class="pa-2"></PathMap>
                 </v-flex>
             </v-layout>
-            <v-card raised class="ma-2">
+            <v-card raised class="pa-2">
                 <v-layout>
                     <v-flex md12><p><strong>Inicio: </strong>{{cima.vertientes[i].inicio}}</p></v-flex>
                 </v-layout>
@@ -73,7 +73,6 @@
                     <v-flex md12><p><strong>Observaciones: </strong>{{cima.vertientes[i].observaciones}}</p></v-flex>
                 </v-layout>
             </v-card>
-     
       </v-tab-item>
     </v-tabs>
 </template>
