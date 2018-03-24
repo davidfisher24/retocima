@@ -1,9 +1,9 @@
 <style>
-    .expansion-panel__container {
+    /*.expansion-panel__container {
         background-color: #dff0d8 !important;
         color:#3c763d !important;
         border-color:#d6e9c6 !important;
-    }
+    }*/
 </style>
 
 <template> 
@@ -22,7 +22,7 @@
                             <v-flex xs12 md6 v-for="(chunk,index) in chunkedLogros(communidad.id)" :key="index">
                                 <v-list >
                                     <v-list-tile-content v-for="logro in chunk" :key="logro.id" class="px-1 py-1" >
-                                        {{logro.cima.codigo}} - {{logro.cima.nombre}} <strong v-if="addedCimas.indexOf(logro.cima.id) !== -1"> NUEVO!!</strong>
+                                        {{logro.cima.codigo}} - {{logro.cima.nombre}}
                                     </v-list-tile-content>
                                 </v-list>
                             </v-flex>
@@ -39,19 +39,24 @@
 <script>
 
     export default {
-        props: ["logros","addedCimas"],
+        //props: ["logros","addedCimas"],
         data: function() {
             return {
                 communidads: [],
                 cimas: [],
                 loading: true,
                 dialog: false,
+                logros: null,
             };
         },
 
         mounted: function() {
-            if(this.logros) this.findDistinctCommunidads();
-            this.loading = false;
+            var self = this;
+            axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
+               self.logros = response.data;
+               self.findDistinctCommunidads();
+               self.loading = false;
+            });
         },
 
         computed: {

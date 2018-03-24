@@ -46,7 +46,7 @@
         <v-flex xs9>
             <AddCimaList v-if="section == 'add'"></AddCimaList>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
-            <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros" :addedCimas="addedCimas"></CimeroLogrosSummary>
+            <CimeroLogrosSummary v-if="section == 'summary'"></CimeroLogrosSummary>
             <CimeroStatistics v-if="section == 'stats'" :subSection="subSectionStat"></CimeroStatistics>
             <ChangePassword v-if="section == 'password'"></ChangePassword>
         </v-flex>
@@ -80,15 +80,7 @@
             return {
                 section: '',
                 subSectionStat: 'bar',
-                addedCimas: [],
-                logros: null,
             };
-        },
-
-        watch: {
-            section: function(newVal,oldVal) {
-                if (this.section === 'summary') this.loadSummary();
-            },
         },
 
         methods: {
@@ -97,17 +89,6 @@
                 this.subSectionStat = type;
             },
 
-            loadSummary: function(){
-                var self = this;
-                axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
-                   self.logros = response.data;
-                });
-            },
-
-            addedCimasResponse:function(newCimas){
-              this.addedCimas = this.addedCimas.concat(newCimas);
-              this.section = 'summary';
-            },
         }
     }
 </script>

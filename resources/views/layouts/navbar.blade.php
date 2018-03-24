@@ -1,4 +1,4 @@
-<nav class="navbar navbar-static-top" style="z-index: 200;margin-bottom:0;">
+<nav class="navbar navbar-static-top">
     <div>
         <div class="navbar-header">
 

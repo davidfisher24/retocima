@@ -34,7 +34,7 @@ Vue.mixin({
 
 const theme = {
   primary: '#1976D2', 
-  secondary: '#424242', 
+  secondary: '#75D8E9', 
   tercary: '#424242',
   accent: '#E65100',
   error: '#FF5252', 

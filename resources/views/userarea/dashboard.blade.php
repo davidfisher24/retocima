@@ -2,6 +2,6 @@
 
 @section('content')
 <div id="vuepage">
-    <dashboard></dashboard>
+    <dashboard :cimero="{{$cimero}}"></dashboard>
 </div>
 @endsection

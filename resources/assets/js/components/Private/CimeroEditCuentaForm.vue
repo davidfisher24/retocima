@@ -20,7 +20,7 @@
       <v-text-field
         label="Apellido 1"
         v-model="updateCimero.apellido1"
-        :rules="apellido2Rules"
+        :rules="apellido1Rules"
       ></v-text-field>
       <v-text-field
         label="Apellido 2"
@@ -109,52 +109,24 @@
         },
 
         mounted: function (){
-            this.getCimero();
-            this.getProvinces();
-            this.getCountries();
-        },
-
-        watch: {
-            loaded: function(update,old){
-                if (update === 3) {
-                   this.findSpain();
-                   this.checkSpain();
-                   this.loading = false;
-                }
-            },
+            var self = this;
+            Promise.all([
+              axios.get(this.baseUrl + '/ajax/cimero'),
+              axios.get(this.baseUrl + '/api/provincias'),
+              axios.get(this.baseUrl + '/api/paises')
+            ]).then(function(response){
+              self.cimero = response[0].data;
+              self.updateCimero = response[0].data;
+              self.provinces = response[1].data;
+              self.countries = response[2].data;
+              self.findSpain();
+              self.checkSpain();
+              self.loading = false;
+            })
         },
 
         methods: {
 
-            getCimero: function(){
-                var self = this;
-                axios.get(this.baseUrl + '/ajax/cimero').then(function(response){
-                   self.cimero = response.data;
-                   self.updateCimero = self.cimero;
-                   self.loaded++;
-                });
-            },
-
-            getProvinces: function(){
-                var self = this;
-                axios.get(this.baseUrl + '/api/provincias').then(function(response){
-                   self.provinces = response.data;
-                   self.loaded++;
-                });
-            },
-
-            getCountries: function(){
-                var self = this;
-                axios.get(this.baseUrl + '/api/paises').then(function(response){
-                   self.countries = response.data;
-                   self.loaded++;
-                });
-            },
-
-            /**
-             * Find the id of spain in the countries list for tracking
-             * @result stores a reference for the Spain ID
-            */
 
             findSpain:function(){
                 var self = this;
@@ -162,11 +134,6 @@
                     if(country.nombre === "España") self.spainId = country.id; 
                 })
             },
-
-            /**
-             * Checks if the current users province is set as Spain
-             * @result stores true or false for Spain. Sets a default province for isSpain and null province
-            */
 
             checkSpain:function(){
                 var self = this;
@@ -216,18 +183,6 @@
                 }
             },
 
-            /**
-             * Cancels changes and returns the show page
-            */
-
-            /*cancel:function(){
-                this.updateCimero = Object.assign({}, this.cimero);
-                this.section = 'show';
-            },*/
-
-            /**
-             * Resets all changes
-            */
 
             reset:function(){
                 this.updateCimero = Object.assign({}, this.cimero);
