@@ -79,6 +79,14 @@ class CimeroCuentaController extends Controller
     }
 
     /*
+     * Cimeros logros (API)
+     */
+
+    public function provinciaLogrosAction($provinciaId){
+        return Logro::with('provincia','communidad','cima')->where('cimero_id',Auth::id())->where('provincia_id',$provinciaId)->where('cima_estado',1)->get()->toJson();
+    }
+
+    /*
      * Statistics (API via service)
      */
 

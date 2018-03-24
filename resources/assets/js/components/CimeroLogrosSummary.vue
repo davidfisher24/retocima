@@ -1,11 +1,19 @@
+<style>
+    .expansion-panel__container {
+        background-color: #dff0d8 !important;
+        color:#3c763d !important;
+        border-color:#d6e9c6 !important;
+    }
+</style>
+
 <template> 
     <v-layout>
-        <v-flex class="px-5">
+        <v-flex class="px-3">
             <loadingcontainer v-if="loading"></loadingcontainer>
             <v-expansion-panel v-for="communidad in communidads" :key="communidad.id" v-if="!loading" focusable>
                 <v-expansion-panel-content >
                     <div slot="header" >{{communidad.nombre}}
-                        <v-badge color="black">
+                        <v-badge color="primary">
                             <span slot="badge" v-html="countLogros(communidad.id)"></span>
                         </v-badge>
                     </div>
@@ -42,7 +50,7 @@
         },
 
         mounted: function() {
-            this.findDistinctCommunidads();
+            if(this.logros) this.findDistinctCommunidads();
             this.loading = false;
         },
 
@@ -52,7 +60,7 @@
 
         watch: {
             logros: function(){
-                
+                this.findDistinctCommunidads();
             },  
         },
 

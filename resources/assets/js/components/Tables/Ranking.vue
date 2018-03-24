@@ -3,7 +3,7 @@
 <v-app>
     <v-container>
         <v-layout>
-            <v-dialog v-model="modal" fullscreen>
+            <!--<v-dialog v-model="modal" fullscreen>
               <v-card>
                 <CimeroDetail :id="modalId" v-if="modal"></CimeroDetail>
                 <v-card-actions>
@@ -11,7 +11,7 @@
                   <v-btn color="primary" flat="flat" @click.native="modal = false">Cerrar</v-btn>
                 </v-card-actions>
               </v-card>
-            </v-dialog>
+            </v-dialog>-->
 
             <v-flex>
                 <BaseTable 
@@ -54,8 +54,8 @@
                     { field: 'provinciaName', title: 'Provincia', sortable: true },
                     { field: 'logros_count', title: 'Logros', sortable: true },
                 ],
-                modalId: 0,
-                modal: false,
+                //modalId: 0,
+                //modal: false,
             };
         },
 
@@ -77,10 +77,10 @@
                 });
             },
 
-            openCimero:function(id){
+            /*openCimero:function(id){
                 this.modalId = id;
                 this.modal = true;
-            }
+            }*/
 
         }
     }

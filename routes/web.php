@@ -42,6 +42,7 @@ Route::prefix('ajax')->group(function () {
     Route::get('cimero', 'CimeroCuentaController@fullAccountAction');
     Route::get('userlogros', 'CimeroCuentaController@logrosArrayAction');
     Route::get('userfulllogros', 'CimeroCuentaController@allLogrosAction');
+    Route::get('userprovincialogros/{provinciaId}', 'CimeroCuentaController@provinciaLogrosAction');
     Route::post('editarcuenta', 'CimeroCuentaController@editarCuenta');
     Route::post('submitlogros', 'CimeroCuentaController@submitNewLogros');
     Route::post('update-logro', 'CimeroCuentaController@updateLogro');

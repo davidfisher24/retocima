@@ -15,8 +15,12 @@
                 <v-list-tile-content><v-list-tile-title>RESUMEN LOGROS</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
+              <v-list-tile @click="section = 'form'">
+                <v-list-tile-content><v-list-tile-title>ANADIR CIMA (FORM)</v-list-tile-title></v-list-tile-content>
+              </v-list-tile>
+
               <v-list-tile @click="section = 'add'">
-                <v-list-tile-content><v-list-tile-title>ANADIR CIMA</v-list-tile-title></v-list-tile-content>
+                <v-list-tile-content><v-list-tile-title>ANADIR CIMA (LIST)</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
               <v-list-tile @click="section = 'password'">
@@ -43,7 +47,8 @@
           </v-navigation-drawer>
         </v-flex>
         <v-flex xs9>
-            <AddCimaForm v-if="section == 'add'" @addedCimas="addedCimasResponse"></AddCimaForm>
+            <AddCimaForm v-if="section == 'form'" @addedCimas="addedCimasResponse"></AddCimaForm>
+            <AddCimaList v-if="section == 'add'"></AddCimaList>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
             <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros" :addedCimas="addedCimas"></CimeroLogrosSummary>
             <CimeroStatistics v-if="section == 'stats'" :subSection="subSectionStat"></CimeroStatistics>
@@ -60,6 +65,7 @@
 <script>
 
     import AddCimaForm from '../Private/AddCimaForm';
+    import AddCimaList from '../Private/AddCimaList';
     import CimeroEditCuentaForm from '../Private/CimeroEditCuentaForm';
     import CimeroLogrosSummary from '../CimeroLogrosSummary';
     import CimeroStatistics from '../Private/CimeroStatistics';
@@ -73,6 +79,7 @@
             'CimeroLogrosSummary' : CimeroLogrosSummary,
             'CimeroStatistics' : CimeroStatistics,
             'ChangePassword' : ChangePassword,
+            'AddCimaList' : AddCimaList,
         },  
 
         data: function() {

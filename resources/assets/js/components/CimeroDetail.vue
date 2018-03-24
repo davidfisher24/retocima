@@ -1,42 +1,43 @@
 <template> 
-    <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-            <!-- Personal details -->
-            <div class="panel panel-default" v-if="profile">
-                <div class="panel-heading text-center">
-                    <span>Cimero No. {{profile.id}}</span>
-                    <div class="panel-title ">
-                        <strong>{{profile.nombre}} {{profile.apellido1}} {{profile.apellido2}}</strong> 
-                        {{profile.provincia.nombre}} - {{profile.pais.nombre}}
+<v-app>
+    <v-container fluid>   
+        <v-layout wrap>
+            <v-flex md3 xs12>
+                <div class="panel panel-default" v-if="profile">
+                    <div class="panel-heading text-center">
+                        <span>Cimero No. {{profile.id}}</span>
+                        <div class="panel-title ">
+                            <strong>{{profile.nombre}} {{profile.apellido1}} {{profile.apellido2}}</strong> 
+                            {{profile.provincia.nombre}} - {{profile.pais.nombre}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-success" v-if="completions">
+                    <div class="panel-heading">
+                        <p class="panel-title">CCAA Completadas</p>
+                    </div>
+                    <div class="panel-body">
+                        <p v-if="completions.communidads.length === 0">Ninguno todavia</p>
+                        <p v-for="comm in completions.communidads">{{comm.nombre}}</p>
+                    </div>
+                </div>
+                <div class="panel panel-success" v-if="completions">
+                    <div class="panel-heading">
+                        <p class="panel-title">Provincias Completadas</p>
+                    </div>
+                    <div class="panel-body">
+                        <p v-if="completions.communidads.length === 0 && completions.provincias.length === 0">Ninguno todavia</p>
+                        <p v-for="prov in completions.provincias">{{prov.nombre}}</p>
                     </div>
                 </div>
             </div>
-            <!-- Communidads complete -->
-            <div class="panel panel-success" v-if="completions">
-                <div class="panel-heading">
-                    <p class="panel-title">CCAA Completadas</p>
-                </div>
-                <div class="panel-body">
-                    <p v-if="completions.communidads.length === 0">Ninguno todavia</p>
-                    <p v-for="comm in completions.communidads">{{comm.nombre}}</p>
-                </div>
-            </div>
-            <!-- Provinces complete -->
-            <div class="panel panel-success" v-if="completions">
-                <div class="panel-heading">
-                    <p class="panel-title">Provincias Completadas</p>
-                </div>
-                <div class="panel-body">
-                    <p v-if="completions.communidads.length === 0 && completions.provincias.length === 0">Ninguno todavia</p>
-                    <p v-for="prov in completions.provincias">{{prov.nombre}}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-            <CimeroLogrosSummary v-if="logros" :logros="logros" :addedCimas="[]"></CimeroLogrosSummary>
-        </div>
-    </div>
+            </v-flex>
+            <v-flex md9 xs12>
+                <CimeroLogrosSummary v-if="logros" :logros="logros" :addedCimas="[]"></CimeroLogrosSummary>
+            </v-flex>
+        </v-layout>
+    </v-container>
+</v-app>
 
 </template>
 
