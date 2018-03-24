@@ -83,11 +83,11 @@
 
 
 <script>
-import CimerosRanking from '../Tables/CimerosRanking'
-import CimasRanking from '../Tables/CimasRanking'
-import ProvinciasRanking from '../Tables/ProvinciasRanking'
-import CommunidadsRanking from '../Tables/CommunidadsRanking'
-import FiltersRanking from '../Tables/FiltersRanking'
+import CimerosRanking from '../components/Tables/CimerosRanking'
+import CimasRanking from '../components/Tables/CimasRanking'
+import ProvinciasRanking from '../components/Tables/ProvinciasRanking'
+import CommunidadsRanking from '../components/Tables/CommunidadsRanking'
+import FiltersRanking from '../components/Tables/FiltersRanking'
     export default {
         components: {
             'CimerosRanking' : CimerosRanking,

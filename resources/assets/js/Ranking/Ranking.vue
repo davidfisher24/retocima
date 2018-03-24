@@ -3,23 +3,12 @@
 <v-app>
     <v-container>
         <v-layout>
-            <!--<v-dialog v-model="modal" fullscreen>
-              <v-card>
-                <CimeroDetail :id="modalId" v-if="modal"></CimeroDetail>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="primary" flat="flat" @click.native="modal = false">Cerrar</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>-->
-
             <v-flex>
                 <BaseTable 
                     :data="data"
                     :columns="columns"
                     :filterOptions="{Provincia:'provinciaName'}"
                     :searchOptions="{Nombre:'fullName'}"
-                    @openCimero="openCimero"
                 ></BaseTable>
             </v-flex>
         </v-layout>
@@ -30,14 +19,12 @@
 
 <script>
 
-    import BaseTable from './BaseTable.vue';
-    import CimeroDetail from '../CimeroDetail';
+    import BaseTable from '../components/Tables/BaseTable.vue';
 
     export default {
 
         components: {
             'BaseTable': BaseTable,
-            'CimeroDetail' : CimeroDetail,
         },
 
         mounted: function() {
@@ -54,8 +41,6 @@
                     { field: 'provinciaName', title: 'Provincia', sortable: true },
                     { field: 'logros_count', title: 'Logros', sortable: true },
                 ],
-                //modalId: 0,
-                //modal: false,
             };
         },
 
@@ -76,12 +61,6 @@
                     self.data = response.data;
                 });
             },
-
-            /*openCimero:function(id){
-                this.modalId = id;
-                this.modal = true;
-            }*/
-
         }
     }
 

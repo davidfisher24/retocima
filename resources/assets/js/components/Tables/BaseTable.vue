@@ -1,3 +1,9 @@
+<style>
+    select,input {
+        border: 1px solid #ddd;
+    }
+</style>
+
 <template> 
     
     <div class="panel-body">
@@ -8,7 +14,6 @@
 
                 <!-- HEADER-->
                 <div class="row">
-
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
                         <span v-for="(value, key) in filters">
                             <label>{{filtersTitles[key]}}&nbsp;:&nbsp;</label>
@@ -63,9 +68,9 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-xl-6">
                         <p class="pagination-information">
-                            Mostrando <span class="info">{{paginationInformationBar.from}}</span> 
-                            a <span class="info">{{paginationInformationBar.to}}</span> 
-                            de <span class="info">{{paginationInformationBar.count}}</span> filas
+                            Mostrando <span class="info--text">{{paginationInformationBar.from}}</span> 
+                            a <span class="info--text">{{paginationInformationBar.to}}</span> 
+                            de <span class="info--text">{{paginationInformationBar.count}}</span> filas
     
                         </p>
                     </div>
@@ -128,7 +133,7 @@
                 this.filteredData = val;
                 this.count = val.length;
                 this.prepareSelectFilters(this.dataObject,this.filterOptions)
-            }
+            },
         },
 
 
@@ -201,7 +206,7 @@
 
                 data.forEach(function(item){
                     for (var key in filters) {
-                        if (filters[key].indexOf(item[key]) === -1)
+                        if (item[key] && filters[key].indexOf(item[key]) === -1)
                             filters[key].push(item[key]);
                     };
                 });

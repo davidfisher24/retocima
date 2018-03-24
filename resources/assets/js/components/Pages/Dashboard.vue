@@ -15,12 +15,9 @@
                 <v-list-tile-content><v-list-tile-title>RESUMEN LOGROS</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
-              <v-list-tile @click="section = 'form'">
-                <v-list-tile-content><v-list-tile-title>ANADIR CIMA (FORM)</v-list-tile-title></v-list-tile-content>
-              </v-list-tile>
 
               <v-list-tile @click="section = 'add'">
-                <v-list-tile-content><v-list-tile-title>ANADIR CIMA (LIST)</v-list-tile-title></v-list-tile-content>
+                <v-list-tile-content><v-list-tile-title>ANADIR CIMAS</v-list-tile-title></v-list-tile-content>
               </v-list-tile>
 
               <v-list-tile @click="section = 'password'">
@@ -47,7 +44,6 @@
           </v-navigation-drawer>
         </v-flex>
         <v-flex xs9>
-            <AddCimaForm v-if="section == 'form'" @addedCimas="addedCimasResponse"></AddCimaForm>
             <AddCimaList v-if="section == 'add'"></AddCimaList>
             <CimeroEditCuentaForm v-if="section == 'edit'"></CimeroEditCuentaForm>
             <CimeroLogrosSummary v-if="section == 'summary'" :logros="logros" :addedCimas="addedCimas"></CimeroLogrosSummary>
@@ -64,7 +60,6 @@
 
 <script>
 
-    import AddCimaForm from '../Private/AddCimaForm';
     import AddCimaList from '../Private/AddCimaList';
     import CimeroEditCuentaForm from '../Private/CimeroEditCuentaForm';
     import CimeroLogrosSummary from '../CimeroLogrosSummary';
@@ -74,7 +69,6 @@
     export default {
         props: ["cimero"],
         components: {
-            'AddCimaForm' : AddCimaForm,
             'CimeroEditCuentaForm' : CimeroEditCuentaForm,
             'CimeroLogrosSummary' : CimeroLogrosSummary,
             'CimeroStatistics' : CimeroStatistics,
@@ -111,9 +105,7 @@
             },
 
             addedCimasResponse:function(newCimas){
-              console.log(newCimas);
               this.addedCimas = this.addedCimas.concat(newCimas);
-              console.log(this.addedCimas);
               this.section = 'summary';
             },
         }

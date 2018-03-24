@@ -1,7 +1,8 @@
 <template> 
 <v-app>
-    <v-container v-if="!cimas && !cima && !loading" fluid>
-        <v-layout row wrap>
+    <loadingcontainer v-if="loading"></loadingcontainer>
+    <v-container v-show="!cimas && !cima && !loading" fluid>
+      <v-layout row wrap>
             <v-flex xs12 class="mx-3">
                 <v-text-field
                   label="Buscar"
@@ -19,28 +20,7 @@
                 </v-list>
             </v-flex>
         </v-layout>
-
-        <v-layout v-if="searchCimas.length < 1" row wrap>
-          <v-flex md6 xs12 sm12  v-for="(chunk,index) in chunkedCommunidads" :key="index" class="px-3">
-            <v-expansion-panel>
-                    <v-expansion-panel-content v-for="(communidad,index) in chunk" :key="communidad.id" >
-                      <div slot="header">
-                           <Flag :id="communidad.id"></Flag>
-                            {{communidad.nombre}}
-                            <v-badge top>
-                              <span slot="badge">{{communidad.cimas_count}}</span>
-                            </v-badge>
-                      </div>
-                
-                      <v-list dense>
-                        <v-list-tile v-for="provincia in communidad.provincias" :key="provincia.id" @click="showProvince(provincia.id)">
-                          <v-list-tile-title class="py-0">{{provincia.nombre}}</v-list-tile-title>
-                        </v-list-tile>
-                      </v-list>
-                    </v-expansion-panel-content>
-                </v-expansion-panel>
-          </v-flex>
-        </v-layout>
+      <ProvinciaSelection v-show="!loading && searchCimas.length === 0" @mounted="loading = false" @chosen="showProvince"></ProvinciaSelection>
     </v-container>
 
     <v-container v-if="cimas && !cima && !loading" fluid>
@@ -145,12 +125,14 @@
 
 <script>
 
+    import ProvinciaSelection from '../components/ProvinciaSelection';
     import ProvinceMap from '../components/Maps/ProvinceMap';
     import CimaDetail from './CimaDetail';
     import Flag from '../components/Flag';
 
     export default {
         components: {
+            'ProvinciaSelection' : ProvinciaSelection,
             'ProvinceMap' : ProvinceMap,
             'CimaDetail' : CimaDetail,
             'Flag' : Flag,
@@ -159,8 +141,6 @@
         data: function() {
             return {
                 loading: true,
-                comms: [],
-                count: 0,
                 selectedCommunidad: null,
                 cimas: null,
                 cimasmap: false,
@@ -181,30 +161,8 @@
             };
         },
 
-        computed: {
-           chunkedCommunidads:function () {
-            return _.chunk(this.comms,this.comms.length/2);
-           },
-        },
-
-
-        beforeMount:function(){
-        },
-
-        mounted:function(){
-            var self = this;
-            axios.get(this.baseUrl + '/api/communidads').then(function(response){
-                self.comms = response.data;
-                self.count = Object.keys(self.comms).length
-                self.loading = false;
-            });
-        },
 
         methods: {
-            selectCommunidad: function(id){
-                if (this.selectedCommunidad === id) return this.selectedCommunidad = null;
-                this.selectedCommunidad = id;
-            },
 
             showProvince: function(id){
                 
@@ -212,7 +170,6 @@
                 this.loading = true;
                 axios.get(this.baseUrl + '/api/cimas/' + id).then(function(response){
                     self.cimas = response.data;
-                    console.log(self.cimas);
                     self.loading = false;
                 });
             },
@@ -222,7 +179,6 @@
             },
 
             showCima: function(id){
-                console.log("Trying to show cima");
                 var self = this;
                 this.loading = true;
                 this.cimas.forEach(function(cima){

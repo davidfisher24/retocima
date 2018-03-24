@@ -2,11 +2,9 @@
 <template>
   <div class="text-xs-center" v-if="mount">
     <v-btn fab dark large color="indigo" v-if="completed === false && !loading" fixed bottom right @click="add($event)">
-      <!--<v-icon dark>add</v-icon>-->
       Añadir
     </v-btn>
     <v-btn fab dark large color="cyan" v-if="completed === true && !loading" fixed bottom right @click="remove($event)">
-      <!--<v-icon dark>edit</v-icon>-->
       Hecho
     </v-btn>
     <v-btn fab dark large color="indigo" v-if="loading" fixed bottom right loading>

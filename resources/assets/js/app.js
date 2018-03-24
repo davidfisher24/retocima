@@ -54,9 +54,9 @@ const theme = {
 
 
 // TABLES
-Vue.component('rankingtable', require('./components/Tables/Ranking.vue'));
+
 // PAGE LAYOUTS
-Vue.component('statisticscontainer', require('./components/Pages/StatisticsContainer.vue'));
+
 Vue.component('patanegracontainer', require('./components/Pages/PataNegraContainer.vue'));
 
 Vue.component('cimadetailfullpage', require('./components/Pages/CimeDetailFullPage.vue'));
@@ -75,6 +75,8 @@ Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
 
 Vue.component('cimaselectionlist', require('./Listado/CimaSelectionList.vue'));
 Vue.component('homepage', require('./Home/Home.vue'));
+Vue.component('rankingtable', require('./Ranking/Ranking.vue'));
+Vue.component('statisticscontainer', require('./Statistics/StatisticsContainer.vue'));
 
 Vue.component('Flag', require('./components/Flag.vue'))
 const app = new Vue({

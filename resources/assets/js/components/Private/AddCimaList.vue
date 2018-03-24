@@ -9,29 +9,7 @@
     <v-container  fluid>
 
         <loadingcontainer v-if="loading"></loadingcontainer>
-
-        <v-layout v-if="comms && !province && !cimas && !loading" row wrap>
-          <v-flex md6 xs12 sm12  v-for="(chunk,index) in chunkedCommunidads" :key="index" class="px-3">
-            <v-expansion-panel>
-                    <v-expansion-panel-content v-for="(communidad,index) in chunk" :key="communidad.id" >
-                      <div slot="header">
-                           <Flag :id="communidad.id"></Flag>
-                            {{communidad.nombre}}
-                            <v-badge top>
-                              <span slot="badge">{{communidad.cimas_count}}</span>
-                            </v-badge>
-                      </div>
-                
-                      <v-list dense>
-                        <v-list-tile v-for="provincia in communidad.provincias" :key="provincia.id" @click="showProvince(provincia.id)">
-                          <v-list-tile-title class="py-0">{{provincia.nombre}}</v-list-tile-title>
-                        </v-list-tile>
-                      </v-list>
-                    </v-expansion-panel-content>
-                </v-expansion-panel>
-          </v-flex>
-        </v-layout>
-
+        <ProvinciaSelection v-show="!loading && !province && !cimas" @mounted="loading = false" @chosen="showProvince"></ProvinciaSelection>
         <v-layout v-if="cimas && province && !loading" row wrap>
           <v-flex md12 xs12 sm12 >
             <v-toolbar>
@@ -100,17 +78,16 @@
 
 <script>
 
+    import ProvinciaSelection from '../ProvinciaSelection'; 
 
     export default {
         components: {
-
+          'ProvinciaSelection' : ProvinciaSelection,
         },
 
         data: function() {
             return {
-                comms: null,
                 loading: true,
-                count: null,
                 cimas: null,
                 province: null,
                 adding: [],
@@ -119,9 +96,6 @@
         },
 
         computed: {
-           chunkedCommunidads:function () {
-                return _.chunk(this.comms,this.comms.length/2);
-           },
            completeCimas:function(){
                 var logroIds = _.map(this.cimas, 'cima_id');
                 return this.province.filter(function(p){
@@ -135,16 +109,7 @@
                 });
            },
         },
-
-        mounted: function() {
-            var self = this;
-            axios.get(this.baseUrl + '/api/communidads').then(function(response){
-                self.comms = response.data;
-                self.count = Object.keys(self.comms).length
-                self.loading = false;
-            });
-        },
-
+        
         methods: {
 
             showProvince: function(id){
