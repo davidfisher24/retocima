@@ -29,6 +29,7 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('cima/{id}', 'CimaController@OneAction');
     Route::get('cimas/search/{query}', 'CimaController@searchAction');
     Route::get('patanegra', 'CimaController@pataNegraAction');
+    Route::get('patanegraranking', 'CimeroController@rankByPataNegraAction');
     Route::get('communidads', 'CommunidadController@allAction');
     Route::get('provincias/{communidadId}', 'ProvinciaController@communidadAction');
     Route::get('provincias', 'ProvinciaController@allAction');

@@ -57,19 +57,15 @@ const theme = {
 
 // PAGE LAYOUTS
 
-Vue.component('patanegracontainer', require('./components/Pages/PataNegraContainer.vue'));
 
-Vue.component('cimadetailfullpage', require('./components/Pages/CimeDetailFullPage.vue'));
 
-// MAPS
-//Vue.component('googlemap', require('./components/Maps/GoogleMap.vue'));
+Vue.component('cimadetailfullpage', require('./components/CimeDetailFullPage.vue'));
+Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
+
 
 // ELEMENTS
-Vue.component('loadingcontainer', require('./components/Elements/LoadingContainer.vue'));
 
-// INTERACIVE COMPONENTS
-//Vue.component('cimadetail', require('./components/CimaDetail.vue'));
-Vue.component('cimerodetail', require('./components/CimeroDetail.vue'));
+
 
 
 
@@ -79,7 +75,9 @@ Vue.component('rankingtable', require('./Ranking/Ranking.vue'));
 Vue.component('statisticscontainer', require('./Statistics/StatisticsContainer.vue'));
 Vue.component('dashboard', require('./Cuenta/Dashboard.vue'));
 Vue.component('googlemap', require('./Map/MapContainer.vue'));
+Vue.component('patanegracontainer', require('./PataNegra/PataNegraContainer.vue'));
 
+Vue.component('loadingcontainer', require('./components/LoadingContainer.vue'));
 Vue.component('Flag', require('./components/Flag.vue'))
 const app = new Vue({
     el: '#vuepage',

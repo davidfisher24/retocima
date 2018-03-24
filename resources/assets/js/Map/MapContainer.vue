@@ -8,7 +8,7 @@
 
 
 <script>
-import CimaMap from '../components/Maps/CimaMap'
+    import CimaMap from '../components/Maps/CimaMap'
 
     export default {
         components: {

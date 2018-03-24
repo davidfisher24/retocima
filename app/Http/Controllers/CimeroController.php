@@ -7,6 +7,7 @@ use DB;
 use Auth;
 
 use App\Cimero;
+use App\Cima;
 use App\Logro;
 
 use App\Services\AreaCompletionService;
@@ -24,6 +25,8 @@ class CimeroController extends Controller
      * All Cimeros ranked by logros
      */
     // select cimeros.id, count(logros.cimero_id) as logros_count from cimeros left join logros on cimeros.id = logros.cimero_id group by cimeros.id;
+    //select cimeros.id, count(logros.cimero_id) as logros_count from cimeros left join logros on cimeros.id = logros.cimero_id where logros.cima_id in (1,2) group by cimeros.id;
+
     //ALTER table logros ADD index cima_id (cima_id);
     //ALTER table logros ADD index provincia_id (provincia_id);
     //ALTER table logros ADD index communidad_id (communidad_id);
@@ -72,8 +75,6 @@ class CimeroController extends Controller
 
     /*
      * All Cimeros ranked by provinces started
-     * @param {string} filter provincia, communidad
-     * @param {integer} area id
      */
 
     public function rankByProvincesStartedAction()
@@ -89,6 +90,28 @@ class CimeroController extends Controller
 	        ->orderBy('logros_count','desc')
 	        ->get();
     	return $cimeros;
+    }
+
+    /*
+     * All Cimeros ranked by pata negras
+     */
+
+
+    public function rankByPataNegraAction()
+    {
+        $pns =  Cima::where('pata_negra',1)->get()->pluck('id');
+        $cimeros = DB::table('cimeros')
+            ->select(DB::raw(
+                'cimeros.*, 
+                CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
+                count(distinct(logros.id)) as logros_count'
+            ))
+            ->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
+            ->whereIn('cima_id',$pns)
+            ->groupBy('cimeros.id')
+            ->orderBy('logros_count','desc')
+            ->get();
+        return $cimeros;
     }
 
     
