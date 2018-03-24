@@ -41,7 +41,7 @@
 
 <script>
     export default {
-        props: ["cimas"],
+        props: ["cimas","center","zoom"],
         data: function() {
             return {
                 mounted: false,
@@ -67,11 +67,14 @@
             var w = document.getElementById('wrapper').parentElement.offsetWidth;
             var h = document.getElementById('wrapper').parentElement.offsetHeight < 1 ? document.getElementById('wrapper').parentElement.offsetHeight : hEst;
             this.style = "width: "+w+"px; height: "+h+"px; margin:0;";
+            console.log(this.style);
             this.mounted = true;
         },
 
         methods: {
             getMapCenter: function(){
+              console.log(this.center);
+                if (this.center) return this.center;
                 var lats = this.getLats();
                 var lngs = this.getLngs();
                 var latSum = lats.reduce(function(a, b) { return a + b; });
@@ -80,6 +83,8 @@
             },
 
             getMapZoom: function(){
+              console.log(this.zoom);
+                if (this.zoom) return this.zoom;
                 var lats = this.getLats();
                 var lngs = this.getLngs();
                 var latDiff = Math.abs(Math.max.apply(null,lats) - Math.min.apply(null,lats));

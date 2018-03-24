@@ -90,7 +90,7 @@
                       </tr>
                     </template>
                   </v-data-table>
-                <ProvinceMap v-if="cimasmap" :cimas="cimas" @chooseCima="showCima"></ProvinceMap>
+                <CimaMap v-if="cimasmap" :cimas="cimas" @chooseCima="showCima"></CimaMap>
             </v-flex>
         </v-layout>
     </v-container>
@@ -126,14 +126,14 @@
 <script>
 
     import ProvinciaSelection from '../components/ProvinciaSelection';
-    import ProvinceMap from '../components/Maps/ProvinceMap';
+    import CimaMap from '../components/Maps/CimaMap';
     import CimaDetail from './CimaDetail';
     import Flag from '../components/Flag';
 
     export default {
         components: {
             'ProvinciaSelection' : ProvinciaSelection,
-            'ProvinceMap' : ProvinceMap,
+            'CimaMap' : CimaMap,
             'CimaDetail' : CimaDetail,
             'Flag' : Flag,
         },
