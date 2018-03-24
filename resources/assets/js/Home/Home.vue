@@ -71,7 +71,6 @@
           var self = this;
           axios.get(this.baseUrl + '/ajax/discover').then(function(response){
             self.discoverCimas = response.data;
-            console.log(self.discoverCimas);
           });
         },
 

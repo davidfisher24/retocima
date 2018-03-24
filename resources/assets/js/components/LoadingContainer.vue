@@ -40,11 +40,17 @@
 
 <script>
     export default {
-        data: function() {
+        /*data: function() {
             return {
-                image_src :"./img/icons/wheel.png",
+                image_src : this.baseUrl + "/img/icons/wheel.png",
             };
-        },
+        },*/
+
+        computed: {
+          image_src:function(){
+            return this.baseUrl + "/img/icons/wheel.png";
+          },
+        }
     }
 
 </script>

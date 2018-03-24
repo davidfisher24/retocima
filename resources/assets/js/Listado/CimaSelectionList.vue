@@ -98,22 +98,16 @@
     <v-container v-if="cima && !loading" fluid>
         <v-layout row wrap>
             <v-flex xs12 class="mx-3">
-                <v-toolbar color="primary">
-                <v-toolbar-title class="white--text">{{cima.codigo}} {{cima.nombre}}</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-toolbar-items>
-                  <v-btn flat color="white" @click="cima = null">Atras</v-btn>
-                  <v-btn flat color="white" v-if="cimas" @click="previousCima()">Anterior</v-btn>
-                  <v-btn flat color="white" v-if="cimas" @click="nextCima()">Siguiente</v-btn>
-                </v-toolbar-items>
-              </v-toolbar color="secondary">
-              <v-system-bar status color="primary" dark>
-                <span>{{cima.provincia}} / {{cima.communidad}}</span>
-              </v-system-bar>
-              <v-system-bar status color="primary" dark>
-                <span>GPS:  Latitude: {{cima.latitude}}  Longitude: {{cima.longitude}}</span>
-              </v-system-bar>
-              <CimaDetail class="item" :cima="cima"></CimaDetail>>
+              <CimaDetail 
+                class="item" 
+                :cima="cima" 
+                :carousel="cimas !== null" 
+                :back="true"
+                :quickAdd="true"
+                @back="cima = null"
+                @carousel-next="nextCima()"
+                @carousel-previous="previousCima()"
+              ></CimaDetail>
             </v-flex>
         </v-layout>
     </v-container>
@@ -127,7 +121,7 @@
 
     import ProvinciaSelection from '../components/ProvinciaSelection';
     import CimaMap from '../components/Maps/CimaMap';
-    import CimaDetail from './CimaDetail';
+    import CimaDetail from '../components/Cima/CimaDetail';
     import Flag from '../components/Flag';
 
     export default {
@@ -188,10 +182,13 @@
             },
 
             previousCima: function(){
+                console.log("moving to previous cima");
                 var newIndex;
                 var index = this.cimas.indexOf(this.cima);
+                console.log(index);
                 if (index === 0) newIndex = this.cimas.length - 1;
                 else newIndex = index -1;
+                console.log(newIndex);
                 this.cima = this.cimas[newIndex];
             },
 

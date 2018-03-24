@@ -20,13 +20,13 @@ Auth::routes();
 // Php pages
 
 // Javascript elements
-Route::get('/cimeropublicdetails/{id}', function ($id) {return view('publicarea.cimeropublicdetails',compact('id'));});
 Route::get('/listadocommunidads', function () { return view('publicarea.listadocommunidads');});
 Route::get('/ranking', function () { return view('publicarea.ranking');});
 Route::get('/estadistica', function () { return view('publicarea.estadistica');});
 Route::get('/mapa', function () {return view('publicarea.mapa');});
 Route::get('/patanegra', function () {return view('publicarea.patanegra');});
-Route::get('/detallescima/{id}', function ($id) {return view('publicarea.detallescima',compact('id'));});
+Route::get('/detallescima/{id}', function ($id) {return view('publicarea.cima',compact('id'));});
+Route::get('/cimeropublicdetails/{id}', function ($id) {return view('publicarea.cimero',compact('id'));});
 
 /* cimeroCuenta */
 Route::middleware(['auth'])->group(function () {

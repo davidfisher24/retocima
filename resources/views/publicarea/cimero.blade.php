@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div id="vuepage">
-    <cimerodetail :id="{{$id}}"></cimerodetail>
+    <cimero :id="{{$id}}"></cimero>
 </div>
 @endsection

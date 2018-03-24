@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="vuepage">
-    <cimadetailfullpage :id="{{$id}}"></cimadetailfullpage>
+    <cima :id="{{$id}}"></cima>
 </div>
 @endsection
 
