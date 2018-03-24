@@ -4,19 +4,19 @@
         <v-flex md12 v-if="!activeTable && !activeFilters">
             <v-card>
                 <v-toolbar>
-                  <v-toolbar-title>Estasistica</v-toolbar-title>
+                  <v-toolbar-title>Estadistica</v-toolbar-title>
                 </v-toolbar>
                 <v-list>
-                    <v-list-tile @click="activeTable = 'CimerosRanking', route='provinciasstarted'"><v-list-tile-content>
+                    <v-list-tile @click="activeTable = 'CimerosRanking', route='provinciasstarted', title='Cimeros por Provincias comenzados'"><v-list-tile-content>
                         <v-list-tile-title>Cimeros por Provincias comenzados</v-list-tile-title>
                     </v-list-tile-content ></v-list-tile>
-                    <v-list-tile @click="activeTable = 'CimasRanking'"><v-list-tile-content>
+                    <v-list-tile @click="activeTable = 'CimasRanking', title='Las CIMAs más ascendidas'"><v-list-tile-content>
                         <v-list-tile-title>Las CIMAs más ascendido</v-list-tile-title>
                     </v-list-tile-content></v-list-tile>
-                    <v-list-tile @click="activeTable = 'ProvinciasRanking'"><v-list-tile-content>
+                    <v-list-tile @click="activeTable = 'ProvinciasRanking', title='Las Provincias más ascendidas'"><v-list-tile-content>
                         <v-list-tile-title>Las Provincias más ascendidas</v-list-tile-title>
                     </v-list-tile-content></v-list-tile>
-                    <v-list-tile @click="activeTable = 'CommunidadsRanking'"><v-list-tile-content>
+                    <v-list-tile @click="activeTable = 'CommunidadsRanking', title='Las CC.AA más ascendidas'"><v-list-tile-content>
                         <v-list-tile-title>Las CC.AA más ascendidas</v-list-tile-title>
                     </v-list-tile-content></v-list-tile>
                     <v-list-tile @click="activeFilters = 'provincias'"><v-list-tile-content>
@@ -38,11 +38,15 @@
                   <v-btn flat color="info" @click="back()">Atras</v-btn>
                 </v-toolbar-items>
               </v-toolbar>
-              <v-list sm12 md6 v-for="(chunk,i) in chunkedCommunidads" :key="i">
-                <v-list-tile  v-for="communidad in chunk"@click="setRoute('communidad',communidad.id)" :key="communidad.id"><v-list-tile-content>
-                    <v-list-tile-title>{{communidad.nombre}}</v-list-tile-title>
-                </v-list-tile-content></v-list-tile>
-              </v-list>
+                <v-layout wrap>
+                    <v-flex xs12 md6 v-for="(chunk,i) in chunkedCommunidads" :key="i">
+                        <v-list>
+                            <v-list-tile  v-for="communidad in chunk "@click="setRoute('communidad',communidad.id), title= 'Ranking de Cimeros en ' + communidad.nombre" :key="communidad.id"><v-list-tile-content>
+                            <v-list-tile-title>{{communidad.nombre}}</v-list-tile-title>
+                            </v-list-tile-content></v-list-tile>
+                        </v-list>
+                    </v-flex>
+                </v-layout>
         </v-flex>
         <v-flex v-if="!activeTable && activeFilters == 'provincias'">
         <v-toolbar>
@@ -54,16 +58,20 @@
               <v-btn flat color="info" @click="back()">Atras</v-btn>
             </v-toolbar-items>
           </v-toolbar>
-          <v-list sm6 md3 v-for="(chunk,i) in chunkedProvinces" :key="i">
-            <v-list-tile  v-for="provincia in chunk" @click="setRoute('provincia',provincia.id)" :key="provincia.id"><v-list-tile-content>
-                <v-list-tile-title>{{provincia.nombre}}</v-list-tile-title>
-            </v-list-tile-content></v-list-tile>
-          </v-list>
+          <v-layout wrap>
+            <v-flex sm6 md3 v-for="(chunk,i) in chunkedProvinces" :key="i">
+                <v-list>
+                    <v-list-tile  v-for="provincia in chunk" @click="setRoute('provincia',provincia.id), title= 'Ranking de Cimeros en ' + provincia.nombre" :key="provincia.id"><v-list-tile-content>
+                        <v-list-tile-title>{{provincia.nombre}}</v-list-tile-title>
+                </v-list-tile-content></v-list-tile>
+              </v-list>
+            </v-flex>
+          </v-layout>
         </v-flex>
         <v-flex md12 v-if="activeTable">
             <v-toolbar>
                 <v-toolbar-title>
-                    Data
+                    {{title}}
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-toolbar-items>
@@ -105,6 +113,7 @@ import FiltersRanking from '../components/Tables/FiltersRanking'
                 bringFilters:null,
                 provincias: [],
                 communidads: [],
+                title: null,
             };
         },
 
