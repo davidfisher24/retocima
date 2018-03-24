@@ -44,7 +44,7 @@
 
 
 <script>
-    import CimeroLogrosSummary from './CimeroLogrosSummary';
+    import CimeroLogrosSummary from './Cimero/CimeroLogrosSummary';
 
     export default {
         components: {

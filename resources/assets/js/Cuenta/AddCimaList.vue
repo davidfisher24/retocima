@@ -78,7 +78,7 @@
 
 <script>
 
-    import ProvinciaSelection from '../ProvinciaSelection'; 
+    import ProvinciaSelection from '../components/ProvinciaSelection'; 
 
     export default {
         components: {

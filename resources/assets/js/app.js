@@ -60,7 +60,7 @@ const theme = {
 Vue.component('patanegracontainer', require('./components/Pages/PataNegraContainer.vue'));
 
 Vue.component('cimadetailfullpage', require('./components/Pages/CimeDetailFullPage.vue'));
-Vue.component('dashboard', require('./components/Pages/Dashboard.vue'));
+
 // MAPS
 Vue.component('googlemap', require('./components/Maps/GoogleMap.vue'));
 // ELEMENTS
@@ -77,6 +77,7 @@ Vue.component('cimaselectionlist', require('./Listado/CimaSelectionList.vue'));
 Vue.component('homepage', require('./Home/Home.vue'));
 Vue.component('rankingtable', require('./Ranking/Ranking.vue'));
 Vue.component('statisticscontainer', require('./Statistics/StatisticsContainer.vue'));
+Vue.component('dashboard', require('./Cuenta/Dashboard.vue'));
 
 Vue.component('Flag', require('./components/Flag.vue'))
 const app = new Vue({

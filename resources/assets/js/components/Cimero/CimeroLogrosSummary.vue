@@ -1,11 +1,3 @@
-<style>
-    /*.expansion-panel__container {
-        background-color: #dff0d8 !important;
-        color:#3c763d !important;
-        border-color:#d6e9c6 !important;
-    }*/
-</style>
-
 <template> 
     <v-layout>
         <v-flex class="px-3">
@@ -39,7 +31,6 @@
 <script>
 
     export default {
-        //props: ["logros","addedCimas"],
         data: function() {
             return {
                 communidads: [],

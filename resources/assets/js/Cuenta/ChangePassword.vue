@@ -1,6 +1,8 @@
 <template> 
+<v-layout class="text-xs-center">
   <v-flex xs8>
 
+     <v-form class="px-5">
       <v-alert type="success" :value="success" transition="scale-transition">
         Tu Contrasena ha sido actualizado.
       </v-alert>
@@ -37,7 +39,9 @@
         Cambiar
       </v-btn>
       <v-btn @click="clear">Vaciar</v-btn>
+      </v-form>
     </v-flex>
+  </v-layout>
 </template>
 
 
