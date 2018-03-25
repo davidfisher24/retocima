@@ -33,7 +33,9 @@ class StatisticsService
 
     public function cimasSetByAltitud($query)
     {   
-        return Cima::with('vertientes')->whereIn('id',$query)->get()->map(function($item,$key){
+        return Cima::with('vertientes')->whereIn('id',$query)->get()->filter(function ($item) {
+            return count($item->vertientes) > 0;
+        })->map(function($item,$key){
             $item->altitud = $item->vertientes->first()->altitud;
             return $item;
         })->sortByDesc('altitud')->flatten();

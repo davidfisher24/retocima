@@ -33,7 +33,7 @@
             </div>
             </v-flex>
             <v-flex md9 xs12>
-                <CimeroLogrosSummary v-if="logros" :logros="logros" :addedCimas="[]"></CimeroLogrosSummary>
+                <CimeroLogrosSummary v-if="userLogros" :userLogros="userLogros"></CimeroLogrosSummary>
             </v-flex>
         </v-layout>
     </v-container>
@@ -55,7 +55,7 @@
 
         data: function() {
             return {
-                logros: null,
+                userLogros: null,
                 profile: null,
                 completions: null,
             };
@@ -87,7 +87,7 @@
             loadLogros: function(){
                 var self = this;
                 axios.get(this.baseUrl + '/api/cimero/logros/'+this.id).then(function(response){
-                   self.logros = response.data;
+                   self.userLogros = response.data;
                 });
             },
 

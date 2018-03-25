@@ -182,13 +182,10 @@
             },
 
             previousCima: function(){
-                console.log("moving to previous cima");
                 var newIndex;
                 var index = this.cimas.indexOf(this.cima);
-                console.log(index);
                 if (index === 0) newIndex = this.cimas.length - 1;
                 else newIndex = index -1;
-                console.log(newIndex);
                 this.cima = this.cimas[newIndex];
             },
 

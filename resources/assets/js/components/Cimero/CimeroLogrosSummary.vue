@@ -31,6 +31,7 @@
 <script>
 
     export default {
+        props: ["userLogros"],
         data: function() {
             return {
                 communidads: [],
@@ -43,6 +44,12 @@
 
         mounted: function() {
             var self = this;
+            if (this.userLogros) {
+                this.logros = this.userLogros;
+                this.findDistinctCommunidads();
+                this.loading = false;
+                return;
+            }
             axios.get(this.baseUrl + '/ajax/userfulllogros').then(function(response){
                self.logros = response.data;
                self.findDistinctCommunidads();

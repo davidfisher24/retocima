@@ -67,7 +67,9 @@
                             <v-flex md12 v-if="cima.vertientes[i].enlaces.length === 0"><p>No Disponible!</p></v-flex>
                         </v-layout>
                         <v-layout>
-                            <v-flex md12 v-for="(enlace,index) in cima.vertientes[i].enlaces" :key="index"><p>Enlace {{index + 1}}</p></v-flex>
+                            <v-flex md12 v-for="(enlace,index) in cima.vertientes[i].enlaces" :key="index">
+                                <a :href="enlace.url" target="_blank">Enlace {{index + 1}}</a>
+                            </v-flex>
                         </v-layout>
                     </v-card>
                 </v-flex>
