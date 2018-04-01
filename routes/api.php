@@ -48,7 +48,8 @@ Route::group(['middleware' => ['api','cors']], function() {
     Route::get('provinciasstarted', 'CimeroController@rankByProvincesStartedAction');
 
     Route::get('maplines/{id}', function($id){
-        return File::get(public_path() . '/maplines/'.$id.'.txt');
+        if (File::exists(public_path() . '/maplines/'.$id.'.txt')) return File::get(public_path() . '/maplines/'.$id.'.txt');
+        else return App\Cima::find($id)->toJson();
     });
 
     Route::options('auth/login','AuthController@login');
