@@ -79,7 +79,7 @@ class CimaController extends Controller
      */
     public function allInProviceAction($provinciaId)
     {
-    	return Cima::where('provincia_id',$provinciaId)->with('vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
+    	return Cima::where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
     }
 
     /*
@@ -109,7 +109,7 @@ class CimaController extends Controller
 
     public function pataNegraAction()
     {
-        return Cima::with('provincia','communidad','vertientes')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
+        return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
     }
 
     /*

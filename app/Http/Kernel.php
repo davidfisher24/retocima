@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'lazyLoading' => \App\Http\Middleware\LazyLoading::class,
         'writeThroughLogros' => \App\Http\Middleware\writeThroughUpdateLogros::class,
+        'jwt-auth' => \App\Http\Middleware\authJWT::class,
+        'cors' => \App\Http\Middleware\Cors::class, 
     ];
 }

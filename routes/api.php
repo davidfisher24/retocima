@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,14 +17,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 
 
 
-Route::group(['middleware' => 'api'], function() {
+Route::group(['middleware' => ['api','cors']], function() {
+    Route::get('discover', 'CimaController@discoverAction');
+    Route::get('cimero/{id}', 'CimeroController@oneAction');
     Route::get('cimero/profile/{id}', 'CimeroController@profileAction');
     Route::get('cimero/logros/{id}', 'CimeroController@allLogrosAction');
     Route::get('cimero/completions/{id}', 'CimeroController@completedAreasAction');
@@ -40,6 +46,18 @@ Route::group(['middleware' => 'api'], function() {
     Route::get('communidadsranking', 'CommunidadController@rankAction');
     Route::get('filtersranking/{filter}/{id}', 'CimeroController@rankByAreaAction');
     Route::get('provinciasstarted', 'CimeroController@rankByProvincesStartedAction');
+
+    Route::get('maplines/{id}', function($id){
+        return File::get(public_path() . '/maplines/'.$id.'.txt');
+    });
+
+    Route::post('auth/register','AuthController@register');
+    Route::post('auth/login','AuthController@login');
+    Route::group(['middleware' => 'jwt-auth'], function () {
+        Route::get('verify','AuthController@verify');
+        Route::get('cimero','AuthController@profileAction');
+    });
+
 
 });
 

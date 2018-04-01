@@ -147,5 +147,9 @@ class CimeroController extends Controller
     public function completedAreasAction($id){
         return $this->areaCompletionService->getCImerosCompletedProvincesAndCommunidads($id);
     }
+
+    public function oneAction($id){
+        return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($id)->toJson();
+    }
   
 }
