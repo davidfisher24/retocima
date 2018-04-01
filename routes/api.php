@@ -51,11 +51,19 @@ Route::group(['middleware' => ['api','cors']], function() {
         return File::get(public_path() . '/maplines/'.$id.'.txt');
     });
 
+    Route::options('auth/login','AuthController@login');
+    Route::options('auth/register','AuthController@register');
+    
     Route::post('auth/register','AuthController@register');
     Route::post('auth/login','AuthController@login');
+    
     Route::group(['middleware' => 'jwt-auth'], function () {
+
+        Route::options('verify','AuthController@verify');
+        Route::options('cimero','AuthController@profileAction');
         Route::get('verify','AuthController@verify');
         Route::get('cimero','AuthController@profileAction');
+
     });
 
 
