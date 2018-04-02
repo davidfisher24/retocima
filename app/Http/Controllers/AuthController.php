@@ -72,6 +72,18 @@ class AuthController extends Controller
         ]);
     }
 
+    public function updateAccountAction(Request $request)
+    {
+        $cimero = JWTAuth::toUser($request->token);
+        $validator = $this->updateValidator($request->all(),$cimero->id);
+        if ($validator->fails()) {
+            return response()->json($validator->messages(),400);
+        }
+        $cimero->update($request->all());
+        $cimero->save();
+        return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();        
+    }
+
     public function profileAction(Request $request){
         $cimero = JWTAuth::toUser($request->token);
         return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();
@@ -122,6 +134,33 @@ class AuthController extends Controller
             'fechanacimiento' => 'required|date|date_format:Y-m-d|before:'.$before.'|after:'.$after,
         ]);
     }
+
+    /**
+     * Get a validator for an incoming update account request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+
+    protected function updateValidator($data,$cimeroId)
+    {
+        $spain = (string) Pais::spain();
+        $before = date("Y-m-d",strtotime("-13 years"));
+        $after = date("Y-m-d",strtotime("-100 years"));
+
+        return Validator::make($data, [
+            'nombre' => 'required|string|max:50|min:3',
+            'apellido1' => 'required|string|max:50|min:3',
+            'apellido2' => 'string|max:50|nullable',
+            'username' => 'required|string|max:50',
+            'email' => 'required|string|email|max:255|unique:cimeros,email,'.$cimeroId,
+            'provincia' => 'required_if:pais,'.$spain,
+            'pais' => 'required',
+            'fechanacimiento' => 'required|date|date_format:Y-m-d|before:'.$before.'|after:'.$after,
+        ]);
+
+    }
+
 
     /**
      * Create a new cimero instance after a valid registration.

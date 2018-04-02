@@ -64,11 +64,13 @@ Route::group(['middleware' => ['api','cors']], function() {
         Route::options('cimero','AuthController@profileAction');
         Route::options('cimero-logros/{provincia}','AuthController@logrosProvinciaAction');
         Route::options('update-logro','AuthController@updateLogroAction');
+        Route::options('edit-account','AuthController@updateAccountAction');
 
         Route::get('verify','AuthController@verify');
         Route::get('cimero','AuthController@profileAction');
         Route::get('cimero-logros/{provincia}','AuthController@logrosProvinciaAction');
         Route::post('update-logro','AuthController@updateLogroAction');
+        Route::post('edit-account','AuthController@updateAccountAction');
     });
 
 
