@@ -9,14 +9,22 @@ use JWTAuth;
 use JWTAuthException;
 use App\Cimero;
 use App\Pais;
+use App\Logro;
+use App\Cima;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Services\CimeroLogroService;
 
 
 class AuthController extends Controller
 {
 
     use RegistersUsers;
+
+    public function __construct(CimeroLogroService $cimeroLogroService)
+    {
+        $this->cimeroLogroService = $cimeroLogroService;
+    }
 
     public function login(Request $request)
     {
@@ -67,6 +75,27 @@ class AuthController extends Controller
     public function profileAction(Request $request){
         $cimero = JWTAuth::toUser($request->token);
         return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();
+    }
+
+    public function logrosProvinciaAction(Request $request, $provincia){
+        $cimero = JWTAuth::toUser($request->token);
+        $complete = Logro::with('provincia','communidad','cima')->where('cimero_id',$cimero->id)->where('provincia_id',$request->provincia)->where('cima_estado',1)->get();
+        $incomplete = Cima::with('provincia','communidad')->where('provincia_id',$request->provincia)->where('estado',1)->whereNotIn('id',$complete->pluck('cima_id'))->get();
+        return json_encode(["complete" => $complete, "incomplete" => $incomplete]);
+    }
+
+    public function updateLogroAction(Request $request)
+    {   
+        $cimero = JWTAuth::toUser($request->token);
+        if ($request->get('action') === "add") {
+            $logros = array($request->get('cima'));
+            $added = $this->cimeroLogroService->validateAndAddNewLogros($logros,$cimero->id);
+            return Logro::with('provincia','communidad','cima')->where('cimero_id',$cimero->id)->where('cima_id',$request->get('cima'))->first()->toJson();
+        } else if ($request->get('action') === "remove") {
+            $logro = json_decode($request->get('logro'));
+            $delete = $this->cimeroLogroService->removeExistingLogro($logro);
+            return Cima::with('provincia','communidad')->find($logro->cima_id)->toJson();
+        } 
     }
 
      /**
