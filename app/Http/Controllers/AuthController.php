@@ -49,14 +49,17 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
-        $cimero = JWTAuth::toUser($request->token);     
-        if (!$cimero) return response()->json([
-            'message' => 'failed to verify',
-        ],400);       
         return response()->json([
-            'cimero' => $cimero,
-            'token' => $request->token,
-        ]);
+            'cimero' => JWTAuth::toUser($request->bearerToken()),
+        ],200);      
+    }
+
+    public function refresh(Request $request)
+    {
+        if ($refresh = JWTAuth::refresh($request->bearerToken())) return response()->json(['token'=> $refresh],200); 
+        return response()->json([
+            'message' => 'failed to verify',
+        ],401);       
     }
 
     public function register(Request $request)

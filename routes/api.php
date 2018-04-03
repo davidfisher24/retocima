@@ -52,21 +52,25 @@ Route::group(['middleware' => ['api','cors']], function() {
         else return App\Cima::find($id)->toJson();
     });
 
+
     Route::options('auth/login','AuthController@login');
     Route::options('auth/register','AuthController@register');
+    Route::options('auth/refresh','AuthController@refresh');
     
     Route::post('auth/register','AuthController@register');
     Route::post('auth/login','AuthController@login');
+    Route::get('auth/refresh','AuthController@refresh');
     
     Route::group(['middleware' => 'jwt-auth'], function () {
 
-        Route::options('verify','AuthController@verify');
+        Route::options('verify' ,'AuthController@verify');
+        Route::get('verify', 'AuthController@verify');
+
         Route::options('cimero','AuthController@profileAction');
         Route::options('cimero-logros/{provincia}','AuthController@logrosProvinciaAction');
         Route::options('update-logro','AuthController@updateLogroAction');
         Route::options('edit-account','AuthController@updateAccountAction');
-
-        Route::get('verify','AuthController@verify');
+        
         Route::get('cimero','AuthController@profileAction');
         Route::get('cimero-logros/{provincia}','AuthController@logrosProvinciaAction');
         Route::post('update-logro','AuthController@updateLogroAction');
