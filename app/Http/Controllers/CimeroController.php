@@ -47,7 +47,16 @@ class CimeroController extends Controller
 	        ->groupBy('cimeros.id')
 	        ->orderBy('logros_count','desc')
 	        ->get();
-    	return $cimeros;
+
+        return json_encode(["data" => $cimeros->map(function($c,$i){
+            $c->rank = $i + 1;
+            if ($c->logros_count > 640) $c->image = 'crown';
+            else if ($c->logros_count >= 480 && $c->logros_count <= 640) $c->image = 'gold';
+            else if ($c->logros_count < 480 && $c->logros_count >= 320) $c->image = 'silver';
+            else if ($c->logros_count >= 160 && $c->logros_count < 320) $c->image = 'bronze';
+            else $c->image = null;
+            return $c;
+        })]);
     }
 
     /*
