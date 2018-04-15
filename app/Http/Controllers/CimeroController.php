@@ -9,6 +9,8 @@ use Auth;
 use App\Cimero;
 use App\Cima;
 use App\Logro;
+use App\Communidad;
+use App\Provincia;
 
 use App\Services\AreaCompletionService;
 
@@ -158,7 +160,18 @@ class CimeroController extends Controller
     }
 
     public function oneAction($id){
-        return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($id)->toJson();
+        //return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($id)->toJson();
+        $cimero = Cimero::with('provincia','pais')->find($id);
+        $logros = Logro::where('cimero_id',$id)->where('cima_estado',1)->get()->groupBy('provincia_id');
+        $provinces = Provincia::withCount('activeCimas')->get();
+        $communidads = Communidad::withCount('activeCimas')->get();
+
+        return array(
+            "cimero" => $cimero,
+            "logros" => $logros,
+            "provincias" => $provinces,
+            "communidads" => $communidads
+        );
     }
   
 }

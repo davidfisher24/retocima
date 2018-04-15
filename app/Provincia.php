@@ -17,16 +17,13 @@ class Provincia extends Model
     }
 
     /**
-     * Relationship - Each provincia has many Cimas
+     * Relationship - Each provincia has many Cimas which are active (cimas estado = 1)
      *
      * @collection cimas
      */
-    public function totalCimasInProvince()
+    public function activeCimas()
     {
-    	// DO I need this or is it better in the database?
-        return $this->cimas->filter(function($value,$key){
-        	return $value->estado === 1;
-        })->count();
+        return $this->hasMany('App\Cima')->where('estado',1);
     }
 
     /**

@@ -9,6 +9,8 @@ use JWTAuth;
 use JWTAuthException;
 use App\Cimero;
 use App\Pais;
+use App\Provincia;
+use App\Communidad;
 use App\Logro;
 use App\Cima;
 use Illuminate\Support\Facades\Validator;
@@ -89,7 +91,18 @@ class AuthController extends Controller
 
     public function profileAction(Request $request){
         $cimero = JWTAuth::toUser($request->token);
-        return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();
+        //return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();
+        $cimero = Cimero::with('provincia','pais')->find($cimero->id);
+        $logros = Logro::where('cimero_id',$cimero->id)->where('cima_estado',1)->get()->groupBy('provincia_id');
+        $provinces = Provincia::withCount('activeCimas')->get();
+        $communidads = Communidad::withCount('activeCimas')->get();
+
+        return array(
+            "cimero" => $cimero,
+            "logros" => $logros,
+            "provincias" => $provinces,
+            "communidads" => $communidads
+        );
     }
 
     public function logrosProvinciaAction(Request $request, $provincia){

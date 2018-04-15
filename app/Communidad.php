@@ -17,6 +17,16 @@ class Communidad extends Model
     }
 
     /**
+     * Relationship - Each communidad has many Cimas which are active (cimas estado = 1)
+     *
+     * @collection cimas
+     */
+    public function activeCimas()
+    {
+        return $this->hasMany('App\Cima')->where('estado',1);
+    }
+
+    /**
      * Relationship - Each communidad has many logros
      *
      * @collection logros

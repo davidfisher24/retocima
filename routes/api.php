@@ -26,6 +26,7 @@ use App\Http\Requests;
 
 Route::group(['middleware' => ['api','cors']], function() {
     Route::get('discover', 'CimaController@discoverAction');
+
     Route::get('cimero/{id}', 'CimeroController@oneAction');
     Route::get('cimero/profile/{id}', 'CimeroController@profileAction');
     Route::get('cimero/logros/{id}', 'CimeroController@allLogrosAction');
