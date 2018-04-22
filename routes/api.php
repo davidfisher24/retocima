@@ -31,10 +31,14 @@ Route::group(['middleware' => ['api','cors']], function() {
     Route::get('cimero/profile/{id}', 'CimeroController@profileAction');
     Route::get('cimero/logros/{id}', 'CimeroController@allLogrosAction');
     Route::get('cimero/completions/{id}', 'CimeroController@completedAreasAction');
+    // Cimas
     Route::get('cimas/{id}', 'CimaController@allInProviceAction');
     Route::get('cimas', 'CimaController@allAction');
     Route::get('cima/{id}', 'CimaController@OneAction');
+    Route::get('cimas/list/markers', 'CimaController@markersAction');
+    Route::get('cimas/list/names', 'CimaController@namesAction');
     Route::get('cimas/search/{query}', 'CimaController@searchAction');
+    //
     Route::get('patanegra', 'CimaController@pataNegraAction');
     Route::get('patanegraranking', 'CimeroController@rankByPataNegraAction');
     Route::get('communidads', 'CommunidadController@allAction');

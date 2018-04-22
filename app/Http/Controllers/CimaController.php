@@ -12,38 +12,26 @@ use App\Logro;
 class CimaController extends Controller
 {
 
-    protected $model;
+    /*
+     * Finds all cimas with latitude and longitude data
+     */
 
-    public function __construct(Cima $model)
+    public function markersAction()
     {
-        $this->model = $model;
-    }
-
-    public function one($id,$appends = ['provincia','communidad','vertientes'],$appendsCount = ['logros'])
-    {   
-        return $this->model
-            ->with($appends)
-            ->withCount($appendsCount)
-            ->find($id);
-    }
-
-    public function all($appends = ['provincia','communidad','vertientes'],$appendsCount = ['logros'])
-    {
-        return $this->model
-        ->with($appends)
-        ->withCount($appendsCount)
-        ->get();
-    }
-
-    public function query($params,$appends = ['provincia','communidad','vertientes'],$appendsCount = ['logros'])
-    {
-        $query = $this->model->query();
-        foreach ($params as $p) $query = $query->where($p[0], $p[1]);
-        return $query->with($appends)->withCount($appendsCount)->get();
+        return Cima::select('id','codigo','nombre','latitude','longitude','estado')->get()->toJSON();
     }
 
     /*
-     * Finds all cimas in a province
+     * Finds all cimas with latitude and longitude data
+     */
+
+    public function namesAction()
+    {
+        return Cima::select('id','codigo','nombre','estado')->get()->toJSON();
+    }
+
+    /*
+     * Finds one cima with all data linked
      */
     public function oneAction($id)
     {
@@ -51,7 +39,7 @@ class CimaController extends Controller
     }
 
     /* 
-     * Returns two random. Might do something else in the future
+     * Returns two random cimas for the temporary discover action
      */
     public function discoverAction()
     {
@@ -59,14 +47,14 @@ class CimaController extends Controller
     }
 
     /*
-     * Finds all cimas in a province
+     * Finds all cimas with all data linked (slow)
      */
     public function allAction()
     {
     	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
     }
 
-    /* Searchs cimas by text 
+    /* Searchs cimas by text for ajax searcj
      *
      */
     public function searchAction($query)
@@ -75,7 +63,7 @@ class CimaController extends Controller
     }
 
     /*
-     * Finds all cimas in a province
+     * Finds all cimas in a province with all data linked
      */
     public function allInProviceAction($provinciaId)
     {
@@ -104,7 +92,7 @@ class CimaController extends Controller
     }
 
     /*
-     * All pata negra cimas
+     * Finds all pata negra cimas
      */
 
     public function pataNegraAction()
@@ -112,16 +100,7 @@ class CimaController extends Controller
         return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
     }
 
-    /*
-     * Returns a view for cima details
-     */
 
-    public function showCimaPageAction($cimaId)
-    {
-        $userLogro = Logro::where('cimero_id',Auth::id())->where('cima_id',$cimaId)->first();
-        $cima = Cima::with('provincia','communidad','vertientes')->withCount('logros')->find($cimaId);
-        return view('publicarea.detallescima',compact('cima','userLogro'));
-    }
 
     
 
