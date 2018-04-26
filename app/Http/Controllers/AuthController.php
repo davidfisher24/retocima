@@ -107,9 +107,10 @@ class AuthController extends Controller
 
     public function logrosProvinciaAction(Request $request, $provincia){
         $cimero = JWTAuth::toUser($request->token);
-        $complete = Logro::with('provincia','communidad','cima')->where('cimero_id',$cimero->id)->where('provincia_id',$request->provincia)->where('cima_estado',1)->get();
-        $incomplete = Cima::with('provincia','communidad')->where('provincia_id',$request->provincia)->where('estado',1)->whereNotIn('id',$complete->pluck('cima_id'))->get();
-        return json_encode(["complete" => $complete, "incomplete" => $incomplete]);
+        //$complete = Logro::with('provincia','communidad','cima')->where('cimero_id',$cimero->id)->where('provincia_id',$request->provincia)->where('cima_estado',1)->get();
+        //$incomplete = Cima::with('provincia','communidad')->where('provincia_id',$request->provincia)->where('estado',1)->whereNotIn('id',$complete->pluck('cima_id'))->get();
+        //return json_encode(["complete" => $complete, "incomplete" => $incomplete]);
+        return Logro::where('cimero_id',$cimero->id)->where('provincia_id',$provincia)->get()->toJson();
     }
 
     public function updateLogroAction(Request $request)

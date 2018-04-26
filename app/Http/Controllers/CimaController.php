@@ -27,7 +27,7 @@ class CimaController extends Controller
 
     public function namesAction()
     {
-        return Cima::select('id','codigo','nombre','estado')->get()->toJSON();
+        return Cima::select('id','codigo','nombre','estado','provincia_id')->get()->toJSON();
     }
 
     /*
