@@ -19,7 +19,7 @@ class ProvinciaController extends Controller
 
     public function allAction()
     {
-        return Provincia::all()->toJson();
+        return Provincia::with('communidad')->get()->toJson();
     }
 
     public function communidadAction($communidadId)
