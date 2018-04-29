@@ -86,7 +86,7 @@ class AuthController extends Controller
         }
         $cimero->update($request->all());
         $cimero->save();
-        return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();        
+        return Cimero::with('provincia','pais')->find($cimero->id)->toJson();        
     }
 
     public function profileAction(Request $request){
