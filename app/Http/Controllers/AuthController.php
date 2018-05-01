@@ -13,6 +13,7 @@ use App\Provincia;
 use App\Communidad;
 use App\Logro;
 use App\Cima;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Services\CimeroLogroService;
@@ -90,8 +91,7 @@ class AuthController extends Controller
     }
 
     public function profileAction(Request $request){
-        $cimero = JWTAuth::toUser($request->token);
-        //return Cimero::with('provincia','pais','logros','logros.provincia','logros.communidad','logros.cima')->find($cimero->id)->toJson();
+        $cimero = JWTAuth::toUser($request->token);;
         $cimero = Cimero::with('provincia','pais')->find($cimero->id);
         $logros = Logro::where('cimero_id',$cimero->id)->where('cima_estado',1)->get()->groupBy('provincia_id');
         $provinces = Provincia::withCount('activeCimas')->get();
@@ -107,9 +107,6 @@ class AuthController extends Controller
 
     public function logrosProvinciaAction(Request $request, $provincia){
         $cimero = JWTAuth::toUser($request->token);
-        //$complete = Logro::with('provincia','communidad','cima')->where('cimero_id',$cimero->id)->where('provincia_id',$request->provincia)->where('cima_estado',1)->get();
-        //$incomplete = Cima::with('provincia','communidad')->where('provincia_id',$request->provincia)->where('estado',1)->whereNotIn('id',$complete->pluck('cima_id'))->get();
-        //return json_encode(["complete" => $complete, "incomplete" => $incomplete]);
         return Logro::where('cimero_id',$cimero->id)->where('provincia_id',$provincia)->get()->toJson();
     }
 
@@ -125,6 +122,41 @@ class AuthController extends Controller
             $delete = $this->cimeroLogroService->removeExistingLogro($logro);
             return Cima::with('provincia','communidad')->find($logro->cima_id)->toJson();
         } 
+    }
+
+    public function updatePasswordAction(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'old' => 'required',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        if ($validator->fails()) {
+          return response(array(
+                "status" => "failure",
+                'errors'=>$validator->errors()
+            ), 400);
+        }
+ 
+        $cimero = JWTAuth::toUser($request->token);
+        $user = Cimero::find($cimero->id);
+        $hashedPassword = $user->password;
+ 
+        if (Hash::check($request->old, $hashedPassword)) {
+            $user->fill([
+                'password' => Hash::make($request->password)
+            ])->save();
+ 
+            return response(array(
+                "status" => "success",
+                "message" => "Tu contrasena ha sido actualizado",
+            ), 200);
+        }
+
+        return response(array(
+            "status" => "failure",
+            "message" => "Contrasena no correcta",
+        ),400);
     }
 
      /**

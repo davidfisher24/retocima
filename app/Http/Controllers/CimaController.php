@@ -59,7 +59,7 @@ class CimaController extends Controller
      */
     public function searchAction($query)
     {
-        return Cima::with('vertientes','vertientes.enlaces')->Search($query)->get()->toJSON();
+        return Cima::Search($query)->get()->toJSON();
     }
 
     /*
