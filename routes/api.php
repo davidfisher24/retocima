@@ -57,6 +57,7 @@ Route::group(['middleware' => ['api','cors']], function() {
         else return App\Cima::find($id)->toJson();
     });
 
+    Route::get('logros/province/{provinceId}', 'LogroController@provinceStatisticsAction');
 
     Route::options('auth/login','AuthController@login');
     Route::options('auth/register','AuthController@register');
@@ -75,11 +76,13 @@ Route::group(['middleware' => ['api','cors']], function() {
         Route::options('cimero-logros/{provincia}','AuthController@logrosProvinciaAction');
         Route::options('update-logro','AuthController@updateLogroAction');
         Route::options('edit-account','AuthController@updateAccountAction');
+        Route::options('update-password','AuthController@updatePasswordAction');
         
         Route::get('cimero','AuthController@profileAction');
         Route::get('cimero-logros/{provincia}','AuthController@logrosProvinciaAction');
         Route::post('update-logro','AuthController@updateLogroAction');
         Route::post('edit-account','AuthController@updateAccountAction');
+        Route::post('update-password','AuthController@updatePasswordAction');
     });
 
 
