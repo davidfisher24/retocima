@@ -124,6 +124,12 @@ class AuthController extends Controller
         } 
     }
 
+    public function checkLogroAction(Request $request, $cimaId){
+        $cimero = JWTAuth::toUser($request->token);
+        $logro = Logro::where('cima_id',$cimaId)->where('cimero_id',$cimero->id)->first();
+        return $logro ? $logro->toJson() : null;
+    }
+
     public function updatePasswordAction(Request $request)
     {
 
@@ -132,10 +138,7 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
         if ($validator->fails()) {
-          return response(array(
-                "status" => "failure",
-                'errors'=>$validator->errors()
-            ), 400);
+            return response()->json($validator->messages(),400);
         }
  
         $cimero = JWTAuth::toUser($request->token);
