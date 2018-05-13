@@ -125,27 +125,10 @@ class CimeroController extends Controller
         return $cimeros;
     }
 
-    
-
-    /*
-     * Check a single logro for completion
-     * @param {integer} $cimero id 
-     */
-
-    public function checkLogroAction($cimaId){
-        if (!Auth::id()) return "Unauthorized";
-        $logro = Logro::where('cima_id',$cimaId)->where('cimero_id',Auth::id())->first();
-        return $logro ? $logro->toJson() : null;
-    }
 
     /*
      * All a cimeros logros
      */
-
-    private function allLogros($id)
-    {
-        return Cimero::find($id)->logros()->get();
-    }
 
     public function allLogrosAction($id){
         return Logro::with('provincia','communidad','cima')->where('cimero_id',$id)->get()->toJson();

@@ -100,8 +100,13 @@ class CimaController extends Controller
         return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
     }
 
+    /*
+     * Finds all pata negra cimas
+     */
 
-
-    
-
+    public function extremaAction()
+    {
+        return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')
+        ->whereIn('id',[225,246,158,421,446,38,605,609,578])->get()->toJSON();
+    }
 }

@@ -40,6 +40,7 @@ Route::group(['middleware' => ['api','cors']], function() {
     Route::get('cimas/search/{query}', 'CimaController@searchAction');
     //
     Route::get('patanegra', 'CimaController@pataNegraAction');
+    Route::get('extrema', 'CimaController@extremaAction');
     Route::get('patanegraranking', 'CimeroController@rankByPataNegraAction');
     Route::get('communidads', 'CommunidadController@allAction');
     Route::get('provincias/{communidadId}', 'ProvinciaController@communidadAction');
