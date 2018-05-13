@@ -113,7 +113,7 @@ class CimeroController extends Controller
         $pns =  Cima::where('pata_negra',1)->get()->pluck('id');
         $cimeros = DB::table('cimeros')
             ->select(DB::raw(
-                'cimeros.*, 
+                'cimeros.id, 
                 CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
                 count(distinct(logros.id)) as logros_count'
             ))

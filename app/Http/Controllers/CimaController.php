@@ -70,27 +70,7 @@ class CimaController extends Controller
     	return Cima::where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
     }
 
-    /*
-     * All Cimas ranked by logros
-     */
-     // select cimas.*, count(logros.cima_id) as logros_count from cimas left join logros on cimas.id = logros.cima_id group by cimas.id;
-
-    public function rankAction()
-    {
-    	$cimas = DB::table('cimas')
-	    	->select(DB::raw(
-	    		'cimas.*, 
-	    		count(logros.cima_id) as logros_count,
-	    		provincias.nombre as provinciaName'
-	    	))
-	    	->leftJoin('logros', 'cimas.id', '=', 'logros.cima_id')
-	    	->leftJoin('provincias', 'cimas.provincia_id', '=', 'provincias.id')
-	        ->groupBy('cimas.id')
-	        ->orderBy('logros_count','desc')
-	        ->get();
-    	return $cimas;
-    }
-
+    
     /*
      * Finds all pata negra cimas
      */
@@ -109,4 +89,50 @@ class CimaController extends Controller
         return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')
         ->whereIn('id',[225,246,158,421,446,38,605,609,578])->get()->toJSON();
     }
+
+    /*
+     * All Cimas ranked by logros
+     */
+     // select cimas.*, count(logros.cima_id) as logros_count from cimas left join logros on cimas.id = logros.cima_id group by cimas.id;
+
+    public function rankAction()
+    {
+        $cimas = DB::table('cimas')
+            ->select(DB::raw(
+                'cimas.*, 
+                count(logros.cima_id) as logros_count,
+                provincias.nombre as provinciaName'
+            ))
+            ->leftJoin('logros', 'cimas.id', '=', 'logros.cima_id')
+            ->leftJoin('provincias', 'cimas.provincia_id', '=', 'provincias.id')
+            ->groupBy('cimas.id')
+            ->orderBy('logros_count','desc')
+            ->get();
+        return $cimas;
+    }
+
+
+    /*
+     * All Cimas ranked by logros
+     */
+     // select cimas.*, count(logros.cima_id) as logros_count from cimas left join logros on cimas.id = logros.cima_id group by cimas.id;
+
+    public function rankByPataNegraAction()
+    {
+        $pns =  Cima::where('pata_negra',1)->get()->pluck('id');
+        $cimas = DB::table('cimas')
+            ->select(DB::raw(
+                'cimas.*, 
+                count(logros.cima_id) as logros_count,
+                provincias.nombre as provinciaName'
+            ))
+            ->leftJoin('logros', 'cimas.id', '=', 'logros.cima_id')
+            ->leftJoin('provincias', 'cimas.provincia_id', '=', 'provincias.id')
+            ->whereIn('cima_id',$pns)
+            ->groupBy('cimas.id')
+            ->orderBy('logros_count','desc')
+            ->get();
+        return $cimas;
+    }
+
 }
