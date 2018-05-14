@@ -125,6 +125,29 @@ class CimeroController extends Controller
         return $cimeros;
     }
 
+    /*
+     * All Cimeros who have completed
+     */
+
+
+    public function rankByExtremaAction()
+    {
+        $exs =  Cima::whereIn('id',[225,246,158,421,446,38,605,609,578])->get()->pluck('id');
+        $cimeros = DB::table('cimeros')
+            ->select(DB::raw(
+                'cimeros.id, 
+                CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
+                count(distinct(logros.id)) as logros_count'
+            ))
+            ->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
+            ->whereIn('cima_id',$exs)
+            ->groupBy('cimeros.id')
+            ->get();
+        return $cimeros->filter(function($c) use ($exs) {
+            return $c->logros_count === count($exs);
+        });
+    }
+
 
     /*
      * All a cimeros logros
