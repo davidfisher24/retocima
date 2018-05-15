@@ -62,6 +62,15 @@ class CimaController extends Controller
         return Cima::Search($query)->get()->toJSON();
     }
 
+    /* Searchs cimas by text for ajax searcj
+     *
+     */
+    public function advancedSearchAction(Request $request)
+    {   
+        $input = $request->all();
+        return $input;
+    }
+
     /*
      * Finds all cimas in a province with all data linked
      */
