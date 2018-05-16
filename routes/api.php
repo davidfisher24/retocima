@@ -58,7 +58,7 @@ Route::group(['middleware' => ['api','cors']], function() {
 
     Route::get('maplines/{id}', function($id){
         if (File::exists(public_path() . '/maplines/'.$id.'.txt')) return File::get(public_path() . '/maplines/'.$id.'.txt');
-        else return App\Cima::find($id)->toJson();
+        else return App\Vertiente::with('cima')->find($id)->toJson();
     });
 
     Route::get('logros/province/{provinceId}', 'LogroController@provinceStatisticsAction');
