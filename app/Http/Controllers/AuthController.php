@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Services\CimeroLogroService;
+use App\Services\EmailService;
 
 
 class AuthController extends Controller
@@ -24,9 +25,10 @@ class AuthController extends Controller
 
     use RegistersUsers;
 
-    public function __construct(CimeroLogroService $cimeroLogroService)
+    public function __construct(CimeroLogroService $cimeroLogroService, EmailService $emailService)
     {
         $this->cimeroLogroService = $cimeroLogroService;
+        $this->emailService = $emailService;
     }
 
     public function login(Request $request)
@@ -72,10 +74,13 @@ class AuthController extends Controller
             return response()->json($validator->messages(),400);
         }
         $cimero = $this->create($request->all());
-        if($cimero) return response()->json([
-            'cimero' => $cimero,
-            'token' => JWTAuth::attempt($request->all()),
-        ]);
+        if($cimero) {
+            $this->emailService->welcomeEmail($request->input('email'));
+            return response()->json([
+                'cimero' => $cimero,
+                'token' => JWTAuth::attempt($request->all()),
+            ]);
+        }
     }
 
     public function updateAccountAction(Request $request)

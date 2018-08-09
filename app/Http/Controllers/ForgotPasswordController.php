@@ -7,13 +7,17 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Cimero;
+use App\Services\EmailService;
+
 
 class ForgotPasswordController extends Controller
 {
 
     use SendsPasswordResetEmails;
 
-    public function __construct() {}
+    public function __construct(EmailService $emailService) {
+        $this->emailService = $emailService;
+    }
 
 
     public function forgotPasswordAction(Request $request) 
@@ -31,10 +35,12 @@ class ForgotPasswordController extends Controller
         ],400);
 
         $token = $this->broker()->createToken($cimero);
+        $link = $request->root() . '/reset-password/' . $token;
+        $this->emailService->resetPasswordRequestEmail($cimero->email,$link);
+
         return response()->json([
-            'token' => $token,
+            //'token' => $token,
         ],200);
     }
-
 
 }
