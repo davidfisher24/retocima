@@ -66,10 +66,13 @@ Route::group(['middleware' => ['api','cors']], function() {
     Route::options('auth/login','AuthController@login');
     Route::options('auth/register','AuthController@register');
     Route::options('auth/refresh','AuthController@refresh');
+    Route::options('forgot-password','ForgotPasswordController@forgotPasswordAction');
     
     Route::post('auth/register','AuthController@register');
     Route::post('auth/login','AuthController@login');
+    Route::post('forgot-password','ForgotPasswordController@forgotPasswordAction');
     Route::get('auth/refresh','AuthController@refresh');
+    
     
     Route::group(['middleware' => 'jwt-auth'], function () {
 

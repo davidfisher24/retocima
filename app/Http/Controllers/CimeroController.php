@@ -142,10 +142,10 @@ class CimeroController extends Controller
             ->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
             ->whereIn('cima_id',$exs)
             ->groupBy('cimeros.id')
+            ->orderBy('logros_count','desc')
             ->get();
-        return $cimeros->filter(function($c) use ($exs) {
-            return $c->logros_count === count($exs);
-        });
+
+        return $cimeros;
     }
 
 
