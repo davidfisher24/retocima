@@ -4,20 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use DB;
-use Auth;
-use JWTAuth;
-use JWTAuthException;
-use App\Cimero;
-use App\Pais;
-use App\Provincia;
-use App\Communidad;
-use App\Logro;
-use App\Cima;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Cimero;
 
 class ForgotPasswordController extends Controller
 {
