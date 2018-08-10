@@ -8,16 +8,15 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Cimero;
-use App\Services\EmailService;
+use Mail;
+use App\Mail\PasswordResetSuccessEmail;
 
 class ResetPasswordController extends Controller
 {
 
     use ResetsPasswords;
 
-    public function __construct(EmailService $emailService) {
-        $this->emailService = $emailService;
-    }
+    public function __construct() {}
 
 
     public function resetPasswordAction(Request $request)
@@ -30,11 +29,11 @@ class ResetPasswordController extends Controller
             }
         );
         if ($response == 'passwords.reset') {
+            Mail::to($request->input('email'))->send(new PasswordResetSuccessEmail([]));
             return response()->json([
                 'message' => trans('passwords.reset'),
             ],200);
         } else {
-            $this->emailService->resetPasswordSuccessEmail($request->input('email'));
             return response()->json([
                 'message' => trans($response),
             ],400);
