@@ -34,7 +34,7 @@ class ForgotPasswordController extends Controller
         ],400);
 
         $token = $this->broker()->createToken($cimero);
-        $link = $request->root() . '/reset-password/' . $token;
+        $link = $_ENV['yourkeyhere'] . 'reset-password/' . $token;
         Mail::to($cimero->email)->send(new PasswordResetEmail([
             'link' => $link,
             'name' => $cimero->nombre,
