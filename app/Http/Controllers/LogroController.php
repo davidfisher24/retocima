@@ -18,9 +18,10 @@ class LogroController extends Controller
     public function provinceStatisticsAction($provinceId)
     {
         return DB::table('logros')
-                 ->select('cimero_id', DB::raw('count(*) as total'))
+                 ->select('cimero_id', DB::raw('count(*) as count'))
                  ->where('provincia_id',$provinceId)
                  ->groupBy('cimero_id')
+                 ->orderByDesc('count')
                  ->get();
     }
 
