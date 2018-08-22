@@ -167,8 +167,7 @@ class CimeroController extends Controller
 
     public function oneAction($id){
         $cimero = Cimero::with('provincia','pais')->find($id);
-        //$logros = Logro::where('cimero_id',$id)->where('cima_estado',1)->get()->groupBy('provincia_id');
-        $logros = Logro::where('cimero_id',$id)->where('cima_estado',1)->get();
+        $logros = Logro::where('cimero_id',$id)->whereIn('cima_estado',array(1,2,3))->get();
         $provinces = Provincia::withCount('activeCimas')->get();
         $communidads = Communidad::withCount('activeCimas')->get();
 

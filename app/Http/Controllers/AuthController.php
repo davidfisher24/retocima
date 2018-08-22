@@ -100,8 +100,7 @@ class AuthController extends Controller
     public function profileAction(Request $request){
         $cimero = JWTAuth::toUser($request->token);;
         $cimero = Cimero::with('provincia','pais')->find($cimero->id);
-        //$logros = Logro::where('cimero_id',$cimero->id)->where('cima_estado',1)->get()->groupBy('provincia_id');
-        $logros = Logro::where('cimero_id',$cimero->id)->where('cima_estado',1)->get();
+        $logros = Logro::where('cimero_id',$cimero->id)->whereIn('cima_estado',array(1,2,3))->get();
         $provinces = Provincia::withCount('activeCimas')->get();
         $communidads = Communidad::withCount('activeCimas')->get();
 
