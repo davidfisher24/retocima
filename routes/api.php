@@ -34,6 +34,7 @@ Route::group(['middleware' => ['api','cors']], function() {
     // Cimas
     Route::get('cimas/{id}', 'CimaController@allInProviceAction');
     Route::get('cimas', 'CimaController@allAction');
+    Route::get('cimas/group/eliminated', 'CimaController@eliminatedAction');
     Route::get('cima/{id}', 'CimaController@OneAction');
     Route::get('cimas/list/markers', 'CimaController@markersAction');
     Route::get('cimas/list/names', 'CimaController@namesAction');
@@ -55,6 +56,8 @@ Route::group(['middleware' => ['api','cors']], function() {
     Route::get('communidadsranking', 'CommunidadController@rankAction');
     Route::get('filtersranking/{filter}/{id}', 'CimeroController@rankByAreaAction');
     Route::get('provinciasstarted', 'CimeroController@rankByProvincesStartedAction');
+
+    Route::get('logros/{cimaId}','LogroController@cimaAction');
 
     Route::get('maplines/{id}', function($id){
         if (File::exists(public_path() . '/maplines/'.$id.'.txt')) return File::get(public_path() . '/maplines/'.$id.'.txt');

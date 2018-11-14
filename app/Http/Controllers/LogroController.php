@@ -15,6 +15,18 @@ class LogroController extends Controller
 
     }
 
+    public function cimaAction($cimaId)
+    {
+        return Logro::join('cimeros', 'cimeros.id', '=', 'logros.cimero_id')
+                ->select(
+                    'logros.id',
+                    DB::raw(
+                        'CONCAT(cimeros.nombre," ",cimeros.apellido1," ",cimeros.apellido2) as fullname'
+                    )
+                )
+                ->where('cima_id',$cimaId)->get()->toJSON();
+    }
+
     public function provinceStatisticsAction($provinceId)
     {
         return DB::table('logros')

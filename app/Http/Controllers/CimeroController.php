@@ -43,7 +43,7 @@ class CimeroController extends Controller
 	    		provincias.nombre as provinciaName, 
 	    		paises.nombre as paisName'
 	    	))
-	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')
+	    	->leftJoin('logros', 'cimeros.id', '=', 'logros.cimero_id')->whereIn('cima_estado',[1,3])
 	    	->leftJoin('provincias', 'cimeros.provincia', '=', 'provincias.id')
 	    	->leftJoin('paises', 'cimeros.pais', '=', 'paises.id')
 	        ->groupBy('cimeros.id')

@@ -8,162 +8,15 @@ use App\Cimero;
 use App\Cima;
 use App\Logro;
 
-use App\Repositories\LogroRepository;
 
 class CimeroLogroService extends BaseService
 {
 
-    /**
-    * Loads $logroRepository Classes
-    * 
-    * @param repository $logroRepository
-    *
-    * @return void
-    */
-
-
-    public function __construct(LogroRepository $logroRepository)
-    {
-       $this->logroRepository = $logroRepository;
-    }
+    public function __construct() {}
 
 
     /**
-     * Returns all logros for cimero
-     *
-     * @param integer $cimeroId
-     * @return eloquent collection logros
-     *
-     */
-
-    private function getCimeroLogros($id)
-    {
-        return Cimero::find($id)->logros()->get();
-    }
-
-
-	/**
-     * Returns all logro_ids for a cimero
-     *
-     * @param integer $cimeroId
-     * @return array cimero logro ids
-     *
-     */
-
-	public function getCimeroLogrosCimaIds($id)
-	{
-		return $this->getCimeroLogros($id)->pluck('cima_id')->toArray();
-
-	}
-
-    public function getLogrosOrderedByAltitud($id)
-    {
-        return $this->getCimeroWithDetailedLogros($id)->map(function($cima){
-            $cima["altitud"] = $cima->vertientes->first()->altitud;
-            return $cima;
-        })->sortByDesc('altitud');
-
-    }
-
-	/**
-     * Returns all logros with details for a cimero
-     *
-     * @param integer $cimeroId
-     *
-     * @return collection cimero logros with cima details
-     *
-     */
-
-	public function getCimeroWithDetailedLogros($id)
-	{
-    	$logros = $this->getCimeroLogros($id)->map(function($item, $index){
-    		return Cima::with('vertientes')->find($item->cima_id);
-    	});
-
-    	return $logros;
-	}
-
-    /**
-     * Returns cimeros provinces counted by number of logros
-     *
-     * @param integer $cimeroId
-     *
-     * @return collection provincias with logro count
-     *
-     */
-
-    public function getCimeroProvinciaCount($id) {
-        return $this->getCimeroLogros($id)->groupBy('provincia_id')->map(function ($item, $key) {
-            return array(
-                "provincia" => $item->first()->provincia->nombre,
-                "count" => $item->count()
-            );
-        })->sortByDesc('count');
-    }
-
-    /**
-     * Returns all cimeros ranked by numero of logros
-     *
-     * @param array $filter a key to filter on (foreign_key, id)
-     *
-     * @return collection cimeros ranked by logros
-     */
-
-    public function getRankingOfAllCimeros($filter = null){
-
-        $cimeros = $this->logroRepository->countLogrosByAForeignKey('cimero_id',$filter)->map(function($item,$i){
-            $cimero = $item->cimero()->first();
-            $item->nombre = $cimero->getFullName();
-            $item->provincia = $cimero->getProvincia();
-            $item->id = $cimero->id;
-            return $item;
-        });
-
-        $cimeros->sortByDesc('logros_count');
-        return $this->addRankingParameter($cimeros,'logros_count');
-
-    }
-
-    /**
-     * Returns all a cimeros logro in nested array of communidads
-     *
-     * @param integer $cimeroId
-     *
-     * @return collection cimero logros by communidad
-     *
-     */
-
-    public function getCimeroLogrosGroupedByCommunidad($cimeroId){
-        return $this->logroRepository->getLogrosByCimeroId($cimeroId)->groupBy('communidad_id')->map(function($item){
-            return $item->groupBy('communidad_id','provincia_id')->keyBy($item->first()->first()->communidad->nombre);
-        });
-    }
-
-    /**
-     * Returns all cimeros ranked by number of provinces started
-     *
-     * @return collection cimeros ranked by number of provinces with one logro
-     *
-     */
-
-    public function getCimerosWithProvinciasWithAtLeastOneLogro()
-    {
-        $cimeros = $this->logroRepository->getLogrosGroupedByTwoForeignKeys('cimero_id','provincia_id')->groupBy('cimero_id')->transform(function($item,$i){
-            $item->first()->count = count($item);
-            return $item->first();
-        })->sortByDesc('count')->values()->map(function($item,$i){
-            $cimero = $item->cimero;
-            $item->id = $cimero->id;
-            $item->nombre = $cimero->getFullName();
-            return $item;
-        });
-
-        $cimeros->sortByDesc('count');
-        return $this->addRankingParameter($cimeros,'count');
-    }
-
-    /**
-     * Validates an array of logros to be saved and asks the logros repo to save them
+     * Validates and saved an array of logros
      *
      * @param array $logros (ids)
      * @param intger $cimeroId
@@ -171,15 +24,26 @@ class CimeroLogroService extends BaseService
      *
      */
 
-    public function validateAndAddNewLogros($logros,$cimeroId)
+     public function validateAndAddNewLogros($logros,$cimeroId)
     {
         $addedLogros = array();
 
-        foreach ($logros as $logro) {
-            $logro = (integer) $logro;
-            $alreadyIncluded = $this->validateLogroIsNotAlreadyIncludedForCimero($logro,$cimeroId);
+        foreach ($logros as $l) {
+            $l = (integer) $l;
+            $alreadyIncluded = $this->checkCimeroLogro($cimeroId,$l);
+
             if(!$alreadyIncluded) {
-                $this->logroRepository->saveNewLogro($cimeroId,Cima::find($logro));
+                $cima = Cima::find($l);
+                $logro = new Logro();
+                $logro->cimero_id = $cimeroId;
+                $logro->cima_id = $cima->id;
+                $logro->cima_codigo = $cima->codigo;
+                $logro->cima_estado = $cima->estado;
+                $logro->provincia_id = $cima->provincia_id;
+                $logro->communidad_id = $cima->communidad_id;
+                $logro->iberia_id = $cima->iberia_id;
+
+                $logro->save();
                 array_push($addedLogros,$logro);
             }
         }
@@ -188,45 +52,30 @@ class CimeroLogroService extends BaseService
     }
 
     /**
-     * Validates that a user doesn't already have a logro included
+     * Removes a single logro
      *
-     * @param intger $logrosId
-     * @param intger $cimeroId
-     * @return boolean - does the user have the cima
-     *
+     * @param {object} logro
+     * @return {mixed} check for deletion
      */
 
-    public function validateLogroIsNotAlreadyIncludedForCimero($logroId,$cimeroId)
-    {
+    public function removeExistingLogro($logro){
+        Logro::destroy($logro->id);
+        $check = $this->checkCimeroLogro($logro->cimero_id,$logro->cima_id);
+        return !!$check;
+    }
+
+    /**
+     * Tests if a logro exists
+     *
+     * @param {integer} cimeroId
+     * @param (integer) logroId
+     * @return {boolean} 
+     */
+
+    private function checkCimeroLogro ($cimeroId,$logroId) {
         $check = Cimero::find($cimeroId)->logros->where('cima_id',$logroId)->count();
         if ($check === 1) return true;
         return false;
     }
-
-    /**
-     * Test if a cimero has a logro
-     *
-     * @param integer $id
-     * @param integer $cimaid
-     * @return Eloquent model logro or null
-     */
-
-    public function testCimeroLogroExists($cimeroId,$cimaId){
-        if (!$cimeroId) return null;
-        return Cimero::find($cimeroId)->logros->where('cima_id',$cimaId)->first();
-    }
-
-    /**
-     * Test if a cimero has a logro
-     *
-     * @param {integer} LogroId
-     * @return {object or boolean} check
-     */
-
-    public function removeExistingLogro($logro){
-        $this->logroRepository->removeSingleLogro($logro->id);
-        $check = $this->testCimeroLogroExists($logro->cimero_id,$logro->cima_id);
-        return $check;
-    }
-
+    
 }

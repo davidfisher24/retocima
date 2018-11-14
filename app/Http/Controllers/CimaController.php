@@ -7,6 +7,7 @@ use DB;
 use Auth;
 
 use App\Cima;
+use App\Vertiente;
 use App\Logro;
 
 class CimaController extends Controller
@@ -27,7 +28,8 @@ class CimaController extends Controller
 
     public function namesAction()
     {
-        return Cima::select('id','codigo','nombre','estado','provincia_id')->get()->toJSON();
+        return Cima::select('id','codigo','nombre','estado','has_substitute','provincia_id')
+        ->get()->toJSON();
     }
 
     /*
@@ -43,12 +45,15 @@ class CimaController extends Controller
      */
     public function discoverAction()
     {
-        return Cima::orderByRaw("RAND()")->take(2)->withCount('logros')->get()->toJSON();
+        return Cima::where('estado',1)
+        ->orderByRaw("RAND()")->take(2)->withCount('logros')
+        ->get()->toJSON();
     }
 
     /*
      * Finds all cimas with all data linked (slow)
      */
+    
     public function allAction()
     {
     	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
@@ -67,8 +72,26 @@ class CimaController extends Controller
      */
     public function advancedSearchAction(Request $request)
     {   
-        $input = $request->all();
-        return $input;
+        $input = $request->json()->all();
+
+        $query = Vertiente::query();
+        $query = $query->whereBetween('desnivel', [$input["desnivel"][0], $input["desnivel"][1]]);
+        $query = $query->whereBetween('apm', [$input["apm"][0], $input["apm"][1]]);
+        $query = $query->whereBetween('longitud', [$input["longitud"][0], $input["longitud"][1]]);
+
+        $validVertientes = $query->get();
+        $toReturn = [];
+
+        foreach ($validVertientes as $vert) {
+            $cima = Cima::find($vert->cima_id);
+            if (!$input["provincia"] || $input["provincia"] && $input["provincia"] == $cima->provincia_id) {
+                $cima->vertiente = $vert;
+                array_push($toReturn,$cima);
+            }
+        }
+
+        return $toReturn;
+
     }
 
     /*
@@ -77,6 +100,14 @@ class CimaController extends Controller
     public function allInProviceAction($provinciaId)
     {
     	return Cima::where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
+    }
+
+    /*
+     * Finds all eliminated cimas
+    */
+    public function eliminatedAction()
+    {
+        return Cima::where('estado',3)->with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
     }
 
     
