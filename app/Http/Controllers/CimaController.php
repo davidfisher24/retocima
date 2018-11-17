@@ -19,7 +19,8 @@ class CimaController extends Controller
 
     public function markersAction()
     {
-        return Cima::select('id','codigo','nombre','latitude','longitude','estado')->get()->toJSON();
+        return Cima::select('id','codigo','nombre','latitude','longitude','estado')
+                ->get()->toJSON();
     }
 
     /*
@@ -28,8 +29,9 @@ class CimaController extends Controller
 
     public function namesAction()
     {
-        return Cima::select('id','codigo','nombre','estado','has_substitute','provincia_id')
-        ->get()->toJSON();
+        return Cima::select('id','codigo','nombre','estado','substitute','provincia_id')
+                ->with('substitute')
+                ->get()->toJSON();
     }
 
     /*
@@ -37,7 +39,9 @@ class CimaController extends Controller
      */
     public function oneAction($id)
     {
-    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->find($id)->toJSON();
+    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute')
+                ->withCount('logros')
+                ->find($id)->toJSON();
     }
 
     /* 
@@ -56,7 +60,7 @@ class CimaController extends Controller
     
     public function allAction()
     {
-    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
+    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
     }
 
     /* Searchs cimas by text for ajax searcj
@@ -74,17 +78,32 @@ class CimaController extends Controller
     {   
         $input = $request->json()->all();
 
+        // max, min (centerpoint)  valueofthis  multiplier
+        $desnivelCenter = $input["desnivel"][1] - (($input["desnivel"][1] - $input["desnivel"][0]) / 2);
+
         $query = Vertiente::query();
-        $query = $query->whereBetween('desnivel', [$input["desnivel"][0], $input["desnivel"][1]]);
-        $query = $query->whereBetween('apm', [$input["apm"][0], $input["apm"][1]]);
-        $query = $query->whereBetween('longitud', [$input["longitud"][0], $input["longitud"][1]]);
+        $query = $query->select(DB::raw(
+                    'vertientes.*,
+                    ABS(vertientes.desnivel - '.$desnivelCenter.') * 0.5 as test'
+                ));
+        $test = $query->take(1)->get();
+
+
+        return $test;
+
+        
+
+        $query = Vertiente::query();
+        if (isset($input["desnivel"])) $query = $query->whereBetween('desnivel', [$input["desnivel"][0], $input["desnivel"][1]]);
+        if (isset($input["apm"])) $query = $query->whereBetween('apm', [$input["apm"][0], $input["apm"][1]]);
+        if (isset($input["longitud"])) $query = $query->whereBetween('longitud', [$input["longitud"][0], $input["longitud"][1]]);
 
         $validVertientes = $query->get();
         $toReturn = [];
 
         foreach ($validVertientes as $vert) {
             $cima = Cima::find($vert->cima_id);
-            if (!$input["provincia"] || $input["provincia"] && $input["provincia"] == $cima->provincia_id) {
+            if (!isset($input["provincia"]) || isset($input["provincia"]) && $input["provincia"] == $cima->provincia_id) {
                 $cima->vertiente = $vert;
                 array_push($toReturn,$cima);
             }
@@ -99,7 +118,7 @@ class CimaController extends Controller
      */
     public function allInProviceAction($provinciaId)
     {
-    	return Cima::where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
+    	return Cima::where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
     }
 
     /*
@@ -107,7 +126,7 @@ class CimaController extends Controller
     */
     public function eliminatedAction()
     {
-        return Cima::where('estado',3)->with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->get()->toJSON();
+        return Cima::where('estado',3)->with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
     }
 
     
@@ -117,7 +136,7 @@ class CimaController extends Controller
 
     public function pataNegraAction()
     {
-        return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
+        return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->where('pata_negra',1)->get()->toJSON();
     }
 
     /*
@@ -126,7 +145,7 @@ class CimaController extends Controller
 
     public function extremaAction()
     {
-        return Cima::with('provincia','communidad','vertientes','vertientes.enlaces')->withCount('logros')
+        return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')
         ->whereIn('id',[225,246,158,421,446,38,605,609,578])->get()->toJSON();
     }
 
