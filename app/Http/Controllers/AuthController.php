@@ -98,9 +98,9 @@ class AuthController extends Controller
     }
 
     public function profileAction(Request $request){
-        $cimero = JWTAuth::toUser($request->token);;
+        $cimero = JWTAuth::toUser($request->token);
         $cimero = Cimero::with('provincia','pais')->find($cimero->id);
-        $logros = Logro::where('cimero_id',$cimero->id)->whereIn('cima_estado',array(1,2,3))->get();
+        $logros = $this->cimeroLogroService->getLogros($cimero->id);
         $provinces = Provincia::withCount('activeCimas')->get();
         $communidads = Communidad::withCount('activeCimas')->get();
 
@@ -114,7 +114,7 @@ class AuthController extends Controller
 
     public function logrosProvinciaAction(Request $request, $provincia){
         $cimero = JWTAuth::toUser($request->token);
-        return Logro::where('cimero_id',$cimero->id)->where('provincia_id',$provincia)->get()->toJson();
+        return $this->cimeroLogroService->getLogrosInProvince($cimero->id, $provincia);
     }
 
     public function updateLogroAction(Request $request)

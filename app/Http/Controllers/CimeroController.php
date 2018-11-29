@@ -13,14 +13,19 @@ use App\Communidad;
 use App\Provincia;
 
 use App\Services\AreaCompletionService;
+use App\Services\CimeroLogroService;
 
 
 class CimeroController extends Controller
 {
 
-    public function __construct(AreaCompletionService $areaCompletionService)
+    public function __construct(
+        AreaCompletionService $areaCompletionService,
+        CimeroLogroService $cimeroLogroService
+    )
     {
         $this->areaCompletionService = $areaCompletionService;
+        $this->cimeroLogroService = $cimeroLogroService;
     }
 
     /*
@@ -167,7 +172,8 @@ class CimeroController extends Controller
 
     public function oneAction($id){
         $cimero = Cimero::with('provincia','pais')->find($id);
-        $logros = Logro::where('cimero_id',$id)->whereIn('cima_estado',array(1,2,3))->get();
+        //$logros = Logro::where('cimero_id',$id)->whereIn('cima_estado',array(1,2,3))->get();
+        $logros = $this->cimeroLogroService->getLogros($cimero->id);
         $provinces = Provincia::withCount('activeCimas')->get();
         $communidads = Communidad::withCount('activeCimas')->get();
 

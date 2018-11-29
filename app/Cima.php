@@ -18,6 +18,10 @@ class Cima extends Model
         return $this->hasOne('App\Cima', 'id', 'substitute')->select('id', 'nombre');
     }
 
+    public function substituted(){
+        return $this->hasOne('App\Cima', 'id', 'substituted')->select('id', 'nombre');
+    }
+
     /**
      * scope - return only active
      *

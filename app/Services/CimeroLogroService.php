@@ -77,5 +77,36 @@ class CimeroLogroService extends BaseService
         if ($check === 1) return true;
         return false;
     }
+
+    /**
+     * Gets all logros for a user
+     *
+     * @param {integer} cimero id
+     * @return {array} logros
+     */
+
+    public function getLogros ($cimero) {
+        return Logro::with(array('cima'=>function($query){
+            $query->select('id','provincia_id','estado','codigo');
+        }))->where('cimero_id',$cimero)->whereIn('cima_estado',array(1,2,3))->get();
+    }
+
+    /**
+     * Gets all logros in a province for a user
+     *
+     * @param {integer} cimero id
+     * @param {integer} province id
+     * @return {array} logros
+     */
+
+    public function getLogrosInProvince ($cimero,$province) {
+        return Logro::with(array('cima'=>function($query){
+            $query->select('id','provincia_id','estado','codigo');
+        }))
+        ->where('cimero_id',$cimero)
+        ->where('provincia_id',$province)
+        ->whereIn('cima_estado',array(1,2,3))
+        ->get();
+    }
     
 }

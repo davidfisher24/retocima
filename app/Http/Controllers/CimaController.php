@@ -19,8 +19,9 @@ class CimaController extends Controller
 
     public function markersAction()
     {
-        return Cima::select('id','codigo','nombre','latitude','longitude','estado')
-                ->get()->toJSON();
+        return Cima::active()->select('id','codigo','nombre','latitude','longitude','estado')
+                ->get()
+                ->toJSON();
     }
 
     /*
@@ -29,9 +30,11 @@ class CimaController extends Controller
 
     public function namesAction()
     {
-        return Cima::select('id','codigo','nombre','estado','substitute','provincia_id')
+        return Cima::active()
+                ->select('id','codigo','nombre','estado','substitute','provincia_id','communidad_id')
                 ->with('substitute')
-                ->get()->toJSON();
+                ->get()
+                ->toJSON();
     }
 
     /*
@@ -39,7 +42,7 @@ class CimaController extends Controller
      */
     public function oneAction($id)
     {
-    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute')
+    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute','substituted')
                 ->withCount('logros')
                 ->find($id)->toJSON();
     }
@@ -49,7 +52,7 @@ class CimaController extends Controller
      */
     public function discoverAction()
     {
-        return Cima::where('estado',1)
+        return Cima::active()
         ->orderByRaw("RAND()")->take(2)->withCount('logros')
         ->get()->toJSON();
     }
@@ -60,7 +63,7 @@ class CimaController extends Controller
     
     public function allAction()
     {
-    	return Cima::with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
+    	return Cima::active()->with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
     }
 
     /* Searchs cimas by text for ajax searcj
@@ -68,7 +71,7 @@ class CimaController extends Controller
      */
     public function searchAction($query)
     {
-        return Cima::Search($query)->get()->toJSON();
+        return Cima::active()->Search($query)->get()->toJSON();
     }
 
     /* Searchs cimas by text for ajax searcj
@@ -118,7 +121,7 @@ class CimaController extends Controller
      */
     public function allInProviceAction($provinciaId)
     {
-    	return Cima::where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
+    	return Cima::active()->where('provincia_id',$provinciaId)->with('provincia','communidad','vertientes','vertientes.enlaces','substitute')->withCount('logros')->get()->toJSON();
     }
 
     /*
