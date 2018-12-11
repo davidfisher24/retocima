@@ -40,7 +40,7 @@ class CimeroController extends Controller
 
     public function rankAction()
     {
-    	$cimeros = DB::table('cimeros')
+    	/*$cimeros = DB::table('cimeros')
 	    	->select(DB::raw(
 	    		'cimeros.*, 
 	    		CONCAT(cimeros.nombre, " ", cimeros.apellido1, " ", COALESCE(cimeros.apellido2,"")) as fullName,
@@ -61,6 +61,19 @@ class CimeroController extends Controller
             else if ($c->logros_count >= 480 && $c->logros_count <= 640) $c->image = 'gold';
             else if ($c->logros_count < 480 && $c->logros_count >= 320) $c->image = 'silver';
             else if ($c->logros_count >= 160 && $c->logros_count < 320) $c->image = 'bronze';
+            else $c->image = null;
+            return $c;
+        })]);*/
+        $cimeros = Cimero::select('id','logro_count','nombre','apellido1','apellido2')
+                   ->orderBy('logro_count','DESC') 
+                   ->get();
+
+        return json_encode(["data" => $cimeros->map(function($c,$i){
+            $c->rank = $i + 1;
+            if ($c->logro_count > 640) $c->image = 'crown';
+            else if ($c->logro_count >= 480 && $c->logro_count <= 640) $c->image = 'gold';
+            else if ($c->logro_count < 480 && $c->logro_count >= 320) $c->image = 'silver';
+            else if ($c->logro_count >= 160 && $c->logro_count < 320) $c->image = 'bronze';
             else $c->image = null;
             return $c;
         })]);

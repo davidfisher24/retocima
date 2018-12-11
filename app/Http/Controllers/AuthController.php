@@ -121,12 +121,12 @@ class AuthController extends Controller
     {   
         $cimero = JWTAuth::toUser($request->token);
         if ($request->get('action') === "add") {
-            $logros = array($request->get('cima'));
-            $added = $this->cimeroLogroService->validateAndAddNewLogros($logros,$cimero->id);
+            $logro = json_decode($request->get('cima'));
+            $added = $this->cimeroLogroService->validateAndAddNewLogro($logro,$cimero->id);
             return Logro::with('provincia','communidad','cima')->where('cimero_id',$cimero->id)->where('cima_id',$request->get('cima'))->first()->toJson();
         } else if ($request->get('action') === "remove") {
             $logro = json_decode($request->get('logro'));
-            $delete = $this->cimeroLogroService->removeExistingLogro($logro);
+            $delete = $this->cimeroLogroService->removeExistingLogro($logro,$cimero->id);
             return Cima::with('provincia','communidad')->find($logro->cima_id)->toJson();
         } 
     }

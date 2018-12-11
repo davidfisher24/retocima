@@ -153,6 +153,31 @@ class Cimero extends Authenticatable
         return $pais["nombre"];
     }
 
+    public function calculateLogros()
+    {
+        $count = 0;
+        $logros = $this->logros()->with('cima')->get();
+
+        foreach($logros as $logro) {
+            if ($logro->cima->estado === 1) $count++;
+
+            if ($logro->cima->estado === 2) {
+                $completedPrevious = false;
+                for($i = 0; $i < count($logros); $i++) {
+                    if($logros[$i]->cima_id == $logro->cima->substituted) {
+                        $completedPrevious = true;
+                        break;
+                    }
+                }
+                if(!$completedPrevious) $count++;
+            }
+
+        }
+        $this->logro_count = $count;
+        $this->save();
+        return;
+    }
+
 
 }
 

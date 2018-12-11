@@ -24,31 +24,30 @@ class CimeroLogroService extends BaseService
      *
      */
 
-     public function validateAndAddNewLogros($logros,$cimeroId)
+    public function validateAndAddNewLogro($logro,$cimeroId)
     {
-        $addedLogros = array();
+        $logro = (integer) $logro;
+        $cimero = Cimero::find($cimeroId);
+        $cima = Cima::find($logro);
 
-        foreach ($logros as $l) {
-            $l = (integer) $l;
-            $alreadyIncluded = $this->checkCimeroLogro($cimeroId,$l);
+        // Check if is registered already or not
+        if(!$this->checkCimeroLogro($cimeroId,$logro)) {
+            $logro = new Logro();
+            $logro->cimero_id = $cimeroId;
+            $logro->cima_id = $cima->id;
+            $logro->save();
 
-            if(!$alreadyIncluded) {
-                $cima = Cima::find($l);
-                $logro = new Logro();
-                $logro->cimero_id = $cimeroId;
-                $logro->cima_id = $cima->id;
-                $logro->cima_codigo = $cima->codigo;
-                $logro->cima_estado = $cima->estado;
-                $logro->provincia_id = $cima->provincia_id;
-                $logro->communidad_id = $cima->communidad_id;
-                $logro->iberia_id = $cima->iberia_id;
-
-                $logro->save();
-                array_push($addedLogros,$logro);
+            // Add a cimero logro if previous not completed
+            if (!$cima->substitute || 
+                ($cima->substitute && !$this->checkCimeroLogro($cimeroId,$cima->substitute))
+            ) {
+                $cimero->logro_count = $cimero->logro_count + 1;
+                $cimero->save();
             }
-        }
 
-        return $addedLogros;
+            return $logro;
+        }
+        return null;
     }
 
     /**
@@ -58,8 +57,19 @@ class CimeroLogroService extends BaseService
      * @return {mixed} check for deletion
      */
 
-    public function removeExistingLogro($logro){
+    public function removeExistingLogro($logro,$cimeroId){
+        $cima = Cima::find($logro->cima_id);
+        $cimero = Cimero::find($cimeroId);
         Logro::destroy($logro->id);
+    
+        // Remove a cimero logro if previous not completed
+        if (!$cima->substitute ||
+            $cima->substitute && !$this->checkCimeroLogro($cimeroId,$cima->substitute)
+        ) {
+            $cimero->logro_count = $cimero->logro_count - 1;
+            $cimero->save();
+        }
+
         $check = $this->checkCimeroLogro($logro->cimero_id,$logro->cima_id);
         return !!$check;
     }
