@@ -110,12 +110,21 @@ class CimeroLogroService extends BaseService
      */
 
     public function getLogrosInProvince ($cimero,$province) {
-        return Logro::with(array('cima'=>function($query){
+        /*return Logro::with(array('cima'=>function($query){
             $query->select('id','provincia_id','estado','codigo');
         }))
         ->where('cimero_id',$cimero)
         ->where('provincia_id',$province)
         ->whereIn('cima_estado',array(1,2,3))
+        ->get();*/
+
+        return Logro::with(array('cima'=>function($query){
+            $query->select('id','provincia_id','estado','codigo');
+        }))
+        ->where('cimero_id',$cimero)
+        ->whereHas('cima', function($q) use ($province) {
+            $q->where('provincia_id',$province)->whereIn('estado',array(1,2,3));
+        })
         ->get();
     }
     
