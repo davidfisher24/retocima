@@ -98,7 +98,7 @@ class CimeroLogroService extends BaseService
     public function getLogros ($cimero) {
         return Logro::with(array('cima'=>function($query){
             $query->select('id','provincia_id','estado','codigo');
-        }))->where('cimero_id',$cimero)->whereIn('cima_estado',array(1,2,3))->get();
+        }))->where('cimero_id',$cimero)->get();
     }
 
     /**
